@@ -14,6 +14,7 @@ class HomePage extends StatefulWidget {
 
 class HomePageStage extends State<HomePage> {
   List<Category> categories = new List<Category>();
+  List<Category> favoriteCategories = new List<Category>();
 
   initStateCategories() async {
     String categoriesJson = await DefaultAssetBundle
@@ -31,10 +32,30 @@ class HomePageStage extends State<HomePage> {
     });
   }
 
+  toggleFavorite(Category category) {
+    setState(() {
+      if (favoriteCategories.contains(category)) {
+        favoriteCategories.remove(category);
+      } else {
+        favoriteCategories.add(category);
+      }
+    });
+  }
+
+  isFavorite(Category category) {
+    return favoriteCategories.contains(category);
+  }
+
   @override
   void initState() {
     super.initState();
     initStateCategories();
+  }
+
+  Widget buildFavoriteIcon(bool isFavorite) {
+    IconData iconData = isFavorite ? Icons.star : Icons.star_border;
+
+    return new Icon(iconData, size: 38.0, color: Colors.amber);
   }
 
   Widget buildCategoryBox(Category category) {
@@ -62,7 +83,9 @@ class HomePageStage extends State<HomePage> {
             new Positioned(
               right: 0.0,
               bottom: 2.0,
-              child: new Icon(Icons.star, size: 38.0),
+              child: new IconButton(
+                  icon: buildFavoriteIcon(isFavorite(category)),
+                  onPressed: () => toggleFavorite(category)),
             ),
           ],
         ));
@@ -76,7 +99,7 @@ class HomePageStage extends State<HomePage> {
       mainAxisSpacing: 5.0,
       crossAxisCount: 2,
       children: new List<Widget>.generate(categories.length,
-          (int index) => this.buildCategoryBox(categories[index])),
+          (int index) => buildCategoryBox(categories[index])),
     );
   }
 
@@ -86,7 +109,7 @@ class HomePageStage extends State<HomePage> {
       appBar: new AppBar(
         title: new Text(widget.title),
       ),
-      body: this.buildGrid(),
+      body: buildGrid(),
     );
   }
 }
