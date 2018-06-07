@@ -15,6 +15,7 @@ class HomePage extends StatefulWidget {
 class HomePageStage extends State<HomePage> {
   List<Category> categories = new List<Category>();
   List<Category> favoriteCategories = new List<Category>();
+  Category focusedCategory;
 
   initStateCategories() async {
     String categoriesJson = await DefaultAssetBundle
@@ -42,6 +43,18 @@ class HomePageStage extends State<HomePage> {
     });
   }
 
+  _handleCategoryTap(Category category) {
+    setState(() {
+      focusedCategory = null;
+    });
+  }
+
+  _handleCategoryTapDown(Category category) {
+    setState(() {
+      focusedCategory = category;
+    });
+  }
+
   isFavorite(Category category) {
     return favoriteCategories.contains(category);
   }
@@ -58,37 +71,50 @@ class HomePageStage extends State<HomePage> {
     return new Icon(iconData, size: 38.0, color: Colors.amber);
   }
 
-  Widget buildCategoryBox(Category category) {
-    return new Container(
-        decoration: new BoxDecoration(
-          image: new DecorationImage(
-            image: new AssetImage('assets/images/categories/${category.image}'),
-            fit: BoxFit.cover,
-          ),
+  List<Widget> buildCategoryBoxChild(Category category) {
+    List <Widget> child = new List();
+
+    if (focusedCategory == category) {
+      child.add(new Center(
+        child: new Container(
+          color: Colors.green,
+          padding: const EdgeInsets.symmetric(
+              vertical: 15.0, horizontal: 10.0),
+          child: new Text(category.name,
+              style: new TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20.0,
+              )),
         ),
-        child: new Stack(
-          children: <Widget>[
-            new Center(
-              child: new Container(
-                color: Colors.green,
-                padding: const EdgeInsets.symmetric(
-                    vertical: 15.0, horizontal: 10.0),
-                child: new Text(category.name,
-                    style: new TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20.0,
-                    )),
-              ),
+      ));
+    }
+
+    child.add(new Positioned(
+      right: 0.0,
+      bottom: 2.0,
+      child: new IconButton(
+      icon: buildFavoriteIcon(isFavorite(category)),
+      onPressed: () => toggleFavorite(category)),
+    ));
+
+    return child;
+  }
+
+  Widget buildCategoryBox(Category category) {
+    return new GestureDetector(
+      onTap: () => _handleCategoryTap(category),
+      onTapDown: (e) => _handleCategoryTapDown(category),
+      child: new Container(
+          decoration: new BoxDecoration(
+            image: new DecorationImage(
+              image: new AssetImage('assets/images/categories/${category.image}'),
+              fit: BoxFit.cover,
             ),
-            new Positioned(
-              right: 0.0,
-              bottom: 2.0,
-              child: new IconButton(
-                  icon: buildFavoriteIcon(isFavorite(category)),
-                  onPressed: () => toggleFavorite(category)),
-            ),
-          ],
-        ));
+          ),
+          child: new Stack(
+            children: buildCategoryBoxChild(category),
+          )),
+    );
   }
 
   Widget buildGrid() {
