@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 
 import 'package:zgadula/models/category.dart';
+import 'package:zgadula/screens/category_detail.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  HomeScreen({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  HomePageStage createState() => new HomePageStage();
+  HomeScreenStage createState() => new HomeScreenStage();
 }
 
-class HomePageStage extends State<HomePage> {
+class HomeScreenStage extends State<HomeScreen> {
   List<Category> categories = new List<Category>();
   List<Category> favoriteCategories = new List<Category>();
   Category focusedCategory;
@@ -44,6 +45,8 @@ class HomePageStage extends State<HomePage> {
   }
 
   _handleCategoryTap(Category category) {
+    openCategoryDetail(category);
+
     setState(() {
       focusedCategory = null;
     });
@@ -59,6 +62,14 @@ class HomePageStage extends State<HomePage> {
     return favoriteCategories.contains(category);
   }
 
+  openCategoryDetail(Category category) {
+    Navigator.push(
+        context,
+        new MaterialPageRoute(
+            builder: (context) =>
+                new CategoryDetailScreen(category: category)));
+  }
+
   @override
   void initState() {
     super.initState();
@@ -72,14 +83,13 @@ class HomePageStage extends State<HomePage> {
   }
 
   List<Widget> buildCategoryBoxChild(Category category) {
-    List <Widget> child = new List();
+    List<Widget> child = new List();
 
     if (focusedCategory == category) {
       child.add(new Center(
         child: new Container(
           color: Colors.green,
-          padding: const EdgeInsets.symmetric(
-              vertical: 15.0, horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
           child: new Text(category.name,
               style: new TextStyle(
                 fontWeight: FontWeight.bold,
@@ -93,8 +103,8 @@ class HomePageStage extends State<HomePage> {
       right: 0.0,
       bottom: 2.0,
       child: new IconButton(
-      icon: buildFavoriteIcon(isFavorite(category)),
-      onPressed: () => toggleFavorite(category)),
+          icon: buildFavoriteIcon(isFavorite(category)),
+          onPressed: () => toggleFavorite(category)),
     ));
 
     return child;
@@ -107,7 +117,8 @@ class HomePageStage extends State<HomePage> {
       child: new Container(
           decoration: new BoxDecoration(
             image: new DecorationImage(
-              image: new AssetImage('assets/images/categories/${category.image}'),
+              image:
+                  new AssetImage(category.getImagePath()),
               fit: BoxFit.cover,
             ),
           ),
@@ -124,8 +135,7 @@ class HomePageStage extends State<HomePage> {
       crossAxisSpacing: 5.0,
       mainAxisSpacing: 5.0,
       crossAxisCount: 2,
-      children: new List<Widget>.generate(categories.length,
-          (int index) => buildCategoryBox(categories[index])),
+      children: categories.map((category) => buildCategoryBox(category)).toList(),
     );
   }
 
