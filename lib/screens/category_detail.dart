@@ -58,7 +58,7 @@ class CategoryDetailScreenStage extends State<CategoryDetailScreen> {
             new RaisedButton(
                 child: const Text("Play"), onPressed: playCategory),
           ],
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
         )),
         new RaisedButton(child: const Text("Back"), onPressed: goBack),
       ],

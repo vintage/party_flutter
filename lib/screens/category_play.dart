@@ -69,8 +69,13 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
   }
 
   showScore() {
-    Navigator.push(context,
-        new MaterialPageRoute(builder: (context) => new GameScoreScreen(questionsValid: questionsValid, questionsInvalid: questionsInvalid,)));
+    Navigator.push(
+        context,
+        new MaterialPageRoute(
+            builder: (context) => new GameScoreScreen(
+                  questionsValid: questionsValid,
+                  questionsInvalid: questionsInvalid,
+                )));
   }
 
   _nextQuestion() {
@@ -112,29 +117,37 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
     String currentQuestion = getCurrentQuestion().name;
 
     return new Scaffold(
-        body: new Center(
-            child: new Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        new Text(currentQuestion),
-        new Text(timeLeft),
-        new IconButton(
-            icon: new Icon(Icons.arrow_back),
-            onPressed: () => Navigator.pop(context)),
-        new Row(
+        floatingActionButton: new FloatingActionButton(
+          elevation: 0.0,
+          child: new Icon(Icons.arrow_back),
+          backgroundColor: new Color(0xFFE57373),
+          onPressed: () => Navigator.pop(context),
+        ),
+        body: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new RaisedButton(
-                color: Colors.green,
-                onPressed: _handleValid,
-                child: new Text('Yes')),
-            new RaisedButton(
-                color: Colors.red,
-                onPressed: _handleInvalid,
-                child: new Text('No')),
+            new Expanded(
+              child: new Center(
+                child: new Text(currentQuestion),
+              ),
+            ),
+            new Center(
+              child: ,
+            ),
+            new Row(
+              children: <Widget>[
+                new RaisedButton(
+                    color: Colors.green,
+                    onPressed: _handleValid,
+                    child: new Text('Yes')),
+                new RaisedButton(
+                    color: Colors.red,
+                    onPressed: _handleInvalid,
+                    child: new Text('No')),
+              ],
+            ),
+            new Text(timeLeft),
           ],
-        )
-      ],
-    )));
+        ));
   }
 }

@@ -46,6 +46,7 @@ class CategoryListItem extends StatelessWidget {
           color: Colors.green,
           padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
           child: new Text(category.name,
+              textAlign: TextAlign.center,
               style: new TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20.0,
