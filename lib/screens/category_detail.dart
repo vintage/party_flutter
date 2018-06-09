@@ -15,22 +15,53 @@ class CategoryDetailScreen extends StatefulWidget {
 
 class CategoryDetailScreenStage extends State<CategoryDetailScreen> {
   List<Question> getQuestions() {
-    return widget.category.questions..shuffle()..sublist(0, 10);
+    return widget.category.questions
+      ..shuffle()
+      ..sublist(0, 10);
   }
 
   playCategory() {
-    Navigator.push(context,
-        new MaterialPageRoute(builder: (context) => new CategoryPlayScreen(questions: getQuestions())));
+    Navigator.push(
+        context,
+        new MaterialPageRoute(
+            builder: (context) =>
+                new CategoryPlayScreen(questions: getQuestions())));
+  }
+
+  goBack() {
+    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
+    Category category = widget.category;
+
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.category.name),
-      ),
-      body:
-          new RaisedButton(child: const Text("Play"), onPressed: playCategory),
-    );
+        body: new Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        new Expanded(
+            child: new Column(
+          children: <Widget>[
+            new Container(
+                width: 150.0,
+                height: 150.0,
+                decoration: new BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: new DecorationImage(
+                    image: new AssetImage(category.getImagePath()),
+                    fit: BoxFit.cover,
+                  ),
+                )),
+            new Text(category.name),
+            new Text(category.description ?? 'Have fun!'),
+            new RaisedButton(
+                child: const Text("Play"), onPressed: playCategory),
+          ],
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+        )),
+        new RaisedButton(child: const Text("Back"), onPressed: goBack),
+      ],
+    ));
   }
 }
