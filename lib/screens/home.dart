@@ -18,6 +18,12 @@ class HomeScreenStage extends State<HomeScreen> {
   List<Category> favoriteCategories = new List<Category>();
   Category focusedCategory;
 
+  @override
+  void initState() {
+    super.initState();
+    initStateCategories();
+  }
+
   initStateCategories() async {
     String categoriesJson = await DefaultAssetBundle
         .of(context)
@@ -68,12 +74,6 @@ class HomeScreenStage extends State<HomeScreen> {
         new MaterialPageRoute(
             builder: (context) =>
                 new CategoryDetailScreen(category: category)));
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    initStateCategories();
   }
 
   Widget buildFavoriteIcon(bool isFavorite) {

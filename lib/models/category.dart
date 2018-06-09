@@ -1,8 +1,4 @@
-class Question {
-  final String name;
-
-  Question(this.name);
-}
+import 'package:zgadula/models/question.dart';
 
 class Category {
   final String id;

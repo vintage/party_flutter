@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:zgadula/models/category.dart';
+import 'package:zgadula/models/question.dart';
 import 'package:zgadula/screens/category_play.dart';
 
 class CategoryDetailScreen extends StatefulWidget {
@@ -13,9 +14,13 @@ class CategoryDetailScreen extends StatefulWidget {
 }
 
 class CategoryDetailScreenStage extends State<CategoryDetailScreen> {
+  List<Question> getQuestions() {
+    return widget.category.questions..shuffle()..sublist(0, 10);
+  }
+
   playCategory() {
     Navigator.push(context,
-        new MaterialPageRoute(builder: (context) => new CategoryPlayScreen()));
+        new MaterialPageRoute(builder: (context) => new CategoryPlayScreen(questions: getQuestions())));
   }
 
   @override
