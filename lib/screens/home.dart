@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:zgadula/models/category.dart';
 import 'package:zgadula/screens/category_detail.dart';
+import 'package:zgadula/components/category_list_item.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key, this.title}) : super(key: key);
@@ -40,7 +41,7 @@ class HomeScreenStage extends State<HomeScreen> {
     });
   }
 
-  toggleFavorite(Category category) {
+  _handleFavoriteToggle(Category category) {
     setState(() {
       if (favoriteCategories.contains(category)) {
         favoriteCategories.remove(category);
@@ -64,10 +65,6 @@ class HomeScreenStage extends State<HomeScreen> {
     });
   }
 
-  isFavorite(Category category) {
-    return favoriteCategories.contains(category);
-  }
-
   openCategoryDetail(Category category) {
     Navigator.push(
         context,
@@ -76,76 +73,29 @@ class HomeScreenStage extends State<HomeScreen> {
                 new CategoryDetailScreen(category: category)));
   }
 
-  Widget buildFavoriteIcon(bool isFavorite) {
-    IconData iconData = isFavorite ? Icons.star : Icons.star_border;
-
-    return new Icon(iconData, size: 38.0, color: Colors.amber);
-  }
-
-  List<Widget> buildCategoryBoxChild(Category category) {
-    List<Widget> child = new List();
-
-    if (focusedCategory == category) {
-      child.add(new Center(
-        child: new Container(
-          color: Colors.green,
-          padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-          child: new Text(category.name,
-              style: new TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
-              )),
-        ),
-      ));
-    }
-
-    child.add(new Positioned(
-      right: 0.0,
-      bottom: 2.0,
-      child: new IconButton(
-          icon: buildFavoriteIcon(isFavorite(category)),
-          onPressed: () => toggleFavorite(category)),
-    ));
-
-    return child;
-  }
-
-  Widget buildCategoryBox(Category category) {
-    return new GestureDetector(
-      onTap: () => _handleCategoryTap(category),
-      onTapDown: (e) => _handleCategoryTapDown(category),
-      child: new Container(
-          decoration: new BoxDecoration(
-            image: new DecorationImage(
-              image:
-                  new AssetImage(category.getImagePath()),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: new Stack(
-            children: buildCategoryBoxChild(category),
-          )),
-    );
-  }
-
-  Widget buildGrid() {
-    return new GridView.count(
-      primary: false,
-      padding: const EdgeInsets.all(10.0),
-      crossAxisSpacing: 5.0,
-      mainAxisSpacing: 5.0,
-      crossAxisCount: 2,
-      children: categories.map((category) => buildCategoryBox(category)).toList(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
       ),
-      body: buildGrid(),
+      body: new GridView.count(
+        primary: false,
+        padding: const EdgeInsets.all(10.0),
+        crossAxisSpacing: 5.0,
+        mainAxisSpacing: 5.0,
+        crossAxisCount: 2,
+        children: categories
+            .map((category) => new CategoryListItem(
+                  category: category,
+                  showTitle: focusedCategory == category,
+                  isFavorite: favoriteCategories.contains(category),
+                  onTap: () => _handleCategoryTap(category),
+                  onTapDown: () => _handleCategoryTapDown(category),
+                  onFavoriteToggle: () => _handleFavoriteToggle(category),
+                ))
+            .toList(),
+      ),
     );
   }
 }
