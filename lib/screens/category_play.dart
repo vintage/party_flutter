@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:zgadula/models/question.dart';
+import 'package:zgadula/screens/game_score.dart';
 
 class CategoryPlayScreen extends StatefulWidget {
   CategoryPlayScreen({Key key, this.questions}) : super(key: key);
@@ -18,6 +19,9 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
   int secondsLeft = 30;
   int level = 0;
 
+  List<Question> questionsValid = [];
+  List<Question> questionsInvalid = [];
+
   @override
   void initState() {
     super.initState();
@@ -26,7 +30,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
 
   @protected
   @mustCallSuper
-  void dispose () {
+  void dispose() {
     super.dispose();
 
     stopTimer();
@@ -59,8 +63,23 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
     return '${minutes.toString().padLeft(2, "0")}:${seconds.toString().padLeft(2, "0")}';
   }
 
+  Question getCurrentQuestion() {
+    return widget.questions[level];
+  }
+
+  showScore() {
+    Navigator.push(context,
+        new MaterialPageRoute(builder: (context) => new GameScoreScreen(questionsValid: questionsValid, questionsInvalid: questionsInvalid,)));
+  }
+
   _nextQuestion() {
     stopTimer();
+
+    if (level == 10) {
+      showScore();
+
+      return;
+    }
 
     setState(() {
       secondsLeft = secondsMax;
@@ -71,17 +90,21 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
   }
 
   _handleValid() {
+    questionsValid.add(getCurrentQuestion());
+
     _nextQuestion();
   }
 
   _handleInvalid() {
+    questionsInvalid.add(getCurrentQuestion());
+
     _nextQuestion();
   }
 
   @override
   Widget build(BuildContext context) {
     String timeLeft = getTimeLeft();
-    String currentQuestion = widget.questions[level].name;
+    String currentQuestion = getCurrentQuestion().name;
 
     return new Scaffold(
         body: new Center(
@@ -96,8 +119,14 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
             onPressed: () => Navigator.pop(context)),
         new Row(
           children: <Widget>[
-            new RaisedButton(color: Colors.green, onPressed: _handleValid, child: new Text('Yes')),
-            new RaisedButton(color: Colors.red, onPressed: _handleInvalid, child: new Text('No')),
+            new RaisedButton(
+                color: Colors.green,
+                onPressed: _handleValid,
+                child: new Text('Yes')),
+            new RaisedButton(
+                color: Colors.red,
+                onPressed: _handleInvalid,
+                child: new Text('No')),
           ],
         )
       ],
