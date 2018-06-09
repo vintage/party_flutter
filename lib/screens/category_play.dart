@@ -48,6 +48,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
 
   gameLoop(Timer timer) {
     if (secondsLeft == 0) {
+      _handleTimeout();
       return;
     }
 
@@ -99,6 +100,10 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
     questionsInvalid.add(getCurrentQuestion());
 
     _nextQuestion();
+  }
+
+  _handleTimeout() {
+    _handleInvalid();
   }
 
   @override
