@@ -78,25 +78,24 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
                 )));
   }
 
-  goBack() {
-    showDialog<Null>(
+  Future<bool> confirmBack() async {
+    return showDialog<bool>(
       context: context,
       barrierDismissible: false, // user must tap button!
-      builder: (BuildContext dialogContext) {
+      builder: (BuildContext context) {
         return new AlertDialog(
           content: new Text('Do you want to cancel current game?'),
           actions: <Widget>[
             new FlatButton(
               child: new Text('Yes'),
               onPressed: () {
-                Navigator.of(dialogContext).pop();
-                Navigator.of(context).pop();
+                Navigator.of(context).pop(true);
               },
             ),
             new FlatButton(
               child: new Text('No'),
               onPressed: () {
-                Navigator.of(dialogContext).pop();
+                Navigator.of(context).pop(false);
               },
             ),
           ],
@@ -143,35 +142,43 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
     String timeLeft = getTimeLeft();
     String currentQuestion = getCurrentQuestion().name;
 
-    return new Scaffold(
-        floatingActionButton: new FloatingActionButton(
-          elevation: 0.0,
-          child: new Icon(Icons.arrow_back),
-          backgroundColor: new Color(0xFFE57373),
-          onPressed: goBack,
-        ),
-        body: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Expanded(
-              child: new Center(
-                child: new Text(currentQuestion),
-              ),
+    return new WillPopScope(
+        onWillPop: () async {
+          return await confirmBack();
+        },
+        child: new Scaffold(
+            floatingActionButton: new FloatingActionButton(
+              elevation: 0.0,
+              child: new Icon(Icons.arrow_back),
+              backgroundColor: new Color(0xFFE57373),
+              onPressed: () async {
+                if (await confirmBack()) {
+                  Navigator.of(context).pop();
+                }
+              },
             ),
-            new Row(
+            body: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                new RaisedButton(
-                    color: Colors.green,
-                    onPressed: _handleValid,
-                    child: new Text('Yes')),
-                new RaisedButton(
-                    color: Colors.red,
-                    onPressed: _handleInvalid,
-                    child: new Text('No')),
+                new Expanded(
+                  child: new Center(
+                    child: new Text(currentQuestion),
+                  ),
+                ),
+                new Row(
+                  children: <Widget>[
+                    new RaisedButton(
+                        color: Colors.green,
+                        onPressed: _handleValid,
+                        child: new Text('Yes')),
+                    new RaisedButton(
+                        color: Colors.red,
+                        onPressed: _handleInvalid,
+                        child: new Text('No')),
+                  ],
+                ),
+                new Text(timeLeft),
               ],
-            ),
-            new Text(timeLeft),
-          ],
-        ));
+            )));
   }
 }
