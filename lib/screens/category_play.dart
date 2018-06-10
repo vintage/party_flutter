@@ -81,7 +81,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
   _nextQuestion() {
     stopTimer();
 
-    if (level == 10) {
+    if (level + 1 == 10) {
       showScore();
 
       return;
@@ -130,9 +130,6 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
               child: new Center(
                 child: new Text(currentQuestion),
               ),
-            ),
-            new Center(
-              child: ,
             ),
             new Row(
               children: <Widget>[

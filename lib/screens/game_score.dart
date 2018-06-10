@@ -14,25 +14,47 @@ class GameScoreScreen extends StatefulWidget {
 }
 
 class GameScoreScreenStage extends State<GameScoreScreen> {
+  goBack() {
+    Navigator.popUntil(context, ModalRoute.withName('/'));
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<Question> questionsValid = widget.questionsValid;
+    List<Question> questionsInvalid = widget.questionsInvalid;
+
     return new Scaffold(
-        body: new Center(
-            child: new Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
+        body: new Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        new Text('Correct'),
-        new Column(
-          children: new List.generate(widget.questionsValid.length,
-              (index) => new Text(widget.questionsValid[index].name)).toList(),
-        ),
-        new Text('Incorrect'),
-        new Column(
-          children: new List.generate(widget.questionsInvalid.length,
-                  (index) => new Text(widget.questionsInvalid[index].name)).toList(),
-        ),
+        new Text(
+            '${questionsValid.length} / ${(questionsValid.length + questionsInvalid.length)}'),
+        new Expanded(
+            child: new Column(
+          children: <Widget>[
+            new Column(
+              children: <Widget>[
+                new Text('Correct'),
+                new Column(
+                  children: new List.generate(questionsValid.length,
+                          (index) => new Text(questionsValid[index].name)).toList(),
+                ),
+              ],
+            ),
+            new Column(
+              children: <Widget>[
+                new Text('Incorrect'),
+                new Column(
+                  children: new List.generate(questionsInvalid.length,
+                          (index) => new Text(questionsInvalid[index].name)).toList(),
+                ),
+              ],
+            ),
+          ],
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        )),
+        new RaisedButton(child: const Text("Back"), onPressed: goBack),
       ],
-    )));
+    ));
   }
 }
