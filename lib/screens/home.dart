@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
 
+import 'package:zgadula/services/category.dart';
 import 'package:zgadula/models/category.dart';
 import 'package:zgadula/screens/category_detail.dart';
 import 'package:zgadula/components/category_list_item.dart';
@@ -26,15 +26,7 @@ class HomeScreenStage extends State<HomeScreen> {
   }
 
   initStateCategories() async {
-    String categoriesJson = await DefaultAssetBundle
-        .of(context)
-        .loadString('assets/data/categories.json');
-    List<dynamic> categoryList = json.decode(categoriesJson);
-
-    List<Category> categories = [];
-    for (Map<String, dynamic> categoryMap in categoryList) {
-      categories.add(Category.fromJson(categoryMap));
-    }
+    List<Category> categories = await CategoryService.getAll();
 
     setState(() {
       this.categories = categories;
@@ -75,6 +67,9 @@ class HomeScreenStage extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Orientation orientation = MediaQuery.of(context).orientation;
+    final bool isPortrait = orientation == Orientation.portrait;
+
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
@@ -84,7 +79,7 @@ class HomeScreenStage extends State<HomeScreen> {
         padding: const EdgeInsets.all(10.0),
         crossAxisSpacing: 5.0,
         mainAxisSpacing: 5.0,
-        crossAxisCount: 2,
+        crossAxisCount: isPortrait ? 2 : 3,
         children: categories
             .map((category) => new CategoryListItem(
                   category: category,
