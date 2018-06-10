@@ -78,6 +78,33 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
                 )));
   }
 
+  goBack() {
+    showDialog<Null>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext dialogContext) {
+        return new AlertDialog(
+          content: new Text('Do you want to cancel current game?'),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text('Yes'),
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+                Navigator.of(context).pop();
+              },
+            ),
+            new FlatButton(
+              child: new Text('No'),
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   _nextQuestion() {
     stopTimer();
 
@@ -121,7 +148,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
           elevation: 0.0,
           child: new Icon(Icons.arrow_back),
           backgroundColor: new Color(0xFFE57373),
-          onPressed: () => Navigator.pop(context),
+          onPressed: goBack,
         ),
         body: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
