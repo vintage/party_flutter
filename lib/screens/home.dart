@@ -1,4 +1,6 @@
+import 'dart:async' show Future;
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:zgadula/services/category.dart';
 import 'package:zgadula/models/category.dart';
@@ -15,8 +17,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenStage extends State<HomeScreen> {
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
   List<Category> categories = new List<Category>();
-  List<Category> favoriteCategories = new List<Category>();
+  List<String> favoriteIds = new List<String>();
   Category focusedCategory;
 
   @override
@@ -28,18 +32,29 @@ class HomeScreenStage extends State<HomeScreen> {
   initStateCategories() async {
     List<Category> categories = await CategoryService.getAll();
 
+    final SharedPreferences prefs = await _prefs;
+    final List<String> favoriteIds = prefs.getStringList('favorite_list') ?? [];
+
     setState(() {
       this.categories = categories;
+      this.favoriteIds = favoriteIds;
     });
   }
 
-  _handleFavoriteToggle(Category category) {
+  _handleFavoriteToggle(Category category) async {
+    final favoriteIds = this.favoriteIds.toList();
+
+    if (favoriteIds.contains(category.id)) {
+      favoriteIds.remove(category.id);
+    } else {
+      favoriteIds.add(category.id);
+    }
+
+    final SharedPreferences prefs = await _prefs;
+    prefs.setStringList('favorite_list', favoriteIds);
+
     setState(() {
-      if (favoriteCategories.contains(category)) {
-        favoriteCategories.remove(category);
-      } else {
-        favoriteCategories.add(category);
-      }
+      this.favoriteIds = favoriteIds;
     });
   }
 
@@ -84,7 +99,7 @@ class HomeScreenStage extends State<HomeScreen> {
             .map((category) => new CategoryListItem(
                   category: category,
                   showTitle: focusedCategory == category,
-                  isFavorite: favoriteCategories.contains(category),
+                  isFavorite: favoriteIds.contains(category.id),
                   onTap: () => _handleCategoryTap(category),
                   onTapDown: () => _handleCategoryTapDown(category),
                   onFavoriteToggle: () => _handleFavoriteToggle(category),
