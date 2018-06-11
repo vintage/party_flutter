@@ -26,7 +26,7 @@ class CategoryDetailScreenStage extends State<CategoryDetailScreen> {
   playCategory() async {
     final questions = await getQuestions();
 
-    Navigator.push(
+    Navigator.pushReplacement(
         context,
         new MaterialPageRoute(
             builder: (context) =>

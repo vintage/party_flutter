@@ -69,7 +69,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
   }
 
   showScore() {
-    Navigator.push(
+    Navigator.pushReplacement(
         context,
         new MaterialPageRoute(
             builder: (context) => new GameScoreScreen(
