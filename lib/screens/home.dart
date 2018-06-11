@@ -78,20 +78,23 @@ class HomeScreenStage extends State<HomeScreen> {
       appBar: new AppBar(
         title: new Text(widget.title),
       ),
-      body: new GridView.count(
-        primary: false,
-        padding: const EdgeInsets.all(10.0),
-        crossAxisSpacing: 5.0,
-        mainAxisSpacing: 5.0,
-        crossAxisCount: isPortrait ? 2 : 3,
-        children: categories
-            .map((category) => new CategoryListItem(
-                  category: category,
-                  isFavorite: favoriteIds.contains(category.id),
-                  onTap: () => _handleCategoryTap(category),
-                  onFavoriteToggle: () => _handleFavoriteToggle(category),
-                ))
-            .toList(),
+      body: new Container(
+        decoration: new BoxDecoration(color: Colors.red[700]),
+        child: new GridView.count(
+          primary: false,
+          padding: const EdgeInsets.all(10.0),
+          crossAxisSpacing: 5.0,
+          mainAxisSpacing: 5.0,
+          crossAxisCount: isPortrait ? 2 : 3,
+          children: categories
+              .map((category) => new CategoryListItem(
+                    category: category,
+                    isFavorite: favoriteIds.contains(category.id),
+                    onTap: () => _handleCategoryTap(category),
+                    onFavoriteToggle: () => _handleFavoriteToggle(category),
+                  ))
+              .toList(),
+        ),
       ),
     );
   }

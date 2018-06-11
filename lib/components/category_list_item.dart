@@ -36,13 +36,15 @@ class CategoryListItem extends StatelessWidget {
   List<Widget> buildCategoryBoxChild(Category category) {
     List<Widget> child = new List();
 
-    IconData iconData = isFavorite ? Icons.star : Icons.star_border;
-    Icon icon = new Icon(iconData, size: 38.0, color: Colors.amber);
-
     child.add(new Positioned(
       right: 0.0,
-      bottom: 2.0,
-      child: new IconButton(icon: icon, onPressed: () => onFavoriteToggle()),
+      left: 0.0,
+      bottom: 0.0,
+      child: new Container(
+        height: 35.0,
+        decoration: new BoxDecoration(color: Colors.deepOrange[200]),
+        child: new Center(child: new Text(category.name)),
+      ),
     ));
 
     return child;
