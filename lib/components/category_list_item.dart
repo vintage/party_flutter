@@ -28,12 +28,12 @@ class CategoryListItem extends StatelessWidget {
                 ),
               ),
               child: new Stack(
-                children: buildCategoryBoxChild(category),
+                children: buildCategoryBoxChild(context),
               ))),
     );
   }
 
-  List<Widget> buildCategoryBoxChild(Category category) {
+  List<Widget> buildCategoryBoxChild(BuildContext context) {
     List<Widget> child = new List();
 
     child.add(new Positioned(
@@ -42,7 +42,7 @@ class CategoryListItem extends StatelessWidget {
       bottom: 0.0,
       child: new Container(
         height: 35.0,
-        decoration: new BoxDecoration(color: Colors.deepOrange[200]),
+        decoration: new BoxDecoration(color: Theme.of(context).buttonColor),
         child: new Center(child: new Text(category.name)),
       ),
     ));

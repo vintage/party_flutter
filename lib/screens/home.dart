@@ -79,7 +79,7 @@ class HomeScreenStage extends State<HomeScreen> {
         title: new Text(widget.title),
       ),
       body: new Container(
-        decoration: new BoxDecoration(color: Colors.red[700]),
+        decoration: new BoxDecoration(color: Theme.of(context).backgroundColor),
         child: new GridView.count(
           primary: false,
           padding: const EdgeInsets.all(10.0),

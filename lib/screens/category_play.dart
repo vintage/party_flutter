@@ -157,28 +157,31 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
                 }
               },
             ),
-            body: new Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                new Expanded(
-                  child: new Center(
-                    child: new Text(currentQuestion),
-                  ),
-                ),
-                new Row(
+            body: new Container(
+                decoration:
+                    new BoxDecoration(color: Theme.of(context).backgroundColor),
+                child: new Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    new RaisedButton(
-                        color: Colors.green,
-                        onPressed: _handleValid,
-                        child: new Text('Yes')),
-                    new RaisedButton(
-                        color: Colors.red,
-                        onPressed: _handleInvalid,
-                        child: new Text('No')),
+                    new Expanded(
+                      child: new Center(
+                        child: new Text(currentQuestion),
+                      ),
+                    ),
+                    new Row(
+                      children: <Widget>[
+                        new RaisedButton(
+                            color: Colors.green,
+                            onPressed: _handleValid,
+                            child: new Text('Yes')),
+                        new RaisedButton(
+                            color: Colors.red,
+                            onPressed: _handleInvalid,
+                            child: new Text('No')),
+                      ],
+                    ),
+                    new Text(timeLeft),
                   ],
-                ),
-                new Text(timeLeft),
-              ],
-            )));
+                ))));
   }
 }

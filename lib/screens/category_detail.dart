@@ -42,31 +42,34 @@ class CategoryDetailScreenStage extends State<CategoryDetailScreen> {
     Category category = widget.category;
 
     return new Scaffold(
-        body: new Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        new Expanded(
+        body: new Container(
+            decoration:
+                new BoxDecoration(color: Theme.of(context).backgroundColor),
             child: new Column(
-          children: <Widget>[
-            new Container(
-                width: 150.0,
-                height: 150.0,
-                decoration: new BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: new DecorationImage(
-                    image: new AssetImage(category.getImagePath()),
-                    fit: BoxFit.cover,
-                  ),
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                new Expanded(
+                    child: new Column(
+                  children: <Widget>[
+                    new Container(
+                        width: 150.0,
+                        height: 150.0,
+                        decoration: new BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: new DecorationImage(
+                            image: new AssetImage(category.getImagePath()),
+                            fit: BoxFit.cover,
+                          ),
+                        )),
+                    new Text(category.name),
+                    new Text(category.description ?? 'Have fun!'),
+                    new RaisedButton(
+                        child: const Text("Play"), onPressed: playCategory),
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                 )),
-            new Text(category.name),
-            new Text(category.description ?? 'Have fun!'),
-            new RaisedButton(
-                child: const Text("Play"), onPressed: playCategory),
-          ],
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-        )),
-        new RaisedButton(child: const Text("Back"), onPressed: goBack),
-      ],
-    ));
+                new RaisedButton(child: const Text("Back"), onPressed: goBack),
+              ],
+            )));
   }
 }
