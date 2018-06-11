@@ -21,7 +21,6 @@ class HomeScreenStage extends State<HomeScreen> {
 
   List<Category> categories = new List<Category>();
   List<String> favoriteIds = new List<String>();
-  Category focusedCategory;
 
   @override
   void initState() {
@@ -60,16 +59,6 @@ class HomeScreenStage extends State<HomeScreen> {
 
   _handleCategoryTap(Category category) {
     openCategoryDetail(category);
-
-    setState(() {
-      focusedCategory = null;
-    });
-  }
-
-  _handleCategoryTapDown(Category category) {
-    setState(() {
-      focusedCategory = category;
-    });
   }
 
   openCategoryDetail(Category category) {
@@ -98,10 +87,8 @@ class HomeScreenStage extends State<HomeScreen> {
         children: categories
             .map((category) => new CategoryListItem(
                   category: category,
-                  showTitle: focusedCategory == category,
                   isFavorite: favoriteIds.contains(category.id),
                   onTap: () => _handleCategoryTap(category),
-                  onTapDown: () => _handleCategoryTapDown(category),
                   onFavoriteToggle: () => _handleFavoriteToggle(category),
                 ))
             .toList(),
