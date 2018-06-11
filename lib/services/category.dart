@@ -5,30 +5,27 @@ import 'dart:convert';
 import 'package:zgadula/models/category.dart';
 
 class CategoryService {
-  static Future<List<Category>> getAll() async {
-    String categoriesJson =
-        await rootBundle.loadString('assets/data/categories.json');
-    List<dynamic> categoryList = json.decode(categoriesJson);
+  static List<Category> _categories;
 
-    List<Category> categories = [];
-    for (Map<String, dynamic> categoryMap in categoryList) {
-      categories.add(Category.fromJson(categoryMap));
+  static Future<List<Category>> getAll() async {
+    if (_categories == null) {
+      String categoriesJson =
+      await rootBundle.loadString('assets/data/categories.json');
+      List<dynamic> categoryList = json.decode(categoriesJson);
+
+      List<Category> categories = [];
+      for (Map<String, dynamic> categoryMap in categoryList) {
+        categories.add(Category.fromJson(categoryMap));
+      }
+
+      _categories = categories;
     }
 
-    // Mix category contains all questions
-    Category mixUp =
-        categories.firstWhere((category) => category.id == 'mixup');
-    mixUp.questions = categories
-        .where((category) {
-          return category.id != 'mixup' &&
-              category.id != 'adults' &&
-              !category.modes.contains('sing') &&
-              !category.modes.contains('humming');
-        })
-        .map((category) => category.questions)
-        .expand((q) => q)
-        .toList();
+    return _categories;
+  }
 
-    return categories;
+  static Future<Category> getById(String id) async {
+    final categories = await getAll();
+    return categories.firstWhere((category) => category.id == id);
   }
 }

@@ -1,7 +1,10 @@
+import 'dart:async' show Future;
+
 import 'package:flutter/material.dart';
 
 import 'package:zgadula/models/category.dart';
 import 'package:zgadula/models/question.dart';
+import 'package:zgadula/services/question.dart';
 import 'package:zgadula/screens/category_play.dart';
 
 class CategoryDetailScreen extends StatefulWidget {
@@ -14,18 +17,20 @@ class CategoryDetailScreen extends StatefulWidget {
 }
 
 class CategoryDetailScreenStage extends State<CategoryDetailScreen> {
-  List<Question> getQuestions() {
-    return widget.category.questions
+  Future<List<Question>> getQuestions() async {
+    return await QuestionService.getByCategoryId(widget.category.id)
       ..shuffle()
       ..sublist(0, 10);
   }
 
-  playCategory() {
+  playCategory() async {
+    final questions = await getQuestions();
+
     Navigator.push(
         context,
         new MaterialPageRoute(
             builder: (context) =>
-                new CategoryPlayScreen(questions: getQuestions())));
+                new CategoryPlayScreen(questions: questions)));
   }
 
   goBack() {
