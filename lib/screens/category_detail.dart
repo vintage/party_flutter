@@ -6,6 +6,7 @@ import 'package:zgadula/models/category.dart';
 import 'package:zgadula/models/question.dart';
 import 'package:zgadula/services/question.dart';
 import 'package:zgadula/screens/category_play.dart';
+import 'package:zgadula/components/tutorial_item.dart';
 
 class CategoryDetailScreen extends StatefulWidget {
   CategoryDetailScreen({Key key, this.category}) : super(key: key);
@@ -63,14 +64,14 @@ class CategoryDetailScreenStage extends State<CategoryDetailScreen> {
                         )),
                     Row(
                       children: <Widget>[
-                        Expanded(child: Center(child: Text("1"))),
-                        Expanded(child: Center(child: Text("2"))),
+                        TutorialItem(text: "1"),
+                        TutorialItem(text: "2"),
                       ],
                     ),
                     Row(
                       children: <Widget>[
-                        Expanded(child: Center(child: Text("3"))),
-                        Expanded(child: Center(child: Text("4"))),
+                        TutorialItem(text: "3"),
+                        TutorialItem(text: "4"),
                       ],
                     ),
                     new RaisedButton(
