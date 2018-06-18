@@ -19,17 +19,16 @@ class CategoryListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return new GestureDetector(
       onTap: () => onTap(),
-      child: new Card(
-          child: new Container(
-              decoration: new BoxDecoration(
-                image: new DecorationImage(
-                  image: new AssetImage(category.getImagePath()),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: new Stack(
-                children: buildCategoryBoxChild(context),
-              ))),
+      child: new Container(
+          decoration: new BoxDecoration(
+            image: new DecorationImage(
+              image: new AssetImage(category.getImagePath()),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: new Stack(
+            children: buildCategoryBoxChild(context),
+          )),
     );
   }
 
@@ -40,10 +39,16 @@ class CategoryListItem extends StatelessWidget {
       right: 0.0,
       left: 0.0,
       bottom: 0.0,
-      child: new Container(
-        height: 35.0,
-        decoration: new BoxDecoration(color: Theme.of(context).buttonColor),
-        child: new Center(child: new Text(category.name)),
+      child: new Opacity(
+        opacity: 0.75,
+        child: new Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: 10.0),
+            height: 45.0,
+            decoration:
+                new BoxDecoration(color: Colors.black),
+            child: new Text(category.name,
+                style: TextStyle(color: Colors.white))),
       ),
     ));
 

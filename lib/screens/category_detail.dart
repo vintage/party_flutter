@@ -61,8 +61,18 @@ class CategoryDetailScreenStage extends State<CategoryDetailScreen> {
                             fit: BoxFit.cover,
                           ),
                         )),
-                    new Text(category.name),
-                    new Text(category.description ?? 'Have fun!'),
+                    Row(
+                      children: <Widget>[
+                        Expanded(child: Center(child: Text("1"))),
+                        Expanded(child: Center(child: Text("2"))),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(child: Center(child: Text("3"))),
+                        Expanded(child: Center(child: Text("4"))),
+                      ],
+                    ),
                     new RaisedButton(
                         child: const Text("Play"), onPressed: playCategory),
                   ],
