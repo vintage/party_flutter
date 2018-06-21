@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:zgadula/models/question.dart';
 import 'package:zgadula/screens/game_score.dart';
@@ -26,13 +27,24 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
   void initState() {
     super.initState();
     startTimer();
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
   }
 
   @protected
   @mustCallSuper
   void dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    
     super.dispose();
-
     stopTimer();
   }
 
