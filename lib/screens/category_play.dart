@@ -10,7 +10,7 @@ class CategoryPlayScreen extends StatefulWidget {
   final List<Question> questions;
 
   @override
-  CategoryPlayScreenStage createState() => new CategoryPlayScreenStage();
+  CategoryPlayScreenStage createState() => CategoryPlayScreenStage();
 }
 
 class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
@@ -43,7 +43,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
   }
 
   startTimer() {
-    gameTimer = new Timer.periodic(const Duration(seconds: 1), gameLoop);
+    gameTimer = Timer.periodic(const Duration(seconds: 1), gameLoop);
   }
 
   gameLoop(Timer timer) {
@@ -70,12 +70,14 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
 
   showScore() {
     Navigator.pushReplacement(
-        context,
-        new MaterialPageRoute(
-            builder: (context) => new GameScoreScreen(
-                  questionsValid: questionsValid,
-                  questionsInvalid: questionsInvalid,
-                )));
+      context,
+      MaterialPageRoute(
+        builder: (context) => GameScoreScreen(
+              questionsValid: questionsValid,
+              questionsInvalid: questionsInvalid,
+            ),
+      ),
+    );
   }
 
   Future<bool> confirmBack() async {
@@ -83,17 +85,17 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
-        return new AlertDialog(
-          content: new Text('Do you want to cancel current game?'),
+        return AlertDialog(
+          content: Text('Do you want to cancel current game?'),
           actions: <Widget>[
-            new FlatButton(
-              child: new Text('Yes'),
+            FlatButton(
+              child: Text('Yes'),
               onPressed: () {
                 Navigator.of(context).pop(true);
               },
             ),
-            new FlatButton(
-              child: new Text('No'),
+            FlatButton(
+              child: Text('No'),
               onPressed: () {
                 Navigator.of(context).pop(false);
               },
@@ -142,46 +144,50 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
     String timeLeft = getTimeLeft();
     String currentQuestion = getCurrentQuestion().name;
 
-    return new WillPopScope(
-        onWillPop: () async {
-          return await confirmBack();
-        },
-        child: new Scaffold(
-            floatingActionButton: new FloatingActionButton(
-              elevation: 0.0,
-              child: new Icon(Icons.arrow_back),
-              backgroundColor: new Color(0xFFE57373),
-              onPressed: () async {
-                if (await confirmBack()) {
-                  Navigator.of(context).pop();
-                }
-              },
-            ),
-            body: new Container(
-                decoration:
-                    new BoxDecoration(color: Theme.of(context).backgroundColor),
-                child: new Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    new Expanded(
-                      child: new Center(
-                        child: new Text(currentQuestion),
-                      ),
-                    ),
-                    new Row(
-                      children: <Widget>[
-                        new RaisedButton(
-                            color: Colors.green,
-                            onPressed: _handleValid,
-                            child: new Text('Yes')),
-                        new RaisedButton(
-                            color: Colors.red,
-                            onPressed: _handleInvalid,
-                            child: new Text('No')),
-                      ],
-                    ),
-                    new Text(timeLeft),
-                  ],
-                ))));
+    return WillPopScope(
+      onWillPop: () async {
+        return await confirmBack();
+      },
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          elevation: 0.0,
+          child: Icon(Icons.arrow_back),
+          backgroundColor: Color(0xFFE57373),
+          onPressed: () async {
+            if (await confirmBack()) {
+              Navigator.of(context).pop();
+            }
+          },
+        ),
+        body: Container(
+          decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: Center(
+                  child: Text(currentQuestion),
+                ),
+              ),
+              Row(
+                children: <Widget>[
+                  RaisedButton(
+                    color: Colors.green,
+                    onPressed: _handleValid,
+                    child: Text('Yes'),
+                  ),
+                  RaisedButton(
+                    color: Colors.red,
+                    onPressed: _handleInvalid,
+                    child: Text('No'),
+                  ),
+                ],
+              ),
+              Text(timeLeft),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -26,8 +26,15 @@ class Category {
   final List<CategoryModeType> modes;
   List<Question> questions;
 
-  Category(this.id, this.name, this.image, this.description, this.isFree,
-      this.modes, this.questions);
+  Category(
+    this.id,
+    this.name,
+    this.image,
+    this.description,
+    this.isFree,
+    this.modes,
+    this.questions,
+  );
 
   Category.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -35,10 +42,10 @@ class Category {
         image = json['image'],
         description = json['description'],
         isFree = json['isFree'],
-        modes = new List.from(
+        modes = List.from(
             (json['modes'] ?? []).map((mode) => nameToType(mode))),
         questions =
-            new List.from(json['questions'].map((name) => new Question(name)));
+            List.from(json['questions'].map((name) => Question(name)));
 
   String getImagePath() {
     return 'assets/images/categories/$image';

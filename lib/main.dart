@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'screens/home.dart';
 
-void main() => runApp(new App());
+void main() => runApp(App());
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: 'Zgadula',
-      theme: new ThemeData(
+      theme: ThemeData(
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
@@ -19,7 +19,7 @@ class App extends StatelessWidget {
         // counter didn't reset back to zero; the application is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: new HomeScreen(title: 'Zgadula'),
+      home: HomeScreen(title: 'Zgadula'),
     );
   }
 }

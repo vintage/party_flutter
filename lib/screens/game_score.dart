@@ -10,7 +10,7 @@ class GameScoreScreen extends StatefulWidget {
   final List<Question> questionsInvalid;
 
   @override
-  GameScoreScreenStage createState() => new GameScoreScreenStage();
+  GameScoreScreenStage createState() => GameScoreScreenStage();
 }
 
 class GameScoreScreenStage extends State<GameScoreScreen> {
@@ -23,43 +23,54 @@ class GameScoreScreenStage extends State<GameScoreScreen> {
     List<Question> questionsValid = widget.questionsValid;
     List<Question> questionsInvalid = widget.questionsInvalid;
 
-    return new Scaffold(
-        body: new Container(
-      decoration: new BoxDecoration(color: Theme.of(context).backgroundColor),
-      child: new Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          new Text(
-              '${questionsValid.length} / ${(questionsValid.length + questionsInvalid.length)}'),
-          new Expanded(
-              child: new Column(
-            children: <Widget>[
-              new Column(
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).backgroundColor,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+              '${questionsValid.length} / ${(questionsValid.length + questionsInvalid.length)}',
+            ),
+            Expanded(
+              child: Column(
                 children: <Widget>[
-                  new Text('Correct'),
-                  new Column(
-                    children: new List.generate(questionsValid.length,
-                            (index) => new Text(questionsValid[index].name))
-                        .toList(),
+                  Column(
+                    children: <Widget>[
+                      Text('Correct'),
+                      Column(
+                        children: List
+                            .generate(
+                              questionsValid.length,
+                              (index) => Text(questionsValid[index].name),
+                            )
+                            .toList(),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Text('Incorrect'),
+                      Column(
+                        children: List
+                            .generate(
+                              questionsInvalid.length,
+                              (index) => Text(questionsInvalid[index].name),
+                            )
+                            .toList(),
+                      ),
+                    ],
                   ),
                 ],
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
               ),
-              new Column(
-                children: <Widget>[
-                  new Text('Incorrect'),
-                  new Column(
-                    children: new List.generate(questionsInvalid.length,
-                            (index) => new Text(questionsInvalid[index].name))
-                        .toList(),
-                  ),
-                ],
-              ),
-            ],
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-          )),
-          new RaisedButton(child: const Text("Back"), onPressed: goBack),
-        ],
+            ),
+            RaisedButton(child: const Text("Back"), onPressed: goBack),
+          ],
+        ),
       ),
-    ));
+    );
   }
 }

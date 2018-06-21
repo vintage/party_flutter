@@ -13,14 +13,14 @@ class HomeScreen extends StatefulWidget {
   final String title;
 
   @override
-  HomeScreenStage createState() => new HomeScreenStage();
+  HomeScreenStage createState() => HomeScreenStage();
 }
 
 class HomeScreenStage extends State<HomeScreen> {
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
-  List<Category> categories = new List<Category>();
-  List<String> favoriteIds = new List<String>();
+  List<Category> categories = List<Category>();
+  List<String> favoriteIds = List<String>();
 
   @override
   void initState() {
@@ -63,10 +63,11 @@ class HomeScreenStage extends State<HomeScreen> {
 
   openCategoryDetail(Category category) {
     Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (context) =>
-                new CategoryDetailScreen(category: category)));
+      context,
+      MaterialPageRoute(
+        builder: (context) => CategoryDetailScreen(category: category),
+      ),
+    );
   }
 
   @override
@@ -74,20 +75,20 @@ class HomeScreenStage extends State<HomeScreen> {
     final Orientation orientation = MediaQuery.of(context).orientation;
     final bool isPortrait = orientation == Orientation.portrait;
 
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
       ),
-      body: new Container(
-        decoration: new BoxDecoration(color: Theme.of(context).backgroundColor),
-        child: new GridView.count(
+      body: Container(
+        decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
+        child: GridView.count(
           primary: false,
           padding: const EdgeInsets.all(2.0),
           crossAxisSpacing: 1.0,
           mainAxisSpacing: 1.0,
           crossAxisCount: isPortrait ? 2 : 3,
           children: categories
-              .map((category) => new CategoryListItem(
+              .map((category) => CategoryListItem(
                     category: category,
                     isFavorite: favoriteIds.contains(category.id),
                     onTap: () => _handleCategoryTap(category),
