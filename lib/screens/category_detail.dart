@@ -14,7 +14,7 @@ class CategoryDetailScreen extends StatefulWidget {
   final Category category;
 
   @override
-  CategoryDetailScreenStage createState() => new CategoryDetailScreenStage();
+  CategoryDetailScreenStage createState() => CategoryDetailScreenStage();
 }
 
 class CategoryDetailScreenStage extends State<CategoryDetailScreen> {
@@ -28,10 +28,11 @@ class CategoryDetailScreenStage extends State<CategoryDetailScreen> {
     final questions = await getQuestions();
 
     Navigator.pushReplacement(
-        context,
-        new MaterialPageRoute(
-            builder: (context) =>
-                new CategoryPlayScreen(questions: questions)));
+      context,
+      MaterialPageRoute(
+        builder: (context) => CategoryPlayScreen(questions: questions),
+      ),
+    );
   }
 
   goBack() {
@@ -42,45 +43,60 @@ class CategoryDetailScreenStage extends State<CategoryDetailScreen> {
   Widget build(BuildContext context) {
     Category category = widget.category;
 
-    return new Scaffold(
-        body: new Container(
-            decoration:
-                new BoxDecoration(color: Theme.of(context).backgroundColor),
-            child: new Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                new Expanded(
-                    child: new Column(
-                  children: <Widget>[
-                    new Container(
-                        width: 150.0,
-                        height: 150.0,
-                        decoration: new BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: new DecorationImage(
-                            image: new AssetImage(category.getImagePath()),
-                            fit: BoxFit.cover,
-                          ),
-                        )),
-                    Row(
-                      children: <Widget>[
-                        TutorialItem(text: "1"),
-                        TutorialItem(text: "2"),
-                      ],
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).backgroundColor,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    width: 150.0,
+                    height: 150.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(
+                          category.getImagePath(),
+                        ),
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                    Row(
-                      children: <Widget>[
-                        TutorialItem(text: "3"),
-                        TutorialItem(text: "4"),
-                      ],
-                    ),
-                    new RaisedButton(
-                        child: const Text("Play"), onPressed: playCategory),
-                  ],
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                )),
-                new RaisedButton(child: const Text("Back"), onPressed: goBack),
-              ],
-            )));
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      TutorialItem(
+                        title: "1",
+                        description:
+                            "Przyłóż telefon do czoła i zgadnij hasło kierując się podpowiedziami znajomych",
+                      ),
+                      TutorialItem(
+                        title: "2",
+                        description:
+                            "Wychyl telefon do przodu jeśli odgadłeś, lub do tyłu aby pokazać kolejne pytanie aaaaaa",
+                      ),
+                    ],
+                  ),
+                  RaisedButton(
+                    child: Text("Play"),
+                    onPressed: playCategory,
+                  ),
+                ],
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              ),
+            ),
+            RaisedButton(
+              child: Text("Back"),
+              onPressed: goBack,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
