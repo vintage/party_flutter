@@ -162,6 +162,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
   Widget buildHeader(text) {
     return Text(
       text,
+      textAlign: TextAlign.center,
       style: TextStyle(
         fontSize: 64.0,
         fontWeight: FontWeight.bold,
@@ -203,7 +204,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 20.0),
+            padding: EdgeInsets.only(bottom: 20.0),
             child: Text(
               timeLeft,
               style: TextStyle(

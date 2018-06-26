@@ -18,6 +18,25 @@ class GameScoreScreenStage extends State<GameScoreScreen> {
     Navigator.popUntil(context, ModalRoute.withName('/'));
   }
 
+  List<Widget> buildQuestionsList(List<Question> questions) {
+    return List
+        .generate(
+          questions.length,
+          (index) => Padding(
+            padding: EdgeInsets.only(bottom: 8.0),
+            child: Text(questions[index].name),
+          ),
+        )
+        .toList();
+  }
+
+  Widget buildIcon(IconData icon, MaterialColor color) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 24.0),
+      child: Icon(icon, color: color, size: 48.0),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Question> questionsValid = widget.questionsValid;
@@ -39,27 +58,17 @@ class GameScoreScreenStage extends State<GameScoreScreen> {
                 children: <Widget>[
                   Column(
                     children: <Widget>[
-                      Text('Correct'),
+                      buildIcon(Icons.check, Colors.green),
                       Column(
-                        children: List
-                            .generate(
-                              questionsValid.length,
-                              (index) => Text(questionsValid[index].name),
-                            )
-                            .toList(),
+                        children: buildQuestionsList(questionsValid),
                       ),
                     ],
                   ),
                   Column(
                     children: <Widget>[
-                      Text('Incorrect'),
+                      buildIcon(Icons.close, Colors.red),
                       Column(
-                        children: List
-                            .generate(
-                              questionsInvalid.length,
-                              (index) => Text(questionsInvalid[index].name),
-                            )
-                            .toList(),
+                        children: buildQuestionsList(questionsInvalid),
                       ),
                     ],
                   ),

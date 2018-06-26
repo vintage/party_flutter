@@ -83,7 +83,7 @@ class HomeScreenStage extends State<HomeScreen> {
         decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
         child: GridView.count(
           primary: false,
-          padding: const EdgeInsets.all(2.0),
+          padding: EdgeInsets.all(2.0),
           crossAxisSpacing: 1.0,
           mainAxisSpacing: 1.0,
           crossAxisCount: isPortrait ? 2 : 3,
