@@ -17,7 +17,7 @@ class TutorialItem extends StatelessWidget {
         children: <Widget>[
           Card(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 20.0),
               child: Container(
                 padding: EdgeInsets.only(top: 24.0),
                 child: Text(description, textAlign: TextAlign.center),

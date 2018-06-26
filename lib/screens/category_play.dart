@@ -17,8 +17,9 @@ class CategoryPlayScreen extends StatefulWidget {
 class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
   Timer gameTimer;
   static const secondsMax = 30;
-  int secondsLeft = 30;
+  int secondsLeft = 3;
   int level = 0;
+  bool isStarted = false;
 
   List<Question> questionsValid = [];
   List<Question> questionsInvalid = [];
@@ -148,14 +149,70 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
   }
 
   _handleTimeout() {
-    _handleInvalid();
+    if (isStarted) {
+      _handleInvalid();
+    } else {
+      setState(() {
+        isStarted = true;
+        secondsLeft = secondsMax;
+      });
+    }
+  }
+
+  Widget buildCountdownContent() {
+    String timeLeft = getTimeLeft();
+
+    return Container(
+      decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Expanded(
+            child: Center(
+              child: Text(timeLeft),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildGameContent() {
+    String timeLeft = getTimeLeft();
+    String currentQuestion = getCurrentQuestion().name;
+
+    return Container(
+      decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Expanded(
+            child: Center(
+              child: Text(currentQuestion),
+            ),
+          ),
+          Row(
+            children: <Widget>[
+              RaisedButton(
+                color: Colors.green,
+                onPressed: _handleValid,
+                child: Text('Yes'),
+              ),
+              RaisedButton(
+                color: Colors.red,
+                onPressed: _handleInvalid,
+                child: Text('No'),
+              ),
+            ],
+          ),
+          Text(timeLeft),
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    String timeLeft = getTimeLeft();
-    String currentQuestion = getCurrentQuestion().name;
-
     return WillPopScope(
       onWillPop: () async {
         return await confirmBack();
@@ -171,34 +228,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
             }
           },
         ),
-        body: Container(
-          decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Center(
-                  child: Text(currentQuestion),
-                ),
-              ),
-              Row(
-                children: <Widget>[
-                  RaisedButton(
-                    color: Colors.green,
-                    onPressed: _handleValid,
-                    child: Text('Yes'),
-                  ),
-                  RaisedButton(
-                    color: Colors.red,
-                    onPressed: _handleInvalid,
-                    child: Text('No'),
-                  ),
-                ],
-              ),
-              Text(timeLeft),
-            ],
-          ),
-        ),
+        body: isStarted ? buildGameContent() : buildCountdownContent(),
       ),
     );
   }
