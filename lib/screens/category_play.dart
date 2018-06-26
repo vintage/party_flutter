@@ -44,7 +44,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    
+
     super.dispose();
     stopTimer();
   }
@@ -159,6 +159,17 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
     }
   }
 
+  Widget buildHeader(text) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: 64.0,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    );
+  }
+
   Widget buildCountdownContent() {
     String timeLeft = getTimeLeft();
 
@@ -169,7 +180,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
         children: <Widget>[
           Expanded(
             child: Center(
-              child: Text(timeLeft),
+              child: buildHeader(timeLeft),
             ),
           ),
         ],
@@ -188,10 +199,22 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
         children: <Widget>[
           Expanded(
             child: Center(
-              child: Text(currentQuestion),
+              child: buildHeader(currentQuestion),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20.0),
+            child: Text(
+              timeLeft,
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               RaisedButton(
                 color: Colors.green,
@@ -205,7 +228,6 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
               ),
             ],
           ),
-          Text(timeLeft),
         ],
       ),
     );
