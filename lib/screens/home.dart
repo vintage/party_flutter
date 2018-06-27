@@ -76,11 +76,10 @@ class HomeScreenStage extends State<HomeScreen> {
     final bool isPortrait = orientation == Orientation.portrait;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: Container(
-        decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
+        decoration: BoxDecoration(
+          color: Theme.of(context).backgroundColor,
+        ),
         child: GridView.count(
           primary: false,
           padding: EdgeInsets.all(2.0),

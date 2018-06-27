@@ -7,6 +7,7 @@ import 'package:zgadula/models/question.dart';
 import 'package:zgadula/services/question.dart';
 import 'package:zgadula/screens/category_play.dart';
 import 'package:zgadula/components/tutorial_item.dart';
+import 'package:zgadula/components/category_image.dart';
 
 class CategoryDetailScreen extends StatefulWidget {
   CategoryDetailScreen({Key key, this.category}) : super(key: key);
@@ -57,13 +58,13 @@ class CategoryDetailScreenStage extends State<CategoryDetailScreen> {
                   Container(
                     width: 150.0,
                     height: 150.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage(
-                          category.getImagePath(),
+                    child: Hero(
+                      tag: 'categoryImage-${category.name}',
+                      child: ClipOval(
+                        child: CategoryImage(
+                          photo: category.getImagePath(),
+                          onTap: () => {},
                         ),
-                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
