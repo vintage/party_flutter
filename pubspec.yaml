@@ -68,6 +68,12 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
+  fonts:
+    - family: FlamanteRoma
+      fonts:
+        - asset: assets/fonts/Flamante-Roma-Medium.ttf
+        - asset: assets/fonts/Flamante-Roma-MediumItalic.ttf
+          style: italic
 
 flutter_icons:
   image_path: 'assets/icon/icon.png'

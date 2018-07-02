@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/home.dart';
+import 'screens/tutorial.dart';
 
 void main() => runApp(App());
 
@@ -19,7 +20,7 @@ class App extends StatelessWidget {
         // counter didn't reset back to zero; the application is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(title: 'Zgadula'),
+      home: TutorialScreen(),
     );
   }
 }
