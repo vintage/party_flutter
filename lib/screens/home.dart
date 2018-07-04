@@ -8,9 +8,7 @@ import 'package:zgadula/screens/category_detail.dart';
 import 'package:zgadula/components/category_list_item.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key, this.title}) : super(key: key);
-
-  final String title;
+  HomeScreen({Key key}) : super(key: key);
 
   @override
   HomeScreenStage createState() => HomeScreenStage();

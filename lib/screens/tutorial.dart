@@ -79,7 +79,7 @@ class TutorialScreenState extends State<TutorialScreen>
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => HomeScreen(title: 'Zgadula'),
+        builder: (context) => HomeScreen(),
       ),
     );
   }

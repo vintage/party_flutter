@@ -16,10 +16,12 @@ class CategoryPlayScreen extends StatefulWidget {
 
 class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
   Timer gameTimer;
-  static const secondsMax = 30;
+  static const secondsMax = 5;
   int secondsLeft = 3;
   int level = 0;
   bool isStarted = false;
+  bool isPaused = false;
+  bool isLastValid = false;
 
   List<Question> questionsValid = [];
   List<Question> questionsInvalid = [];
@@ -129,6 +131,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
     }
 
     setState(() {
+      isPaused = false;
       secondsLeft = secondsMax;
       level += 1;
     });
@@ -139,17 +142,27 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
   _handleValid() {
     questionsValid.add(getCurrentQuestion());
 
-    _nextQuestion();
+    setState(() {
+      isPaused = true;
+      isLastValid = true;
+      secondsLeft = 1;
+    });
   }
 
   _handleInvalid() {
     questionsInvalid.add(getCurrentQuestion());
 
-    _nextQuestion();
+    setState(() {
+      isPaused = true;
+      isLastValid = false;
+      secondsLeft = 1;
+    });
   }
 
   _handleTimeout() {
-    if (isStarted) {
+    if (isPaused) {
+      _nextQuestion();
+    } else if (isStarted) {
       _handleInvalid();
     } else {
       setState(() {
@@ -171,17 +184,15 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
     );
   }
 
-  Widget buildCountdownContent() {
-    String timeLeft = getTimeLeft();
-
+  Widget buildSplashContent(String text, Color background) {
     return Container(
-      decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
+      decoration: BoxDecoration(color: background),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Expanded(
             child: Center(
-              child: buildHeader(timeLeft),
+              child: buildHeader(text),
             ),
           ),
         ],
@@ -214,21 +225,6 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
               ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              RaisedButton(
-                color: Colors.green,
-                onPressed: _handleValid,
-                child: Text('Yes'),
-              ),
-              RaisedButton(
-                color: Colors.red,
-                onPressed: _handleInvalid,
-                child: Text('No'),
-              ),
-            ],
-          ),
         ],
       ),
     );
@@ -251,7 +247,22 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
             }
           },
         ),
-        body: isStarted ? buildGameContent() : buildCountdownContent(),
+        body: new Stack(
+          children: [
+            Opacity(
+              opacity: isStarted ? 0.0 : 1.0,
+              child: buildSplashContent(getTimeLeft(), Theme.of(context).backgroundColor),
+            ),
+            Opacity(
+              opacity: (isStarted && !isPaused) ? 1.0 : 0.0,
+              child: buildGameContent(),
+            ),
+            Opacity(
+              opacity: (isStarted && isPaused) ? 1.0 : 0.0,
+              child: buildSplashContent('Next', isLastValid ? Colors.greenAccent : Colors.redAccent),
+            ),
+          ],
+        ),
       ),
     );
   }
