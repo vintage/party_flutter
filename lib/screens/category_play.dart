@@ -124,7 +124,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
   nextQuestion() {
     stopTimer();
 
-    if (level + 1 == 10) {
+    if (level + 1 == 5) {
       showScore();
 
       return;

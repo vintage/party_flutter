@@ -4,22 +4,22 @@ final pages = [
   PageViewModel(
     const Color(0xFF678FB4),
     'assets/images/hotels.png',
-    'Znajomi',
-    'Zbierz grupkę znajomych i usiądźcie razem. Rozpoczyna najmłodszy gracz.',
+    'Friends',
+    'Gather a groups of friends and sit together. Youngest player starts.',
     'assets/images/key.png',
   ),
   PageViewModel(
     const Color(0xFF65B0B4),
     'assets/images/banks.png',
-    'Kategoria',
-    'Wybierz z listy kategorię i przyłóż telefon do czoła. Odgaduj hasła na podstawie podpowiedzi swoich znajomych.',
+    'Category',
+    'Select the category and place the phone on forehead. Guess the word with friends help.',
     'assets/images/wallet.png',
   ),
   PageViewModel(
     const Color(0xFF9B90BC),
     'assets/images/stores.png',
-    'Zabawa!',
-    'Przechyl telefon do przodu jeśli odgadłeś, lub do tyłu aby przejść do następnego hasła. Powodzenia!',
+    'Fun!',
+    'Tap the screen once if you want to pass, and tap it twice when correctly guessed. Good luck!',
     'assets/images/shopping_cart.png',
   ),
 ];
@@ -107,7 +107,7 @@ class Page extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(top: 35.0, bottom: 75.0),
                   child: RaisedButton(
-                    child: Text('Graj'),
+                    child: Text('Play'),
                     onPressed: onSkip,
                   )
                 ),

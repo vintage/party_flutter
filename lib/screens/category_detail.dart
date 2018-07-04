@@ -74,12 +74,12 @@ class CategoryDetailScreenStage extends State<CategoryDetailScreen> {
                       TutorialItem(
                         title: "1",
                         description:
-                            "Przyłóż telefon do czoła i zgadnij hasło kierując się podpowiedziami znajomych",
+                            "Place the phone on the forehead and guess the displayed word with help of your friends."
                       ),
                       TutorialItem(
                         title: "2",
                         description:
-                            "Wychyl telefon do przodu jeśli odgadłeś, lub do tyłu aby pokazać kolejne pytanie aaaaaa",
+                            "Tap the screen once if you want to pass, and tap it twice when correctly guessed.",
                       ),
                     ],
                   ),
