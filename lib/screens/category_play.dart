@@ -63,7 +63,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
 
   gameLoop(Timer timer) {
     if (secondsLeft == 0) {
-      _handleTimeout();
+      handleTimeout();
       return;
     }
 
@@ -121,7 +121,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
     );
   }
 
-  _nextQuestion() {
+  nextQuestion() {
     stopTimer();
 
     if (level + 1 == 10) {
@@ -139,7 +139,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
     startTimer();
   }
 
-  _handleValid() {
+  handleValid() {
     questionsValid.add(getCurrentQuestion());
 
     setState(() {
@@ -149,7 +149,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
     });
   }
 
-  _handleInvalid() {
+  handleInvalid() {
     questionsInvalid.add(getCurrentQuestion());
 
     setState(() {
@@ -159,11 +159,11 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
     });
   }
 
-  _handleTimeout() {
+  handleTimeout() {
     if (isPaused) {
-      _nextQuestion();
+      nextQuestion();
     } else if (isStarted) {
-      _handleInvalid();
+      handleInvalid();
     } else {
       setState(() {
         isStarted = true;
@@ -204,30 +204,44 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
     String timeLeft = getTimeLeft();
     String currentQuestion = getCurrentQuestion().name;
 
-    return Container(
-      decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            child: Center(
-              child: buildHeader(currentQuestion),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 20.0),
-            child: Text(
-              timeLeft,
-              style: TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+    return GestureDetector(
+      onTap: handleValid,
+      onDoubleTap: handleInvalid,
+      child: Container(
+        decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              child: Center(
+                child: buildHeader(currentQuestion),
               ),
             ),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsets.only(bottom: 20.0),
+              child: Text(
+                timeLeft,
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  Widget buildContent() {
+    if (isPaused) {
+      return buildSplashContent('Next', isLastValid ? Colors.greenAccent : Colors.redAccent);
+    } else if (isStarted) {
+      return buildGameContent();
+    }
+
+    return buildSplashContent(getTimeLeft(), Theme.of(context).backgroundColor);
   }
 
   @override
@@ -247,22 +261,7 @@ class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
             }
           },
         ),
-        body: new Stack(
-          children: [
-            Opacity(
-              opacity: isStarted ? 0.0 : 1.0,
-              child: buildSplashContent(getTimeLeft(), Theme.of(context).backgroundColor),
-            ),
-            Opacity(
-              opacity: (isStarted && !isPaused) ? 1.0 : 0.0,
-              child: buildGameContent(),
-            ),
-            Opacity(
-              opacity: (isStarted && isPaused) ? 1.0 : 0.0,
-              child: buildSplashContent('Next', isLastValid ? Colors.greenAccent : Colors.redAccent),
-            ),
-          ],
-        ),
+        body: buildContent(),
       ),
     );
   }
