@@ -84,8 +84,35 @@ class TutorialScreenState extends State<TutorialScreen>
     );
   }
 
+  List<PageViewModel> getPages(BuildContext context) {
+    final pages = [
+      PageViewModel(
+        Theme.of(context).primaryColor,
+        'assets/images/tutorial_1.png',
+        'Friends',
+        'Gather a groups of friends and sit together. Youngest player starts.',
+      ),
+      PageViewModel(
+        Theme.of(context).primaryColorDark,
+        'assets/images/tutorial_2.png',
+        'Category',
+        'Select the category and place the phone on forehead. Guess the word with friends help.',
+      ),
+      PageViewModel(
+        Theme.of(context).primaryColor,
+        'assets/images/tutorial_3.png',
+        'Fun!',
+        'Tap the screen once if you want to pass, and tap it twice when correctly guessed. Good luck!',
+      ),
+    ];
+
+    return pages;
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<PageViewModel> pages = getPages(context);
+
     return new Scaffold(
       body: new Stack(
         children: [

@@ -1,29 +1,5 @@
 import 'package:flutter/material.dart';
 
-final pages = [
-  PageViewModel(
-    const Color(0xFF678FB4),
-    'assets/images/hotels.png',
-    'Friends',
-    'Gather a groups of friends and sit together. Youngest player starts.',
-    'assets/images/key.png',
-  ),
-  PageViewModel(
-    const Color(0xFF65B0B4),
-    'assets/images/banks.png',
-    'Category',
-    'Select the category and place the phone on forehead. Guess the word with friends help.',
-    'assets/images/wallet.png',
-  ),
-  PageViewModel(
-    const Color(0xFF9B90BC),
-    'assets/images/stores.png',
-    'Fun!',
-    'Tap the screen once if you want to pass, and tap it twice when correctly guessed. Good luck!',
-    'assets/images/shopping_cart.png',
-  ),
-];
-
 class Page extends StatelessWidget {
   final PageViewModel viewModel;
   final double percentVisible;
@@ -109,6 +85,7 @@ class Page extends StatelessWidget {
                   child: RaisedButton(
                     child: Text('Play'),
                     onPressed: onSkip,
+                    color: Theme.of(context).buttonColor,
                   )
                 ),
               ),
@@ -125,13 +102,11 @@ class PageViewModel {
   final String heroAssetPath;
   final String title;
   final String body;
-  final String iconAssetPath;
 
   PageViewModel(
     this.color,
     this.heroAssetPath,
     this.title,
     this.body,
-    this.iconAssetPath,
   );
 }
