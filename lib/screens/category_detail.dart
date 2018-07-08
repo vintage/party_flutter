@@ -63,7 +63,6 @@ class CategoryDetailScreenStage extends State<CategoryDetailScreen> {
                       child: ClipOval(
                         child: CategoryImage(
                           photo: category.getImagePath(),
-                          onTap: () => {},
                         ),
                       ),
                     ),

@@ -80,9 +80,9 @@ class HomeScreenStage extends State<HomeScreen> {
         ),
         child: GridView.count(
           primary: false,
-          padding: EdgeInsets.all(2.0),
-          crossAxisSpacing: 1.0,
-          mainAxisSpacing: 1.0,
+          padding: EdgeInsets.all(0.0),
+          crossAxisSpacing: 0.0,
+          mainAxisSpacing: 0.0,
           crossAxisCount: isPortrait ? 2 : 3,
           children: categories
               .map((category) => CategoryListItem(

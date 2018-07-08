@@ -18,31 +18,43 @@ class CategoryListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Hero(
-          tag: 'categoryImage-${category.name}',
-          child: CategoryImage(photo: category.getImagePath(), onTap: onTap),
-        ),
-        Positioned(
-          right: 0.0,
-          left: 0.0,
-          bottom: 0.0,
-          child: Opacity(
-            opacity: 0.75,
+    return GestureDetector(
+      onTap: onTap,
+      child: Stack(
+        children: [
+          Hero(
+            tag: 'categoryImage-${category.name}',
+            child: CategoryImage(photo: category.getImagePath()),
+          ),
+          Positioned(
+            right: 0.0,
+            left: 0.0,
+            bottom: 0.0,
             child: Container(
-              alignment: Alignment.centerLeft,
+              alignment: Alignment.center,
               padding: EdgeInsets.only(left: 10.0),
-              height: 45.0,
-              decoration: BoxDecoration(color: Colors.black),
+              height: 35.0,
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.7),
+                border: Border(
+                  top: BorderSide(
+                    color: Colors.black.withOpacity(0.35),
+                    width: 1.0,
+                  ),
+                ),
+              ),
               child: Text(
                 category.name,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14.0,
+                  fontFamily: 'FlamanteRoma',
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

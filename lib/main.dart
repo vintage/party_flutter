@@ -10,6 +10,7 @@ class App extends StatelessWidget {
       title: 'Zgadula',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        backgroundColor: Colors.blue,
       ),
       home: TutorialScreen(),
     );
