@@ -55,8 +55,7 @@ class PagerIndicator extends StatelessWidget {
     return new Column(
       children: [
         new Expanded(child: new Container()),
-        new Transform(
-          transform: new Matrix4.translationValues(translation, 0.0, 0.0),
+        new Center(
           child: new Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: bubbles,
@@ -103,8 +102,8 @@ class PageBubble extends StatelessWidget {
       height: 55.0,
       child: new Center(
         child: new Container(
-          width: lerpDouble(15.0, 20.0, viewModel.activePercent),
-          height: lerpDouble(15.0, 20.0, viewModel.activePercent),
+          width: lerpDouble(15.0, 18.0, viewModel.activePercent),
+          height: lerpDouble(15.0, 18.0, viewModel.activePercent),
           decoration: new BoxDecoration(
             shape: BoxShape.circle,
             color: viewModel.isHollow

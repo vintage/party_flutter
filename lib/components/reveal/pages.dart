@@ -70,6 +70,7 @@ class Page extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
+                    height: 1.2,
                     fontSize: 18.0,
                   ),
                 ),

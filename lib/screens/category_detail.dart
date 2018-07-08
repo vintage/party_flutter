@@ -47,7 +47,7 @@ class CategoryDetailScreenStage extends State<CategoryDetailScreen> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).primaryColor,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
