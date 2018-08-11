@@ -11,10 +11,10 @@ class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
 
   @override
-  HomeScreenStage createState() => HomeScreenStage();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class HomeScreenStage extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   List<Category> categories = List<Category>();

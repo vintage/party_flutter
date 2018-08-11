@@ -15,10 +15,10 @@ class CategoryDetailScreen extends StatefulWidget {
   final Category category;
 
   @override
-  CategoryDetailScreenStage createState() => CategoryDetailScreenStage();
+  CategoryDetailScreenState createState() => CategoryDetailScreenState();
 }
 
-class CategoryDetailScreenStage extends State<CategoryDetailScreen> {
+class CategoryDetailScreenState extends State<CategoryDetailScreen> {
   Future<List<Question>> getQuestions() async {
     return await QuestionService.getByCategoryId(widget.category.id)
       ..shuffle()

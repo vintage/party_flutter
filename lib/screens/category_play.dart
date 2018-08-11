@@ -11,10 +11,10 @@ class CategoryPlayScreen extends StatefulWidget {
   final List<Question> questions;
 
   @override
-  CategoryPlayScreenStage createState() => CategoryPlayScreenStage();
+  CategoryPlayScreenState createState() => CategoryPlayScreenState();
 }
 
-class CategoryPlayScreenStage extends State<CategoryPlayScreen> {
+class CategoryPlayScreenState extends State<CategoryPlayScreen> {
   Timer gameTimer;
   static const secondsMax = 5;
   int secondsLeft = 3;

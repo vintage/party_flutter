@@ -10,10 +10,10 @@ class GameScoreScreen extends StatefulWidget {
   final List<Question> questionsInvalid;
 
   @override
-  GameScoreScreenStage createState() => GameScoreScreenStage();
+  GameScoreScreenState createState() => GameScoreScreenState();
 }
 
-class GameScoreScreenStage extends State<GameScoreScreen> {
+class GameScoreScreenState extends State<GameScoreScreen> {
   goBack() {
     Navigator.popUntil(context, ModalRoute.withName('/'));
   }
