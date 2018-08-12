@@ -1,0 +1,9 @@
+{
+  "@@last_modified": "2018-08-12T10:47:37.814964",
+  "skipTutorial": "Play",
+  "@skipTutorial": {
+    "description": "Button which skips the tutorial and takes the player to the game",
+    "type": "text",
+    "placeholders": {}
+  }
+}

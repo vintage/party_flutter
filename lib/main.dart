@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'package:zgadula/localizations.dart';
 import 'package:zgadula/services/tutorial.dart';
-import 'screens/tutorial.dart';
-import 'screens/home.dart';
+import 'package:zgadula/screens/tutorial.dart';
+import 'package:zgadula/screens/home.dart';
 
 void main() => runApp(App());
 
@@ -33,6 +36,15 @@ class AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Zgadula',
+      localizationsDelegates: [
+        const AppLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', 'US'),
+        const Locale('pl', 'PL'),
+      ],
       theme: ThemeData(
         primarySwatch: Colors.blue,
         backgroundColor: Colors.blue,

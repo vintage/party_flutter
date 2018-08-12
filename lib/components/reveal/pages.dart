@@ -86,7 +86,7 @@ class Page extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 35.0, bottom: 75.0),
                     child: RaisedButton(
-                      child: Text('Play'),
+                      child: Text(viewModel.skip),
                       color: Theme.of(context).buttonColor,
                       onPressed: onSkip,
                     ),
@@ -106,11 +106,13 @@ class PageViewModel {
   final String heroAssetPath;
   final String title;
   final String body;
+  final String skip;
 
   PageViewModel(
     this.color,
     this.heroAssetPath,
     this.title,
     this.body,
+    this.skip,
   );
 }

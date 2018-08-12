@@ -11,3 +11,6 @@ pubspec.lock
 # Directory created by dartdoc
 # If you don't generate documentation locally you can remove this line.
 doc/api/
+
+# Auto generated l10n files
+lib/l10n/messages_*.dart

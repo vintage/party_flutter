@@ -1,0 +1,9 @@
+{
+  "@@locale": "pl",
+  "skipTutorial": "Graj",
+  "@skipTutorial": {
+    "description": "Button which skips the tutorial and takes the player to the game",
+    "type": "text",
+    "placeholders": {}
+  }
+}

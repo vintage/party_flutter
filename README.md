@@ -30,6 +30,11 @@ Just a note - it's only available in Polish language. The current repository is 
 ![Screen 6](/screens/screen6.png?raw=true "Screen #6")
 ![Screen 7](/screens/screen7.png?raw=true "Screen #7")
 
+## Generate translations
+
+- `flutter pub pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/localizations.dart`
+- `flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/localizations.dart lib/l10n/intl_*.arb`
+
 
 ## TODO
 
