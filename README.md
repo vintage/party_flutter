@@ -40,8 +40,6 @@ Just a note - it's only available in Polish language. The current repository is 
 
 - Improve the UI
 - Organize the code
-- Translations (for the UI)
-- Translations (for content)
 - More animations
 - A lot more
 
