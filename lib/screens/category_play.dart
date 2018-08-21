@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:zgadula/localizations.dart';
 
 import 'package:zgadula/models/question.dart';
 import 'package:zgadula/screens/game_score.dart';
@@ -101,16 +102,16 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          content: Text('Do you want to cancel current game?'),
+          content: Text(AppLocalizations.of(context).gameCancelConfirmation),
           actions: <Widget>[
             FlatButton(
-              child: Text('Yes'),
+              child: Text(AppLocalizations.of(context).gameCancelApprove),
               onPressed: () {
                 Navigator.of(context).pop(true);
               },
             ),
             FlatButton(
-              child: Text('No'),
+              child: Text(AppLocalizations.of(context).gameCancelDeny),
               onPressed: () {
                 Navigator.of(context).pop(false);
               },
@@ -236,7 +237,10 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
 
   Widget buildContent() {
     if (isPaused) {
-      return buildSplashContent('Next', isLastValid ? Colors.greenAccent : Colors.redAccent);
+      return buildSplashContent(
+        AppLocalizations.of(context).nextQuestion,
+        isLastValid ? Colors.greenAccent : Colors.redAccent,
+      );
     } else if (isStarted) {
       return buildGameContent();
     }

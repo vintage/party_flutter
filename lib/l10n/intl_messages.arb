@@ -1,8 +1,98 @@
 {
-  "@@last_modified": "2018-08-12T10:47:37.814964",
-  "skipTutorial": "Play",
-  "@skipTutorial": {
+  "@@last_modified": "2018-08-21T21:02:08.548882",
+  "tutorialSkip": "Play",
+  "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialFirstSectionHeader": "Friends",
+  "@tutorialFirstSectionHeader": {
+    "description": "Header for the first tutorial section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialFirstSectionDescription": "Gather a groups of friends and sit together. Youngest player starts.",
+  "@tutorialFirstSectionDescription": {
+    "description": "Description for the first tutorial section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialSecondSectionHeader": "Category",
+  "@tutorialSecondSectionHeader": {
+    "description": "Header for the second tutorial section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialSecondSectionDescription": "Select the category and place the phone on forehead. Guess the word with friends help.",
+  "@tutorialSecondSectionDescription": {
+    "description": "Description for the second tutorial section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialThirdSectionHeader": "Fun!",
+  "@tutorialThirdSectionHeader": {
+    "description": "Header for the third tutorial section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialThirdSectionDescription": "Tap the screen once if you want to pass, and tap it twice when correctly guessed. Good luck!",
+  "@tutorialThirdSectionDescription": {
+    "description": "Description for the third tutorial section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "preparationFirstTip": "Place the phone on the forehead and guess the displayed word with help of your friends.",
+  "@preparationFirstTip": {
+    "description": "First tip for reminding player on how to play the game",
+    "type": "text",
+    "placeholders": {}
+  },
+  "preparationSecondTip": "Tap the screen once if you want to pass, and tap it twice when correctly guessed.",
+  "@preparationSecondTip": {
+    "description": "Second tip for reminding player on how to play the game",
+    "type": "text",
+    "placeholders": {}
+  },
+  "preparationPlay": "Play",
+  "@preparationPlay": {
+    "description": "Button which confirms the selected category and starts the main game",
+    "type": "text",
+    "placeholders": {}
+  },
+  "preparationBack": "Back",
+  "@preparationBack": {
+    "description": "Button which discards current category and takes the player back to the category listing",
+    "type": "text",
+    "placeholders": {}
+  },
+  "gameCancelConfirmation": "Do you want to cancel the current game?",
+  "@gameCancelConfirmation": {
+    "description": "Description of the dialog which is presented to the player when he tries to quit the game loop",
+    "type": "text",
+    "placeholders": {}
+  },
+  "gameCancelApprove": "OK",
+  "@gameCancelApprove": {
+    "description": "Text for approving the decision to cancel current game.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "gameCancelDeny": "Cancel",
+  "@gameCancelDeny": {
+    "description": "Text for canceling the decision to cancel current game.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextQuestion": "Next",
+  "@nextQuestion": {
+    "description": "Text shown before presenting next question during the game",
+    "type": "text",
+    "placeholders": {}
+  },
+  "summaryBack": "Back",
+  "@summaryBack": {
+    "description": "Button which takes the player from summary screen to category listing",
     "type": "text",
     "placeholders": {}
   }

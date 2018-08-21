@@ -94,23 +94,23 @@ class TutorialScreenState extends State<TutorialScreen>
       PageViewModel(
         Theme.of(context).primaryColor,
         'assets/images/tutorial_1.png',
-        'Friends',
-        'Gather a groups of friends and sit together. Youngest player starts.',
-        AppLocalizations.of(context).skipTutorial,
+        AppLocalizations.of(context).tutorialFirstSectionHeader,
+        AppLocalizations.of(context).tutorialFirstSectionDescription,
+        AppLocalizations.of(context).tutorialSkip,
       ),
       PageViewModel(
         Theme.of(context).primaryColorDark,
         'assets/images/tutorial_2.png',
-        'Category',
-        'Select the category and place the phone on forehead. Guess the word with friends help.',
-        AppLocalizations.of(context).skipTutorial,
+        AppLocalizations.of(context).tutorialSecondSectionHeader,
+        AppLocalizations.of(context).tutorialSecondSectionDescription,
+        AppLocalizations.of(context).tutorialSkip,
       ),
       PageViewModel(
         Theme.of(context).primaryColor,
         'assets/images/tutorial_3.png',
-        'Fun!',
-        'Tap the screen once if you want to pass, and tap it twice when correctly guessed. Good luck!',
-        AppLocalizations.of(context).skipTutorial,
+        AppLocalizations.of(context).tutorialThirdSectionHeader,
+        AppLocalizations.of(context).tutorialThirdSectionDescription,
+        AppLocalizations.of(context).tutorialSkip,
       ),
     ];
 

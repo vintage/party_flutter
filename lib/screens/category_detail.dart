@@ -1,6 +1,7 @@
 import 'dart:async' show Future;
 
 import 'package:flutter/material.dart';
+import 'package:zgadula/localizations.dart';
 
 import 'package:zgadula/models/category.dart';
 import 'package:zgadula/models/question.dart';
@@ -72,18 +73,16 @@ class CategoryDetailScreenState extends State<CategoryDetailScreen> {
                     children: <Widget>[
                       TutorialItem(
                         title: "1",
-                        description:
-                            "Place the phone on the forehead and guess the displayed word with help of your friends."
+                        description: AppLocalizations.of(context).preparationFirstTip,
                       ),
                       TutorialItem(
                         title: "2",
-                        description:
-                            "Tap the screen once if you want to pass, and tap it twice when correctly guessed.",
+                        description: AppLocalizations.of(context).preparationSecondTip,
                       ),
                     ],
                   ),
                   RaisedButton(
-                    child: Text("Play"),
+                    child: Text(AppLocalizations.of(context).preparationPlay),
                     onPressed: playCategory,
                   ),
                 ],
@@ -91,7 +90,7 @@ class CategoryDetailScreenState extends State<CategoryDetailScreen> {
               ),
             ),
             RaisedButton(
-              child: Text("Back"),
+              child: Text(AppLocalizations.of(context).preparationBack),
               onPressed: goBack,
             ),
           ],

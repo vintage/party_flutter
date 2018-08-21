@@ -1,8 +1,99 @@
 {
+  "@@last_modified": "2018-08-21T19:37:53.975407",
   "@@locale": "pl",
-  "skipTutorial": "Graj",
-  "@skipTutorial": {
+  "tutorialSkip": "Graj",
+  "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialFirstSectionHeader": "Znajomi",
+  "@tutorialFirstSectionHeader": {
+    "description": "Header for the first tutorial section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialFirstSectionDescription": "Zbierz grupę znajomych do wspólnej zabawy. Najmłodszy gracz rozpoczyna.",
+  "@tutorialFirstSectionDescription": {
+    "description": "Description for the first tutorial section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialSecondSectionHeader": "Kategoria",
+  "@tutorialSecondSectionHeader": {
+    "description": "Header for the second tutorial section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialSecondSectionDescription": "Wybierz dowolną kategorię i przyłóż telefon do czoła. Odgadnij hasło kierowany podpowiedziami znajomych.",
+  "@tutorialSecondSectionDescription": {
+    "description": "Description for the second tutorial section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialThirdSectionHeader": "Zabawa!",
+  "@tutorialThirdSectionHeader": {
+    "description": "Header for the third tutorial section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialThirdSectionDescription": "Stuknij ekran raz aby pominąć pytanie, a podwójnie jeśli poprawnie odpowiedziałeś. Miłej zabawy!",
+  "@tutorialThirdSectionDescription": {
+    "description": "Description for the third tutorial section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "preparationFirstTip": "Przyłóż telefon do czoła i odgadnij hasło z pomocą podpowiedzi od znajomych.",
+  "@preparationFirstTip": {
+    "description": "First tip for reminding player on how to play the game",
+    "type": "text",
+    "placeholders": {}
+  },
+  "preparationSecondTip": "Stuknij ekran raz aby pominąć hasło, stuknij podwójnie jeśli poprawnie odgadłeś.",
+  "@preparationSecondTip": {
+    "description": "Second tip for reminding player on how to play the game",
+    "type": "text",
+    "placeholders": {}
+  },
+  "preparationPlay": "Graj",
+  "@preparationPlay": {
+    "description": "Button which confirms the selected category and starts the main game",
+    "type": "text",
+    "placeholders": {}
+  },
+  "preparationBack": "Wróć",
+  "@preparationBack": {
+    "description": "Button which dicards current category and takes the player back to the category listing",
+    "type": "text",
+    "placeholders": {}
+  },
+  "gameCancelConfirmation": "Czy chcesz zakończyć obecną rozgrywkę?",
+  "@gameCancelConfirmation": {
+    "description": "Description of the dialog which is presented to the player when he tries to quit the game loop",
+    "type": "text",
+    "placeholders": {}
+  },
+  "gameCancelApprove": "OK",
+  "@gameCancelApprove": {
+    "description": "Text for approving the decision to cancel current game.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "gameCancelDeny": "Anuluj",
+  "@gameCancelDeny": {
+    "description": "Text for canceling the decision to cancel current game.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextQuestion": "Dalej",
+  "@nextQuestion": {
+    "description": "Text shown before presenting next question during the game",
+    "type": "text",
+    "placeholders": {}
+  },
+  "summaryBack": "Powrót",
+  "@summaryBack": {
+    "description": "Button which takes the player from summary screen to category listing",
     "type": "text",
     "placeholders": {}
   }

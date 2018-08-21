@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zgadula/localizations.dart';
 
 import 'package:zgadula/models/question.dart';
 
@@ -23,9 +24,9 @@ class GameScoreScreenState extends State<GameScoreScreen> {
         .generate(
           questions.length,
           (index) => Padding(
-            padding: EdgeInsets.only(bottom: 8.0),
-            child: Text(questions[index].name),
-          ),
+                padding: EdgeInsets.only(bottom: 8.0),
+                child: Text(questions[index].name),
+              ),
         )
         .toList();
   }
@@ -76,7 +77,10 @@ class GameScoreScreenState extends State<GameScoreScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
               ),
             ),
-            RaisedButton(child: const Text("Back"), onPressed: goBack),
+            RaisedButton(
+              child: Text(AppLocalizations.of(context).summaryBack),
+              onPressed: goBack,
+            ),
           ],
         ),
       ),

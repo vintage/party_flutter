@@ -18,11 +18,131 @@ class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  String get skipTutorial {
+  String get tutorialSkip {
     return Intl.message(
       'Play',
-      name: 'skipTutorial',
+      name: 'tutorialSkip',
       desc: 'Button which skips the tutorial and takes the player to the game',
+    );
+  }
+
+  String get tutorialFirstSectionHeader {
+    return Intl.message(
+      'Friends',
+      name: 'tutorialFirstSectionHeader',
+      desc: 'Header for the first tutorial section',
+    );
+  }
+
+  String get tutorialFirstSectionDescription {
+    return Intl.message(
+      'Gather a groups of friends and sit together. Youngest player starts.',
+      name: 'tutorialFirstSectionDescription',
+      desc: 'Description for the first tutorial section',
+    );
+  }
+
+  String get tutorialSecondSectionHeader {
+    return Intl.message(
+      'Category',
+      name: 'tutorialSecondSectionHeader',
+      desc: 'Header for the second tutorial section',
+    );
+  }
+
+  String get tutorialSecondSectionDescription {
+    return Intl.message(
+      'Select the category and place the phone on forehead. Guess the word with friends help.',
+      name: 'tutorialSecondSectionDescription',
+      desc: 'Description for the second tutorial section',
+    );
+  }
+
+  String get tutorialThirdSectionHeader {
+    return Intl.message(
+      'Fun!',
+      name: 'tutorialThirdSectionHeader',
+      desc: 'Header for the third tutorial section',
+    );
+  }
+
+  String get tutorialThirdSectionDescription {
+    return Intl.message(
+      'Tap the screen once if you want to pass, and tap it twice when correctly guessed. Good luck!',
+      name: 'tutorialThirdSectionDescription',
+      desc: 'Description for the third tutorial section',
+    );
+  }
+
+  String get preparationFirstTip {
+    return Intl.message(
+      'Place the phone on the forehead and guess the displayed word with help of your friends.',
+      name: 'preparationFirstTip',
+      desc: 'First tip for reminding player on how to play the game',
+    );
+  }
+
+  String get preparationSecondTip {
+    return Intl.message(
+      'Tap the screen once if you want to pass, and tap it twice when correctly guessed.',
+      name: 'preparationSecondTip',
+      desc: 'Second tip for reminding player on how to play the game',
+    );
+  }
+
+  String get preparationPlay {
+    return Intl.message(
+      'Play',
+      name: 'preparationPlay',
+      desc: 'Button which confirms the selected category and starts the main game',
+    );
+  }
+
+  String get preparationBack {
+    return Intl.message(
+      'Back',
+      name: 'preparationBack',
+      desc: 'Button which discards current category and takes the player back to the category listing',
+    );
+  }
+
+  String get gameCancelConfirmation {
+    return Intl.message(
+      'Do you want to cancel the current game?',
+      name: 'gameCancelConfirmation',
+      desc: 'Description of the dialog which is presented to the player when he tries to quit the game loop',
+    );
+  }
+
+  String get gameCancelApprove {
+    return Intl.message(
+      'OK',
+      name: 'gameCancelApprove',
+      desc: 'Text for approving the decision to cancel current game.',
+    );
+  }
+
+  String get gameCancelDeny {
+    return Intl.message(
+      'Cancel',
+      name: 'gameCancelDeny',
+      desc: 'Text for canceling the decision to cancel current game.',
+    );
+  }
+
+  String get nextQuestion {
+    return Intl.message(
+      'Next',
+      name: 'nextQuestion',
+      desc: 'Text shown before presenting next question during the game',
+    );
+  }
+
+  String get summaryBack {
+    return Intl.message(
+      'Back',
+      name: 'summaryBack',
+      desc: 'Button which takes the player from summary screen to category listing',
     );
   }
 }
