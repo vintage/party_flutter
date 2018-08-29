@@ -1,24 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:zgadula/localizations.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 import 'package:zgadula/models/question.dart';
+import 'package:zgadula/store/question.dart';
 
-class GameScoreScreen extends StatefulWidget {
-  GameScoreScreen({Key key, this.questionsValid, this.questionsInvalid})
-      : super(key: key);
-
-  final List<Question> questionsValid;
-  final List<Question> questionsInvalid;
-
-  @override
-  GameScoreScreenState createState() => GameScoreScreenState();
-}
-
-class GameScoreScreenState extends State<GameScoreScreen> {
-  goBack() {
-    Navigator.popUntil(context, ModalRoute.withName('/'));
-  }
-
+class GameScoreScreen extends StatelessWidget {
   List<Widget> buildQuestionsList(List<Question> questions) {
     return List
         .generate(
@@ -40,50 +27,51 @@ class GameScoreScreenState extends State<GameScoreScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<Question> questionsValid = widget.questionsValid;
-    List<Question> questionsInvalid = widget.questionsInvalid;
-
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text(
-              '${questionsValid.length} / ${(questionsValid.length + questionsInvalid.length)}',
+    return ScopedModelDescendant<QuestionModel>(
+      builder: (context, child, model) {
+        return Scaffold(
+          body: Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).backgroundColor,
             ),
-            Expanded(
-              child: Column(
-                children: <Widget>[
-                  Column(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Text(
+                  '${model.questionsPassed.length} / ${model.currentQuestions.length}',
+                ),
+                Expanded(
+                  child: Column(
                     children: <Widget>[
-                      buildIcon(Icons.check, Colors.green),
                       Column(
-                        children: buildQuestionsList(questionsValid),
+                        children: <Widget>[
+                          buildIcon(Icons.check, Colors.green),
+                          Column(
+                            children: buildQuestionsList(model.questionsPassed),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: <Widget>[
+                          buildIcon(Icons.close, Colors.red),
+                          Column(
+                            children: buildQuestionsList(model.questionsFailed),
+                          ),
+                        ],
                       ),
                     ],
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                   ),
-                  Column(
-                    children: <Widget>[
-                      buildIcon(Icons.close, Colors.red),
-                      Column(
-                        children: buildQuestionsList(questionsInvalid),
-                      ),
-                    ],
-                  ),
-                ],
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-              ),
+                ),
+                RaisedButton(
+                  child: Text(AppLocalizations.of(context).summaryBack),
+                  onPressed: () => Navigator.popUntil(context, ModalRoute.withName('/')),
+                ),
+              ],
             ),
-            RaisedButton(
-              child: Text(AppLocalizations.of(context).summaryBack),
-              onPressed: goBack,
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

@@ -2,14 +2,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:zgadula/localizations.dart';
+import 'package:scoped_model/scoped_model.dart';
 
-import 'package:zgadula/models/question.dart';
+import 'package:zgadula/store/category.dart';
+import 'package:zgadula/store/question.dart';
 import 'package:zgadula/screens/game_score.dart';
 
 class CategoryPlayScreen extends StatefulWidget {
-  CategoryPlayScreen({Key key, this.questions}) : super(key: key);
-
-  final List<Question> questions;
+  CategoryPlayScreen({Key key}) : super(key: key);
 
   @override
   CategoryPlayScreenState createState() => CategoryPlayScreenState();
@@ -19,18 +19,17 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
   Timer gameTimer;
   static const secondsMax = 5;
   int secondsLeft = 3;
-  int level = 0;
   bool isStarted = false;
   bool isPaused = false;
-  bool isLastValid = false;
-
-  List<Question> questionsValid = [];
-  List<Question> questionsInvalid = [];
 
   @override
   void initState() {
     super.initState();
     startTimer();
+
+    QuestionModel
+        .of(context)
+        .generateCurrentQuestions(CategoryModel.of(context).currentCategory.id);
 
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
@@ -80,18 +79,11 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     return '${minutes.toString().padLeft(2, "0")}:${seconds.toString().padLeft(2, "0")}';
   }
 
-  Question getCurrentQuestion() {
-    return widget.questions[level];
-  }
-
   showScore() {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => GameScoreScreen(
-              questionsValid: questionsValid,
-              questionsInvalid: questionsInvalid,
-            ),
+        builder: (context) => GameScoreScreen(),
       ),
     );
   }
@@ -125,7 +117,8 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
   nextQuestion() {
     stopTimer();
 
-    if (level + 1 == 5) {
+    QuestionModel.of(context).setNextQuestion();
+    if (QuestionModel.of(context).currentQuestion == null) {
       showScore();
 
       return;
@@ -134,28 +127,25 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     setState(() {
       isPaused = false;
       secondsLeft = secondsMax;
-      level += 1;
     });
 
     startTimer();
   }
 
   handleValid() {
-    questionsValid.add(getCurrentQuestion());
+    QuestionModel.of(context).markQuestionAsValid();
 
     setState(() {
       isPaused = true;
-      isLastValid = true;
       secondsLeft = 1;
     });
   }
 
   handleInvalid() {
-    questionsInvalid.add(getCurrentQuestion());
+    QuestionModel.of(context).markQuestionAsInvalid();
 
     setState(() {
       isPaused = true;
-      isLastValid = false;
       secondsLeft = 1;
     });
   }
@@ -203,35 +193,38 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
 
   Widget buildGameContent() {
     String timeLeft = getTimeLeft();
-    String currentQuestion = getCurrentQuestion().name;
 
-    return GestureDetector(
-      onTap: handleValid,
-      onDoubleTap: handleInvalid,
-      child: Container(
-        decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: Center(
-                child: buildHeader(currentQuestion),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 20.0),
-              child: Text(
-                timeLeft,
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+    return ScopedModelDescendant<QuestionModel>(
+      builder: (context, child, model) {
+        return GestureDetector(
+          onTap: handleValid,
+          onDoubleTap: handleInvalid,
+          child: Container(
+            decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Center(
+                    child: buildHeader(model.currentQuestion.name),
+                  ),
                 ),
-              ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20.0),
+                  child: Text(
+                    timeLeft,
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
@@ -239,7 +232,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     if (isPaused) {
       return buildSplashContent(
         AppLocalizations.of(context).nextQuestion,
-        isLastValid ? Colors.greenAccent : Colors.redAccent,
+        QuestionModel.of(context).currentQuestion.isPassed ? Colors.greenAccent : Colors.redAccent,
       );
     } else if (isStarted) {
       return buildGameContent();

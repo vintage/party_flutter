@@ -1,9 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 import 'package:zgadula/localizations.dart';
-import 'package:zgadula/services/tutorial.dart';
+import 'package:zgadula/store/tutorial.dart';
 import 'package:zgadula/components/reveal/page_dragger.dart';
 import 'package:zgadula/components/reveal/page_reveal.dart';
 import 'package:zgadula/components/reveal/pager_indicator.dart';
@@ -78,8 +77,8 @@ class TutorialScreenState extends State<TutorialScreen>
     });
   }
 
-  skipTutorial() async {
-    TutorialService.watchTutorial();
+  skipTutorial() {
+    TutorialModel.of(context).watch();
 
     Navigator.pushReplacement(
       context,

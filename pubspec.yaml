@@ -21,6 +21,7 @@ dependencies:
   shared_preferences: ^0.4.2
   intl: 0.15.6
   intl_translation: ^0.16.1
+  scoped_model: ^0.3.0
 
 dev_dependencies:
   flutter_test:
