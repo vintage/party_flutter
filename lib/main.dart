@@ -5,7 +5,6 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/screens/tutorial.dart';
 import 'package:zgadula/screens/home.dart';
-import 'package:zgadula/store/store.dart';
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/store/tutorial.dart';
@@ -58,8 +57,4 @@ class App extends StatelessWidget {
   }
 }
 
-void main() {
-  initializeStore();
-
-  runApp(App());
-}
+void main() => runApp(App());

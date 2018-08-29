@@ -65,7 +65,8 @@ class GameScoreScreen extends StatelessWidget {
                 ),
                 RaisedButton(
                   child: Text(AppLocalizations.of(context).summaryBack),
-                  onPressed: () => Navigator.popUntil(context, ModalRoute.withName('/')),
+                  onPressed: () =>
+                      Navigator.popUntil(context, ModalRoute.withName('/')),
                 ),
               ],
             ),

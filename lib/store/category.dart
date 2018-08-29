@@ -24,7 +24,8 @@ class CategoryModel extends Model {
 
     notifyListeners();
 
-    List<dynamic> categoryList = json.decode(await rootBundle.loadString('assets/data/categories.json'));
+    List<dynamic> categoryList =
+        json.decode(await rootBundle.loadString('assets/data/categories.json'));
     for (Map<String, dynamic> categoryMap in categoryList) {
       _categories.add(Category.fromJson(categoryMap));
     }

@@ -42,10 +42,9 @@ class Category {
         image = json['image'],
         description = json['description'],
         isFree = json['isFree'],
-        modes = List.from(
-            (json['modes'] ?? []).map((mode) => nameToType(mode))),
-        questions =
-            List.from(json['questions'].map((name) => Question(name)));
+        modes =
+            List.from((json['modes'] ?? []).map((mode) => nameToType(mode))),
+        questions = List.from(json['questions'].map((name) => Question(name)));
 
   String getImagePath() {
     return 'assets/images/categories/$image';

@@ -40,22 +40,27 @@ class CategoryDetailScreen extends StatelessWidget {
                         children: <Widget>[
                           TutorialItem(
                             title: "1",
-                            description: AppLocalizations.of(context).preparationFirstTip,
+                            description: AppLocalizations
+                                .of(context)
+                                .preparationFirstTip,
                           ),
                           TutorialItem(
                             title: "2",
-                            description: AppLocalizations.of(context).preparationSecondTip,
+                            description: AppLocalizations
+                                .of(context)
+                                .preparationSecondTip,
                           ),
                         ],
                       ),
                       RaisedButton(
-                        child: Text(AppLocalizations.of(context).preparationPlay),
+                        child:
+                            Text(AppLocalizations.of(context).preparationPlay),
                         onPressed: () => Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CategoryPlayScreen(),
-                          ),
-                        ),
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CategoryPlayScreen(),
+                              ),
+                            ),
                       ),
                     ],
                     mainAxisAlignment: MainAxisAlignment.spaceAround,

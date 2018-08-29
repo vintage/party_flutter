@@ -232,7 +232,9 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     if (isPaused) {
       return buildSplashContent(
         AppLocalizations.of(context).nextQuestion,
-        QuestionModel.of(context).currentQuestion.isPassed ? Colors.greenAccent : Colors.redAccent,
+        QuestionModel.of(context).currentQuestion.isPassed
+            ? Colors.greenAccent
+            : Colors.redAccent,
       );
     } else if (isStarted) {
       return buildGameContent();

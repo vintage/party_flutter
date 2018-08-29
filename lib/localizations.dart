@@ -6,7 +6,8 @@ import 'l10n/messages_all.dart';
 
 class AppLocalizations {
   static Future<AppLocalizations> load(Locale locale) {
-    final String name = locale.countryCode.isEmpty ? locale.languageCode : locale.toString();
+    final String name =
+        locale.countryCode.isEmpty ? locale.languageCode : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -94,7 +95,8 @@ class AppLocalizations {
     return Intl.message(
       'Play',
       name: 'preparationPlay',
-      desc: 'Button which confirms the selected category and starts the main game',
+      desc:
+          'Button which confirms the selected category and starts the main game',
     );
   }
 
@@ -102,7 +104,8 @@ class AppLocalizations {
     return Intl.message(
       'Back',
       name: 'preparationBack',
-      desc: 'Button which discards current category and takes the player back to the category listing',
+      desc:
+          'Button which discards current category and takes the player back to the category listing',
     );
   }
 
@@ -110,7 +113,8 @@ class AppLocalizations {
     return Intl.message(
       'Do you want to cancel the current game?',
       name: 'gameCancelConfirmation',
-      desc: 'Description of the dialog which is presented to the player when he tries to quit the game loop',
+      desc:
+          'Description of the dialog which is presented to the player when he tries to quit the game loop',
     );
   }
 
@@ -142,7 +146,8 @@ class AppLocalizations {
     return Intl.message(
       'Back',
       name: 'summaryBack',
-      desc: 'Button which takes the player from summary screen to category listing',
+      desc:
+          'Button which takes the player from summary screen to category listing',
     );
   }
 }
