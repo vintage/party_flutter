@@ -4,6 +4,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:zgadula/models/question.dart';
 import 'package:zgadula/store/question.dart';
+import 'package:zgadula/components/bottom_button.dart';
 
 class GameScoreScreen extends StatelessWidget {
   List<Widget> buildQuestionsList(List<Question> questions) {
@@ -63,7 +64,7 @@ class GameScoreScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                   ),
                 ),
-                RaisedButton(
+                BottomButton(
                   child: Text(AppLocalizations.of(context).summaryBack),
                   onPressed: () =>
                       Navigator.popUntil(context, ModalRoute.withName('/')),
