@@ -13,6 +13,9 @@ class QuestionModel extends Model {
   Map<String, List<Question>> _questions = {};
   Map<String, List<Question>> get questions => _questions;
 
+  List<Question> _sampleQuestions = [];
+  List<Question> get sampleQuestions => _sampleQuestions;
+
   List<Question> _currentQuestions = [];
   List<Question> get currentQuestions => _currentQuestions;
   List<Question> get questionsPassed =>
@@ -45,7 +48,8 @@ class QuestionModel extends Model {
     return questions;
   }
 
-  generateCurrentQuestions(String categoryId) {
+  _getQuestions(String categoryId, int limit) {
+    List<Question> questions = [];
     // Mix-up category contains questions from other categories
     if (categoryId == 'mixup') {
       List<String> questionKeys =
@@ -53,13 +57,24 @@ class QuestionModel extends Model {
       questionKeys.shuffle();
       questionKeys = questionKeys.sublist(0, 3);
 
-      _currentQuestions = List.from(
-          questionKeys.map((c) => _getRandomQuestions(c, 3)).expand((i) => i));
-      _currentQuestions.shuffle();
+      questions = List.from(
+          questionKeys.map((c) => _getRandomQuestions(c, (limit~/3) + 1)).expand((i) => i));
+      questions.shuffle();
+      questions = questions.sublist(0, limit);
     } else {
-      _currentQuestions = _getRandomQuestions(categoryId, 3);
+      questions = _getRandomQuestions(categoryId, limit);
     }
 
+    return questions;
+  }
+
+  generateSampleQuestions(String categoryId) {
+    _sampleQuestions = _getQuestions(categoryId, 4);
+    notifyListeners();
+  }
+
+  generateCurrentQuestions(String categoryId) {
+    _currentQuestions = _getQuestions(categoryId, 10);
     _currentQuestion = _currentQuestions[0];
     notifyListeners();
   }

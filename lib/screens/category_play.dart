@@ -170,7 +170,6 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
       style: TextStyle(
         fontSize: 64.0,
         fontWeight: FontWeight.bold,
-        color: Colors.white,
       ),
     );
   }
@@ -200,7 +199,6 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
           onTap: handleValid,
           onDoubleTap: handleInvalid,
           child: Container(
-            decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[

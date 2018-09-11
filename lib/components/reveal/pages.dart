@@ -15,7 +15,6 @@ class Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: viewModel.color,
       child: Padding(
         padding: const EdgeInsets.only(left: 16.0, right: 16.0),
         child: Opacity(
@@ -52,7 +51,6 @@ class Page extends StatelessWidget {
                   child: Text(
                     viewModel.title,
                     style: TextStyle(
-                      color: Colors.white,
                       fontFamily: 'FlamanteRoma',
                       fontSize: 34.0,
                     ),
@@ -69,7 +67,6 @@ class Page extends StatelessWidget {
                   viewModel.body,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Colors.white,
                     height: 1.2,
                     fontSize: 18.0,
                   ),
@@ -87,7 +84,6 @@ class Page extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 35.0, bottom: 75.0),
                     child: RaisedButton(
                       child: Text(viewModel.skip),
-                      color: Theme.of(context).buttonColor,
                       onPressed: onSkip,
                     ),
                   ),

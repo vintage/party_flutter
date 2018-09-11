@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:zgadula/store/category.dart';
+import 'package:zgadula/store/question.dart';
 import 'package:zgadula/screens/category_detail.dart';
 import 'package:zgadula/components/category_list_item.dart';
 
@@ -18,32 +19,37 @@ class HomeScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: Theme.of(context).backgroundColor,
             ),
-            child: GridView.count(
-              primary: false,
-              padding: EdgeInsets.all(0.0),
-              crossAxisSpacing: 0.0,
-              mainAxisSpacing: 0.0,
-              crossAxisCount: isPortrait ? 2 : 3,
-              children: model.categories
-                  .map(
-                    (category) => CategoryListItem(
-                          category: category,
-                          isFavorite: model.favourites.contains(category.id),
-                          onTap: () {
-                            model.setCurrent(category);
+            child: ScopedModelDescendant<QuestionModel>(
+              builder: (context, child, qModel) {
+                return GridView.count(
+                  primary: false,
+                  padding: EdgeInsets.all(0.0),
+                  crossAxisSpacing: 0.0,
+                  mainAxisSpacing: 0.0,
+                  crossAxisCount: isPortrait ? 2 : 3,
+                  children: model.categories
+                      .map(
+                        (category) => CategoryListItem(
+                      category: category,
+                      isFavorite: model.favourites.contains(category.id),
+                      onTap: () {
+                        model.setCurrent(category);
+                        qModel.generateSampleQuestions(category.id);
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CategoryDetailScreen(),
-                              ),
-                            );
-                          },
-                          onFavoriteToggle: () =>
-                              model.toggleFavorite(category),
-                        ),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CategoryDetailScreen(),
+                          ),
+                        );
+                      },
+                      onFavoriteToggle: () =>
+                          model.toggleFavorite(category),
+                    ),
                   )
-                  .toList(),
+                      .toList(),
+                );
+              },
             ),
           ),
         );

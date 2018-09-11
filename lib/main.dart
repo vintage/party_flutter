@@ -9,17 +9,27 @@ import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/store/tutorial.dart';
 
+CategoryModel categoryModel;
+QuestionModel questionModel;
+TutorialModel tutorialModel;
+
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    CategoryModel categoryModel = CategoryModel();
-    categoryModel.initialize();
+    if (categoryModel == null) {
+      categoryModel = CategoryModel();
+      categoryModel.initialize();
+    }
 
-    QuestionModel questionModel = QuestionModel();
-    questionModel.initialize();
+    if (questionModel == null) {
+      questionModel = QuestionModel();
+      questionModel.initialize();
+    }
 
-    TutorialModel tutorialModel = TutorialModel();
-    tutorialModel.initialize();
+    if (tutorialModel == null) {
+      tutorialModel = TutorialModel();
+      tutorialModel.initialize();
+    }
 
     return ScopedModel<CategoryModel>(
       model: categoryModel,
@@ -27,13 +37,13 @@ class App extends StatelessWidget {
         model: questionModel,
         child: ScopedModel<TutorialModel>(
           model: tutorialModel,
-          child: buildApp(),
+          child: buildApp(context),
         ),
       ),
     );
   }
 
-  Widget buildApp() {
+  Widget buildApp(BuildContext context) {
     return MaterialApp(
       title: 'Zgadula',
       localizationsDelegates: [
@@ -46,8 +56,26 @@ class App extends StatelessWidget {
         const Locale('pl', 'PL'),
       ],
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        backgroundColor: Colors.blue,
+        brightness: Brightness.dark,
+        primaryColorDark: Color(0xFF455A64),
+        primaryColorLight: Color(0xFFCFD8DC),
+        primaryColor: Color(0xFF607D8B),
+        accentColor: Color(0xFF4CAF50),
+        iconTheme: IconThemeData(
+          color: Color(0xFFFFFFFF),
+        ),
+        dividerColor: Color(0xFFBDBDBD),
+        textTheme: Theme.of(context).textTheme.apply(
+              bodyColor: Color(0xFFEEEEEE),
+              displayColor: Color(0xFF757575),
+            ),
+        buttonTheme: ButtonThemeData(
+          height: 52.0,
+          minWidth: 120.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+        ),
       ),
       home: ScopedModelDescendant<TutorialModel>(
         builder: (context, child, model) =>
