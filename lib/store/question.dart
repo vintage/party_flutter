@@ -16,6 +16,9 @@ class QuestionModel extends Model {
   List<Question> _sampleQuestions = [];
   List<Question> get sampleQuestions => _sampleQuestions;
 
+  Map<String, List<Question>> _sampleQuestionsByCategory = {};
+  Map<String, List<Question>> get sampleQuestionsByCategory => _sampleQuestionsByCategory;
+
   List<Question> _currentQuestions = [];
   List<Question> get currentQuestions => _currentQuestions;
   List<Question> get questionsPassed =>
@@ -69,7 +72,11 @@ class QuestionModel extends Model {
   }
 
   generateSampleQuestions(String categoryId) {
-    _sampleQuestions = _getQuestions(categoryId, 4);
+    if (!_sampleQuestionsByCategory.containsKey(categoryId)) {
+      _sampleQuestionsByCategory[categoryId] = _getQuestions(categoryId, 4);
+    }
+
+    _sampleQuestions = _sampleQuestionsByCategory[categoryId];
     notifyListeners();
   }
 

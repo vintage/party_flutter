@@ -83,9 +83,22 @@ class CategoryDetailScreen extends StatelessWidget {
                 .map(
                   (question) => Padding(
                         padding: const EdgeInsets.symmetric(vertical: 4.0),
-                        child: Text(
-                          question.name,
-                          style: Theme.of(context).textTheme.body1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(
+                              Icons.check,
+                              size: 16.0,
+                              color: Theme.of(context).accentColor,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: Text(
+                                question.name,
+                                style: Theme.of(context).textTheme.body1,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                 )
