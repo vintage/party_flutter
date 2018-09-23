@@ -19,15 +19,15 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   shared_preferences: ^0.4.2
-  intl: 0.15.6
-  intl_translation: ^0.16.1
+  intl: 0.15.7
+  intl_translation: ^0.17.0
   scoped_model: ^0.3.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_launcher_icons: ^0.6.0
+  flutter_launcher_icons: ^0.6.1
 
 
 # For information on the generic Dart part of this file, see the
