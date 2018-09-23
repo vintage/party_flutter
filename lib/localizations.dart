@@ -151,6 +151,15 @@ class AppLocalizations {
     );
   }
 
+  String get summaryHeader {
+    return Intl.message(
+      'Your score',
+      name: 'summaryHeader',
+      desc:
+      'Header displayed at the top of summary screen, informing player about current score',
+    );
+  }
+
   String get summaryBack {
     return Intl.message(
       'Back',

@@ -7,23 +7,34 @@ import 'package:zgadula/store/question.dart';
 import 'package:zgadula/components/bottom_button.dart';
 
 class GameScoreScreen extends StatelessWidget {
-  List<Widget> buildQuestionsList(List<Question> questions) {
-    return List
-        .generate(
-          questions.length,
-          (index) => Padding(
-                padding: EdgeInsets.only(bottom: 8.0),
-                child: Text(questions[index].name),
-              ),
-        )
-        .toList();
+  Widget buildQuestionItem(BuildContext context, Question question) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Icon(
+          question.isPassed ? Icons.check : Icons.close,
+          size: 16.0,
+          color: question.isPassed ? Theme.of(context).accentColor : Theme.of(context).errorColor,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Text(
+            question.name,
+            style: Theme.of(context).textTheme.body1,
+          ),
+        ),
+      ],
+    );
   }
 
-  Widget buildIcon(IconData icon, MaterialColor color) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 24.0),
-      child: Icon(icon, color: color, size: 48.0),
-    );
+  List<Widget> buildQuestionsList(
+    BuildContext context,
+    List<Question> questions,
+  ) {
+    return List.generate(
+      questions.length,
+      (index) => buildQuestionItem(context, questions[index]),
+    ).toList();
   }
 
   @override
@@ -31,36 +42,28 @@ class GameScoreScreen extends StatelessWidget {
     return ScopedModelDescendant<QuestionModel>(
       builder: (context, child, model) {
         return Scaffold(
-          body: Container(
-            decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor,
-            ),
+          body: SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Text(
-                  '${model.questionsPassed.length} / ${model.currentQuestions.length}',
+                Center(
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        AppLocalizations.of(context).summaryHeader,
+                        style: Theme.of(context).textTheme.display1,
+                      ),
+                      Text(
+                        '${model.questionsPassed.length} / ${model.currentQuestions.length}',
+                        style: Theme.of(context).textTheme.display3,
+                      ),
+                    ],
+                  ),
                 ),
                 Expanded(
                   child: Column(
-                    children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          buildIcon(Icons.check, Colors.green),
-                          Column(
-                            children: buildQuestionsList(model.questionsPassed),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: <Widget>[
-                          buildIcon(Icons.close, Colors.red),
-                          Column(
-                            children: buildQuestionsList(model.questionsFailed),
-                          ),
-                        ],
-                      ),
-                    ],
+                    children:
+                        buildQuestionsList(context, model.currentQuestions),
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                   ),
                 ),

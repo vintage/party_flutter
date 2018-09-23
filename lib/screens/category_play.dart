@@ -231,14 +231,14 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
       return buildSplashContent(
         AppLocalizations.of(context).nextQuestion,
         QuestionModel.of(context).currentQuestion.isPassed
-            ? Colors.greenAccent
-            : Colors.redAccent,
+            ? Theme.of(context).accentColor
+            : Theme.of(context).errorColor
       );
     } else if (isStarted) {
       return buildGameContent();
     }
 
-    return buildSplashContent(getTimeLeft(), Theme.of(context).backgroundColor);
+    return buildSplashContent(getTimeLeft(), Colors.transparent);
   }
 
   @override
@@ -251,7 +251,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
         floatingActionButton: FloatingActionButton(
           elevation: 0.0,
           child: Icon(Icons.arrow_back),
-          backgroundColor: Color(0xFFE57373),
+          backgroundColor: Theme.of(context).primaryColor,
           onPressed: () async {
             if (await confirmBack()) {
               Navigator.of(context).pop();
