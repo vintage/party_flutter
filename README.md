@@ -29,6 +29,7 @@ Just a note - it's only available in Polish language. The current repository is 
 ![Screen 5](/screens/screen5.png?raw=true "Screen #5")
 ![Screen 6](/screens/screen6.png?raw=true "Screen #6")
 ![Screen 7](/screens/screen7.png?raw=true "Screen #7")
+![Screen 8](/screens/screen8.png?raw=true "Screen #8")
 
 ## Generate translations
 

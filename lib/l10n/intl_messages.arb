@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2018-08-21T21:02:08.548882",
+  "@@last_modified": "2018-09-23T12:01:09.716726",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -60,6 +60,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "moreQuestionsAvailable": "and a lot more",
+  "@moreQuestionsAvailable": {
+    "description": "Text indicating that there are lot more questions available in given category",
+    "type": "text",
+    "placeholders": {}
+  },
   "preparationBack": "Back",
   "@preparationBack": {
     "description": "Button which discards current category and takes the player back to the category listing",
@@ -87,6 +93,12 @@
   "nextQuestion": "Next",
   "@nextQuestion": {
     "description": "Text shown before presenting next question during the game",
+    "type": "text",
+    "placeholders": {}
+  },
+  "summaryHeader": "Your score",
+  "@summaryHeader": {
+    "description": "Header displayed at the top of summary screen, informing player about current score",
     "type": "text",
     "placeholders": {}
   },

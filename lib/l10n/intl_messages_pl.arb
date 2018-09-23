@@ -61,9 +61,15 @@
     "type": "text",
     "placeholders": {}
   },
+  "moreQuestionsAvailable": "i wiele więcej",
+    "@moreQuestionsAvailable": {
+      "description": "Text indicating that there are lot more questions available in given category",
+      "type": "text",
+      "placeholders": {}
+    },
   "preparationBack": "Wróć",
   "@preparationBack": {
-    "description": "Button which dicards current category and takes the player back to the category listing",
+    "description": "Button which discards current category and takes the player back to the category listing",
     "type": "text",
     "placeholders": {}
   },
@@ -91,6 +97,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "summaryHeader": "Twój wynik",
+    "@summaryHeader": {
+      "description": "Header displayed at the top of summary screen, informing player about current score",
+      "type": "text",
+      "placeholders": {}
+    },
   "summaryBack": "Powrót",
   "@summaryBack": {
     "description": "Button which takes the player from summary screen to category listing",

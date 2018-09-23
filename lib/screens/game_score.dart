@@ -8,22 +8,25 @@ import 'package:zgadula/components/bottom_button.dart';
 
 class GameScoreScreen extends StatelessWidget {
   Widget buildQuestionItem(BuildContext context, Question question) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Icon(
-          question.isPassed ? Icons.check : Icons.close,
-          size: 16.0,
-          color: question.isPassed ? Theme.of(context).accentColor : Theme.of(context).errorColor,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Text(
-            question.name,
-            style: Theme.of(context).textTheme.body1,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Icon(
+            question.isPassed ? Icons.check : Icons.close,
+            size: 16.0,
+            color: question.isPassed ? Theme.of(context).accentColor : Theme.of(context).errorColor,
           ),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Text(
+              question.name,
+              style: Theme.of(context).textTheme.body1,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -47,24 +50,27 @@ class GameScoreScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Center(
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        AppLocalizations.of(context).summaryHeader,
-                        style: Theme.of(context).textTheme.display1,
-                      ),
-                      Text(
-                        '${model.questionsPassed.length} / ${model.currentQuestions.length}',
-                        style: Theme.of(context).textTheme.display3,
-                      ),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 16.0),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          AppLocalizations.of(context).summaryHeader,
+                          style: Theme.of(context).textTheme.caption,
+                        ),
+                        Text(
+                          '${model.questionsPassed.length} / ${model.currentQuestions.length}',
+                          style: Theme.of(context).textTheme.display2,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: Column(
                     children:
                         buildQuestionsList(context, model.currentQuestions),
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.center,
                   ),
                 ),
                 BottomButton(
