@@ -198,6 +198,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
         return GestureDetector(
           onTap: handleValid,
           onDoubleTap: handleInvalid,
+          behavior: HitTestBehavior.opaque,
           child: Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
