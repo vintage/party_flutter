@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="screens/logo.png?raw=true" alt="Party Flutter" />
+</p>
+
 # Party Flutter
 
 Mobile party game implemented in Flutter framework. Its been heavily inspired by the Heads Up! game:
