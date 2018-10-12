@@ -11,7 +11,7 @@ class CategoryImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Material(
       color: Colors.transparent,
-      child: new Image.asset(
+      child: Image.asset(
         photo,
         fit: BoxFit.contain,
       ),
