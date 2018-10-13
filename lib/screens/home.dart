@@ -3,11 +3,12 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
+import 'package:zgadula/screens/settings.dart';
 import 'package:zgadula/screens/category_detail.dart';
 import 'package:zgadula/components/category_list_item.dart';
 
 class HomeScreen extends StatelessWidget {
-  Widget buildAppBar() {
+  Widget buildAppBar(context) {
     return SliverAppBar(
       titleSpacing: 8.0,
       floating: true,
@@ -30,13 +31,20 @@ class HomeScreen extends StatelessWidget {
         // action button
         IconButton(
           icon: Icon(Icons.settings),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SettingsScreen(),
+              ),
+            );
+          },
         ),
       ],
     );
   }
 
-  Widget buildCategoryList(context) {
+  Widget buildContent(context) {
     final Orientation orientation = MediaQuery.of(context).orientation;
     final bool isPortrait = orientation == Orientation.portrait;
 
@@ -88,11 +96,11 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
-          buildAppBar(),
+          buildAppBar(context),
           SliverList(
             delegate: SliverChildListDelegate(
               <Widget>[
-                buildCategoryList(context),
+                buildContent(context),
               ],
             ),
           )
