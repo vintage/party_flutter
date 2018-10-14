@@ -3,6 +3,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
+import 'package:zgadula/screens/tutorial.dart';
 
 class SettingsScreen extends StatelessWidget {
   Widget buildAppBar(context) {
@@ -18,6 +19,20 @@ class SettingsScreen extends StatelessWidget {
           fontFamily: 'FlamanteRoma',
         ),
       ),
+      actions: <Widget>[
+        // action button
+        IconButton(
+          icon: Icon(Icons.help),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => TutorialScreen(),
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 
@@ -30,7 +45,24 @@ class SettingsScreen extends StatelessWidget {
         ),
         child: ScopedModelDescendant<QuestionModel>(
           builder: (context, child, qModel) {
-            return Text('OK');
+            return Column(
+              children: <Widget> [
+                SwitchListTile(
+                  title: Text('Sound'),
+                  subtitle: Text('Explain how it works'),
+                  value: true,
+                  onChanged: (bool value) {  },
+                  secondary: Icon(Icons.music_note),
+                ),
+                SwitchListTile(
+                  title: Text('Rotation control'),
+                  subtitle: Text('Explain how it works'),
+                  value: true,
+                  onChanged: (bool value) {  },
+                  secondary: Icon(Icons.screen_rotation),
+                ),
+              ],
+            );
           },
         ),
       );
