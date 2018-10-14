@@ -8,14 +8,17 @@ import 'package:zgadula/screens/home.dart';
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/store/tutorial.dart';
+import 'package:zgadula/store/settings.dart';
 
 CategoryModel categoryModel;
 QuestionModel questionModel;
 TutorialModel tutorialModel;
+SettingsModel settingsModel;
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // TODO: Refactor it
     if (categoryModel == null) {
       categoryModel = CategoryModel();
       categoryModel.initialize();
@@ -31,13 +34,21 @@ class App extends StatelessWidget {
       tutorialModel.initialize();
     }
 
+    if (settingsModel == null) {
+      settingsModel = SettingsModel();
+      settingsModel.initialize();
+    }
+
     return ScopedModel<CategoryModel>(
       model: categoryModel,
       child: ScopedModel<QuestionModel>(
         model: questionModel,
         child: ScopedModel<TutorialModel>(
           model: tutorialModel,
-          child: buildApp(context),
+          child: ScopedModel<SettingsModel>(
+            model: settingsModel,
+            child: buildApp(context),
+          )
         ),
       ),
     );

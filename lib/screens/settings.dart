@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import 'package:zgadula/store/category.dart';
-import 'package:zgadula/store/question.dart';
+import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/screens/tutorial.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -37,36 +36,33 @@ class SettingsScreen extends StatelessWidget {
   }
 
   Widget buildContent(context) {
-    return ScopedModelDescendant<CategoryModel>(
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).backgroundColor,
+      ),
+      child: ScopedModelDescendant<SettingsModel>(
         builder: (context, child, model) {
-      return Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor,
-        ),
-        child: ScopedModelDescendant<QuestionModel>(
-          builder: (context, child, qModel) {
-            return Column(
-              children: <Widget> [
-                SwitchListTile(
-                  title: Text('Sound'),
-                  subtitle: Text('Explain how it works'),
-                  value: true,
-                  onChanged: (bool value) {  },
-                  secondary: Icon(Icons.music_note),
-                ),
-                SwitchListTile(
-                  title: Text('Rotation control'),
-                  subtitle: Text('Explain how it works'),
-                  value: true,
-                  onChanged: (bool value) {  },
-                  secondary: Icon(Icons.screen_rotation),
-                ),
-              ],
-            );
-          },
-        ),
-      );
-    });
+          return Column(
+            children: <Widget> [
+              SwitchListTile(
+                title: Text('Sound'),
+                subtitle: Text('Explain how it works'),
+                value: model.isSoundEnabled,
+                onChanged: (bool value) { model.toggleSound(); },
+                secondary: Icon(Icons.music_note),
+              ),
+              SwitchListTile(
+                title: Text('Rotation control'),
+                subtitle: Text('Explain how it works'),
+                value: model.isRotationControlEnabled,
+                onChanged: (bool value) { model.toggleRotationControl();  },
+                secondary: Icon(Icons.screen_rotation),
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
 
   @override
