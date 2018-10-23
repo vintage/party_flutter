@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:zgadula/localizations.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:sensors/sensors.dart';
 
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
+import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/screens/game_score.dart';
 
 class CategoryPlayScreen extends StatefulWidget {
@@ -17,10 +19,12 @@ class CategoryPlayScreen extends StatefulWidget {
 
 class CategoryPlayScreenState extends State<CategoryPlayScreen> {
   Timer gameTimer;
-  static const secondsMax = 5;
+  static const secondsMax = 30;
+  static const rotationBorder = 9.5;
   int secondsLeft = 3;
   bool isStarted = false;
   bool isPaused = false;
+  StreamSubscription<dynamic> _rotateSubscription;
 
   @override
   void initState() {
@@ -33,22 +37,50 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
 
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
     ]);
+
+    if (SettingsModel.of(context).isRotationControlEnabled) {
+      enableRotationControl();
+    }
   }
 
   @protected
   @mustCallSuper
   void dispose() {
     SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
       DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
     ]);
+
+    if (_rotateSubscription != null) {
+      _rotateSubscription.cancel();
+    }
 
     super.dispose();
     stopTimer();
+  }
+
+  enableRotationControl() {
+    bool safePosition = true;
+    _rotateSubscription = accelerometerEvents.listen((AccelerometerEvent event) {
+      if (!isStarted || isPaused) {
+        return;
+      }
+
+      if (event.z > rotationBorder) {
+        if (safePosition) {
+          safePosition = false;
+          handleInvalid();
+        }
+      }
+      else if (event.z < -rotationBorder) {
+        if (safePosition) {
+          safePosition = false;
+          handleValid();
+        }
+      } else {
+        safePosition = true;
+      }
+    });
   }
 
   stopTimer() {

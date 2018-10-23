@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter/services.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:zgadula/localizations.dart';
@@ -38,6 +39,10 @@ class App extends StatelessWidget {
       settingsModel = SettingsModel();
       settingsModel.initialize();
     }
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
 
     return ScopedModel<CategoryModel>(
       model: categoryModel,
