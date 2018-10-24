@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:zgadula/localizations.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:sensors/sensors.dart';
+import 'package:zgadula/services/audio.dart';
+import 'package:zgadula/services/vibration.dart';
 
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
@@ -77,7 +79,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
           safePosition = false;
           handleValid();
         }
-      } else {
+      } else if (event.z.abs() > rotationBorder / 2){
         safePosition = true;
       }
     });
@@ -165,6 +167,8 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
   }
 
   handleValid() {
+    AudioService.valid();
+    VibrationService.vibrate();
     QuestionModel.of(context).markQuestionAsValid();
 
     setState(() {
@@ -174,6 +178,8 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
   }
 
   handleInvalid() {
+    AudioService.invalid();
+    VibrationService.vibrate();
     QuestionModel.of(context).markQuestionAsInvalid();
 
     setState(() {

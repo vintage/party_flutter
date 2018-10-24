@@ -4,28 +4,33 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/widgets.dart';
 
 class SettingsModel extends Model {
-  String _isSoundEnabledKey = 'is_sound_enabled';
+  String _isAudioEnabledKey = 'is_audio_enabled';
   String _isRotationControlEnabledKey = 'is_rotation_control_enabled';
+  String _isVibrationEnabledKey = 'is_vibration_enabled';
 
-  bool _isSoundEnabled = true;
-  bool get isSoundEnabled => _isSoundEnabled;
+  bool _isAudioEnabled = true;
+  bool get isAudioEnabled => _isAudioEnabled;
 
   bool _isRotationControlEnabled = false;
   bool get isRotationControlEnabled => _isRotationControlEnabled;
 
+  bool _isVibrationEnabled = true;
+  bool get isVibrationEnabled => _isVibrationEnabled;
+
   Future initialize() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    _isSoundEnabled = prefs.getBool(_isSoundEnabledKey) ?? true;
+    _isAudioEnabled = prefs.getBool(_isAudioEnabledKey) ?? true;
     _isRotationControlEnabled = prefs.getBool(_isRotationControlEnabledKey) ?? false;
+    _isVibrationEnabled = prefs.getBool(_isVibrationEnabledKey) ?? true;
     notifyListeners();
   }
 
-  Future toggleSound() async {
-    _isSoundEnabled = !_isSoundEnabled;
+  Future toggleAudio() async {
+    _isAudioEnabled = !_isAudioEnabled;
     notifyListeners();
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool(_isSoundEnabledKey, _isSoundEnabled);
+    prefs.setBool(_isAudioEnabledKey, _isAudioEnabled);
   }
 
   Future toggleRotationControl() async {
@@ -34,6 +39,14 @@ class SettingsModel extends Model {
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool(_isRotationControlEnabledKey, _isRotationControlEnabled);
+  }
+
+  Future toggleVibration() async {
+    _isVibrationEnabled = !_isVibrationEnabled;
+    notifyListeners();
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool(_isVibrationEnabledKey, _isVibrationEnabled);
   }
 
   static SettingsModel of(BuildContext context) =>

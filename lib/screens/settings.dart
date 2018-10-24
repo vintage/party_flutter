@@ -45,10 +45,10 @@ class SettingsScreen extends StatelessWidget {
           return Column(
             children: <Widget> [
               SwitchListTile(
-                title: Text('Sound'),
+                title: Text('Audio'),
                 subtitle: Text('Explain how it works'),
-                value: model.isSoundEnabled,
-                onChanged: (bool value) { model.toggleSound(); },
+                value: model.isAudioEnabled,
+                onChanged: (bool value) { model.toggleAudio(); },
                 secondary: Icon(Icons.music_note),
               ),
               SwitchListTile(
@@ -57,6 +57,13 @@ class SettingsScreen extends StatelessWidget {
                 value: model.isRotationControlEnabled,
                 onChanged: (bool value) { model.toggleRotationControl();  },
                 secondary: Icon(Icons.screen_rotation),
+              ),
+              SwitchListTile(
+                title: Text('Vibration'),
+                subtitle: Text('Explain how it works'),
+                value: model.isVibrationEnabled,
+                onChanged: (bool value) { model.toggleVibration(); },
+                secondary: Icon(Icons.vibration),
               ),
             ],
           );

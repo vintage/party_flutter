@@ -24,6 +24,7 @@ dependencies:
   scoped_model: ^0.3.0
   sensors: ^0.3.5
   audioplayers: ^0.7.8
+  vibrate: ^0.0.4
 
 dev_dependencies:
   flutter_test:
