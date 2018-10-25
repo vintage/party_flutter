@@ -167,8 +167,8 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
   }
 
   handleValid() {
-    AudioService.valid();
-    VibrationService.vibrate();
+    AudioService.valid(context);
+    VibrationService.vibrate(context);
     QuestionModel.of(context).markQuestionAsValid();
 
     setState(() {
@@ -178,8 +178,8 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
   }
 
   handleInvalid() {
-    AudioService.invalid();
-    VibrationService.vibrate();
+    AudioService.invalid(context);
+    VibrationService.vibrate(context);
     QuestionModel.of(context).markQuestionAsInvalid();
 
     setState(() {

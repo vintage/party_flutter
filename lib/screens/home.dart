@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:zgadula/services/audio.dart';
 
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
@@ -70,7 +69,6 @@ class HomeScreen extends StatelessWidget {
                           category: category,
                           isFavorite: model.favourites.contains(category.id),
                           onTap: () {
-                            AudioService.click();
                             model.setCurrent(category);
                             qModel.generateSampleQuestions(category.id);
 

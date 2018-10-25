@@ -1,27 +1,26 @@
 import 'package:audioplayers/audio_cache.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/widgets.dart';
+import 'package:zgadula/store/settings.dart';
 
 class AudioService {
   static AudioCache sfxPlayer = new AudioCache(prefix: 'sfx/');
 
-  static _playSfx(String name) async {
-    // TODO: Refactor access to shared prefs to it can be reused by store/service
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool canAudio = prefs.getBool('is_audio_enabled') ?? true;
+  static _playSfx(BuildContext context, String name) async {
+    bool canAudio = SettingsModel.of(context).isAudioEnabled;
     if (canAudio) {
       sfxPlayer.play(name);
     }
   }
 
-  static click() {
-    _playSfx('click.wav');
+  static click(context) {
+    _playSfx(context, 'click.wav');
   }
 
-  static invalid() {
-    _playSfx('choice_invalid.wav');
+  static invalid(context) {
+    _playSfx(context, 'choice_invalid.wav');
   }
 
-  static valid() {
-    _playSfx('choice_valid.wav');
+  static valid(context) {
+    _playSfx(context, 'choice_valid.wav');
   }
 }

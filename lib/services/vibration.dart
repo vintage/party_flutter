@@ -1,11 +1,10 @@
 import 'package:vibrate/vibrate.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/widgets.dart';
+import 'package:zgadula/store/settings.dart';
 
 class VibrationService {
-  static vibrate() async {
-    // TODO: Refactor access to shared prefs to it can be reused by store/service
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool canVibrate = await Vibrate.canVibrate && prefs.getBool('is_vibration_enabled') ?? true;
+  static vibrate(BuildContext context) async {
+    bool canVibrate = await Vibrate.canVibrate && SettingsModel.of(context).isVibrationEnabled;
 
     if (canVibrate) {
       Vibrate.vibrate();
