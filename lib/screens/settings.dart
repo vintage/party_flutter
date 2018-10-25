@@ -45,22 +45,19 @@ class SettingsScreen extends StatelessWidget {
           return Column(
             children: <Widget> [
               SwitchListTile(
-                title: Text('Audio'),
-                subtitle: Text('Explain how it works'),
-                value: model.isAudioEnabled,
-                onChanged: (bool value) { model.toggleAudio(); },
-                secondary: Icon(Icons.music_note),
-              ),
-              SwitchListTile(
-                title: Text('Rotation control'),
-                subtitle: Text('Explain how it works'),
+                title: Text('Accelerometer'),
                 value: model.isRotationControlEnabled,
                 onChanged: (bool value) { model.toggleRotationControl();  },
                 secondary: Icon(Icons.screen_rotation),
               ),
               SwitchListTile(
-                title: Text('Vibration'),
-                subtitle: Text('Explain how it works'),
+                title: Text('Audio'),
+                value: model.isAudioEnabled,
+                onChanged: (bool value) { model.toggleAudio(); },
+                secondary: Icon(Icons.music_note),
+              ),
+              SwitchListTile(
+                title: Text('Vibrations'),
                 value: model.isVibrationEnabled,
                 onChanged: (bool value) { model.toggleVibration(); },
                 secondary: Icon(Icons.vibration),

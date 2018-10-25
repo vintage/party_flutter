@@ -95,7 +95,7 @@ class PageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color color = Colors.black;
+    Color color = Theme.of(context).primaryColor;
 
     return new Container(
       width: 25.0,

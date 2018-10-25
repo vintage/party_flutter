@@ -44,7 +44,6 @@ Just a note - it's only available in Polish language. The current repository is 
 ## TODO
 
 - More animations (flip card in gameplay)
-- Introduce PersistService to access shared prefs data
 - Migrate translations to JSON format for easier maintaining
 
 
