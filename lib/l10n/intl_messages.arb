@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2018-09-23T12:01:09.716726",
+  "@@last_modified": "2018-10-25T19:49:14.574009",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -105,6 +105,30 @@
   "summaryBack": "Back",
   "@summaryBack": {
     "description": "Button which takes the player from summary screen to category listing",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsHeader": "Settings",
+  "@settingsHeader": {
+    "description": "Header displayed at the top of settings screen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsAccelerometer": "Accelerometer",
+  "@settingsAccelerometer": {
+    "description": "Label for toggling accelerometer support",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsAudio": "Audio",
+  "@settingsAudio": {
+    "description": "Label for toggling audio support",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsVibrations": "Vibrations",
+  "@settingsVibrations": {
+    "description": "Label for toggling vibrations support",
     "type": "text",
     "placeholders": {}
   }

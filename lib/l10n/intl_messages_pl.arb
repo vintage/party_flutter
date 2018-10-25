@@ -108,5 +108,29 @@
     "description": "Button which takes the player from summary screen to category listing",
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "settingsHeader": "Ustawienia",
+      "@settingsHeader": {
+        "description": "Header displayed at the top of settings screen",
+        "type": "text",
+        "placeholders": {}
+      },
+      "settingsAccelerometer": "Akcelerometr",
+      "@settingsAccelerometer": {
+        "description": "Label for toggling accelerometer support",
+        "type": "text",
+        "placeholders": {}
+      },
+      "settingsAudio": "Audio",
+      "@settingsAudio": {
+        "description": "Label for toggling audio support",
+        "type": "text",
+        "placeholders": {}
+      },
+      "settingsVibrations": "Wibracje",
+      "@settingsVibrations": {
+        "description": "Label for toggling vibrations support",
+        "type": "text",
+        "placeholders": {}
+      }
 }

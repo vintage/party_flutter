@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:zgadula/localizations.dart';
 
 import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/screens/tutorial.dart';
@@ -11,7 +12,7 @@ class SettingsScreen extends StatelessWidget {
       floating: true,
       backgroundColor: Colors.black.withOpacity(0.7),
       title: Text(
-        'Settings',
+        AppLocalizations.of(context).settingsHeader,
         style: TextStyle(
           color: Colors.white,
           fontSize: 20.0,
@@ -45,19 +46,19 @@ class SettingsScreen extends StatelessWidget {
           return Column(
             children: <Widget> [
               SwitchListTile(
-                title: Text('Accelerometer'),
+                title: Text(AppLocalizations.of(context).settingsAccelerometer),
                 value: model.isRotationControlEnabled,
-                onChanged: (bool value) { model.toggleRotationControl();  },
+                onChanged: (bool value) { model.toggleRotationControl(); },
                 secondary: Icon(Icons.screen_rotation),
               ),
               SwitchListTile(
-                title: Text('Audio'),
+                title: Text(AppLocalizations.of(context).settingsAudio),
                 value: model.isAudioEnabled,
                 onChanged: (bool value) { model.toggleAudio(); },
                 secondary: Icon(Icons.music_note),
               ),
               SwitchListTile(
-                title: Text('Vibrations'),
+                title: Text(AppLocalizations.of(context).settingsVibrations),
                 value: model.isVibrationEnabled,
                 onChanged: (bool value) { model.toggleVibration(); },
                 secondary: Icon(Icons.vibration),

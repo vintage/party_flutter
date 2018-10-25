@@ -168,6 +168,39 @@ class AppLocalizations {
           'Button which takes the player from summary screen to category listing',
     );
   }
+
+  String get settingsHeader {
+    return Intl.message(
+      'Settings',
+      name: 'settingsHeader',
+      desc:
+      'Header displayed at the top of settings screen',
+    );
+  }
+
+  String get settingsAccelerometer {
+    return Intl.message(
+      'Accelerometer',
+      name: 'settingsAccelerometer',
+      desc: 'Label for toggling accelerometer support',
+    );
+  }
+
+  String get settingsAudio {
+    return Intl.message(
+      'Audio',
+      name: 'settingsAudio',
+      desc: 'Label for toggling audio support',
+    );
+  }
+
+  String get settingsVibrations {
+    return Intl.message(
+      'Vibrations',
+      name: 'settingsVibrations',
+      desc: 'Label for toggling vibrations support',
+    );
+  }
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
