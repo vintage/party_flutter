@@ -7,6 +7,7 @@ class SettingsModel extends Model {
   String _isAudioEnabledKey = 'is_audio_enabled';
   String _isRotationControlEnabledKey = 'is_rotation_control_enabled';
   String _isVibrationEnabledKey = 'is_vibration_enabled';
+  String _languageKey = 'language';
 
   bool _isAudioEnabled = true;
   bool get isAudioEnabled => _isAudioEnabled;
@@ -17,11 +18,15 @@ class SettingsModel extends Model {
   bool _isVibrationEnabled = true;
   bool get isVibrationEnabled => _isVibrationEnabled;
 
+  String _language;
+  String get language => _language;
+
   Future initialize() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _isAudioEnabled = prefs.getBool(_isAudioEnabledKey) ?? true;
     _isRotationControlEnabled = prefs.getBool(_isRotationControlEnabledKey) ?? false;
     _isVibrationEnabled = prefs.getBool(_isVibrationEnabledKey) ?? true;
+    _language = prefs.getString(_languageKey) ?? null;
     notifyListeners();
   }
 
@@ -47,6 +52,14 @@ class SettingsModel extends Model {
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool(_isVibrationEnabledKey, _isVibrationEnabled);
+  }
+
+  Future changeLanguage(String language) async {
+    _language = language;
+    notifyListeners();
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(_languageKey, _language);
   }
 
   static SettingsModel of(BuildContext context) =>

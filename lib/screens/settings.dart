@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:zgadula/components/flag_image.dart';
 import 'package:zgadula/localizations.dart';
+import 'package:zgadula/services/language.dart';
 
 import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/screens/tutorial.dart';
@@ -44,25 +46,49 @@ class SettingsScreen extends StatelessWidget {
       child: ScopedModelDescendant<SettingsModel>(
         builder: (context, child, model) {
           return Column(
-            children: <Widget> [
+            children: <Widget>[
               SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsAccelerometer),
                 value: model.isRotationControlEnabled,
-                onChanged: (bool value) { model.toggleRotationControl(); },
+                onChanged: (bool value) {
+                  model.toggleRotationControl();
+                },
                 secondary: Icon(Icons.screen_rotation),
               ),
               SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsAudio),
                 value: model.isAudioEnabled,
-                onChanged: (bool value) { model.toggleAudio(); },
+                onChanged: (bool value) {
+                  model.toggleAudio();
+                },
                 secondary: Icon(Icons.music_note),
               ),
               SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsVibrations),
                 value: model.isVibrationEnabled,
-                onChanged: (bool value) { model.toggleVibration(); },
+                onChanged: (bool value) {
+                  model.toggleVibration();
+                },
                 secondary: Icon(Icons.vibration),
               ),
+              ListTile(
+                title: Text(AppLocalizations.of(context).settingsAccelerometer),
+                leading: Icon(Icons.flag),
+                trailing: DropdownButton(
+                  value: model.language,
+                  items: LanguageService.getCodes()
+                      .map(
+                        (code) => DropdownMenuItem(
+                              child: FlagImage(country: code),
+                              value: code,
+                            ),
+                      )
+                      .toList(),
+                  onChanged: (dynamic language) {
+                    model.changeLanguage(language);
+                  },
+                ),
+              )
             ],
           );
         },

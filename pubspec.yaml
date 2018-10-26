@@ -49,6 +49,7 @@ flutter:
     - assets/data/
     - assets/images/
     - assets/images/categories/
+    - assets/images/flags/
     - assets/sfx/
 
   # An image asset can refer to one or more resolution-specific "variants", see

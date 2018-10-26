@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:zgadula/services/language.dart';
 
 import 'l10n/messages_all.dart';
 
@@ -105,7 +106,7 @@ class AppLocalizations {
       'and a lot more',
       name: 'moreQuestionsAvailable',
       desc:
-      'Text indicating that there are lot more questions available in given category',
+          'Text indicating that there are lot more questions available in given category',
     );
   }
 
@@ -156,7 +157,7 @@ class AppLocalizations {
       'Your score',
       name: 'summaryHeader',
       desc:
-      'Header displayed at the top of summary screen, informing player about current score',
+          'Header displayed at the top of summary screen, informing player about current score',
     );
   }
 
@@ -173,8 +174,7 @@ class AppLocalizations {
     return Intl.message(
       'Settings',
       name: 'settingsHeader',
-      desc:
-      'Header displayed at the top of settings screen',
+      desc: 'Header displayed at the top of settings screen',
     );
   }
 
@@ -207,11 +207,29 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const AppLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) => ['en', 'pl'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      LanguageService.getCodes().contains(locale.languageCode);
 
   @override
   Future<AppLocalizations> load(Locale locale) => AppLocalizations.load(locale);
 
   @override
   bool shouldReload(AppLocalizationsDelegate old) => false;
+}
+
+class SettingsLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
+  final Locale overriddenLocale;
+
+  const SettingsLocalizationsDelegate(this.overriddenLocale);
+
+  @override
+  bool isSupported(Locale locale) => overriddenLocale != null;
+
+  @override
+  Future<AppLocalizations> load(Locale locale) =>
+      AppLocalizations.load(overriddenLocale);
+
+  @override
+  bool shouldReload(SettingsLocalizationsDelegate old) => true;
 }
