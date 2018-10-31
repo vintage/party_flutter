@@ -14,8 +14,8 @@ class FlagImage extends StatelessWidget {
       child: Image.asset(
        'assets/images/flags/$country.png',
         fit: BoxFit.cover,
-        width: 42.0,
-        height: 28.0,
+        width: 36.0,
+        height: 24.0,
       ),
     );
   }

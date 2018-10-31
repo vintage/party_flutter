@@ -20,12 +20,16 @@ class CategoryModel extends Model {
   Category get currentCategory => _currentCategory;
 
   Future initialize() async {
-    _isLoading = true;
+  }
 
+  load(String languageCode) async {
+    _isLoading = true;
     notifyListeners();
 
+    languageCode = languageCode.toLowerCase();
     List<dynamic> categoryList =
-        json.decode(await rootBundle.loadString('assets/data/categories.json'));
+    json.decode(await rootBundle.loadString('assets/data/categories_$languageCode.json'));
+    _categories.clear();
     for (Map<String, dynamic> categoryMap in categoryList) {
       _categories.add(Category.fromJson(categoryMap));
     }

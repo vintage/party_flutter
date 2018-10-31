@@ -30,14 +30,20 @@ class QuestionModel extends Model {
   Question get currentQuestion => _currentQuestion;
 
   Future initialize() async {
+
+  }
+
+  load(String languageCode) async {
     _isLoading = true;
     notifyListeners();
 
+    languageCode = languageCode.toLowerCase();
     List<dynamic> categoryList =
-        json.decode(await rootBundle.loadString('assets/data/categories.json'));
+    json.decode(await rootBundle.loadString('assets/data/categories_$languageCode.json'));
+    _questions.clear();
     for (Map<String, dynamic> categoryMap in categoryList) {
-      _questions[categoryMap['id']] =
-          List.from(categoryMap['questions'].map((name) => Question(name)));
+    _questions[categoryMap['id']] =
+    List.from(categoryMap['questions'].map((name) => Question(name)));
     }
     _isLoading = false;
     notifyListeners();

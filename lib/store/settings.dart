@@ -9,6 +9,9 @@ class SettingsModel extends Model {
   String _isVibrationEnabledKey = 'is_vibration_enabled';
   String _languageKey = 'language';
 
+  bool _isLoading = true;
+  bool get isLoading => _isLoading;
+
   bool _isAudioEnabled = true;
   bool get isAudioEnabled => _isAudioEnabled;
 
@@ -22,11 +25,15 @@ class SettingsModel extends Model {
   String get language => _language;
 
   Future initialize() async {
+    _isLoading = true;
+    notifyListeners();
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _isAudioEnabled = prefs.getBool(_isAudioEnabledKey) ?? true;
     _isRotationControlEnabled = prefs.getBool(_isRotationControlEnabledKey) ?? false;
     _isVibrationEnabled = prefs.getBool(_isVibrationEnabledKey) ?? true;
     _language = prefs.getString(_languageKey) ?? null;
+    _isLoading = false;
     notifyListeners();
   }
 

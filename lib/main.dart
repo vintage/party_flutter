@@ -50,55 +50,75 @@ class App extends StatelessWidget {
       child: ScopedModel<QuestionModel>(
         model: questionModel,
         child: ScopedModel<TutorialModel>(
-            model: tutorialModel,
-            child: ScopedModel<SettingsModel>(
-              model: settingsModel,
-              child: buildApp(context),
-            )),
+          model: tutorialModel,
+          child: ScopedModel<SettingsModel>(
+            model: settingsModel,
+            child: buildApp(context),
+          ),
+        ),
       ),
     );
   }
 
   Widget buildApp(BuildContext context) {
     return ScopedModelDescendant<SettingsModel>(
-      builder: (context, child, model) => MaterialApp(
-            title: 'Zgadula',
-            localizationsDelegates: [
-              SettingsLocalizationsDelegate(
-                model.language == null ? null : Locale(model.language, ''),
-              ),
-              AppLocalizationsDelegate(),
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-            ],
-            supportedLocales:
-                LanguageService.getCodes().map((code) => Locale(code, '')),
-            theme: ThemeData(
-              brightness: Brightness.dark,
-              primaryColorDark: Color(0xFF455A64),
-              primaryColorLight: Color(0xFFCFD8DC),
-              primaryColor: Color(0xFF607D8B),
-              accentColor: Color(0xFF4CAF50),
-              iconTheme: IconThemeData(
-                color: Color(0xFFFFFFFF),
-              ),
-              dividerColor: Color(0xFFBDBDBD),
-              textTheme: Theme.of(context).textTheme.apply(
-                    bodyColor: Color(0xFFEEEEEE),
-                    displayColor: Color(0xFF757575),
-                  ),
-              buttonTheme: ButtonThemeData(
-                height: 52.0,
-                minWidth: 120.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+      builder: (context, child, model) {
+        if (model.isLoading) {
+          return Container();
+        }
+
+        bool languageSet = model.language != null;
+        if (languageSet) {
+          CategoryModel.of(context).load(model.language);
+          QuestionModel.of(context).load(model.language);
+        }
+
+        return MaterialApp(
+          title: 'Zgadula',
+          localeResolutionCallback: (locale, locales) {
+            if (!languageSet) {
+              model.changeLanguage(locale.languageCode);
+            }
+          },
+          localizationsDelegates: [
+            SettingsLocalizationsDelegate(
+              languageSet ? Locale(model.language, '') : null,
+            ),
+            AppLocalizationsDelegate(),
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          supportedLocales:
+              LanguageService.getCodes().map((code) => Locale(code, '')),
+          theme: ThemeData(
+            brightness: Brightness.dark,
+            primaryColorDark: Color(0xFF455A64),
+            primaryColorLight: Color(0xFFCFD8DC),
+            primaryColor: Color(0xFF607D8B),
+            accentColor: Color(0xFF4CAF50),
+            iconTheme: IconThemeData(
+              color: Color(0xFFFFFFFF),
+            ),
+            dividerColor: Color(0xFFBDBDBD),
+            textTheme: Theme.of(context).textTheme.apply(
+                  bodyColor: Color(0xFFEEEEEE),
+                  displayColor: Color(0xFF757575),
                 ),
+            buttonTheme: ButtonThemeData(
+              height: 52.0,
+              minWidth: 120.0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
               ),
             ),
-            home: ScopedModelDescendant<TutorialModel>(
-                builder: (context, child, model) =>
-                    model.isWatched ? HomeScreen() : TutorialScreen()),
           ),
+          home: ScopedModelDescendant<TutorialModel>(
+            builder: (context, child, model) {
+              return model.isWatched ? HomeScreen() : TutorialScreen();
+            },
+          ),
+        );
+      },
     );
   }
 }
