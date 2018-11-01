@@ -26,8 +26,8 @@ class CategoryDetailScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 32.0),
                         child: Container(
-                          width: 300.0,
-                          height: 300.0,
+                          width: 170.0,
+                          height: 170.0,
                           child: Hero(
                             tag: 'categoryImage-${model.currentCategory.name}',
                             child: ClipOval(

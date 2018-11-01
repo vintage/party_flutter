@@ -72,7 +72,7 @@ class SettingsScreen extends StatelessWidget {
                 secondary: Icon(Icons.vibration),
               ),
               ListTile(
-                title: Text(AppLocalizations.of(context).settingsAccelerometer),
+                title: Text(AppLocalizations.of(context).settingsLanguage),
                 leading: Icon(Icons.flag),
                 trailing: DropdownButton(
                   value: model.language,

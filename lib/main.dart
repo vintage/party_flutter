@@ -64,7 +64,11 @@ class App extends StatelessWidget {
     return ScopedModelDescendant<SettingsModel>(
       builder: (context, child, model) {
         if (model.isLoading) {
-          return Container();
+          return Container(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         }
 
         bool languageSet = model.language != null;

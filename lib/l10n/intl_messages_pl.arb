@@ -132,5 +132,11 @@
         "description": "Label for toggling vibrations support",
         "type": "text",
         "placeholders": {}
-      }
+      },
+      "settingsLanguage": "Język",
+        "@settingsLanguage": {
+          "description": "Label for changing game language",
+          "type": "text",
+          "placeholders": {}
+        }
 }

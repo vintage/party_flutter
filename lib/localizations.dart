@@ -201,6 +201,14 @@ class AppLocalizations {
       desc: 'Label for toggling vibrations support',
     );
   }
+
+  String get settingsLanguage {
+    return Intl.message(
+      'Language',
+      name: 'settingsLanguage',
+      desc: 'Label for changing game language',
+    );
+  }
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

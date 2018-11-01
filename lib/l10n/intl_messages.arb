@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2018-10-25T19:49:14.574009",
+  "@@last_modified": "2018-11-01T12:39:30.480192",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -129,6 +129,12 @@
   "settingsVibrations": "Vibrations",
   "@settingsVibrations": {
     "description": "Label for toggling vibrations support",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsLanguage": "Language",
+  "@settingsLanguage": {
+    "description": "Label for changing game language",
     "type": "text",
     "placeholders": {}
   }

@@ -44,51 +44,67 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget buildContentLoading() {
+    return SliverFillRemaining(
+      child: Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
+
+  Widget buildContentLoaded(
+    BuildContext context,
+    CategoryModel model,
+    QuestionModel qModel,
+  ) {
+    return SliverList(
+      delegate: SliverChildListDelegate(
+        <Widget>[
+          GridView.count(
+            shrinkWrap: true,
+            primary: false,
+            padding: EdgeInsets.all(0.0),
+            crossAxisSpacing: 0.0,
+            mainAxisSpacing: 0.0,
+            crossAxisCount: 2,
+            children: model.categories
+                .map(
+                  (category) => CategoryListItem(
+                        category: category,
+                        isFavorite: model.favourites.contains(category.id),
+                        onTap: () {
+                          model.setCurrent(category);
+                          qModel.generateSampleQuestions(category.id);
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CategoryDetailScreen(),
+                            ),
+                          );
+                        },
+                        onFavoriteToggle: () => model.toggleFavorite(category),
+                      ),
+                )
+                .toList(),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget buildContent(context) {
-    final Orientation orientation = MediaQuery.of(context).orientation;
-    final bool isPortrait = orientation == Orientation.portrait;
-
     return ScopedModelDescendant<CategoryModel>(
-        builder: (context, child, model) {
-      return Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor,
-        ),
-        child: ScopedModelDescendant<QuestionModel>(
-          builder: (context, child, qModel) {
-            return GridView.count(
-              shrinkWrap: true,
-              primary: false,
-              padding: EdgeInsets.all(0.0),
-              crossAxisSpacing: 0.0,
-              mainAxisSpacing: 0.0,
-              crossAxisCount: isPortrait ? 2 : 3,
-              children: model.categories
-                  .map(
-                    (category) => CategoryListItem(
-                          category: category,
-                          isFavorite: model.favourites.contains(category.id),
-                          onTap: () {
-                            model.setCurrent(category);
-                            qModel.generateSampleQuestions(category.id);
+        builder: (context, child, model) =>
+            ScopedModelDescendant<QuestionModel>(
+              builder: (context, child, qModel) {
+                if (model.isLoading || qModel.isLoading) {
+                  return buildContentLoading();
+                }
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CategoryDetailScreen(),
-                              ),
-                            );
-                          },
-                          onFavoriteToggle: () =>
-                              model.toggleFavorite(category),
-                        ),
-                  )
-                  .toList(),
-            );
-          },
-        ),
-      );
-    });
+                return buildContentLoaded(context, model, qModel);
+              },
+            ));
   }
 
   @override
@@ -97,13 +113,7 @@ class HomeScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           buildAppBar(context),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              <Widget>[
-                buildContent(context),
-              ],
-            ),
-          )
+          buildContent(context),
         ],
       ),
     );
