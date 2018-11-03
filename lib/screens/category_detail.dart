@@ -95,7 +95,7 @@ class CategoryDetailScreen extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 8.0),
                               child: Text(
                                 question.name,
-                                style: Theme.of(context).textTheme.body1,
+                                style: Theme.of(context).textTheme.body1.merge(TextStyle(fontStyle: FontStyle.italic)),
                               ),
                             ),
                           ],
@@ -105,10 +105,10 @@ class CategoryDetailScreen extends StatelessWidget {
                 .toList(),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 16.0),
+            padding: const EdgeInsets.only(top: 24.0),
             child: Text(
               AppLocalizations.of(context).moreQuestionsAvailable,
-              style: Theme.of(context).textTheme.body2,
+              style: Theme.of(context).textTheme.body2.merge(TextStyle(fontWeight: FontWeight.w700)),
             ),
           ),
         ],

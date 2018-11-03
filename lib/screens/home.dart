@@ -24,7 +24,6 @@ class HomeScreen extends StatelessWidget {
         style: TextStyle(
           color: Colors.white,
           fontSize: 20.0,
-          fontFamily: 'FlamanteRoma',
         ),
       ),
       actions: <Widget>[

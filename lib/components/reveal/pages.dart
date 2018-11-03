@@ -51,7 +51,6 @@ class Page extends StatelessWidget {
                   child: Text(
                     viewModel.title,
                     style: TextStyle(
-                      fontFamily: 'FlamanteRoma',
                       fontSize: 34.0,
                     ),
                   ),

@@ -48,7 +48,6 @@ class CategoryListItem extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 14.0,
-                  fontFamily: 'FlamanteRoma',
                 ),
               ),
             ),

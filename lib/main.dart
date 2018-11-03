@@ -95,6 +95,7 @@ class App extends StatelessWidget {
           supportedLocales:
               LanguageService.getCodes().map((code) => Locale(code, '')),
           theme: ThemeData(
+            fontFamily: 'Lato',
             brightness: Brightness.dark,
             primaryColorDark: Color(0xFF455A64),
             primaryColorLight: Color(0xFFCFD8DC),
