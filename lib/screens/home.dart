@@ -10,15 +10,9 @@ import 'package:zgadula/components/category_list_item.dart';
 class HomeScreen extends StatelessWidget {
   Widget buildAppBar(context) {
     return SliverAppBar(
-      titleSpacing: 8.0,
+      titleSpacing: 16.0,
       floating: true,
       backgroundColor: Colors.black.withOpacity(0.7),
-      leading: Padding(
-        padding: const EdgeInsets.only(left: 8.0),
-        child: Image.asset(
-          'assets/images/icon.png',
-        ),
-      ),
       title: Text(
         'Zgadula',
         style: TextStyle(
