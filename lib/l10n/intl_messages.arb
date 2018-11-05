@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2018-11-01T12:39:30.480192",
+  "@@last_modified": "2018-11-05T19:35:42.585001",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -135,6 +135,12 @@
   "settingsLanguage": "Language",
   "@settingsLanguage": {
     "description": "Label for changing game language",
+    "type": "text",
+    "placeholders": {}
+  },
+  "roundTime": "Round time",
+  "@roundTime": {
+    "description": "Label for round time slider",
     "type": "text",
     "placeholders": {}
   }

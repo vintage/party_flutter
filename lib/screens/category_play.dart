@@ -5,6 +5,7 @@ import 'package:zgadula/localizations.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:sensors/sensors.dart';
 import 'package:zgadula/services/audio.dart';
+import 'package:zgadula/services/formatters.dart';
 import 'package:zgadula/services/vibration.dart';
 
 import 'package:zgadula/store/category.dart';
@@ -20,9 +21,10 @@ class CategoryPlayScreen extends StatefulWidget {
 }
 
 class CategoryPlayScreenState extends State<CategoryPlayScreen> {
-  Timer gameTimer;
-  static const secondsMax = 30;
   static const rotationBorder = 9.5;
+
+  Timer gameTimer;
+  int secondsMax;
   int secondsLeft = 3;
   bool isStarted = false;
   bool isPaused = false;
@@ -36,6 +38,8 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     QuestionModel
         .of(context)
         .generateCurrentQuestions(CategoryModel.of(context).currentCategory.id);
+
+    secondsMax = SettingsModel.of(context).roundTime;
 
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
@@ -104,13 +108,6 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     setState(() {
       secondsLeft -= 1;
     });
-  }
-
-  String getTimeLeft() {
-    int minutes = (secondsLeft / 60).floor();
-    int seconds = secondsLeft % 60;
-
-    return '${minutes.toString().padLeft(2, "0")}:${seconds.toString().padLeft(2, "0")}';
   }
 
   showScore() {
@@ -229,7 +226,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
   }
 
   Widget buildGameContent() {
-    String timeLeft = getTimeLeft();
+    String timeLeft = FormatterService.secondsToTime(secondsLeft);
 
     return ScopedModelDescendant<QuestionModel>(
       builder: (context, child, model) {
@@ -277,7 +274,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
       return buildGameContent();
     }
 
-    return buildSplashContent(getTimeLeft(), Colors.transparent);
+    return buildSplashContent(FormatterService.secondsToTime(secondsLeft), Colors.transparent);
   }
 
   @override

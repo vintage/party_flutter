@@ -8,6 +8,7 @@ class SettingsModel extends Model {
   String _isRotationControlEnabledKey = 'is_rotation_control_enabled';
   String _isVibrationEnabledKey = 'is_vibration_enabled';
   String _languageKey = 'language';
+  String _roundTimeKey = 'round_time';
 
   bool _isLoading = true;
   bool get isLoading => _isLoading;
@@ -24,6 +25,9 @@ class SettingsModel extends Model {
   String _language;
   String get language => _language;
 
+  int _roundTime;
+  int get roundTime => _roundTime;
+
   Future initialize() async {
     _isLoading = true;
     notifyListeners();
@@ -33,6 +37,7 @@ class SettingsModel extends Model {
     _isRotationControlEnabled = prefs.getBool(_isRotationControlEnabledKey) ?? false;
     _isVibrationEnabled = prefs.getBool(_isVibrationEnabledKey) ?? true;
     _language = prefs.getString(_languageKey) ?? null;
+    _roundTime = prefs.getInt(_roundTimeKey) ?? 60;
     _isLoading = false;
     notifyListeners();
   }
@@ -67,6 +72,14 @@ class SettingsModel extends Model {
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(_languageKey, _language);
+  }
+
+  Future changeRoundTime(int roundTime) async {
+    _roundTime = roundTime;
+    notifyListeners();
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt(_roundTimeKey, _roundTime);
   }
 
   static SettingsModel of(BuildContext context) =>

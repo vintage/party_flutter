@@ -138,5 +138,11 @@
           "description": "Label for changing game language",
           "type": "text",
           "placeholders": {}
-        }
+        },
+        "roundTime": "Czas rundy",
+          "@roundTime": {
+            "description": "Label for round time slider",
+            "type": "text",
+            "placeholders": {}
+          }
 }

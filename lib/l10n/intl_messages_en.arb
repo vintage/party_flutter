@@ -137,5 +137,11 @@
         "description": "Label for changing game language",
         "type": "text",
         "placeholders": {}
-      }
+      },
+      "roundTime": "Round time",
+        "@roundTime": {
+          "description": "Label for round time slider",
+          "type": "text",
+          "placeholders": {}
+        }
 }

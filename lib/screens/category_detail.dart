@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zgadula/localizations.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:zgadula/services/formatters.dart';
 
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
@@ -8,6 +9,7 @@ import 'package:zgadula/models/question.dart';
 import 'package:zgadula/screens/category_play.dart';
 import 'package:zgadula/components/bottom_button.dart';
 import 'package:zgadula/components/category_image.dart';
+import 'package:zgadula/store/settings.dart';
 
 class CategoryDetailScreen extends StatelessWidget {
   @override
@@ -59,6 +61,38 @@ class CategoryDetailScreen extends StatelessWidget {
                           },
                         ),
                       ),
+                      ScopedModelDescendant<SettingsModel>(
+                        builder: (context, child, settingsModel) {
+                          String timeDisplay = FormatterService.secondsToTime(settingsModel.roundTime);
+
+                          return Column(
+                            children: <Widget>[
+                              Slider(
+                                value: settingsModel.roundTime.toDouble(),
+                                min: 30.0,
+                                max: 120.0,
+                                divisions: 3,
+                                onChanged: (value) =>
+                                    settingsModel.changeRoundTime(value.toInt()),
+                              ),
+                              RichText(
+                                text: TextSpan(
+                                  text: AppLocalizations.of(context).roundTime,
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          ' $timeDisplay',
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),
@@ -95,7 +129,8 @@ class CategoryDetailScreen extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 8.0),
                               child: Text(
                                 question.name,
-                                style: Theme.of(context).textTheme.body1.merge(TextStyle(fontStyle: FontStyle.italic)),
+                                style: Theme.of(context).textTheme.body1.merge(
+                                    TextStyle(fontStyle: FontStyle.italic)),
                               ),
                             ),
                           ],
@@ -108,7 +143,10 @@ class CategoryDetailScreen extends StatelessWidget {
             padding: const EdgeInsets.only(top: 24.0),
             child: Text(
               AppLocalizations.of(context).moreQuestionsAvailable,
-              style: Theme.of(context).textTheme.body2.merge(TextStyle(fontWeight: FontWeight.w700)),
+              style: Theme.of(context)
+                  .textTheme
+                  .body2
+                  .merge(TextStyle(fontWeight: FontWeight.w700)),
             ),
           ),
         ],

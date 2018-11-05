@@ -209,6 +209,15 @@ class AppLocalizations {
       desc: 'Label for changing game language',
     );
   }
+
+  String get roundTime {
+    return Intl.message(
+      'Round time',
+      name: 'roundTime',
+      desc:
+      'Label for round time slider',
+    );
+  }
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
