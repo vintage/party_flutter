@@ -3,14 +3,12 @@
     "description": "Kategoria specjalna zawierająca losowe pytania ze wszystkich kategorii.",
     "id": "mixup",
     "image": "mix.png",
-    "is_free": true,
     "name": "Misz-masz",
     "questions": []
   },
   {
     "id": "movies",
     "image": "movies.png",
-    "is_free": true,
     "name": "Filmy",
     "questions": [
       "22 Jump Street",
@@ -163,7 +161,6 @@
   {
     "id": "animals",
     "image": "animals.png",
-    "is_free": true,
     "name": "Zwierzęta",
     "questions": [
       "Aligator",
@@ -271,7 +268,6 @@
   {
     "id": "food",
     "image": "food.png",
-    "is_free": true,
     "name": "Jedzenie i napoje",
     "questions": [
       "7 Up",
@@ -417,11 +413,6 @@
   {
     "id": "humming",
     "image": "sing.png",
-    "is_free": true,
-    "modes": [
-      "humming",
-      "sing"
-    ],
     "name": "Zanuć",
     "questions": [
       "Adele - Hello",
@@ -605,7 +596,6 @@
   {
     "id": "tv",
     "image": "tv.png",
-    "is_free": true,
     "name": "Seriale",
     "questions": [
       "'Allo 'Allo!",
@@ -742,7 +732,6 @@
   {
     "id": "cartoons",
     "image": "cartoons.png",
-    "is_free": true,
     "name": "Filmy animowane",
     "questions": [
       "101 Dalmatyńczyków",
@@ -879,11 +868,6 @@
   {
     "id": "humming_pl",
     "image": "sing_pl.png",
-    "is_free": true,
-    "modes": [
-      "humming",
-      "sing"
-    ],
     "name": "Zanuć Polska",
     "questions": [
       "2 plus 1 - Chodź, pomaluj mój świat",
@@ -1111,7 +1095,6 @@
   {
     "id": "kids",
     "image": "kids.png",
-    "is_free": true,
     "name": "Dla dzieci",
     "questions": [
       "Boisko",
@@ -1232,7 +1215,6 @@
   {
     "id": "adults",
     "image": "adults.png",
-    "is_free": false,
     "name": "Dla dorosłych (18+)",
     "questions": [
       "1 Man 1 Jar",
@@ -1242,7 +1224,6 @@
       "BDSM",
       "Bara-bara",
       "Bicz skórzany",
-      "Bogini seksu",
       "Bolec na boku",
       "Bondage",
       "Bukkake",
@@ -1253,7 +1234,6 @@
       "Cukierkowe stringi",
       "Cyberseks",
       "Cyce jak donice",
-      "Dawanie dupy za pieniądze",
       "Dendrofil",
       "Dildo",
       "Dmuchany umięśniony murzyn",
@@ -1290,11 +1270,9 @@
       "Ladacznica",
       "Lesbijka",
       "Lodzik",
-      "Lodzik z połykiem",
       "MILF",
       "Masochizm",
       "Masturbacja",
-      "Masturbacja świecą",
       "Masturbator z funkcją ssania",
       "Menstruacja",
       "Mineta",
@@ -1306,13 +1284,11 @@
       "Nocne polucje",
       "Nożyce",
       "Obciąganie",
-      "Odlew kobiecej pochwy",
       "Orgazm",
       "Orgazm analny",
       "Ostry seks",
       "Palcówka",
       "Petting",
-      "Pełny kondom",
       "Pierścień na penisa",
       "Plug do anusa",
       "Podwójna penetracja",
@@ -1324,28 +1300,23 @@
       "Prokurator",
       "Prostata",
       "Przedwczesny wytrysk",
-      "Pufa z penisem",
       "Punkt G",
-      "RedTube",
+      "PornHub",
       "Rogacz",
       "Rura do tańca",
       "Sadyzm",
       "Seks analny",
       "Seks grupowy",
       "Seks kamerka",
-      "Seks na schodach",
       "Seks oralny",
       "Seks po obiedzie",
       "Seks w krzakach",
       "Seks w windzie",
       "Seks z nieznajomym",
       "Siorbanie pisiora",
-      "Skarpetowa masturbacja",
       "Smyranie po jajkach",
-      "Spermo kakao",
       "Sprośne słówka",
-      "Stolec z krwią",
-      "Strap-On",
+      "Strapon",
       "Stringi męskie",
       "Striptiz",
       "Strzał w oko",
@@ -1358,18 +1329,14 @@
       "Wazelina",
       "Wibrator",
       "Wytrysk",
-      "Wytrysk w środku",
       "Wódka z Czerwoną Kartką",
       "Włosy w dupie",
-      "Z pupy do buzi",
-      "Zasrać spodnie",
       "Łechtaczka"
     ]
   },
   {
     "id": "movies_pl",
     "image": "movies_pl.png",
-    "is_free": false,
     "name": "Polskie filmy",
     "questions": [
       "A historii tego swetra i tak byś nie zrozumiał",
@@ -1483,7 +1450,6 @@
   {
     "id": "fictional_character",
     "image": "fictional_characters.png",
-    "is_free": false,
     "name": "Postacie fikcyjne",
     "questions": [
       "Achilles",
@@ -1661,7 +1627,6 @@
   {
     "id": "famous_characters",
     "image": "famous_characters.png",
-    "is_free": false,
     "name": "Znane osoby",
     "questions": [
       "Abraham Lincoln",
@@ -1781,7 +1746,6 @@
   {
     "id": "tv_pl",
     "image": "tv_pl.png",
-    "is_free": false,
     "name": "Polskie seriale",
     "questions": [
       "07 zgłoś się",
@@ -1865,7 +1829,6 @@
   {
     "id": "games",
     "image": "games.png",
-    "is_free": false,
     "name": "Gry",
     "questions": [
       "Age of Empires",
@@ -2062,7 +2025,6 @@
   {
     "id": "books",
     "image": "books.png",
-    "is_free": false,
     "name": "Książki",
     "questions": [
       "Adam Mickiewicz",
@@ -2183,7 +2145,6 @@
   {
     "id": "prl",
     "image": "prl.png",
-    "is_free": false,
     "name": "Czasy PRL",
     "questions": [
       "07 zgłoś się",
@@ -2303,7 +2264,6 @@
   {
     "id": "item",
     "image": "items.png",
-    "is_free": false,
     "name": "Przedmioty",
     "questions": [
       "Autostrada",
@@ -2435,7 +2395,6 @@
   {
     "id": "holidays",
     "image": "holidays.png",
-    "is_free": false,
     "name": "Święta",
     "questions": [
       "'Kiedy ślub?'",
@@ -2532,7 +2491,6 @@
   {
     "id": "pokemon",
     "image": "pokemon.png",
-    "is_free": false,
     "name": "Pokemony",
     "questions": [
       "Abra",
@@ -2707,7 +2665,6 @@
   {
     "id": "companies",
     "image": "companies.png",
-    "is_free": false,
     "name": "Firmy i marki",
     "questions": [
       "Acer",
@@ -2873,7 +2830,6 @@
   {
     "id": "internet",
     "image": "internet.png",
-    "is_free": false,
     "name": "Internety",
     "questions": [
       "ASAP",
@@ -3026,7 +2982,6 @@
   {
     "id": "90s",
     "image": "y90s.png",
-    "is_free": false,
     "name": "Lata 90'",
     "questions": [
       "Aleksander Kwaśniewski",
@@ -3128,10 +3083,6 @@
   {
     "id": "actions",
     "image": "actions.png",
-    "is_free": false,
-    "modes": [
-      "show"
-    ],
     "name": "Czynności",
     "questions": [
       "Bieg przez płotki",
@@ -3245,7 +3196,6 @@
   {
     "id": "sport",
     "image": "sport.png",
-    "is_free": false,
     "name": "Sport",
     "questions": [
       "AC Milan",
@@ -3370,7 +3320,6 @@
   {
     "id": "friends",
     "image": "friends.png",
-    "is_free": false,
     "name": "Przyjaciele",
     "questions": [
       "Agentka Joeya",
@@ -3423,7 +3372,6 @@
   {
     "id": "jobs",
     "image": "jobs.png",
-    "is_free": false,
     "name": "Zawody",
     "questions": [
       "Adwokat",
@@ -3542,7 +3490,6 @@
   {
     "id": "star_wars",
     "image": "star_wars.png",
-    "is_free": false,
     "name": "Gwiezdne Wojny",
     "questions": [
       "Anakin Skywalker",
@@ -3612,10 +3559,6 @@
   {
     "id": "emotions",
     "image": "emotions.png",
-    "is_free": false,
-    "modes": [
-      "show"
-    ],
     "name": "Jaki jestem?",
     "questions": [
       "Biedny",
@@ -3725,10 +3668,6 @@
     "description": "Kategoria zawiera dwuwyrazowe hasła, które rozpoczynają się na tę samą literę.",
     "id": "perfect_pair",
     "image": "perfect_pair.png",
-    "is_free": false,
-    "modes": [
-      "talk"
-    ],
     "name": "Perfekcyjna Para",
     "questions": [
       "Agresywny Analfabeta",
@@ -3814,7 +3753,6 @@
   {
     "id": "lol",
     "image": "lol.png",
-    "is_free": false,
     "name": "League of Legends",
     "questions": [
       "Aatrox",
@@ -3982,7 +3920,6 @@
   {
     "id": "wykop",
     "image": "wykop.png",
-    "is_free": false,
     "name": "Wykop.pl",
     "questions": [
       "#4konserwy",
@@ -4001,7 +3938,7 @@
       "#tylkonocny",
       "#wykopgonewild",
       "15k",
-      "4,76 Korwin",
+      "4,76%",
       "AMA",
       "Afera",
       "Afera betonowa",

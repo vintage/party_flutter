@@ -3,77 +3,72 @@
     "description": "Special category which contains questions from all other categories",
     "id": "mixup",
     "image": "mix.png",
-    "is_free": true,
     "name": "Mix-Up!",
     "questions": []
   },
   {
     "id": "movies",
     "image": "movies.png",
-    "is_free": true,
     "name": "Movies",
     "questions": [
       "22 Jump Street",
       "Ace Ventura",
-      "Star Wars",
-      "Twilight",
       "Alien vs Predator",
       "Batman vs Alien",
-      "The Godfather",
-      "Pulp Fiction",
-      "Matrix",
       "Boat in Fire",
       "Forrest Gump",
-      "Lena"
+      "Lena",
+      "Matrix",
+      "Pulp Fiction",
+      "Star Wars",
+      "The Godfather",
+      "Twilight"
     ]
   },
   {
     "id": "animals",
     "image": "animals.png",
-    "is_free": true,
     "name": "Animals",
     "questions": [
-      "Cat",
-      "Dog",
-      "Pig",
-      "Cow",
       "Bird",
-      "Horse",
-      "Fish",
-      "Zebra",
-      "Monkey",
-      "Gorilla",
-      "Lion",
-      "Tiger",
-      "Puma",
       "Bug",
-      "Rhino"
+      "Cat",
+      "Cow",
+      "Dog",
+      "Fish",
+      "Gorilla",
+      "Horse",
+      "Lion",
+      "Monkey",
+      "Pig",
+      "Puma",
+      "Rhino",
+      "Tiger",
+      "Zebra"
     ]
   },
   {
     "id": "tv",
     "image": "tv.png",
-    "is_free": true,
     "name": "TV series",
     "questions": [
-      "Silicon Valley",
-      "True Detective",
-      "Lost",
+      "BoJack Horseman",
       "Breaking Bad",
       "Freaks and Geeks",
-      "Twin Peaks",
-      "BoJack Horseman",
+      "Game of Thrones",
+      "Lost",
       "Orange is the New Black",
-      "Sherlock",
-      "Stranger Things",
       "Rick and Morty",
-      "Game of Thrones"
+      "Sherlock",
+      "Silicon Valley",
+      "Stranger Things",
+      "True Detective",
+      "Twin Peaks"
     ]
   },
   {
     "id": "games",
     "image": "games.png",
-    "is_free": false,
     "name": "Games",
     "questions": [
       "Age of Empires",
@@ -95,7 +90,6 @@
   {
     "id": "pokemon",
     "image": "pokemon.png",
-    "is_free": false,
     "name": "Pokemon",
     "questions": [
       "Abra",
@@ -118,7 +112,6 @@
   {
     "id": "companies",
     "image": "companies.png",
-    "is_free": false,
     "name": "Companies & brands",
     "questions": [
       "Acer",
@@ -140,7 +133,6 @@
   {
     "id": "star_wars",
     "image": "star_wars.png",
-    "is_free": false,
     "name": "Star Wars",
     "questions": [
       "Anakin Skywalker",
@@ -155,8 +147,8 @@
       "Jar Jar",
       "Jedi",
       "Luke, I am your father",
-      "X-wing",
-      "Sith"
+      "Sith",
+      "X-wing"
     ]
   }
 ]
