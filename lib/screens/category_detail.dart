@@ -11,7 +11,27 @@ import 'package:zgadula/components/bottom_button.dart';
 import 'package:zgadula/components/category_image.dart';
 import 'package:zgadula/store/settings.dart';
 
-class CategoryDetailScreen extends StatelessWidget {
+class CategoryDetailScreen extends StatefulWidget {
+  CategoryDetailScreen({Key key}) : super(key: key);
+
+  @override
+  CategoryDetailScreenState createState() => CategoryDetailScreenState();
+}
+
+class CategoryDetailScreenState extends State<CategoryDetailScreen> {
+  int roundTime;
+
+  @override
+  void initState() {
+    super.initState();
+
+    roundTime = SettingsModel.of(context).roundTime;
+  }
+
+  saveRoundTime() {
+    SettingsModel.of(context).changeRoundTime(roundTime.toInt());
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<CategoryModel>(
@@ -41,15 +61,18 @@ class CategoryDetailScreen extends StatelessWidget {
                         ),
                       ),
                       RaisedButton(
-                        child:
-                            Text(AppLocalizations.of(context).preparationPlay),
-                        onPressed: () => Navigator.pushReplacement(
+                          child: Text(
+                              AppLocalizations.of(context).preparationPlay),
+                          onPressed: () {
+                            saveRoundTime();
+
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => CategoryPlayScreen(),
                               ),
-                            ),
-                      ),
+                            );
+                          }),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 32.0),
                         child: ScopedModelDescendant<QuestionModel>(
@@ -63,25 +86,25 @@ class CategoryDetailScreen extends StatelessWidget {
                       ),
                       ScopedModelDescendant<SettingsModel>(
                         builder: (context, child, settingsModel) {
-                          String timeDisplay = FormatterService.secondsToTime(settingsModel.roundTime);
+                          String timeDisplay =
+                              FormatterService.secondsToTime(roundTime);
 
                           return Column(
                             children: <Widget>[
                               Slider(
-                                value: settingsModel.roundTime.toDouble(),
-                                min: 30.0,
-                                max: 120.0,
-                                divisions: 3,
-                                onChanged: (value) =>
-                                    settingsModel.changeRoundTime(value.toInt()),
-                              ),
+                                  value: roundTime.toDouble(),
+                                  min: 30.0,
+                                  max: 120.0,
+                                  divisions: 3,
+                                  onChanged: (value) => setState(() {
+                                        roundTime = value.toInt();
+                                      })),
                               RichText(
                                 text: TextSpan(
                                   text: AppLocalizations.of(context).roundTime,
                                   children: [
                                     TextSpan(
-                                      text:
-                                          ' $timeDisplay',
+                                      text: ' $timeDisplay',
                                       style: TextStyle(
                                         fontSize: 20.0,
                                       ),
@@ -98,7 +121,9 @@ class CategoryDetailScreen extends StatelessWidget {
                 ),
                 BottomButton(
                   child: Text(AppLocalizations.of(context).preparationBack),
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                 ),
               ],
             ),
