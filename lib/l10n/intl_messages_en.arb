@@ -109,39 +109,39 @@
     "placeholders": {}
   },
   "settingsHeader": "Settings",
-    "@settingsHeader": {
-      "description": "Header displayed at the top of settings screen",
-      "type": "text",
-      "placeholders": {}
-    },
-    "settingsAccelerometer": "Accelerometer",
-    "@settingsAccelerometer": {
-      "description": "Label for toggling accelerometer support",
-      "type": "text",
-      "placeholders": {}
-    },
-    "settingsAudio": "Audio",
-    "@settingsAudio": {
-      "description": "Label for toggling audio support",
-      "type": "text",
-      "placeholders": {}
-    },
-    "settingsVibrations": "Vibrations",
-    "@settingsVibrations": {
-      "description": "Label for toggling vibrations support",
-      "type": "text",
-      "placeholders": {}
-    },
-    "settingsLanguage": "Language",
-      "@settingsLanguage": {
-        "description": "Label for changing game language",
-        "type": "text",
-        "placeholders": {}
-      },
-      "roundTime": "Round time",
-        "@roundTime": {
-          "description": "Label for round time slider",
-          "type": "text",
-          "placeholders": {}
-        }
+  "@settingsHeader": {
+    "description": "Header displayed at the top of settings screen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsAccelerometer": "Accelerometer",
+  "@settingsAccelerometer": {
+    "description": "Label for toggling accelerometer support",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsAudio": "Audio",
+  "@settingsAudio": {
+    "description": "Label for toggling audio support",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsVibrations": "Vibrations",
+  "@settingsVibrations": {
+    "description": "Label for toggling vibrations support",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsLanguage": "Language",
+  "@settingsLanguage": {
+    "description": "Label for changing game language",
+    "type": "text",
+    "placeholders": {}
+  },
+  "roundTime": "Round time",
+  "@roundTime": {
+    "description": "Label for round time slider",
+    "type": "text",
+    "placeholders": {}
+  }
 }

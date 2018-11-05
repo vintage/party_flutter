@@ -62,11 +62,11 @@
     "placeholders": {}
   },
   "moreQuestionsAvailable": "i wiele więcej",
-    "@moreQuestionsAvailable": {
-      "description": "Text indicating that there are lot more questions available in given category",
-      "type": "text",
-      "placeholders": {}
-    },
+  "@moreQuestionsAvailable": {
+    "description": "Text indicating that there are lot more questions available in given category",
+    "type": "text",
+    "placeholders": {}
+  },
   "preparationBack": "Wróć",
   "@preparationBack": {
     "description": "Button which discards current category and takes the player back to the category listing",
@@ -98,11 +98,11 @@
     "placeholders": {}
   },
   "summaryHeader": "Twój wynik",
-    "@summaryHeader": {
-      "description": "Header displayed at the top of summary screen, informing player about current score",
-      "type": "text",
-      "placeholders": {}
-    },
+  "@summaryHeader": {
+    "description": "Header displayed at the top of summary screen, informing player about current score",
+    "type": "text",
+    "placeholders": {}
+  },
   "summaryBack": "Powrót",
   "@summaryBack": {
     "description": "Button which takes the player from summary screen to category listing",
@@ -110,39 +110,39 @@
     "placeholders": {}
   },
   "settingsHeader": "Ustawienia",
-      "@settingsHeader": {
-        "description": "Header displayed at the top of settings screen",
-        "type": "text",
-        "placeholders": {}
-      },
-      "settingsAccelerometer": "Akcelerometr",
-      "@settingsAccelerometer": {
-        "description": "Label for toggling accelerometer support",
-        "type": "text",
-        "placeholders": {}
-      },
-      "settingsAudio": "Audio",
-      "@settingsAudio": {
-        "description": "Label for toggling audio support",
-        "type": "text",
-        "placeholders": {}
-      },
-      "settingsVibrations": "Wibracje",
-      "@settingsVibrations": {
-        "description": "Label for toggling vibrations support",
-        "type": "text",
-        "placeholders": {}
-      },
-      "settingsLanguage": "Język",
-        "@settingsLanguage": {
-          "description": "Label for changing game language",
-          "type": "text",
-          "placeholders": {}
-        },
-        "roundTime": "Czas rundy",
-          "@roundTime": {
-            "description": "Label for round time slider",
-            "type": "text",
-            "placeholders": {}
-          }
+  "@settingsHeader": {
+    "description": "Header displayed at the top of settings screen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsAccelerometer": "Akcelerometr",
+  "@settingsAccelerometer": {
+    "description": "Label for toggling accelerometer support",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsAudio": "Audio",
+  "@settingsAudio": {
+    "description": "Label for toggling audio support",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsVibrations": "Wibracje",
+  "@settingsVibrations": {
+    "description": "Label for toggling vibrations support",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsLanguage": "Język",
+  "@settingsLanguage": {
+    "description": "Label for changing game language",
+    "type": "text",
+    "placeholders": {}
+  },
+  "roundTime": "Czas rundy",
+  "@roundTime": {
+    "description": "Label for round time slider",
+    "type": "text",
+    "placeholders": {}
+  }
 }
