@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+import 'package:zgadula/theme.dart';
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/screens/tutorial.dart';
 import 'package:zgadula/screens/home.dart';
@@ -94,29 +95,7 @@ class App extends StatelessWidget {
           ],
           supportedLocales:
               LanguageService.getCodes().map((code) => Locale(code, '')),
-          theme: ThemeData(
-            fontFamily: 'Lato',
-            brightness: Brightness.dark,
-            primaryColorDark: Color(0xFF455A64),
-            primaryColorLight: Color(0xFFCFD8DC),
-            primaryColor: Color(0xFF607D8B),
-            accentColor: Color(0xFF4CAF50),
-            iconTheme: IconThemeData(
-              color: Color(0xFFFFFFFF),
-            ),
-            dividerColor: Color(0xFFBDBDBD),
-            textTheme: Theme.of(context).textTheme.apply(
-                  bodyColor: Color(0xFFEEEEEE),
-                  displayColor: Color(0xFF757575),
-                ),
-            buttonTheme: ButtonThemeData(
-              height: 52.0,
-              minWidth: 120.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-            ),
-          ),
+          theme: createTheme(context),
           home: ScopedModelDescendant<TutorialModel>(
             builder: (context, child, model) {
               return model.isWatched ? HomeScreen() : TutorialScreen();

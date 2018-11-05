@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:zgadula/theme.dart';
+
 class BottomButton extends StatelessWidget {
   BottomButton({
     Key key,
@@ -16,7 +18,7 @@ class BottomButton extends StatelessWidget {
       child: ButtonTheme(
         shape: BeveledRectangleBorder(),
         child: RaisedButton(
-          color: Colors.black.withOpacity(0.7),
+          color: primaryDarkColor,
           textColor: Colors.white,
           child: child,
           onPressed: onPressed,
