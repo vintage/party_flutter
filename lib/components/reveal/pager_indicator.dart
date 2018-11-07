@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:zgadula/components/reveal/pages.dart';
+import 'package:zgadula/theme.dart';
 
 class PagerIndicator extends StatelessWidget {
   final PagerIndicatorViewModel viewModel;
@@ -95,25 +96,26 @@ class PageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color color = Theme.of(context).primaryColor;
+    Color color = secondaryDarkColor;
 
     return new Container(
       width: 25.0,
       height: 55.0,
       child: new Center(
         child: new Container(
-          width: lerpDouble(15.0, 18.0, viewModel.activePercent),
-          height: lerpDouble(15.0, 18.0, viewModel.activePercent),
+          width: lerpDouble(12.0, 16.0, viewModel.activePercent),
+          height: lerpDouble(12.0, 16.0, viewModel.activePercent),
           decoration: new BoxDecoration(
-            shape: BoxShape.circle,
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(2.0),
             color: viewModel.isHollow
                 ? color.withOpacity(viewModel.activePercent)
-                : color,
+                : secondaryColor,
             border: new Border.all(
               color: viewModel.isHollow
                   ? color.withOpacity(1 - viewModel.activePercent)
                   : Colors.transparent,
-              width: 3.0,
+              width: 2.0,
             ),
           ),
         ),
