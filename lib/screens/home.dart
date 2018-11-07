@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:zgadula/components/screen_loader.dart';
 
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
@@ -39,9 +40,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget buildContentLoading() {
     return SliverFillRemaining(
-      child: Center(
-        child: CircularProgressIndicator(),
-      ),
+      child: ScreenLoader(),
     );
   }
 

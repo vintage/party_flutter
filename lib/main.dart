@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:zgadula/components/screen_loader.dart';
 
 import 'package:zgadula/theme.dart';
 import 'package:zgadula/localizations.dart';
@@ -12,11 +13,13 @@ import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/store/tutorial.dart';
 import 'package:zgadula/store/settings.dart';
+import 'package:zgadula/store/language.dart';
 
 CategoryModel categoryModel;
 QuestionModel questionModel;
 TutorialModel tutorialModel;
 SettingsModel settingsModel;
+LanguageModel languageModel;
 
 class App extends StatelessWidget {
   @override
@@ -42,6 +45,11 @@ class App extends StatelessWidget {
       settingsModel.initialize();
     }
 
+    if (languageModel == null) {
+      languageModel = LanguageModel();
+      languageModel.initialize();
+    }
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -54,7 +62,10 @@ class App extends StatelessWidget {
           model: tutorialModel,
           child: ScopedModel<SettingsModel>(
             model: settingsModel,
-            child: buildApp(context),
+            child: ScopedModel<LanguageModel>(
+              model: languageModel,
+              child: buildApp(context),
+            )
           ),
         ),
       ),
@@ -62,14 +73,10 @@ class App extends StatelessWidget {
   }
 
   Widget buildApp(BuildContext context) {
-    return ScopedModelDescendant<SettingsModel>(
+    return ScopedModelDescendant<LanguageModel>(
       builder: (context, child, model) {
         if (model.isLoading) {
-          return Container(
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
+          return ScreenLoader();
         }
 
         bool languageSet = model.language != null;

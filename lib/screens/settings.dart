@@ -5,6 +5,7 @@ import 'package:zgadula/localizations.dart';
 import 'package:zgadula/services/language.dart';
 
 import 'package:zgadula/store/settings.dart';
+import 'package:zgadula/store/language.dart';
 import 'package:zgadula/screens/tutorial.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -70,32 +71,36 @@ class SettingsScreen extends StatelessWidget {
                 },
                 secondary: Icon(Icons.vibration),
               ),
-              ListTile(
-                title: Text(AppLocalizations.of(context).settingsLanguage),
-                leading: Icon(Icons.flag),
-                trailing: DropdownButton(
-                  value: model.language,
-                  items: LanguageService.getCodes()
-                      .map(
-                        (code) => DropdownMenuItem(
-                              child: Row(
-                                children: <Widget>[
-                                  Padding(
-                                    padding: EdgeInsets.only(right: 8.0),
-                                    child: FlagImage(country: code),
-                                  ),
-                                  Text(code.toUpperCase()),
-                                ],
+              ScopedModelDescendant<LanguageModel>(
+                builder: (context, child, model) {
+                  return ListTile(
+                    title: Text(AppLocalizations.of(context).settingsLanguage),
+                    leading: Icon(Icons.flag),
+                    trailing: DropdownButton(
+                      value: model.language,
+                      items: LanguageService.getCodes()
+                          .map(
+                            (code) => DropdownMenuItem(
+                          child: Row(
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(right: 8.0),
+                                child: FlagImage(country: code),
                               ),
-                              value: code,
-                            ),
+                              Text(code.toUpperCase()),
+                            ],
+                          ),
+                          value: code,
+                        ),
                       )
-                      .toList(),
-                  onChanged: (dynamic language) {
-                    model.changeLanguage(language);
-                  },
-                ),
-              )
+                          .toList(),
+                      onChanged: (dynamic language) {
+                        model.changeLanguage(language);
+                      },
+                    ),
+                  );
+                },
+              ),
             ],
           );
         },
