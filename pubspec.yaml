@@ -1,5 +1,5 @@
 name: zgadula
-description: A new Flutter application.
+description: Mobile party game for friends
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -25,6 +25,7 @@ dependencies:
   sensors: ^0.3.5
   audioplayers: ^0.7.8
   vibrate: ^0.0.4
+  firebase_analytics: ^1.0.5
 
 dev_dependencies:
   flutter_test:

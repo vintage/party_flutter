@@ -1,4 +1,5 @@
 audioplayers=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers-0.7.8/
+firebase_analytics=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_analytics-1.0.5/
 path_provider=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-0.4.1/
 sensors=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/sensors-0.3.5/
 shared_preferences=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/

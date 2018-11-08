@@ -1,4 +1,4 @@
-package zgadula.puppybox.com.zgadula;
+package com.puppybox.zgadula;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
