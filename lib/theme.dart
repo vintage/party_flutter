@@ -8,6 +8,8 @@ const Color secondaryColor = Color(0xFF984E99);
 const Color secondaryDarkColor = Color(0xFF874588);
 const Color secondaryLightColor = Color(0xFFa857a9);
 
+const Color textColor = Color(0xFFEEEEEE);
+
 ThemeData createTheme(BuildContext context) {
   ThemeData theme = ThemeData(
     fontFamily: 'Lato',
@@ -19,33 +21,33 @@ ThemeData createTheme(BuildContext context) {
     primaryColorLight: primaryLightColor,
     primaryColor: primaryColor,
     accentColor: secondaryColor,
-    buttonColor: secondaryColor,
-    highlightColor: secondaryLightColor,
+    toggleableActiveColor: secondaryLightColor,
     iconTheme: IconThemeData(
       color: Color(0xFFFFFFFF),
     ),
     dividerColor: secondaryColor,
     textTheme: Theme.of(context).textTheme.apply(
-          bodyColor: Color(0xFFEEEEEE),
+          bodyColor: textColor,
           displayColor: Color(0xFF757575),
         ),
     buttonTheme: ButtonThemeData(
       height: 52.0,
       minWidth: 120.0,
+      buttonColor: secondaryColor,
+      highlightColor: secondaryLightColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
       ),
     ),
+    sliderTheme: SliderTheme.of(context).copyWith(
+      activeTickMarkColor: Colors.transparent,
+      activeTrackColor: secondaryDarkColor,
+      thumbColor: secondaryColor,
+      inactiveTickMarkColor: secondaryColor,
+      inactiveTrackColor: primaryDarkColor,
+      overlayColor: secondaryLightColor.withOpacity(0.5),
+    ),
   );
-
-  theme = theme.copyWith(sliderTheme: theme.sliderTheme.copyWith(
-    activeTickMarkColor: Colors.transparent,
-    activeTrackColor: secondaryDarkColor,
-    thumbColor: secondaryColor,
-    inactiveTickMarkColor: secondaryColor,
-    inactiveTrackColor: primaryDarkColor,
-    overlayColor: secondaryLightColor.withOpacity(0.5),
-  ));
 
   return theme;
 }
