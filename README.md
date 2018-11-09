@@ -35,8 +35,6 @@ The current repository is an approach to rewrite it fully in Flutter and enable 
 ![Screen 6](/screens/screen6.png?raw=true "Screen #6")
 ![Screen 7](/screens/screen7.png?raw=true "Screen #7")
 ![Screen 8](/screens/screen8.png?raw=true "Screen #8")
-![Screen 9](/screens/screen9.png?raw=true "Screen #9")
-![Screen 10](/screens/screen10.png?raw=true "Screen #10")
 
 ## Adding new language
 
@@ -65,7 +63,7 @@ Can be downloaded from [https://www.pexels.com/](https://www.pexels.com/) or [ht
 
 ## TODO
 
-- Animation when opening next question (game loop)
+- More animations (opening next question during game loop)
 - More languages
 - Splash screen image
-- Configure crashlytics
+- Configure Firebase Crashlytics
