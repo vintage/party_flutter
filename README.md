@@ -21,7 +21,8 @@ The existing production version has been implemented in hybrid technologies and 
  - [Google Play](https://play.google.com/store/apps/details?id=com.puppybox.zgadula)
  - [App Store](https://itunes.apple.com/pl/app/zgadula/id1181083547?l=pl&mt=8)
 
-Just a note - it's only available in Polish language. The current repository is an approach to rewrite it fully in Flutter.
+Just a note - it's only available in Polish language.
+The current repository is an approach to rewrite it fully in Flutter and enable much more languages.
 
 
 ## Screenshots
@@ -34,6 +35,27 @@ Just a note - it's only available in Polish language. The current repository is 
 ![Screen 6](/screens/screen6.png?raw=true "Screen #6")
 ![Screen 7](/screens/screen7.png?raw=true "Screen #7")
 ![Screen 8](/screens/screen8.png?raw=true "Screen #8")
+![Screen 9](/screens/screen9.png?raw=true "Screen #9")
+![Screen 10](/screens/screen10.png?raw=true "Screen #10")
+
+## Adding new language
+
+1. Add language code to `getCodes` method in [language.dart](lib/services/language.dart)
+2. Download language flag from [here](https://www.countryflags.com/en/image-overview/) and put it in [assets/images/flags/](assets/images/flags/)
+3. Make a copy of file [intl_messages.arb](lib/l10n/intl_messages.arb) and translate the sentences (not the ones prefixed by `@`).
+See the  [intl_messages_pl.arb](lib/l10n/intl_messages_pl.arb) for reference
+4. When the translations are ready - run the `Generate translations` section
+5. The UI is translated! The only remaining thing is to add own set of categories and questions
+in [assets/data/](assets/data/). Each category consists of:
+
+- id - unique identifier of category (just make sure it's unique across the file)
+- image - image name for the category which is stored in [assets/images/categories/](assets/images/categories/).
+Feel free to add your own images - should be non-transparent, 400x400, PNG files.
+Can be downloaded from [https://www.pexels.com/](https://www.pexels.com/) or [https://unsplash.com/](https://unsplash.com/)
+- name - category name in yours language
+- questions - list of available questions - min. 50 per category, but more is better :)
+
+6. Done, new language added - PRs are more than welcome ❤️
 
 ## Generate translations
 
@@ -43,8 +65,7 @@ Just a note - it's only available in Polish language. The current repository is 
 
 ## TODO
 
-- More animations (flip card in gameplay)
-
-
-## Version
-0.0.1
+- Animation when opening next question (game loop)
+- More languages
+- Splash screen image
+- Configure crashlytics

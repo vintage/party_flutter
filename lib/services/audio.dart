@@ -12,10 +12,6 @@ class AudioService {
     }
   }
 
-  static click(context) {
-    _playSfx(context, 'click.wav');
-  }
-
   static invalid(context) {
     _playSfx(context, 'choice_invalid.wav');
   }
