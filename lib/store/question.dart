@@ -1,12 +1,12 @@
 import 'dart:convert';
-import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:zgadula/models/question.dart';
+import 'package:zgadula/store/store.dart';
 
-class QuestionModel extends Model {
+class QuestionModel extends StoreModel {
   bool _isLoading = true;
   bool get isLoading => _isLoading;
 
@@ -28,10 +28,6 @@ class QuestionModel extends Model {
 
   Question _currentQuestion;
   Question get currentQuestion => _currentQuestion;
-
-  Future initialize() async {
-
-  }
 
   load(String languageCode) async {
     _isLoading = true;

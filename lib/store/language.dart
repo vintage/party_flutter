@@ -2,8 +2,9 @@ import 'dart:async' show Future;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/widgets.dart';
+import 'package:zgadula/store/store.dart';
 
-class LanguageModel extends Model {
+class LanguageModel extends StoreModel {
   String _languageKey = 'language';
 
   bool _isLoading = true;
@@ -12,6 +13,7 @@ class LanguageModel extends Model {
   String _language;
   String get language => _language;
 
+  @override
   Future initialize() async {
     _isLoading = true;
     notifyListeners();

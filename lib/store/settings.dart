@@ -2,8 +2,9 @@ import 'dart:async' show Future;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/widgets.dart';
+import 'package:zgadula/store/store.dart';
 
-class SettingsModel extends Model {
+class SettingsModel extends StoreModel {
   String _isAudioEnabledKey = 'is_audio_enabled';
   String _isRotationControlEnabledKey = 'is_rotation_control_enabled';
   String _isVibrationEnabledKey = 'is_vibration_enabled';
@@ -24,6 +25,7 @@ class SettingsModel extends Model {
   int _roundTime;
   int get roundTime => _roundTime;
 
+  @override
   Future initialize() async {
     _isLoading = true;
     notifyListeners();

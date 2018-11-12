@@ -9,63 +9,45 @@ import 'package:zgadula/localizations.dart';
 import 'package:zgadula/screens/tutorial.dart';
 import 'package:zgadula/screens/home.dart';
 import 'package:zgadula/services/language.dart';
+import 'package:zgadula/store/store.dart';
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/store/tutorial.dart';
 import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/store/language.dart';
 
-CategoryModel categoryModel;
-QuestionModel questionModel;
-TutorialModel tutorialModel;
-SettingsModel settingsModel;
-LanguageModel languageModel;
-
 class App extends StatelessWidget {
+  final Map<Type, StoreModel> stores = {};
+
   @override
   Widget build(BuildContext context) {
-    // TODO: Refactor it
-    if (categoryModel == null) {
-      categoryModel = CategoryModel();
-      categoryModel.initialize();
-    }
-
-    if (questionModel == null) {
-      questionModel = QuestionModel();
-      questionModel.initialize();
-    }
-
-    if (tutorialModel == null) {
-      tutorialModel = TutorialModel();
-      tutorialModel.initialize();
-    }
-
-    if (settingsModel == null) {
-      settingsModel = SettingsModel();
-      settingsModel.initialize();
-    }
-
-    if (languageModel == null) {
-      languageModel = LanguageModel();
-      languageModel.initialize();
-    }
-
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
 
+    if (stores.length == 0) {
+      stores.addAll({
+        CategoryModel: CategoryModel(),
+        QuestionModel: QuestionModel(),
+        TutorialModel: TutorialModel(),
+        SettingsModel: SettingsModel(),
+        LanguageModel: LanguageModel(),
+      });
+      stores.values.forEach((store) => store.initialize());
+    }
+
     return ScopedModel<CategoryModel>(
-      model: categoryModel,
+      model: stores[CategoryModel],
       child: ScopedModel<QuestionModel>(
-        model: questionModel,
+        model: stores[QuestionModel],
         child: ScopedModel<TutorialModel>(
-          model: tutorialModel,
+          model: stores[TutorialModel],
           child: ScopedModel<SettingsModel>(
-            model: settingsModel,
+            model: stores[SettingsModel],
             child: ScopedModel<LanguageModel>(
-              model: languageModel,
+              model: stores[LanguageModel],
               child: buildApp(context),
-            )
+            ),
           ),
         ),
       ),
