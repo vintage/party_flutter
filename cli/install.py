@@ -1,11 +1,15 @@
-import os
-import shutil
-from subprocess import call
 import json
+import collections
 
 import click
 
 LANGUAGES = ['en', 'pl']
+
+
+def _get_duplicates(data):
+    return [
+        item for item, count in collections.Counter(data).items() if count > 1
+    ]
 
 
 @click.group()
@@ -39,6 +43,8 @@ def clean_category(language):
             prevent_semi_duplicates.append(question)
 
         if len(set(prevent_semi_duplicates)) != len(unique_questions):
+            print(_get_duplicates(prevent_semi_duplicates))
+            print(_get_duplicates(unique_questions))
             raise Exception('Semi duplicates in category {}'.format(category['name']))
 
         category['questions'] = unique_questions
