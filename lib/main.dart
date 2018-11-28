@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:zgadula/components/screen_loader.dart';
+import 'package:screen/screen.dart';
 
 import 'package:zgadula/theme.dart';
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/screens/tutorial.dart';
 import 'package:zgadula/screens/home.dart';
+import 'package:zgadula/components/screen_loader.dart';
 import 'package:zgadula/services/language.dart';
 import 'package:zgadula/store/store.dart';
 import 'package:zgadula/store/category.dart';
@@ -21,6 +22,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Screen.keepOn(true);
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);

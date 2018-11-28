@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:zgadula/components/fab.dart';
 import 'package:zgadula/localizations.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:sensors/sensors.dart';
@@ -35,8 +36,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     super.initState();
     startTimer();
 
-    QuestionModel
-        .of(context)
+    QuestionModel.of(context)
         .generateCurrentQuestions(CategoryModel.of(context).currentCategory.id);
 
     secondsMax = SettingsModel.of(context).roundTime;
@@ -67,7 +67,8 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
 
   enableRotationControl() {
     bool safePosition = true;
-    _rotateSubscription = accelerometerEvents.listen((AccelerometerEvent event) {
+    _rotateSubscription =
+        accelerometerEvents.listen((AccelerometerEvent event) {
       if (!isStarted || isPaused) {
         return;
       }
@@ -77,13 +78,12 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
           safePosition = false;
           handleInvalid();
         }
-      }
-      else if (event.z < -rotationBorder) {
+      } else if (event.z < -rotationBorder) {
         if (safePosition) {
           safePosition = false;
           handleValid();
         }
-      } else if (event.z.abs() > rotationBorder / 2){
+      } else if (event.z.abs() > rotationBorder / 2) {
         safePosition = true;
       }
     });
@@ -209,7 +209,18 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     );
   }
 
-  Widget buildSplashContent(String text, Color background) {
+  Widget buildHeaderIcon(IconData icon) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Icon(
+        icon,
+        size: 96.0,
+        color: Theme.of(context).textTheme.body1.color,
+      ),
+    );
+  }
+
+  Widget buildSplashContent(Widget child, Color background, [IconData icon]) {
     return Container(
       decoration: BoxDecoration(color: background),
       child: Column(
@@ -217,7 +228,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
         children: <Widget>[
           Expanded(
             child: Center(
-              child: buildHeader(text),
+              child: child,
             ),
           ),
         ],
@@ -264,17 +275,23 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
 
   Widget buildContent() {
     if (isPaused) {
-      return buildSplashContent(
-        AppLocalizations.of(context).nextQuestion,
-        QuestionModel.of(context).currentQuestion.isPassed
-            ? Theme.of(context).accentColor
-            : Theme.of(context).errorColor
-      );
+      IconData iconData = Icons.sentiment_very_dissatisfied;
+      Color background = Theme.of(context).errorColor;
+
+      if (QuestionModel.of(context).currentQuestion.isPassed) {
+        iconData = Icons.sentiment_very_satisfied;
+        background = Theme.of(context).accentColor;
+      }
+
+      return buildSplashContent(buildHeaderIcon(iconData), background);
     } else if (isStarted) {
       return buildGameContent();
     }
 
-    return buildSplashContent(FormatterService.secondsToTime(secondsLeft), Colors.transparent);
+    return buildSplashContent(
+      buildHeader(FormatterService.secondsToTime(secondsLeft)),
+      Colors.transparent,
+    );
   }
 
   @override
@@ -284,16 +301,20 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
         return await confirmBack();
       },
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          elevation: 0.0,
-          child: Icon(Icons.arrow_back),
-          backgroundColor: Theme.of(context).primaryColor,
-          onPressed: () async {
-            if (await confirmBack()) {
-              Navigator.of(context).pop();
-            }
-          },
-        ),
+        floatingActionButtonLocation:
+            CustomFloatingActionButtonLocation.startFloat,
+        floatingActionButton: isPaused
+            ? null
+            : FloatingActionButton(
+                elevation: 0.0,
+                child: Icon(Icons.arrow_back),
+                backgroundColor: Theme.of(context).primaryColor,
+                onPressed: () async {
+                  if (await confirmBack()) {
+                    Navigator.of(context).pop();
+                  }
+                },
+              ),
         body: buildContent(),
       ),
     );
