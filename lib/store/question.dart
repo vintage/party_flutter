@@ -25,6 +25,8 @@ class QuestionModel extends StoreModel {
       _currentQuestions.where((q) => q.isPassed).toList();
   List<Question> get questionsFailed =>
       _currentQuestions.where((q) => !q.isPassed).toList();
+  List<Question> _latestQuestions = [];
+  List<Question> get latestQuestions => _latestQuestions;
 
   Question _currentQuestion;
   Question get currentQuestion => _currentQuestion;
@@ -45,15 +47,24 @@ class QuestionModel extends StoreModel {
     notifyListeners();
   }
 
-  _getRandomQuestions(String categoryId, int limit) {
+  _getRandomQuestions(String categoryId, int limit, {bool unique = false}) {
     List<Question> questions = _questions[categoryId];
+    if (unique) {
+      questions = questions.where((question) => !_latestQuestions.contains(question)).toList();
+
+      if (questions.length < limit) {
+        _latestQuestions.clear();
+        return _getRandomQuestions(categoryId, limit, unique: false);
+      }
+    }
+
     questions.shuffle();
     questions = questions.sublist(0, limit);
 
     return questions;
   }
 
-  _getQuestions(String categoryId, int limit) {
+  _getQuestions(String categoryId, int limit, {bool unique = false}) {
     List<Question> questions = [];
     // Mix-up category contains questions from other categories
     if (categoryId == 'mixup') {
@@ -67,7 +78,7 @@ class QuestionModel extends StoreModel {
       questions.shuffle();
       questions = questions.sublist(0, limit);
     } else {
-      questions = _getRandomQuestions(categoryId, limit);
+      questions = _getRandomQuestions(categoryId, limit, unique: unique);
     }
 
     return questions;
@@ -83,7 +94,8 @@ class QuestionModel extends StoreModel {
   }
 
   generateCurrentQuestions(String categoryId) {
-    _currentQuestions = _getQuestions(categoryId, 10);
+    _currentQuestions = _getQuestions(categoryId, 10, unique: true);
+    _latestQuestions.addAll(_currentQuestions);
     _currentQuestion = _currentQuestions[0];
     notifyListeners();
   }
