@@ -8,8 +8,10 @@ import 'package:sensors/sensors.dart';
 import 'package:zgadula/services/audio.dart';
 import 'package:zgadula/services/formatters.dart';
 import 'package:zgadula/services/vibration.dart';
+import 'package:zgadula/services/analytics.dart';
 
 import 'package:zgadula/store/category.dart';
+import 'package:zgadula/models/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/screens/game_score.dart';
@@ -22,7 +24,7 @@ class CategoryPlayScreen extends StatefulWidget {
 }
 
 class CategoryPlayScreenState extends State<CategoryPlayScreen> {
-  static const rotationBorder = 9.5;
+  static const rotationBorder = 18.0;
 
   Timer gameTimer;
   int secondsMax;
@@ -36,8 +38,9 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     super.initState();
     startTimer();
 
-    QuestionModel.of(context)
-        .generateCurrentQuestions(CategoryModel.of(context).currentCategory.id);
+    Category category = CategoryModel.of(context).currentCategory;
+
+    QuestionModel.of(context).generateCurrentQuestions(category.id);
 
     secondsMax = SettingsModel.of(context).roundTime;
 
@@ -48,6 +51,8 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     if (SettingsModel.of(context).isRotationControlEnabled) {
       enableRotationControl();
     }
+
+    AnalyticsService.logEvent('play_game', {'category': category.name});
   }
 
   @protected
