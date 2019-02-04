@@ -80,11 +80,12 @@ class TutorialScreenState extends State<TutorialScreen>
   skipTutorial() {
     TutorialModel.of(context).watch();
 
-    Navigator.pushReplacement(
+    Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
         builder: (context) => HomeScreen(),
       ),
+      (Route<dynamic> route) => false,
     );
   }
 

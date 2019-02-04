@@ -2,6 +2,8 @@ import 'dart:async' show Future;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/widgets.dart';
+import 'package:package_info/package_info.dart';
+
 import 'package:zgadula/store/store.dart';
 
 class SettingsModel extends StoreModel {
@@ -25,6 +27,9 @@ class SettingsModel extends StoreModel {
   int _roundTime;
   int get roundTime => _roundTime;
 
+  String _version;
+  String get version => _version;
+
   @override
   Future initialize() async {
     _isLoading = true;
@@ -36,6 +41,10 @@ class SettingsModel extends StoreModel {
     _isVibrationEnabled = prefs.getBool(_isVibrationEnabledKey) ?? true;
     _roundTime = prefs.getInt(_roundTimeKey) ?? 60;
     _isLoading = false;
+
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    _version = packageInfo.version;
+
     notifyListeners();
   }
 

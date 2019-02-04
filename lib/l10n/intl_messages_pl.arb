@@ -37,21 +37,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "tutorialThirdSectionDescription": "Stuknij ekran raz aby pominąć pytanie, a podwójnie jeśli poprawnie odpowiedziałeś. Miłej zabawy!",
+  "tutorialThirdSectionDescription": "Stuknij ekran raz jeśli poprawnie odgadłeś hasło, lub podwójnie aby je pominąć. Miłej zabawy!",
   "@tutorialThirdSectionDescription": {
     "description": "Description for the third tutorial section",
-    "type": "text",
-    "placeholders": {}
-  },
-  "preparationFirstTip": "Przyłóż telefon do czoła i odgadnij hasło z pomocą podpowiedzi od znajomych.",
-  "@preparationFirstTip": {
-    "description": "First tip for reminding player on how to play the game",
-    "type": "text",
-    "placeholders": {}
-  },
-  "preparationSecondTip": "Stuknij ekran raz aby pominąć hasło, stuknij podwójnie jeśli poprawnie odgadłeś.",
-  "@preparationSecondTip": {
-    "description": "Second tip for reminding player on how to play the game",
     "type": "text",
     "placeholders": {}
   },

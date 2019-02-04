@@ -81,18 +81,18 @@ class SettingsScreen extends StatelessWidget {
                       items: LanguageService.getCodes()
                           .map(
                             (code) => DropdownMenuItem(
-                          child: Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(right: 8.0),
-                                child: FlagImage(country: code),
-                              ),
-                              Text(code.toUpperCase()),
-                            ],
-                          ),
-                          value: code,
-                        ),
-                      )
+                                  child: Row(
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 8.0),
+                                        child: FlagImage(country: code),
+                                      ),
+                                      Text(code.toUpperCase()),
+                                    ],
+                                  ),
+                                  value: code,
+                                ),
+                          )
                           .toList(),
                       onChanged: (dynamic language) {
                         model.changeLanguage(language);
@@ -111,16 +111,29 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          buildAppBar(context),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              <Widget>[
-                buildContent(context),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: CustomScrollView(
+              slivers: <Widget>[
+                buildAppBar(context),
+                SliverList(
+                  delegate: SliverChildListDelegate(
+                    <Widget>[
+                      buildContent(context),
+                    ],
+                  ),
+                ),
               ],
             ),
-          )
+          ),
+          ScopedModelDescendant<SettingsModel>(
+              builder: (context, child, model) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Text('v ${model.version}'),
+            );
+          }),
         ],
       ),
     );

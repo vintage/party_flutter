@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2018-11-05T19:35:42.585001",
+  "@@last_modified": "2019-02-04T20:39:06.023762",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -36,21 +36,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "tutorialThirdSectionDescription": "Tap the screen once if you want to pass, and tap it twice when correctly guessed. Good luck!",
+  "tutorialThirdSectionDescription": "Tap the screen once when correctly guessed or twice if you want to pass. Good luck!",
   "@tutorialThirdSectionDescription": {
     "description": "Description for the third tutorial section",
-    "type": "text",
-    "placeholders": {}
-  },
-  "preparationFirstTip": "Place the phone on the forehead and guess the displayed word with help of your friends.",
-  "@preparationFirstTip": {
-    "description": "First tip for reminding player on how to play the game",
-    "type": "text",
-    "placeholders": {}
-  },
-  "preparationSecondTip": "Tap the screen once if you want to pass, and tap it twice when correctly guessed.",
-  "@preparationSecondTip": {
-    "description": "Second tip for reminding player on how to play the game",
     "type": "text",
     "placeholders": {}
   },

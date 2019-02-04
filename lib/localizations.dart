@@ -70,25 +70,9 @@ class AppLocalizations {
 
   String get tutorialThirdSectionDescription {
     return Intl.message(
-      'Tap the screen once if you want to pass, and tap it twice when correctly guessed. Good luck!',
+      'Tap the screen once when correctly guessed or twice if you want to pass. Good luck!',
       name: 'tutorialThirdSectionDescription',
       desc: 'Description for the third tutorial section',
-    );
-  }
-
-  String get preparationFirstTip {
-    return Intl.message(
-      'Place the phone on the forehead and guess the displayed word with help of your friends.',
-      name: 'preparationFirstTip',
-      desc: 'First tip for reminding player on how to play the game',
-    );
-  }
-
-  String get preparationSecondTip {
-    return Intl.message(
-      'Tap the screen once if you want to pass, and tap it twice when correctly guessed.',
-      name: 'preparationSecondTip',
-      desc: 'Second tip for reminding player on how to play the game',
     );
   }
 
