@@ -116,11 +116,9 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
   }
 
   showScore() {
-    Navigator.pushReplacement(
+    Navigator.pushReplacementNamed(
       context,
-      MaterialPageRoute(
-        builder: (context) => GameScoreScreen(),
-      ),
+      '/game-score',
     );
   }
 

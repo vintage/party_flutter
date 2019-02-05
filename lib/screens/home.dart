@@ -26,11 +26,9 @@ class HomeScreenState extends State<HomeScreen> {
       // Cannot navigate instantly
       // https://github.com/flutter/flutter/issues/19330
       Future.delayed(Duration(milliseconds: 10)).then((_) {
-        Navigator.push(
+        Navigator.pushNamed(
           context,
-          MaterialPageRoute(
-            builder: (context) => TutorialScreen(),
-          ),
+          '/tutorial',
         );
       });
     }
@@ -57,11 +55,9 @@ class HomeScreenState extends State<HomeScreen> {
         IconButton(
           icon: Icon(Icons.settings),
           onPressed: () {
-            Navigator.push(
+            Navigator.pushNamed(
               context,
-              MaterialPageRoute(
-                builder: (context) => SettingsScreen(),
-              ),
+              '/settings',
             );
           },
         ),
@@ -99,11 +95,9 @@ class HomeScreenState extends State<HomeScreen> {
                           model.setCurrent(category);
                           qModel.generateSampleQuestions(category.id);
 
-                          Navigator.push(
+                          Navigator.pushNamed(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => CategoryDetailScreen(),
-                            ),
+                            '/category',
                           );
                         },
                         onFavoriteToggle: () => model.toggleFavorite(category),
@@ -121,7 +115,9 @@ class HomeScreenState extends State<HomeScreen> {
         builder: (context, child, model) =>
             ScopedModelDescendant<QuestionModel>(
               builder: (context, child, qModel) {
-                if (model.isLoading || qModel.isLoading || !isTutorialWatched()) {
+                if (model.isLoading ||
+                    qModel.isLoading ||
+                    !isTutorialWatched()) {
                   return buildContentLoading();
                 }
 

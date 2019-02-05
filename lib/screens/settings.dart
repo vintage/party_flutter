@@ -26,11 +26,9 @@ class SettingsScreen extends StatelessWidget {
         IconButton(
           icon: Icon(Icons.help),
           onPressed: () {
-            Navigator.push(
+            Navigator.pushNamed(
               context,
-              MaterialPageRoute(
-                builder: (context) => TutorialScreen(),
-              ),
+              '/tutorial',
             );
           },
         ),

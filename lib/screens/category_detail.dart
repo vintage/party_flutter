@@ -43,11 +43,9 @@ class CategoryDetailScreen extends StatelessWidget {
                       RaisedButton(
                         child:
                             Text(AppLocalizations.of(context).preparationPlay),
-                        onPressed: () => Navigator.pushReplacement(
+                        onPressed: () => Navigator.pushReplacementNamed(
                               context,
-                              MaterialPageRoute(
-                                builder: (context) => CategoryPlayScreen(),
-                              ),
+                              '/play',
                             ),
                       ),
                       Padding(
@@ -63,7 +61,8 @@ class CategoryDetailScreen extends StatelessWidget {
                       ),
                       ScopedModelDescendant<SettingsModel>(
                         builder: (context, child, settingsModel) {
-                          String timeDisplay = FormatterService.secondsToTime(settingsModel.roundTime);
+                          String timeDisplay = FormatterService.secondsToTime(
+                              settingsModel.roundTime);
 
                           return Column(
                             children: <Widget>[
@@ -72,16 +71,15 @@ class CategoryDetailScreen extends StatelessWidget {
                                 min: 30.0,
                                 max: 120.0,
                                 divisions: 3,
-                                onChanged: (value) =>
-                                    settingsModel.changeRoundTime(value.toInt()),
+                                onChanged: (value) => settingsModel
+                                    .changeRoundTime(value.toInt()),
                               ),
                               RichText(
                                 text: TextSpan(
                                   text: AppLocalizations.of(context).roundTime,
                                   children: [
                                     TextSpan(
-                                      text:
-                                          ' $timeDisplay',
+                                      text: ' $timeDisplay',
                                       style: TextStyle(
                                         fontSize: 20.0,
                                       ),
