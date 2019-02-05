@@ -1,14 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:zgadula/components/screen_loader.dart';
+import 'package:zgadula/screens/tutorial.dart';
 
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/screens/settings.dart';
 import 'package:zgadula/screens/category_detail.dart';
 import 'package:zgadula/components/category_list_item.dart';
+import 'package:zgadula/store/tutorial.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  HomeScreenState createState() {
+    return new HomeScreenState();
+  }
+}
+
+class HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    if (!isTutorialWatched()) {
+      // Cannot navigate instantly
+      // https://github.com/flutter/flutter/issues/19330
+      Future.delayed(Duration(milliseconds: 10)).then((_) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => TutorialScreen(),
+          ),
+        );
+      });
+    }
+  }
+
+  bool isTutorialWatched() {
+    return TutorialModel.of(context).isWatched;
+  }
+
   Widget buildAppBar(context) {
     return SliverAppBar(
       titleSpacing: 16.0,
@@ -90,7 +121,7 @@ class HomeScreen extends StatelessWidget {
         builder: (context, child, model) =>
             ScopedModelDescendant<QuestionModel>(
               builder: (context, child, qModel) {
-                if (model.isLoading || qModel.isLoading) {
+                if (model.isLoading || qModel.isLoading || !isTutorialWatched()) {
                   return buildContentLoading();
                 }
 

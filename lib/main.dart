@@ -6,7 +6,6 @@ import 'package:screen/screen.dart';
 
 import 'package:zgadula/theme.dart';
 import 'package:zgadula/localizations.dart';
-import 'package:zgadula/screens/tutorial.dart';
 import 'package:zgadula/screens/home.dart';
 import 'package:zgadula/components/screen_loader.dart';
 import 'package:zgadula/services/language.dart';
@@ -88,11 +87,7 @@ class App extends StatelessWidget {
           supportedLocales:
               LanguageService.getCodes().map((code) => Locale(code, '')),
           theme: createTheme(context),
-          home: ScopedModelDescendant<TutorialModel>(
-            builder: (context, child, model) {
-              return model.isWatched ? HomeScreen() : TutorialScreen();
-            },
-          ),
+          home: HomeScreen(),
         );
       },
     );

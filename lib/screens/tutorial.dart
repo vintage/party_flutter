@@ -80,13 +80,7 @@ class TutorialScreenState extends State<TutorialScreen>
   skipTutorial() {
     TutorialModel.of(context).watch();
 
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (context) => HomeScreen(),
-      ),
-      (Route<dynamic> route) => false,
-    );
+    Navigator.pop(context);
   }
 
   List<PageViewModel> getPages(BuildContext context) {
