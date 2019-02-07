@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +9,7 @@ import 'package:zgadula/screens/category_play.dart';
 import 'package:zgadula/screens/game_score.dart';
 import 'package:zgadula/screens/settings.dart';
 import 'package:zgadula/screens/tutorial.dart';
+import 'package:zgadula/services/analytics.dart';
 
 import 'package:zgadula/theme.dart';
 import 'package:zgadula/localizations.dart';
@@ -100,6 +102,9 @@ class App extends StatelessWidget {
             '/settings': (context) => SettingsScreen(),
             '/tutorial': (context) => TutorialScreen(),
           },
+          navigatorObservers: [
+            FirebaseAnalyticsObserver(analytics: AnalyticsService.analytics),
+          ],
         );
       },
     );
