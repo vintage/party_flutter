@@ -24,7 +24,7 @@ class CategoryPlayScreen extends StatefulWidget {
 }
 
 class CategoryPlayScreenState extends State<CategoryPlayScreen> {
-  static const rotationBorder = 18.0;
+  static const rotationBorder = 9.5;
 
   Timer gameTimer;
   int secondsMax;
