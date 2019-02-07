@@ -16,13 +16,10 @@ Mobile party game implemented in Flutter framework. Its been heavily inspired by
 
 ## Stores
 
-The existing production version has been implemented in hybrid technologies and you can check it out at:
+You can test the game by downloading it directly from the official stores:
 
  - [Google Play](https://play.google.com/store/apps/details?id=com.puppybox.zgadula)
- - [App Store](https://itunes.apple.com/pl/app/zgadula/id1181083547?l=pl&mt=8)
-
-Just a note - it's only available in Polish language.
-The current repository is an approach to rewrite it fully in Flutter and enable much more languages.
+ - App Store - to be released
 
 
 ## Screenshots
