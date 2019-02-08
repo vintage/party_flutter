@@ -77,7 +77,7 @@ class App extends StatelessWidget {
         }
 
         return MaterialApp(
-          title: 'Zgadula',
+          title: 'Mima',
           localeResolutionCallback: (locale, locales) {
             if (!languageSet) {
               model.changeLanguage(locale.languageCode);

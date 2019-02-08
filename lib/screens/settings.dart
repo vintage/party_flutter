@@ -6,7 +6,6 @@ import 'package:zgadula/services/language.dart';
 
 import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/store/language.dart';
-import 'package:zgadula/screens/tutorial.dart';
 
 class SettingsScreen extends StatelessWidget {
   Widget buildAppBar(context) {

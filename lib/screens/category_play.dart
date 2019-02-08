@@ -14,7 +14,6 @@ import 'package:zgadula/store/category.dart';
 import 'package:zgadula/models/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/store/settings.dart';
-import 'package:zgadula/screens/game_score.dart';
 
 class CategoryPlayScreen extends StatefulWidget {
   CategoryPlayScreen({Key key}) : super(key: key);

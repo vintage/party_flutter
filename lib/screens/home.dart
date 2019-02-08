@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:zgadula/components/screen_loader.dart';
-import 'package:zgadula/screens/tutorial.dart';
 
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
-import 'package:zgadula/screens/settings.dart';
-import 'package:zgadula/screens/category_detail.dart';
 import 'package:zgadula/components/category_list_item.dart';
 import 'package:zgadula/store/tutorial.dart';
 
@@ -44,7 +41,7 @@ class HomeScreenState extends State<HomeScreen> {
       floating: true,
       backgroundColor: Colors.black.withOpacity(0.7),
       title: Text(
-        'Zgadula',
+        'Mima',
         style: TextStyle(
           color: Colors.white,
           fontSize: 20.0,

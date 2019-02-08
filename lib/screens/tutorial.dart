@@ -7,7 +7,6 @@ import 'package:zgadula/components/reveal/page_dragger.dart';
 import 'package:zgadula/components/reveal/page_reveal.dart';
 import 'package:zgadula/components/reveal/pager_indicator.dart';
 import 'package:zgadula/components/reveal/pages.dart';
-import 'package:zgadula/screens/home.dart';
 
 class TutorialScreen extends StatefulWidget {
   @override
