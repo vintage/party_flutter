@@ -64,3 +64,7 @@ Can be downloaded from [https://www.pexels.com/](https://www.pexels.com/) or [ht
 - More languages
 - Splash screen image
 - Configure Firebase Crashlytics
+
+## Resources
+
+- [Icons](https://www.baianat.com/resources/thousands/)

@@ -31,15 +31,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "tutorialThirdSectionHeader": "Zabawa!",
-  "@tutorialThirdSectionHeader": {
-    "description": "Header for the third tutorial section",
+  "tutorialThirdSectionHeader": "Podpowiedzi",
+    "@tutorialThirdSectionHeader": {
+      "description": "Header for the third tutorial section",
+      "type": "text",
+      "placeholders": {}
+    },
+    "tutorialThirdSectionDescription": "Zdecyduj jakich wskazówek używacie podczas rundy - mówienie, pokazywanie, rysowanie, a nawet nucenie.",
+    "@tutorialThirdSectionDescription": {
+      "description": "Description for the third tutorial section",
+      "type": "text",
+      "placeholders": {}
+    },
+  "tutorialFourthSectionHeader": "Zabawa!",
+  "@tutorialFourthSectionHeader": {
+    "description": "Header for the fourth tutorial section",
     "type": "text",
     "placeholders": {}
   },
-  "tutorialThirdSectionDescription": "Stuknij ekran raz jeśli poprawnie odgadłeś hasło, lub podwójnie aby je pominąć. Miłej zabawy!",
-  "@tutorialThirdSectionDescription": {
-    "description": "Description for the third tutorial section",
+  "tutorialFourthSectionDescription": "Stuknij ekran raz jeśli poprawnie odgadłeś hasło, lub podwójnie aby je pominąć. Miłej zabawy!",
+  "@tutorialFourthSectionDescription": {
+    "description": "Description for the fourth tutorial section",
     "type": "text",
     "placeholders": {}
   },

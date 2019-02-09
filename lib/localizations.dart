@@ -62,7 +62,7 @@ class AppLocalizations {
 
   String get tutorialThirdSectionHeader {
     return Intl.message(
-      'Fun!',
+      'Tips',
       name: 'tutorialThirdSectionHeader',
       desc: 'Header for the third tutorial section',
     );
@@ -70,9 +70,25 @@ class AppLocalizations {
 
   String get tutorialThirdSectionDescription {
     return Intl.message(
-      'Tap the screen once when correctly guessed or twice if you want to pass. Good luck!',
+      'Decide on what kind of tips would you use during the round - speak, show, draw or even hum.',
       name: 'tutorialThirdSectionDescription',
       desc: 'Description for the third tutorial section',
+    );
+  }
+
+  String get tutorialFourthSectionHeader {
+    return Intl.message(
+      'Fun!',
+      name: 'tutorialFourthSectionHeader',
+      desc: 'Header for the fourth tutorial section',
+    );
+  }
+
+  String get tutorialFourthSectionDescription {
+    return Intl.message(
+      'Tap the screen once when correctly guessed or twice if you want to pass. Good luck!',
+      name: 'tutorialFourthSectionDescription',
+      desc: 'Description for the fourth tutorial section',
     );
   }
 
