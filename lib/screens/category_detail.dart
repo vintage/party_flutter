@@ -69,7 +69,7 @@ class CategoryDetailScreen extends StatelessWidget {
                                 value: settingsModel.roundTime.toDouble(),
                                 min: 30.0,
                                 max: 120.0,
-                                divisions: 3,
+                                divisions: 6,
                                 onChanged: (value) => settingsModel
                                     .changeRoundTime(value.toInt()),
                               ),
