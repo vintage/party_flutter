@@ -41,7 +41,7 @@ class HomeScreenState extends State<HomeScreen> {
       floating: true,
       backgroundColor: Colors.black.withOpacity(0.7),
       title: Text(
-        'Mima',
+        'Zgadula',
         style: TextStyle(
           color: Colors.white,
           fontSize: 20.0,
