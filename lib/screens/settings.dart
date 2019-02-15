@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:launch_review/launch_review.dart';
+
 import 'package:zgadula/components/flag_image.dart';
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/services/language.dart';
-
 import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/store/language.dart';
 
@@ -108,6 +109,14 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        elevation: 0.0,
+        child: Icon(Icons.rate_review),
+        backgroundColor: Theme.of(context).buttonColor,
+        onPressed: () {
+          LaunchReview.launch();
+        },
+      ),
       body: Column(
         children: <Widget>[
           Expanded(

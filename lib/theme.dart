@@ -14,6 +14,7 @@ ThemeData createTheme(BuildContext context) {
   ThemeData theme = ThemeData(
     fontFamily: 'Lato',
     brightness: Brightness.dark,
+    buttonColor: secondaryColor,
     backgroundColor: primaryDarkColor,
     indicatorColor: secondaryColor,
     scaffoldBackgroundColor: primaryColor,

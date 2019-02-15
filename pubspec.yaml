@@ -28,6 +28,7 @@ dependencies:
   firebase_analytics: ^1.2.0+1
   screen: ^0.0.4
   package_info: ^0.3.2+1
+  launch_review: ^1.0.1
 
 dev_dependencies:
   flutter_test:
