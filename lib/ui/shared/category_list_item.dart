@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:zgadula/models/category.dart';
-import 'package:zgadula/components/category_image.dart';
+import 'category_image.dart';
 
 class CategoryListItem extends StatelessWidget {
   CategoryListItem({

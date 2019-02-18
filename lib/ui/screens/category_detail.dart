@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:zgadula/localizations.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:zgadula/services/formatters.dart';
 
+import 'package:zgadula/services/formatters.dart';
+import 'package:zgadula/localizations.dart';
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/models/question.dart';
-import 'package:zgadula/components/bottom_button.dart';
-import 'package:zgadula/components/category_image.dart';
 import 'package:zgadula/store/settings.dart';
+import '../shared/widgets.dart';
 
 class CategoryDetailScreen extends StatelessWidget {
   @override

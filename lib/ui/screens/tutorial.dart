@@ -1,12 +1,10 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/store/tutorial.dart';
-import 'package:zgadula/components/reveal/page_dragger.dart';
-import 'package:zgadula/components/reveal/page_reveal.dart';
-import 'package:zgadula/components/reveal/pager_indicator.dart';
-import 'package:zgadula/components/reveal/pages.dart';
+import '../shared/reveal/widgets.dart';
 
 class TutorialScreen extends StatefulWidget {
   @override

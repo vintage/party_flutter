@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:zgadula/localizations.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+import 'package:zgadula/localizations.dart';
 import 'package:zgadula/models/question.dart';
 import 'package:zgadula/store/question.dart';
-import 'package:zgadula/components/bottom_button.dart';
+import '../shared/widgets.dart';
 
 class GameScoreScreen extends StatelessWidget {
   Widget buildQuestionItem(BuildContext context, Question question) {

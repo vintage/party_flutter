@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:zgadula/components/screen_loader.dart';
 
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
-import 'package:zgadula/components/category_list_item.dart';
 import 'package:zgadula/store/tutorial.dart';
+import '../shared/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

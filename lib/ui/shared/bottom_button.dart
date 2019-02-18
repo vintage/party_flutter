@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:zgadula/theme.dart';
+import '../theme.dart';
 
 class BottomButton extends StatelessWidget {
   BottomButton({

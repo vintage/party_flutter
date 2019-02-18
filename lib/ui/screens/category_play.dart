@@ -1,19 +1,20 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:zgadula/components/fab.dart';
-import 'package:zgadula/localizations.dart';
-import 'package:scoped_model/scoped_model.dart';
 import 'package:sensors/sensors.dart';
+import 'package:scoped_model/scoped_model.dart';
+
+import 'package:zgadula/localizations.dart';
 import 'package:zgadula/services/audio.dart';
 import 'package:zgadula/services/formatters.dart';
 import 'package:zgadula/services/vibration.dart';
 import 'package:zgadula/services/analytics.dart';
-
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/models/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/store/settings.dart';
+import '../shared/widgets.dart';
 
 class CategoryPlayScreen extends StatefulWidget {
   CategoryPlayScreen({Key key}) : super(key: key);

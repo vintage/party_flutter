@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:zgadula/components/reveal/pager_indicator.dart';
+import 'pager_indicator.dart';
 
 class PageDragger extends StatefulWidget {
   final bool canDragLeftToRight;
