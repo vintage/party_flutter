@@ -4,6 +4,8 @@
 
 # Party Flutter
 
+[![Join the chat at https://gitter.im/party_flutter/community](https://badges.gitter.im/party_flutter/community.svg)](https://gitter.im/party_flutter/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Mobile party game implemented in Flutter framework. Its been heavily inspired by the Heads Up! game:
 
 - Get a group of friends (at least 3 players)
