@@ -74,6 +74,13 @@ class TutorialScreenState extends State<TutorialScreen>
     });
   }
 
+  @override
+  dispose() {
+    super.dispose();
+
+    slideUpdateStream.close();
+  }
+
   skipTutorial() {
     TutorialModel.of(context).watch();
 
