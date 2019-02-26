@@ -1,5 +1,4 @@
 import 'dart:async' show Future;
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/widgets.dart';
 import 'package:package_info/package_info.dart';
@@ -35,11 +34,11 @@ class SettingsModel extends StoreModel {
     _isLoading = true;
     notifyListeners();
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _isAudioEnabled = prefs.getBool(_isAudioEnabledKey) ?? true;
-    _isRotationControlEnabled = prefs.getBool(_isRotationControlEnabledKey) ?? false;
-    _isVibrationEnabled = prefs.getBool(_isVibrationEnabledKey) ?? true;
-    _roundTime = prefs.getInt(_roundTimeKey) ?? 60;
+    var persist = await persistStore;
+    _isAudioEnabled = persist.getBool(_isAudioEnabledKey) ?? true;
+    _isRotationControlEnabled = persist.getBool(_isRotationControlEnabledKey) ?? false;
+    _isVibrationEnabled = persist.getBool(_isVibrationEnabledKey) ?? true;
+    _roundTime = persist.getInt(_roundTimeKey) ?? 60;
     _isLoading = false;
 
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
@@ -52,32 +51,28 @@ class SettingsModel extends StoreModel {
     _isAudioEnabled = !_isAudioEnabled;
     notifyListeners();
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool(_isAudioEnabledKey, _isAudioEnabled);
+    await persistStore..setBool(_isAudioEnabledKey, _isAudioEnabled);
   }
 
   Future toggleRotationControl() async {
     _isRotationControlEnabled = !_isRotationControlEnabled;
     notifyListeners();
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool(_isRotationControlEnabledKey, _isRotationControlEnabled);
+    await persistStore..setBool(_isRotationControlEnabledKey, _isRotationControlEnabled);
   }
 
   Future toggleVibration() async {
     _isVibrationEnabled = !_isVibrationEnabled;
     notifyListeners();
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool(_isVibrationEnabledKey, _isVibrationEnabled);
+    await persistStore..setBool(_isVibrationEnabledKey, _isVibrationEnabled);
   }
 
   Future changeRoundTime(int roundTime) async {
     _roundTime = roundTime;
     notifyListeners();
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt(_roundTimeKey, _roundTime);
+    await persistStore..setInt(_roundTimeKey, _roundTime);
   }
 
   static SettingsModel of(BuildContext context) =>

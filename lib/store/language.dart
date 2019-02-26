@@ -1,5 +1,4 @@
 import 'dart:async' show Future;
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/widgets.dart';
 import 'package:zgadula/store/store.dart';
@@ -18,8 +17,8 @@ class LanguageModel extends StoreModel {
     _isLoading = true;
     notifyListeners();
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _language = prefs.getString(_languageKey) ?? null;
+    var persist = await persistStore;
+    _language = persist.getString(_languageKey) ?? null;
     _isLoading = false;
     notifyListeners();
   }
@@ -28,8 +27,7 @@ class LanguageModel extends StoreModel {
     _language = language;
     notifyListeners();
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(_languageKey, _language);
+    await persistStore..setString(_languageKey, _language);
   }
 
   static LanguageModel of(BuildContext context) =>
