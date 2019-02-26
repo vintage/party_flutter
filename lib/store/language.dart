@@ -1,10 +1,10 @@
-import 'dart:async' show Future;
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/widgets.dart';
+import 'package:zgadula/repository/language.dart';
 import 'package:zgadula/store/store.dart';
 
 class LanguageModel extends StoreModel {
-  String _languageKey = 'language';
+  LanguageRepository repository;
 
   bool _isLoading = true;
   bool get isLoading => _isLoading;
@@ -12,22 +12,18 @@ class LanguageModel extends StoreModel {
   String _language;
   String get language => _language;
 
-  @override
-  Future initialize() async {
-    _isLoading = true;
-    notifyListeners();
+  LanguageModel(this.repository);
 
-    var persist = await persistStore;
-    _language = persist.getString(_languageKey) ?? null;
+  @override
+  initialize() async {
+    _language = repository.getLanguage();
     _isLoading = false;
     notifyListeners();
   }
 
-  Future changeLanguage(String language) async {
-    _language = language;
+  changeLanguage(String language) async {
+    _language = repository.setLanguage(language);
     notifyListeners();
-
-    await persistStore..setString(_languageKey, _language);
   }
 
   static LanguageModel of(BuildContext context) =>

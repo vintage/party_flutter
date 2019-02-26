@@ -1,12 +1,13 @@
-import 'dart:convert';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:zgadula/models/category.dart';
+import 'package:zgadula/repository/category.dart';
 import 'package:zgadula/store/store.dart';
 
 class CategoryModel extends StoreModel {
+  CategoryRepository repository;
+
   bool _isLoading = true;
   bool get isLoading => _isLoading;
 
@@ -19,19 +20,14 @@ class CategoryModel extends StoreModel {
   Category _currentCategory;
   Category get currentCategory => _currentCategory;
 
+  CategoryModel(this.repository);
+
   load(String languageCode) async {
     _isLoading = true;
     notifyListeners();
 
-    languageCode = languageCode.toLowerCase();
-    List<dynamic> categoryList =
-    json.decode(await rootBundle.loadString('assets/data/categories_$languageCode.json'));
-    _categories.clear();
-    for (Map<String, dynamic> categoryMap in categoryList) {
-      _categories.add(Category.fromJson(categoryMap));
-    }
+    _categories = await repository.getAll(languageCode);
     _isLoading = false;
-
     notifyListeners();
   }
 
@@ -41,12 +37,7 @@ class CategoryModel extends StoreModel {
   }
 
   toggleFavorite(Category category) {
-    if (_favourites.contains(category)) {
-      _favourites.remove(category);
-    } else {
-      _favourites.add(category);
-    }
-
+    _favourites = repository.toggleFavorite(_favourites, category);
     notifyListeners();
   }
 

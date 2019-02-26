@@ -1,26 +1,25 @@
-import 'dart:async' show Future;
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/widgets.dart';
+import 'package:zgadula/repository/tutorial.dart';
 import 'package:zgadula/store/store.dart';
 
 class TutorialModel extends StoreModel {
-  String _prefKey = 'is_tutorial_watched';
+  TutorialRepository repository;
 
   bool _isWatched = false;
   bool get isWatched => _isWatched;
 
+  TutorialModel(this.repository);
+
   @override
-  Future initialize() async {
-    var persist = await persistStore;
-    _isWatched = persist.getBool(_prefKey) ?? false;
+  initialize() async {
+    _isWatched = await repository.isWatched();
     notifyListeners();
   }
 
-  Future watch() async {
-    _isWatched = true;
+  watch() async {
+    _isWatched = await repository.watch();
     notifyListeners();
-
-    await persistStore..setBool(_prefKey, true);
   }
 
   static TutorialModel of(BuildContext context) =>

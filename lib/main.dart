@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:screen/screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'localizations.dart';
 import 'ui/theme.dart';
@@ -16,6 +17,10 @@ import 'ui/screens/tutorial.dart';
 import 'ui/screens/home.dart';
 import 'services/analytics.dart';
 import 'services/language.dart';
+import 'repository/category.dart';
+import 'repository/language.dart';
+import 'repository/settings.dart';
+import 'repository/tutorial.dart';
 import 'store/store.dart';
 import 'store/category.dart';
 import 'store/question.dart';
@@ -34,13 +39,26 @@ class App extends StatelessWidget {
       DeviceOrientation.portraitUp,
     ]);
 
+    return FutureBuilder<SharedPreferences>(
+      future: SharedPreferences.getInstance(),
+      builder: (BuildContext context, AsyncSnapshot<SharedPreferences> snapshot) {
+        if (snapshot.data == null) {
+          return ScreenLoader();
+        }
+
+        return buildStore(context, snapshot.data);
+      },
+    );
+  }
+
+  Widget buildStore(BuildContext context, SharedPreferences storage) {
     if (stores.length == 0) {
       stores.addAll({
-        CategoryModel: CategoryModel(),
+        CategoryModel: CategoryModel(CategoryRepository()),
         QuestionModel: QuestionModel(),
-        TutorialModel: TutorialModel(),
-        SettingsModel: SettingsModel(),
-        LanguageModel: LanguageModel(),
+        TutorialModel: TutorialModel(TutorialRepository(storage: storage)),
+        SettingsModel: SettingsModel(SettingsRepository(storage: storage)),
+        LanguageModel: LanguageModel(LanguageRepository(storage: storage)),
       });
       stores.values.forEach((store) => store.initialize());
     }

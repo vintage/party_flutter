@@ -1,15 +1,11 @@
-import 'dart:async' show Future;
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/widgets.dart';
-import 'package:package_info/package_info.dart';
+import 'package:zgadula/repository/settings.dart';
 
 import 'package:zgadula/store/store.dart';
 
 class SettingsModel extends StoreModel {
-  String _isAudioEnabledKey = 'is_audio_enabled';
-  String _isRotationControlEnabledKey = 'is_rotation_control_enabled';
-  String _isVibrationEnabledKey = 'is_vibration_enabled';
-  String _roundTimeKey = 'round_time';
+  SettingsRepository repository;
 
   bool _isLoading = true;
   bool get isLoading => _isLoading;
@@ -29,50 +25,40 @@ class SettingsModel extends StoreModel {
   String _version;
   String get version => _version;
 
+  SettingsModel(this.repository);
+
   @override
-  Future initialize() async {
+  initialize() async {
     _isLoading = true;
     notifyListeners();
 
-    var persist = await persistStore;
-    _isAudioEnabled = persist.getBool(_isAudioEnabledKey) ?? true;
-    _isRotationControlEnabled = persist.getBool(_isRotationControlEnabledKey) ?? false;
-    _isVibrationEnabled = persist.getBool(_isVibrationEnabledKey) ?? true;
-    _roundTime = persist.getInt(_roundTimeKey) ?? 60;
+    _isAudioEnabled = repository.isAudioEnabled();
+    _isRotationControlEnabled = repository.isRotationControlEnabled();
+    _isVibrationEnabled = repository.isVibrationEnabled();
+    _roundTime = repository.getRoundTime();
+    _version = await repository.getAppVersion();
     _isLoading = false;
-
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    _version = packageInfo.version;
-
     notifyListeners();
   }
 
-  Future toggleAudio() async {
-    _isAudioEnabled = !_isAudioEnabled;
+  toggleAudio() async {
+    _isAudioEnabled = repository.toggleAudio();
     notifyListeners();
-
-    await persistStore..setBool(_isAudioEnabledKey, _isAudioEnabled);
   }
 
-  Future toggleRotationControl() async {
-    _isRotationControlEnabled = !_isRotationControlEnabled;
+  toggleRotationControl() async {
+    _isRotationControlEnabled = repository.toggleRotationControl();
     notifyListeners();
-
-    await persistStore..setBool(_isRotationControlEnabledKey, _isRotationControlEnabled);
   }
 
-  Future toggleVibration() async {
-    _isVibrationEnabled = !_isVibrationEnabled;
+  toggleVibration() async {
+    _isVibrationEnabled = repository.toggleVibration();
     notifyListeners();
-
-    await persistStore..setBool(_isVibrationEnabledKey, _isVibrationEnabled);
   }
 
-  Future changeRoundTime(int roundTime) async {
-    _roundTime = roundTime;
+  changeRoundTime(int roundTime) async {
+    _roundTime = repository.setRoundTime(roundTime);
     notifyListeners();
-
-    await persistStore..setInt(_roundTimeKey, _roundTime);
   }
 
   static SettingsModel of(BuildContext context) =>
