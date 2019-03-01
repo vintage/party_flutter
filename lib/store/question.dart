@@ -1,12 +1,13 @@
-import 'dart:convert';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:zgadula/models/question.dart';
+import 'package:zgadula/repository/question.dart';
 import 'package:zgadula/store/store.dart';
 
 class QuestionModel extends StoreModel {
+  QuestionRepository repository;
+
   bool _isLoading = true;
   bool get isLoading => _isLoading;
 
@@ -17,7 +18,8 @@ class QuestionModel extends StoreModel {
   List<Question> get sampleQuestions => _sampleQuestions;
 
   Map<String, List<Question>> _sampleQuestionsByCategory = {};
-  Map<String, List<Question>> get sampleQuestionsByCategory => _sampleQuestionsByCategory;
+  Map<String, List<Question>> get sampleQuestionsByCategory =>
+      _sampleQuestionsByCategory;
 
   List<Question> _currentQuestions = [];
   List<Question> get currentQuestions => _currentQuestions;
@@ -31,62 +33,24 @@ class QuestionModel extends StoreModel {
   Question _currentQuestion;
   Question get currentQuestion => _currentQuestion;
 
+  QuestionModel(this.repository);
+
   load(String languageCode) async {
     _isLoading = true;
     notifyListeners();
 
-    languageCode = languageCode.toLowerCase();
-    List<dynamic> categoryList =
-    json.decode(await rootBundle.loadString('assets/data/categories_$languageCode.json'));
-    _questions.clear();
-    for (Map<String, dynamic> categoryMap in categoryList) {
-    _questions[categoryMap['id']] =
-    List.from(categoryMap['questions'].map((name) => Question(name)));
-    }
+    _questions = await repository.getAll(languageCode);
     _isLoading = false;
     notifyListeners();
   }
 
-  _getRandomQuestions(String categoryId, int limit, {bool unique = false}) {
-    List<Question> questions = _questions[categoryId];
-    if (unique) {
-      questions = questions.where((question) => !_latestQuestions.contains(question)).toList();
-
-      if (questions.length < limit) {
-        _latestQuestions.clear();
-        return _getRandomQuestions(categoryId, limit, unique: false);
-      }
-    }
-
-    questions.shuffle();
-    questions = questions.sublist(0, limit);
-
-    return questions;
-  }
-
-  _getQuestions(String categoryId, int limit, {bool unique = false}) {
-    List<Question> questions = [];
-    // Mix-up category contains questions from other categories
-    if (categoryId == 'mixup') {
-      List<String> questionKeys =
-          _questions.keys.where((q) => q != 'mixup').toList();
-      questionKeys.shuffle();
-      questionKeys = questionKeys.sublist(0, 3);
-
-      questions = List.from(
-          questionKeys.map((c) => _getRandomQuestions(c, (limit~/3) + 1)).expand((i) => i));
-      questions.shuffle();
-      questions = questions.sublist(0, limit);
-    } else {
-      questions = _getRandomQuestions(categoryId, limit, unique: unique);
-    }
-
-    return questions;
-  }
-
   generateSampleQuestions(String categoryId) {
     if (!_sampleQuestionsByCategory.containsKey(categoryId)) {
-      _sampleQuestionsByCategory[categoryId] = _getQuestions(categoryId, 4);
+      _sampleQuestionsByCategory[categoryId] = repository.getRandom(
+        _questions,
+        categoryId,
+        4,
+      );
     }
 
     _sampleQuestions = _sampleQuestionsByCategory[categoryId];
@@ -94,21 +58,19 @@ class QuestionModel extends StoreModel {
   }
 
   generateCurrentQuestions(String categoryId) {
-    _currentQuestions = _getQuestions(categoryId, 10, unique: true);
+    _currentQuestions = repository.getRandom(
+      _questions,
+      categoryId,
+      10,
+      excluded: _latestQuestions,
+    );
     _latestQuestions.addAll(_currentQuestions);
     _currentQuestion = _currentQuestions[0];
     notifyListeners();
   }
 
   setNextQuestion() {
-    int nextIndex = _currentQuestions.indexOf(_currentQuestion) + 1;
-
-    if (nextIndex == _currentQuestions.length) {
-      _currentQuestion = null;
-    } else {
-      _currentQuestion = _currentQuestions[nextIndex];
-    }
-
+    _currentQuestion = repository.getNext(_currentQuestions, _currentQuestion);
     notifyListeners();
   }
 

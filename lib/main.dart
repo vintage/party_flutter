@@ -18,6 +18,7 @@ import 'ui/screens/home.dart';
 import 'services/analytics.dart';
 import 'services/language.dart';
 import 'repository/category.dart';
+import 'repository/question.dart';
 import 'repository/language.dart';
 import 'repository/settings.dart';
 import 'repository/tutorial.dart';
@@ -55,7 +56,7 @@ class App extends StatelessWidget {
     if (stores.length == 0) {
       stores.addAll({
         CategoryModel: CategoryModel(CategoryRepository()),
-        QuestionModel: QuestionModel(),
+        QuestionModel: QuestionModel(QuestionRepository()),
         TutorialModel: TutorialModel(TutorialRepository(storage: storage)),
         SettingsModel: SettingsModel(SettingsRepository(storage: storage)),
         LanguageModel: LanguageModel(LanguageRepository(storage: storage)),
