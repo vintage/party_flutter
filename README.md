@@ -59,14 +59,6 @@ Can be downloaded from [https://www.pexels.com/](https://www.pexels.com/) or [ht
 - `flutter pub pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/localizations.dart`
 - `flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/localizations.dart lib/l10n/intl_*.arb`
 
-
-## TODO
-
-- More animations (opening next question during game loop)
-- More languages
-- Splash screen image
-- Configure Firebase Crashlytics
-
 ## Resources
 
 - [Icons](https://www.baianat.com/resources/thousands/)
