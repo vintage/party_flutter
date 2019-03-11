@@ -24,6 +24,7 @@ class CategoryPlayScreen extends StatefulWidget {
 }
 
 class CategoryPlayScreenState extends State<CategoryPlayScreen> {
+  static const _rotationChannel = const MethodChannel('zgadula/orientation');
   static const rotationBorder = 9.5;
 
   Timer gameTimer;
@@ -47,6 +48,11 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
     ]);
+    // TODO: Remove it when fixed in Flutter
+    // https://github.com/flutter/flutter/issues/13238
+    try {
+      _rotationChannel.invokeMethod('setLandscape');
+    } catch(error) {}
 
     if (SettingsModel.of(context).isRotationControlEnabled) {
       enableRotationControl();
@@ -61,6 +67,11 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
+    // TODO: Remove it when fixed in Flutter
+    // https://github.com/flutter/flutter/issues/13238
+    try {
+      _rotationChannel.invokeMethod('setPortrait');
+    } catch(error) {}
 
     if (_rotateSubscription != null) {
       _rotateSubscription.cancel();
