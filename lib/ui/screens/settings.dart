@@ -114,7 +114,10 @@ class SettingsScreen extends StatelessWidget {
         child: Icon(Icons.rate_review),
         backgroundColor: Theme.of(context).buttonColor,
         onPressed: () {
-          LaunchReview.launch();
+          LaunchReview.launch(
+            androidAppId: SettingsModel.androidId,
+            iOSAppId: SettingsModel.appleId,
+          );
         },
       ),
       body: Column(

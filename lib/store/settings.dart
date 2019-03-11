@@ -7,6 +7,9 @@ import 'package:zgadula/store/store.dart';
 class SettingsModel extends StoreModel {
   SettingsRepository repository;
 
+  static const String androidId = 'com.puppybox.zgadula';
+  static const String appleId = '1181083547';
+
   bool _isLoading = true;
   bool get isLoading => _isLoading;
 
