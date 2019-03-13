@@ -40,6 +40,7 @@ class QuestionModel extends StoreModel {
     notifyListeners();
 
     _questions = await repository.getAll(languageCode);
+    _sampleQuestionsByCategory = {};
     _isLoading = false;
     notifyListeners();
   }
