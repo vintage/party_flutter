@@ -6,4 +6,5 @@ path_provider=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/path_pro
 screen=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/screen-0.0.4/
 sensors=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/sensors-0.4.0+1/
 shared_preferences=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.1+1/
+url_launcher=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.0.2/
 vibration=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/vibration-1.0.1/

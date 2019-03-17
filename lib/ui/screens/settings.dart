@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:launch_review/launch_review.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/services/language.dart';
@@ -99,6 +100,11 @@ class SettingsScreen extends StatelessWidget {
                   );
                 },
               ),
+              ListTile(
+                leading: Icon(Icons.open_in_browser),
+                title: Text(AppLocalizations.of(context).settingsPrivacyPolicy),
+                onTap: openPrivacyPolicy,
+              ),
             ],
           );
         },
@@ -146,5 +152,12 @@ class SettingsScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  openPrivacyPolicy() async {
+    const url = SettingsModel.privacyPolicyUrl;
+    if (await canLaunch(url)) {
+      await launch(url);
+    }
   }
 }

@@ -138,6 +138,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "settingsPrivacyPolicy": "Privacy policy",
+  "@settingsPrivacyPolicy": {
+    "description": "Label for opening privacy policy",
+    "type": "text",
+    "placeholders": {}
+  },
   "roundTime": "Round time",
   "@roundTime": {
     "description": "Label for round time slider",

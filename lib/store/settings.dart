@@ -9,6 +9,7 @@ class SettingsModel extends StoreModel {
 
   static const String androidId = 'com.puppybox.zgadula';
   static const String appleId = '1181083547';
+  static const String privacyPolicyUrl = 'https://github.com/vintage/party_flutter/blob/master/PRIVACY_POLICY.md';
 
   bool _isLoading = true;
   bool get isLoading => _isLoading;

@@ -209,6 +209,14 @@ class AppLocalizations {
     );
   }
 
+  String get settingsPrivacyPolicy {
+    return Intl.message(
+      'Privacy policy',
+      name: 'settingsPrivacyPolicy',
+      desc: 'Label for opening privacy policy',
+    );
+  }
+
   String get roundTime {
     return Intl.message(
       'Round time',
