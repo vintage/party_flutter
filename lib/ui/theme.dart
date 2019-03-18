@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 
 const Color primaryColor = Color(0xFF102636);
 const Color primaryDarkColor = Color(0xFF0a1822);
@@ -9,6 +10,8 @@ const Color secondaryDarkColor = Color(0xFF874588);
 const Color secondaryLightColor = Color(0xFFa857a9);
 
 const Color textColor = Color(0xFFEEEEEE);
+
+final isTablet = Device.get().isTablet;
 
 ThemeData createTheme(BuildContext context) {
   ThemeData theme = ThemeData(
@@ -30,14 +33,15 @@ ThemeData createTheme(BuildContext context) {
     textTheme: Theme.of(context).textTheme.apply(
           bodyColor: textColor,
           displayColor: Color(0xFF757575),
+          fontSizeFactor: isTablet ? 1.75 : 1.0,
         ),
     buttonTheme: ButtonThemeData(
-      height: 52.0,
-      minWidth: 120.0,
+      height: isTablet ? 74.0 : 52.0,
+      minWidth: isTablet ? 180.0 : 120.0,
       buttonColor: secondaryColor,
       highlightColor: secondaryLightColor,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(isTablet ? 12.0 : 8.0),
       ),
     ),
     sliderTheme: SliderTheme.of(context).copyWith(
@@ -51,4 +55,20 @@ ThemeData createTheme(BuildContext context) {
   );
 
   return theme;
+}
+
+class ThemeConfig {
+  static final appBarHeight = isTablet ? 74.0 : 32.0;
+  static final appBarIconSize = isTablet ? 50.0 : 24.0;
+  static final appBarFontSize = isTablet ? 36.0 : 20.0;
+
+  static final backButtonHeight = isTablet ? 80.0 : 50.0;
+
+  static final categoriesGridCount = isTablet ? 3 : 2;
+  static final categoriesTextHeight = isTablet ? 55.0 : 35.0;
+  static final categoriesTextSize = isTablet ? 20.0 : 14.0;
+  static final categoryImageSize = isTablet ? 280.0 : 170.0;
+  static final categorySampleQuestionPadding = isTablet ? 8.0 : 4.0;
+
+  static final fullScreenIconSize = isTablet ? 164.0 : 96.0;
 }

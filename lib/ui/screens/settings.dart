@@ -7,25 +7,29 @@ import 'package:zgadula/localizations.dart';
 import 'package:zgadula/services/language.dart';
 import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/store/language.dart';
+import 'package:zgadula/ui/theme.dart';
 import '../shared/widgets.dart';
 
 class SettingsScreen extends StatelessWidget {
   Widget buildAppBar(context) {
     return SliverAppBar(
-      titleSpacing: 8.0,
+      centerTitle: true,
+      automaticallyImplyLeading: false,
+      expandedHeight: ThemeConfig.appBarHeight,
       floating: true,
       backgroundColor: Colors.black.withOpacity(0.7),
       title: Text(
         AppLocalizations.of(context).settingsHeader,
         style: TextStyle(
           color: Colors.white,
-          fontSize: 20.0,
+          fontSize: ThemeConfig.appBarFontSize,
         ),
       ),
       actions: <Widget>[
         // action button
         IconButton(
           icon: Icon(Icons.help),
+          iconSize: ThemeConfig.appBarIconSize,
           onPressed: () {
             Navigator.pushNamed(
               context,
@@ -105,6 +109,11 @@ class SettingsScreen extends StatelessWidget {
                 title: Text(AppLocalizations.of(context).settingsPrivacyPolicy),
                 onTap: openPrivacyPolicy,
               ),
+              ListTile(
+                leading: Icon(Icons.rate_review),
+                title: Text('v ${model.version}'),
+                onTap: rateApp,
+              ),
             ],
           );
         },
@@ -115,18 +124,8 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        elevation: 0.0,
-        child: Icon(Icons.rate_review),
-        backgroundColor: Theme.of(context).buttonColor,
-        onPressed: () {
-          LaunchReview.launch(
-            androidAppId: SettingsModel.androidId,
-            iOSAppId: SettingsModel.appleId,
-          );
-        },
-      ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             child: CustomScrollView(
@@ -142,15 +141,19 @@ class SettingsScreen extends StatelessWidget {
               ],
             ),
           ),
-          ScopedModelDescendant<SettingsModel>(
-              builder: (context, child, model) {
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: Text('v ${model.version}'),
-            );
-          }),
+          BottomButton(
+            child: Text(AppLocalizations.of(context).preparationBack),
+            onPressed: () => Navigator.pop(context),
+          ),
         ],
       ),
+    );
+  }
+
+  rateApp() {
+    LaunchReview.launch(
+      androidAppId: SettingsModel.androidId,
+      iOSAppId: SettingsModel.appleId,
     );
   }
 

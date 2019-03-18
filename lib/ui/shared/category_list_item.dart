@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:zgadula/ui/theme.dart';
 import 'package:zgadula/models/category.dart';
 import 'category_image.dart';
 
@@ -33,7 +34,7 @@ class CategoryListItem extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               padding: EdgeInsets.only(left: 10.0),
-              height: 35.0,
+              height: ThemeConfig.categoriesTextHeight,
               decoration: BoxDecoration(
                 color: Colors.black.withOpacity(0.7),
                 border: Border(
@@ -47,7 +48,7 @@ class CategoryListItem extends StatelessWidget {
                 category.name,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 14.0,
+                  fontSize: ThemeConfig.categoriesTextSize,
                 ),
               ),
             ),

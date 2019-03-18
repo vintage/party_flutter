@@ -14,7 +14,7 @@ class BottomButton extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50.0,
+      height: ThemeConfig.backButtonHeight,
       child: ButtonTheme(
         shape: BeveledRectangleBorder(),
         child: RaisedButton(

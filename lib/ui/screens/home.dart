@@ -4,6 +4,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/store/tutorial.dart';
+import 'package:zgadula/ui/theme.dart';
 import '../shared/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -36,20 +37,22 @@ class HomeScreenState extends State<HomeScreen> {
 
   Widget buildAppBar(context) {
     return SliverAppBar(
-      titleSpacing: 16.0,
+      centerTitle: true,
+      automaticallyImplyLeading: false,
+      expandedHeight: ThemeConfig.appBarHeight,
       floating: true,
       backgroundColor: Colors.black.withOpacity(0.7),
       title: Text(
         'Zgadula',
         style: TextStyle(
-          color: Colors.white,
-          fontSize: 20.0,
+          fontSize: ThemeConfig.appBarFontSize,
         ),
       ),
       actions: <Widget>[
         // action button
         IconButton(
           icon: Icon(Icons.settings),
+          iconSize: ThemeConfig.appBarIconSize,
           onPressed: () {
             Navigator.pushNamed(
               context,
@@ -81,7 +84,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(0.0),
             crossAxisSpacing: 0.0,
             mainAxisSpacing: 0.0,
-            crossAxisCount: 2,
+            crossAxisCount: ThemeConfig.categoriesGridCount,
             children: model.categories
                 .map(
                   (category) => CategoryListItem(

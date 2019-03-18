@@ -7,6 +7,7 @@ import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/models/question.dart';
 import 'package:zgadula/store/settings.dart';
+import 'package:zgadula/ui/theme.dart';
 import '../shared/widgets.dart';
 
 class CategoryDetailScreen extends StatelessWidget {
@@ -26,8 +27,8 @@ class CategoryDetailScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 32.0),
                         child: Container(
-                          width: 170.0,
-                          height: 170.0,
+                          width: ThemeConfig.categoryImageSize,
+                          height: ThemeConfig.categoryImageSize,
                           child: Hero(
                             tag: 'categoryImage-${model.currentCategory.name}',
                             child: ClipOval(
@@ -75,12 +76,11 @@ class CategoryDetailScreen extends StatelessWidget {
                               RichText(
                                 text: TextSpan(
                                   text: AppLocalizations.of(context).roundTime,
+                                  style: Theme.of(context).textTheme.body1,
                                   children: [
                                     TextSpan(
                                       text: ' $timeDisplay',
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                      ),
+                                      style: Theme.of(context).textTheme.body1,
                                     ),
                                   ],
                                 ),
@@ -112,7 +112,9 @@ class CategoryDetailScreen extends StatelessWidget {
             children: questions
                 .map(
                   (question) => Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4.0),
+                        padding: EdgeInsets.symmetric(
+                          vertical: ThemeConfig.categorySampleQuestionPadding,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[

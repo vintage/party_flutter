@@ -78,14 +78,11 @@ class Page extends StatelessWidget {
                   30.0 * (1.0 - percentVisible),
                   0.0,
                 ),
-                child: Container(
-                  width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 35.0, bottom: 75.0),
-                    child: RaisedButton(
-                      child: Text(viewModel.skip),
-                      onPressed: onSkip,
-                    ),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 35.0, bottom: 75.0),
+                  child: RaisedButton(
+                    child: Text(viewModel.skip),
+                    onPressed: onSkip,
                   ),
                 ),
               ),

@@ -14,6 +14,7 @@ import 'package:zgadula/store/category.dart';
 import 'package:zgadula/models/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/store/settings.dart';
+import 'package:zgadula/ui/theme.dart';
 import '../shared/widgets.dart';
 
 class CategoryPlayScreen extends StatefulWidget {
@@ -228,7 +229,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Icon(
         icon,
-        size: 96.0,
+        size: ThemeConfig.fullScreenIconSize,
         color: Theme.of(context).textTheme.body1.color,
       ),
     );
