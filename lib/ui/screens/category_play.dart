@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sensors/sensors.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/services/audio.dart';
@@ -135,29 +136,42 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
   }
 
   Future<bool> confirmBack() async {
-    return showDialog<bool>(
+    Completer completer = new Completer<bool>();
+
+    Alert(
       context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          content: Text(AppLocalizations.of(context).gameCancelConfirmation),
-          actions: <Widget>[
-            FlatButton(
-              child: Text(AppLocalizations.of(context).gameCancelApprove),
-              onPressed: () {
-                Navigator.of(context).pop(true);
-              },
-            ),
-            FlatButton(
-              child: Text(AppLocalizations.of(context).gameCancelDeny),
-              onPressed: () {
-                Navigator.of(context).pop(false);
-              },
-            ),
-          ],
-        );
-      },
-    );
+      type: AlertType.warning,
+      title: 'Zgadula',
+      style: AlertStyle(
+        isCloseButton: false,
+        isOverlayTapDismiss: false,
+        alertBorder: Border(),
+        titleStyle: TextStyle(color: Colors.white),
+        descStyle: TextStyle(color: Colors.white, height: 1.05),
+        buttonAreaPadding: EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 8.0),
+      ),
+      desc: AppLocalizations.of(context).gameCancelConfirmation,
+      buttons: [
+        DialogButton(
+          child: Text(AppLocalizations.of(context).gameCancelDeny),
+          onPressed: () {
+            Navigator.pop(context);
+            completer.complete(false);
+          },
+          color: Theme.of(context).errorColor.withOpacity(0.7),
+        ),
+        DialogButton(
+          child: Text(AppLocalizations.of(context).gameCancelApprove),
+          onPressed: () {
+            Navigator.pop(context);
+            completer.complete(true);
+          },
+          color: Theme.of(context).accentColor,
+        ),
+      ],
+    ).show();
+
+    return completer.future;
   }
 
   nextQuestion() {
