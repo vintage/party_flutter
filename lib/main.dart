@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:screen/screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 import 'localizations.dart';
 import 'ui/theme.dart';
@@ -130,4 +131,10 @@ class App extends StatelessWidget {
   }
 }
 
-void main() => runApp(App());
+void main() {
+  FlutterError.onError = (FlutterErrorDetails details) {
+    Crashlytics.instance.onError(details);
+  };
+
+  runApp(App());
+}
