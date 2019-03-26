@@ -118,6 +118,15 @@ class AppLocalizations {
     );
   }
 
+  String get preparationOrientationDescription {
+    return Intl.message(
+      'Place the phone on forehead',
+      name: 'preparationOrientationDescription',
+      desc:
+      'Message which reminds player to put the phone in landscape orientation before game starts',
+    );
+  }
+
   String get gameCancelConfirmation {
     return Intl.message(
       'Do you want to cancel the current game?',

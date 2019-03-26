@@ -73,6 +73,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "preparationOrientationDescription": "Umieść telefon na czole",
+    "@preparationOrientationDescription": {
+      "description": "Message which reminds player to put the phone in landscape orientation before game starts",
+      "type": "text",
+      "placeholders": {}
+    },
   "gameCancelConfirmation": "Czy chcesz zakończyć obecną rozgrywkę?",
   "@gameCancelConfirmation": {
     "description": "Description of the dialog which is presented to the player when he tries to quit the game loop",

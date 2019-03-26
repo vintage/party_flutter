@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-03-17T20:48:19.788842",
+  "@@last_modified": "2019-03-26T11:50:42.313637",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -69,6 +69,12 @@
   "preparationBack": "Back",
   "@preparationBack": {
     "description": "Button which discards current category and takes the player back to the category listing",
+    "type": "text",
+    "placeholders": {}
+  },
+  "preparationOrientationDescription": "Place the phone on forehead",
+  "@preparationOrientationDescription": {
+    "description": "Message which reminds player to put the phone in landscape orientation before game starts",
     "type": "text",
     "placeholders": {}
   },

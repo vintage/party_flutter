@@ -72,6 +72,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "preparationOrientationDescription": "Place the phone on forehead",
+    "@preparationOrientationDescription": {
+      "description": "Message which reminds player to put the phone in landscape orientation before game starts",
+      "type": "text",
+      "placeholders": {}
+    },
   "gameCancelConfirmation": "Do you want to cancel the current game?",
   "@gameCancelConfirmation": {
     "description": "Description of the dialog which is presented to the player when he tries to quit the game loop",

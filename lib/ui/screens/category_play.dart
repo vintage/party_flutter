@@ -30,7 +30,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
 
   Timer gameTimer;
   int secondsMax;
-  int secondsLeft = 3;
+  int secondsLeft = 5;
   bool isStarted = false;
   bool isPaused = false;
   StreamSubscription<dynamic> _rotateSubscription;
@@ -53,7 +53,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     // https://github.com/flutter/flutter/issues/13238
     try {
       _rotationChannel.invokeMethod('setLandscape');
-    } catch(error) {}
+    } catch (error) {}
 
     if (SettingsModel.of(context).isRotationControlEnabled) {
       enableRotationControl();
@@ -72,7 +72,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     // https://github.com/flutter/flutter/issues/13238
     try {
       _rotationChannel.invokeMethod('setPortrait');
-    } catch(error) {}
+    } catch (error) {}
 
     if (_rotateSubscription != null) {
       _rotateSubscription.cancel();
@@ -214,12 +214,15 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
   }
 
   Widget buildHeader(text) {
-    return Text(
-      text,
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        fontSize: 64.0,
-        fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 64.0,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
@@ -304,7 +307,23 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     }
 
     return buildSplashContent(
-      buildHeader(FormatterService.secondsToTime(secondsLeft)),
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Text(
+              AppLocalizations.of(context).preparationOrientationDescription,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 40.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          buildHeader(FormatterService.secondsToTime(secondsLeft)),
+        ],
+      ),
       Colors.transparent,
     );
   }
