@@ -13,15 +13,17 @@ class BottomButton extends StatelessWidget {
   final Function onPressed;
 
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: ThemeConfig.backButtonHeight,
-      child: ButtonTheme(
-        shape: BeveledRectangleBorder(),
-        child: RaisedButton(
-          color: primaryDarkColor,
-          textColor: Colors.white,
-          child: child,
-          onPressed: onPressed,
+    return SafeArea(
+      child: SizedBox(
+        height: ThemeConfig.backButtonHeight,
+        child: ButtonTheme(
+          shape: BeveledRectangleBorder(),
+          child: RaisedButton(
+            color: primaryDarkColor,
+            textColor: Colors.white,
+            child: child,
+            onPressed: onPressed,
+          ),
         ),
       ),
     );
