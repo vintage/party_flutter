@@ -158,7 +158,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
             Navigator.pop(context);
             completer.complete(false);
           },
-          color: Theme.of(context).errorColor.withOpacity(0.7),
+          color: Colors.transparent,
         ),
         DialogButton(
           child: Text(AppLocalizations.of(context).gameCancelApprove),
