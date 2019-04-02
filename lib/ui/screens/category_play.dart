@@ -15,7 +15,10 @@ import 'package:zgadula/store/category.dart';
 import 'package:zgadula/models/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/store/settings.dart';
+import 'package:zgadula/store/gallery.dart';
+import 'package:zgadula/ui/screens/camera_preview.dart';
 import 'package:zgadula/ui/theme.dart';
+import 'package:zgadula/services/pictures.dart';
 import '../shared/widgets.dart';
 
 class CategoryPlayScreen extends StatefulWidget {
@@ -28,6 +31,7 @@ class CategoryPlayScreen extends StatefulWidget {
 class CategoryPlayScreenState extends State<CategoryPlayScreen> {
   static const _rotationChannel = const MethodChannel('zgadula/orientation');
   static const rotationBorder = 9.5;
+  static const backgroundOpacity = 0.9;
 
   Timer gameTimer;
   int secondsMax;
@@ -107,14 +111,12 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     });
   }
 
-  stopTimer() {
-    if (gameTimer != null && gameTimer.isActive) {
-      gameTimer.cancel();
-    }
-  }
-
   startTimer() {
     gameTimer = Timer.periodic(const Duration(seconds: 1), gameLoop);
+  }
+
+  stopTimer() {
+    gameTimer?.cancel();
   }
 
   gameLoop(Timer timer) {
@@ -126,6 +128,10 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
     setState(() {
       secondsLeft -= 1;
     });
+  }
+
+  savePictures() async {
+    GalleryModel.of(context).update(await PicturesService.getFiles(context));
   }
 
   showScore() {
@@ -179,6 +185,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
 
     QuestionModel.of(context).setNextQuestion();
     if (QuestionModel.of(context).currentQuestion == null) {
+      savePictures();
       showScore();
 
       return;
@@ -254,7 +261,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
 
   Widget buildSplashContent(Widget child, Color background, [IconData icon]) {
     return Container(
-      decoration: BoxDecoration(color: background),
+      decoration: BoxDecoration(color: background.withOpacity(backgroundOpacity)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -278,6 +285,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
           onDoubleTap: handleInvalid,
           behavior: HitTestBehavior.opaque,
           child: Container(
+            decoration: BoxDecoration(color: Theme.of(context).backgroundColor.withOpacity(backgroundOpacity)),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -338,7 +346,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
           buildHeader(FormatterService.secondsToTime(secondsLeft)),
         ],
       ),
-      Colors.transparent,
+      Theme.of(context).backgroundColor.withOpacity(backgroundOpacity),
     );
   }
 
@@ -359,11 +367,16 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
                 backgroundColor: Theme.of(context).primaryColor,
                 onPressed: () async {
                   if (await confirmBack()) {
-                    Navigator.of(context).pop();
+                    Navigator.pop(context);
                   }
                 },
               ),
-        body: buildContent(),
+        body: Stack(
+          children: [
+            Center(child: CameraPreviewScreen()),
+            buildContent(),
+          ],
+        ),
       ),
     );
   }

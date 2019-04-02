@@ -29,6 +29,9 @@ class SettingsModel extends StoreModel {
   String _version;
   String get version => _version;
 
+  int _gamesPlayed;
+  int get gamesPlayed => _gamesPlayed;
+
   SettingsModel(this.repository);
 
   @override
@@ -41,6 +44,7 @@ class SettingsModel extends StoreModel {
     _isVibrationEnabled = repository.isVibrationEnabled();
     _roundTime = repository.getRoundTime();
     _version = await repository.getAppVersion();
+    _gamesPlayed = repository.getGamesPlayed();
     _isLoading = false;
     notifyListeners();
   }
@@ -62,6 +66,11 @@ class SettingsModel extends StoreModel {
 
   changeRoundTime(int roundTime) async {
     _roundTime = repository.setRoundTime(roundTime);
+    notifyListeners();
+  }
+
+  increaseGamesPlayed() async {
+    _gamesPlayed = repository.increaseGamesPlayed();
     notifyListeners();
   }
 

@@ -42,10 +42,14 @@ class CategoryDetailScreen extends StatelessWidget {
                       RaisedButton(
                         child:
                             Text(AppLocalizations.of(context).preparationPlay),
-                        onPressed: () => Navigator.pushReplacementNamed(
-                              context,
-                              '/play',
-                            ),
+                        onPressed: () {
+                          SettingsModel.of(context).increaseGamesPlayed();
+
+                          Navigator.pushReplacementNamed(
+                            context,
+                            '/play',
+                          );
+                        }
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 32.0),

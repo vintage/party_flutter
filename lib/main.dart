@@ -6,6 +6,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:screen/screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:zgadula/ui/screens/game_gallery.dart';
 
 import 'localizations.dart';
 import 'ui/theme.dart';
@@ -29,6 +30,7 @@ import 'store/question.dart';
 import 'store/tutorial.dart';
 import 'store/settings.dart';
 import 'store/language.dart';
+import 'store/gallery.dart';
 
 class App extends StatelessWidget {
   final Map<Type, StoreModel> stores = {};
@@ -43,7 +45,10 @@ class App extends StatelessWidget {
 
     return FutureBuilder<SharedPreferences>(
       future: SharedPreferences.getInstance(),
-      builder: (BuildContext context, AsyncSnapshot<SharedPreferences> snapshot) {
+      builder: (
+        BuildContext context,
+        AsyncSnapshot<SharedPreferences> snapshot,
+      ) {
         if (snapshot.data == null) {
           return ScreenLoader();
         }
@@ -61,6 +66,7 @@ class App extends StatelessWidget {
         TutorialModel: TutorialModel(TutorialRepository(storage: storage)),
         SettingsModel: SettingsModel(SettingsRepository(storage: storage)),
         LanguageModel: LanguageModel(LanguageRepository(storage: storage)),
+        GalleryModel: GalleryModel(),
       });
       stores.values.forEach((store) => store.initialize());
     }
@@ -75,7 +81,10 @@ class App extends StatelessWidget {
             model: stores[SettingsModel],
             child: ScopedModel<LanguageModel>(
               model: stores[LanguageModel],
-              child: buildApp(context),
+              child: ScopedModel<GalleryModel>(
+                model: stores[GalleryModel],
+                child: buildApp(context),
+              )
             ),
           ),
         ),
@@ -118,6 +127,7 @@ class App extends StatelessWidget {
           routes: {
             '/category': (context) => CategoryDetailScreen(),
             '/play': (context) => CategoryPlayScreen(),
+            '/game-gallery': (context) => GameGalleryScreen(),
             '/game-score': (context) => GameScoreScreen(),
             '/settings': (context) => SettingsScreen(),
             '/tutorial': (context) => TutorialScreen(),

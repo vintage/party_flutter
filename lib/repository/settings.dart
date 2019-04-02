@@ -10,6 +10,7 @@ class SettingsRepository {
       'is_rotation_control_enabled';
   static const String storageVibrationEnabledKey = 'is_vibration_enabled';
   static const String storageRoundTimeKey = 'round_time';
+  static const String storageGamesPlayedKey = 'games_played';
 
   final SharedPreferences storage;
 
@@ -56,6 +57,17 @@ class SettingsRepository {
     storage.setInt(storageRoundTimeKey, roundTime);
 
     return roundTime;
+  }
+
+  int getGamesPlayed() {
+    return storage.getInt(storageGamesPlayedKey) ?? 0;
+  }
+
+  int increaseGamesPlayed() {
+    var gamesPlayed = getGamesPlayed() + 1;
+    storage.setInt(storageGamesPlayedKey, gamesPlayed);
+
+    return gamesPlayed;
   }
 
   Future<String> getAppVersion() async {

@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/models/question.dart';
+import 'package:zgadula/store/gallery.dart';
 import 'package:zgadula/store/question.dart';
 import '../shared/widgets.dart';
 
@@ -42,6 +45,15 @@ class GameScoreScreen extends StatelessWidget {
     ).toList();
   }
 
+  openGallery(BuildContext context, FileSystemEntity item) {
+    GalleryModel.of(context).setActive(item);
+
+    Navigator.pushNamed(
+      context,
+      '/game-gallery',
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<QuestionModel>(
@@ -74,9 +86,13 @@ class GameScoreScreen extends StatelessWidget {
                                 vertical: 8.0, horizontal: 16.0),
                             child: Text(
                               '${model.questionsPassed.length}',
-                              style: Theme.of(context).textTheme.display2.copyWith(
-                                color: Theme.of(context).textTheme.body1.color,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .display2
+                                  .copyWith(
+                                    color:
+                                        Theme.of(context).textTheme.body1.color,
+                                  ),
                             ),
                           ),
                         ),
@@ -91,6 +107,19 @@ class GameScoreScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                   ),
                 ),
+                ScopedModelDescendant<GalleryModel>(
+                    builder: (context, child, model) {
+                  if (model.images.length == 0) {
+                    return Container();
+                  }
+
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: GalleryHorizontal(
+                        items: model.images,
+                        onTap: (item) => openGallery(context, item)),
+                  );
+                }),
                 BottomButton(
                   child: Text(AppLocalizations.of(context).summaryBack),
                   onPressed: () =>

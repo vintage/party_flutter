@@ -4,3 +4,4 @@ export 'category_list_item.dart';
 export 'fab.dart';
 export 'flag_image.dart';
 export 'screen_loader.dart';
+export 'gallery_horizontal.dart';

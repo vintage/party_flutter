@@ -1,4 +1,5 @@
 audioplayers=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers-0.8.2/
+camera=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/camera-0.4.2/
 firebase_analytics=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_analytics-2.0.3/
 firebase_crashlytics=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_crashlytics-0.0.2/
 launch_review=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/launch_review-2.0.0/
