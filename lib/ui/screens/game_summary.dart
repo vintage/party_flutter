@@ -9,7 +9,7 @@ import 'package:zgadula/store/gallery.dart';
 import 'package:zgadula/store/question.dart';
 import '../shared/widgets.dart';
 
-class GameScoreScreen extends StatelessWidget {
+class GameSummaryScreen extends StatelessWidget {
   Widget buildQuestionItem(BuildContext context, Question question) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6.0),

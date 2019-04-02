@@ -47,7 +47,7 @@ class CategoryDetailScreen extends StatelessWidget {
 
                           Navigator.pushReplacementNamed(
                             context,
-                            '/play',
+                            '/game-play',
                           );
                         }
                       ),

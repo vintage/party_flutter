@@ -6,14 +6,14 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:screen/screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:zgadula/ui/screens/game_gallery.dart';
 
 import 'localizations.dart';
 import 'ui/theme.dart';
 import 'ui/shared/widgets.dart';
 import 'ui/screens/category_detail.dart';
-import 'ui/screens/category_play.dart';
-import 'ui/screens/game_score.dart';
+import 'ui/screens/game_play.dart';
+import 'ui/screens/game_summary.dart';
+import 'ui/screens/game_gallery.dart';
 import 'ui/screens/settings.dart';
 import 'ui/screens/tutorial.dart';
 import 'ui/screens/home.dart';
@@ -126,9 +126,9 @@ class App extends StatelessWidget {
           home: HomeScreen(),
           routes: {
             '/category': (context) => CategoryDetailScreen(),
-            '/play': (context) => CategoryPlayScreen(),
+            '/game-play': (context) => GamePlayScreen(),
+            '/game-summary': (context) => GameSummaryScreen(),
             '/game-gallery': (context) => GameGalleryScreen(),
-            '/game-score': (context) => GameScoreScreen(),
             '/settings': (context) => SettingsScreen(),
             '/tutorial': (context) => TutorialScreen(),
           },

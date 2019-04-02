@@ -21,14 +21,14 @@ import 'package:zgadula/ui/theme.dart';
 import 'package:zgadula/services/pictures.dart';
 import '../shared/widgets.dart';
 
-class CategoryPlayScreen extends StatefulWidget {
-  CategoryPlayScreen({Key key}) : super(key: key);
+class GamePlayScreen extends StatefulWidget {
+  GamePlayScreen({Key key}) : super(key: key);
 
   @override
-  CategoryPlayScreenState createState() => CategoryPlayScreenState();
+  GamePlayScreenState createState() => GamePlayScreenState();
 }
 
-class CategoryPlayScreenState extends State<CategoryPlayScreen> {
+class GamePlayScreenState extends State<GamePlayScreen> {
   static const _rotationChannel = const MethodChannel('zgadula/orientation');
   static const rotationBorder = 9.5;
   static const backgroundOpacity = 0.9;
@@ -137,7 +137,7 @@ class CategoryPlayScreenState extends State<CategoryPlayScreen> {
   showScore() {
     Navigator.pushReplacementNamed(
       context,
-      '/game-score',
+      '/game-summary',
     );
   }
 
