@@ -85,24 +85,25 @@ class HomeScreenState extends State<HomeScreen> {
             crossAxisSpacing: 0.0,
             mainAxisSpacing: 0.0,
             crossAxisCount: ThemeConfig.categoriesGridCount,
-            children: model.categories
-                .map(
-                  (category) => CategoryListItem(
-                        category: category,
-                        isFavorite: model.favourites.contains(category.id),
-                        onTap: () {
-                          model.setCurrent(category);
-                          qModel.generateSampleQuestions(category.id);
+            children: model.categories.asMap().keys.map((index) {
+              var category = model.categories[index];
 
-                          Navigator.pushNamed(
-                            context,
-                            '/category',
-                          );
-                        },
-                        onFavoriteToggle: () => model.toggleFavorite(category),
-                      ),
-                )
-                .toList(),
+              return CategoryListItem(
+                index: index,
+                category: category,
+                isFavorite: model.favourites.contains(category.id),
+                onTap: () {
+                  model.setCurrent(category);
+                  qModel.generateSampleQuestions(category.id);
+
+                  Navigator.pushNamed(
+                    context,
+                    '/category',
+                  );
+                },
+                onFavoriteToggle: () => model.toggleFavorite(category),
+              );
+            }).toList(),
           ),
         ],
       ),
