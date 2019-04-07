@@ -186,6 +186,14 @@ class AppLocalizations {
     );
   }
 
+  String get settingsCamera {
+    return Intl.message(
+      'Camera',
+      name: 'settingsCamera',
+      desc: 'Label for toggling camera support',
+    );
+  }
+
   String get settingsAccelerometer {
     return Intl.message(
       'Accelerometer',

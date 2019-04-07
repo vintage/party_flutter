@@ -120,6 +120,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "settingsCamera": "Camera",
+  "@settingsCamera": {
+    "description": "Label for toggling camera support",
+    "type": "text",
+    "placeholders": {}
+  },
   "settingsAccelerometer": "Accelerometer",
   "@settingsAccelerometer": {
     "description": "Label for toggling accelerometer support",

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-03-26T11:50:42.313637",
+  "@@last_modified": "2019-04-03T19:42:26.889019",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -117,6 +117,12 @@
   "settingsHeader": "Settings",
   "@settingsHeader": {
     "description": "Header displayed at the top of settings screen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsCamera": "Camera",
+  "@settingsCamera": {
+    "description": "Label for toggling camera support",
     "type": "text",
     "placeholders": {}
   },

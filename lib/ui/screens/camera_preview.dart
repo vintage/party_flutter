@@ -27,8 +27,7 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen> {
 
   initCamera() async {
     pictureDir = await PicturesService.getDirectory(context);
-    var cameras = await availableCameras();
-    var frontCamera = cameras.firstWhere((cameraDescription) => cameraDescription.lensDirection == CameraLensDirection.front);
+    var frontCamera = await PicturesService.getCamera();
     if (frontCamera == null) {
       return;
     }

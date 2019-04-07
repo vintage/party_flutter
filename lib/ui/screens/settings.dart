@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/services/language.dart';
+import 'package:zgadula/services/pictures.dart';
 import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/store/language.dart';
 import 'package:zgadula/ui/theme.dart';
@@ -41,6 +43,14 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
+  Future<bool> requestCameraPermissions() async {
+    Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions(
+      [PermissionGroup.camera, PermissionGroup.microphone]
+    );
+
+    return permissions.values.where((status) => status != PermissionStatus.granted).length == 0;
+  }
+
   Widget buildContent(context) {
     return Container(
       decoration: BoxDecoration(
@@ -51,27 +61,33 @@ class SettingsScreen extends StatelessWidget {
           return Column(
             children: <Widget>[
               SwitchListTile(
+                title: Text(AppLocalizations.of(context).settingsCamera),
+                value: model.isCameraEnabled,
+                onChanged: (bool value) async {
+                  if (value && !await requestCameraPermissions()) {
+                    return;
+                  }
+
+                  model.toggleCamera();
+                },
+                secondary: Icon(Icons.camera_alt),
+              ),
+              SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsAccelerometer),
                 value: model.isRotationControlEnabled,
-                onChanged: (bool value) {
-                  model.toggleRotationControl();
-                },
+                onChanged: (bool value) => model.toggleRotationControl(),
                 secondary: Icon(Icons.screen_rotation),
               ),
               SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsAudio),
                 value: model.isAudioEnabled,
-                onChanged: (bool value) {
-                  model.toggleAudio();
-                },
+                onChanged: (bool value) => model.toggleAudio(),
                 secondary: Icon(Icons.music_note),
               ),
               SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsVibrations),
                 value: model.isVibrationEnabled,
-                onChanged: (bool value) {
-                  model.toggleVibration();
-                },
+                onChanged: (bool value) => model.toggleVibration(),
                 secondary: Icon(Icons.vibration),
               ),
               ScopedModelDescendant<LanguageModel>(
@@ -97,9 +113,8 @@ class SettingsScreen extends StatelessWidget {
                                 ),
                           )
                           .toList(),
-                      onChanged: (dynamic language) {
-                        model.changeLanguage(language);
-                      },
+                      onChanged: (dynamic language) =>
+                          model.changeLanguage(language),
                     ),
                   );
                 },

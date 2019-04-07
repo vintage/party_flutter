@@ -9,6 +9,7 @@ class SettingsRepository {
   static const String storageRotationControlEnabledKey =
       'is_rotation_control_enabled';
   static const String storageVibrationEnabledKey = 'is_vibration_enabled';
+  static const String storageCameraEnabledKey = 'is_camera_enabled';
   static const String storageRoundTimeKey = 'round_time';
   static const String storageGamesPlayedKey = 'games_played';
 
@@ -45,6 +46,17 @@ class SettingsRepository {
   bool toggleVibration() {
     var value = !isVibrationEnabled();
     storage.setBool(storageVibrationEnabledKey, value);
+
+    return value;
+  }
+
+  bool isCameraEnabled() {
+    return storage.getBool(storageCameraEnabledKey) ?? false;
+  }
+
+  bool toggleCamera() {
+    var value = !isCameraEnabled();
+    storage.setBool(storageCameraEnabledKey, value);
 
     return value;
   }
