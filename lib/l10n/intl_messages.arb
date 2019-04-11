@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-04-03T19:42:26.889019",
+  "@@last_modified": "2019-04-11T16:22:42.495626",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -57,12 +57,6 @@
   "preparationPlay": "Play",
   "@preparationPlay": {
     "description": "Button which confirms the selected category and starts the main game",
-    "type": "text",
-    "placeholders": {}
-  },
-  "moreQuestionsAvailable": "and a lot more",
-  "@moreQuestionsAvailable": {
-    "description": "Text indicating that there are lot more questions available in given category",
     "type": "text",
     "placeholders": {}
   },

@@ -60,12 +60,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "moreQuestionsAvailable": "and a lot more",
-  "@moreQuestionsAvailable": {
-    "description": "Text indicating that there are lot more questions available in given category",
-    "type": "text",
-    "placeholders": {}
-  },
   "preparationBack": "Back",
   "@preparationBack": {
     "description": "Button which discards current category and takes the player back to the category listing",

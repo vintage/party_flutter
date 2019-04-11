@@ -61,12 +61,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "moreQuestionsAvailable": "i wiele więcej",
-  "@moreQuestionsAvailable": {
-    "description": "Text indicating that there are lot more questions available in given category",
-    "type": "text",
-    "placeholders": {}
-  },
   "preparationBack": "Wróć",
   "@preparationBack": {
     "description": "Button which discards current category and takes the player back to the category listing",

@@ -14,10 +14,16 @@ class HomeScreen extends StatefulWidget {
   }
 }
 
-class HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+  static const settingsAnimationDuration = Duration(milliseconds: 2600);
+
+  AnimationController settingsAnimationController;
+  Animation<double> settingsAnimation;
+
   @override
   void initState() {
     super.initState();
+    initAnimations();
 
     if (!isTutorialWatched()) {
       // Cannot navigate instantly
@@ -29,6 +35,25 @@ class HomeScreenState extends State<HomeScreen> {
         );
       });
     }
+  }
+
+  initAnimations() {
+    settingsAnimationController =
+        AnimationController(vsync: this, duration: settingsAnimationDuration);
+    settingsAnimation =
+    Tween<double>(begin: 0, end: 1).animate(settingsAnimationController)
+      ..addStatusListener((status) {
+
+        Future.delayed(settingsAnimationDuration).then((_) {
+          if (status == AnimationStatus.completed) {
+            settingsAnimationController.reverse();
+          }
+          else if (status == AnimationStatus.dismissed) {
+            settingsAnimationController.forward();
+          }
+        });
+      });
+    settingsAnimationController.forward();
   }
 
   bool isTutorialWatched() {
@@ -50,15 +75,18 @@ class HomeScreenState extends State<HomeScreen> {
       ),
       actions: <Widget>[
         // action button
-        IconButton(
-          icon: Icon(Icons.settings),
-          iconSize: ThemeConfig.appBarIconSize,
-          onPressed: () {
-            Navigator.pushNamed(
-              context,
-              '/settings',
-            );
-          },
+        RotationTransition(
+          turns: settingsAnimation,
+          child: IconButton(
+            icon: Icon(Icons.settings),
+            iconSize: ThemeConfig.appBarIconSize,
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                '/settings',
+              );
+            },
+          ),
         ),
       ],
     );

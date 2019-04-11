@@ -7,6 +7,7 @@ import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/models/question.dart';
 import 'package:zgadula/store/settings.dart';
+import 'package:zgadula/ui/shared/category_sample_question.dart';
 import 'package:zgadula/ui/theme.dart';
 import '../shared/widgets.dart';
 
@@ -40,17 +41,16 @@ class CategoryDetailScreen extends StatelessWidget {
                         ),
                       ),
                       RaisedButton(
-                        child:
-                            Text(AppLocalizations.of(context).preparationPlay),
-                        onPressed: () {
-                          SettingsModel.of(context).increaseGamesPlayed();
+                          child: Text(
+                              AppLocalizations.of(context).preparationPlay),
+                          onPressed: () {
+                            SettingsModel.of(context).increaseGamesPlayed();
 
-                          Navigator.pushReplacementNamed(
-                            context,
-                            '/game-play',
-                          );
-                        }
-                      ),
+                            Navigator.pushReplacementNamed(
+                              context,
+                              '/game-play',
+                            );
+                          }),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 32.0),
                         child: ScopedModelDescendant<QuestionModel>(
@@ -113,43 +113,14 @@ class CategoryDetailScreen extends StatelessWidget {
       child: Column(
         children: [
           Column(
-            children: questions
-                .map(
-                  (question) => Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: ThemeConfig.categorySampleQuestionPadding,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Icon(
-                              Icons.check,
-                              size: 16.0,
-                              color: Theme.of(context).accentColor,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Text(
-                                question.name,
-                                style: Theme.of(context).textTheme.body1.merge(
-                                    TextStyle(fontStyle: FontStyle.italic)),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                )
-                .toList(),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 24.0),
-            child: Text(
-              AppLocalizations.of(context).moreQuestionsAvailable,
-              style: Theme.of(context)
-                  .textTheme
-                  .body2
-                  .merge(TextStyle(fontWeight: FontWeight.w700)),
-            ),
+            children: questions.asMap().keys.map((index) {
+              var question = questions[index];
+
+              return CategorySampleQuestion(
+                index: index,
+                question: question,
+              );
+            }).toList(),
           ),
         ],
       ),

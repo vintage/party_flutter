@@ -100,15 +100,6 @@ class AppLocalizations {
     );
   }
 
-  String get moreQuestionsAvailable {
-    return Intl.message(
-      'and a lot more',
-      name: 'moreQuestionsAvailable',
-      desc:
-          'Text indicating that there are lot more questions available in given category',
-    );
-  }
-
   String get preparationBack {
     return Intl.message(
       'Back',
