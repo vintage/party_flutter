@@ -61,20 +61,9 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   Widget buildAppBar(context) {
-    return SliverAppBar(
-      centerTitle: true,
-      automaticallyImplyLeading: false,
-      expandedHeight: ThemeConfig.appBarHeight,
-      floating: true,
-      backgroundColor: Colors.black.withOpacity(0.7),
-      title: Text(
-        'Zgadula',
-        style: TextStyle(
-          fontSize: ThemeConfig.appBarFontSize,
-        ),
-      ),
-      actions: <Widget>[
-        // action button
+    return Header(
+      headerText: "Zgadula",
+      actions: [
         RotationTransition(
           turns: settingsAnimation,
           child: IconButton(

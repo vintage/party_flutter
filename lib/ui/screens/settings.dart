@@ -6,7 +6,6 @@ import 'package:permission_handler/permission_handler.dart';
 
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/services/language.dart';
-import 'package:zgadula/services/pictures.dart';
 import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/store/language.dart';
 import 'package:zgadula/ui/theme.dart';
@@ -14,21 +13,9 @@ import '../shared/widgets.dart';
 
 class SettingsScreen extends StatelessWidget {
   Widget buildAppBar(context) {
-    return SliverAppBar(
-      centerTitle: true,
-      automaticallyImplyLeading: false,
-      expandedHeight: ThemeConfig.appBarHeight,
-      floating: true,
-      backgroundColor: Colors.black.withOpacity(0.7),
-      title: Text(
-        AppLocalizations.of(context).settingsHeader,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: ThemeConfig.appBarFontSize,
-        ),
-      ),
-      actions: <Widget>[
-        // action button
+    return Header(
+      headerText: AppLocalizations.of(context).settingsHeader,
+      actions: [
         IconButton(
           icon: Icon(Icons.help),
           iconSize: ThemeConfig.appBarIconSize,

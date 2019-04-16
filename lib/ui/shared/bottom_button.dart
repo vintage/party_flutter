@@ -9,7 +9,7 @@ class BottomButton extends StatefulWidget {
     this.onPressed,
   }) : super(key: key);
 
-  final child;
+  final Widget child;
   final Function onPressed;
 
   @override
