@@ -120,12 +120,24 @@
     "type": "text",
     "placeholders": {}
   },
+  "settingsCameraHint": "Take temporary photos during game",
+    "@settingsCameraHint": {
+      "description": "Hint for toggling camera support",
+      "type": "text",
+      "placeholders": {}
+    },
   "settingsAccelerometer": "Accelerometer",
   "@settingsAccelerometer": {
     "description": "Label for toggling accelerometer support",
     "type": "text",
     "placeholders": {}
   },
+  "settingsAccelerometerHint": "Tilt the phone down if you guess the word correctly",
+    "@settingsAccelerometerHint": {
+      "description": "Hint for toggling accelerometer support",
+      "type": "text",
+      "placeholders": {}
+    },
   "settingsAudio": "Audio",
   "@settingsAudio": {
     "description": "Label for toggling audio support",

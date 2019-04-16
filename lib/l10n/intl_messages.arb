@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-04-11T16:22:42.495626",
+  "@@last_modified": "2019-04-16T21:49:20.610656",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -120,9 +120,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "settingsCameraHint": "Take temporary photos during game",
+  "@settingsCameraHint": {
+    "description": "Hint for toggling camera support",
+    "type": "text",
+    "placeholders": {}
+  },
   "settingsAccelerometer": "Accelerometer",
   "@settingsAccelerometer": {
     "description": "Label for toggling accelerometer support",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsAccelerometerHint": "Tilt the phone down if you guess the word correctly",
+  "@settingsAccelerometerHint": {
+    "description": "Hint for toggling accelerometer support",
     "type": "text",
     "placeholders": {}
   },

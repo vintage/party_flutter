@@ -121,12 +121,24 @@
     "type": "text",
     "placeholders": {}
   },
+  "settingsCameraHint": "Tymczasowe zdjęcia podczas rozgrywki",
+      "@settingsCameraHint": {
+        "description": "Hint for toggling camera support",
+        "type": "text",
+        "placeholders": {}
+      },
   "settingsAccelerometer": "Akcelerometr",
   "@settingsAccelerometer": {
     "description": "Label for toggling accelerometer support",
     "type": "text",
     "placeholders": {}
   },
+  "settingsAccelerometerHint": "Przechyl telefon w dół gdy odgadniesz hasło",
+    "@settingsAccelerometerHint": {
+      "description": "Hint for toggling accelerometer support",
+      "type": "text",
+      "placeholders": {}
+    },
   "settingsAudio": "Audio",
   "@settingsAudio": {
     "description": "Label for toggling audio support",

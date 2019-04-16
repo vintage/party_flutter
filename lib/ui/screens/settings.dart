@@ -62,6 +62,7 @@ class SettingsScreen extends StatelessWidget {
             children: <Widget>[
               SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsCamera),
+                subtitle: Text(AppLocalizations.of(context).settingsCameraHint),
                 value: model.isCameraEnabled,
                 onChanged: (bool value) async {
                   if (value && !await requestCameraPermissions()) {
@@ -74,6 +75,7 @@ class SettingsScreen extends StatelessWidget {
               ),
               SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsAccelerometer),
+                subtitle: Text(AppLocalizations.of(context).settingsAccelerometerHint),
                 value: model.isRotationControlEnabled,
                 onChanged: (bool value) => model.toggleRotationControl(),
                 secondary: Icon(Icons.screen_rotation),

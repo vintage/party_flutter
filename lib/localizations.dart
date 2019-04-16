@@ -185,11 +185,27 @@ class AppLocalizations {
     );
   }
 
+  String get settingsCameraHint {
+    return Intl.message(
+      'Take temporary photos during game',
+      name: 'settingsCameraHint',
+      desc: 'Hint for toggling camera support',
+    );
+  }
+
   String get settingsAccelerometer {
     return Intl.message(
       'Accelerometer',
       name: 'settingsAccelerometer',
       desc: 'Label for toggling accelerometer support',
+    );
+  }
+
+  String get settingsAccelerometerHint {
+    return Intl.message(
+      'Tilt the phone down if you guess the word correctly',
+      name: 'settingsAccelerometerHint',
+      desc: 'Hint for toggling accelerometer support',
     );
   }
 
