@@ -5,6 +5,8 @@ PODS:
     - Flutter
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
+  - esys_flutter_share (0.0.1):
+    - Flutter
   - Fabric (1.9.0)
   - Firebase/Core (5.16.0):
     - Firebase/CoreOnly
@@ -70,6 +72,8 @@ PODS:
     - Flutter
   - path_provider (0.0.1):
     - Flutter
+  - permission_handler (3.0.0):
+    - Flutter
   - screen (0.0.1):
     - Flutter
   - sensors (0.0.1):
@@ -78,18 +82,20 @@ PODS:
     - Flutter
   - url_launcher (0.0.1):
     - Flutter
-  - vibration (1.0.1):
+  - vibration (1.0.2):
     - Flutter
 
 DEPENDENCIES:
   - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
   - camera (from `.symlinks/plugins/camera/ios`)
+  - esys_flutter_share (from `.symlinks/plugins/esys_flutter_share/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
   - Flutter (from `.symlinks/flutter/ios-release`)
   - launch_review (from `.symlinks/plugins/launch_review/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - screen (from `.symlinks/plugins/screen/ios`)
   - sensors (from `.symlinks/plugins/sensors/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
@@ -113,6 +119,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/audioplayers/ios"
   camera:
     :path: ".symlinks/plugins/camera/ios"
+  esys_flutter_share:
+    :path: ".symlinks/plugins/esys_flutter_share/ios"
   firebase_analytics:
     :path: ".symlinks/plugins/firebase_analytics/ios"
   firebase_crashlytics:
@@ -125,6 +133,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/package_info/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
+  permission_handler:
+    :path: ".symlinks/plugins/permission_handler/ios"
   screen:
     :path: ".symlinks/plugins/screen/ios"
   sensors:
@@ -140,10 +150,11 @@ SPEC CHECKSUMS:
   audioplayers: def111f6a23e00d9d103563b07de5e44a727bd3c
   camera: be01db3b2193839f9af56a9db99b7fea444d35f3
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  esys_flutter_share: 14e6653d540bfe343c331276be9eb26000e718c3
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
   firebase_analytics: 06fd3e199bfbc003a9949b90f3e3c6332fa1299e
-  firebase_crashlytics: dcfed84b5fe8dc2f0b7a315da85ed77018b737a6
+  firebase_crashlytics: 5e46e1d4c4a7ce372583979fa9a59377e2b5c729
   FirebaseAnalytics: d35d47c03c50c73c14a7fd31463c5775843e78a9
   FirebaseCore: ea2d1816723ef21492b8e9113303e1350db5e08c
   FirebaseInstanceID: 97ea7a5dca9afd72c79bfcdddb7a44aa1cbb42a1
@@ -154,11 +165,12 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   package_info: d7c98b64f60add4c2908b9d94d82a45d3c8827ad
   path_provider: 09407919825bfe3c2deae39453b7a5b44f467873
+  permission_handler: 03dcf3ade9d5f398b8854b366cb9de718d3daa76
   screen: 22ab9c4a784112d4b21ad7d80e81729e0afdaa65
   sensors: 5e1d451d2b563766999e768342efed82d6141fcc
   shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
   url_launcher: 92b89c1029a0373879933c21642958c874539095
-  vibration: 20e35d35a2c2af776fa104ebbb9e97bdb9050569
+  vibration: 1f64b38673d28697553ce3b2ed1e867b82145e8b
 
 PODFILE CHECKSUM: 390fac49bdff35661449f5b9b1d05ca6da8a4abb
 

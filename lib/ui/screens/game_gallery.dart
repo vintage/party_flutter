@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:zgadula/localizations.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:zgadula/store/gallery.dart';
+import 'package:esys_flutter_share/esys_flutter_share.dart';
 
 import '../shared/widgets.dart';
 
@@ -26,6 +29,9 @@ class GameGalleryScreen extends StatelessWidget {
             },
           );
         }).toList(),
+        onPageChanged: (index) {
+          model.setActive(images[index]);
+        },
       );
     });
   }
@@ -40,7 +46,8 @@ class GameGalleryScreen extends StatelessWidget {
           child: Icon(Icons.share),
           backgroundColor: Theme.of(context).primaryColor,
           onPressed: () async {
-            Navigator.pop(context);
+            FileSystemEntity activeImage = GalleryModel.of(context).activeImage;
+            await Share.file('Zgadula', 'zgadula.png', File(activeImage.path).readAsBytesSync(), 'image/png');
           },
         ),
         body: Column(

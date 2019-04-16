@@ -373,7 +373,7 @@ class GamePlayScreenState extends State<GamePlayScreen> {
               ),
         body: Stack(
           children: [
-            SettingsModel.of(context).isCameraEnabled ? Center(child: CameraPreviewScreen()) : null,
+            SettingsModel.of(context).isCameraEnabled ? CameraPreviewScreen() : null,
             buildContent(),
           ].where((o) => o != null).toList(),
         ),
