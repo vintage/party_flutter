@@ -95,6 +95,7 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen>
   @override
   void dispose() {
     controller?.dispose();
+    imageAnimationController?.dispose();
     stopTimer();
     super.dispose();
   }

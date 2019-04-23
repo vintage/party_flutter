@@ -28,7 +28,8 @@ class GamePlayScreen extends StatefulWidget {
   GamePlayScreenState createState() => GamePlayScreenState();
 }
 
-class GamePlayScreenState extends State<GamePlayScreen> {
+class GamePlayScreenState extends State<GamePlayScreen>
+    with TickerProviderStateMixin {
   static const _rotationChannel = const MethodChannel('zgadula/orientation');
   static const rotationBorder = 9.5;
   static const backgroundOpacity = 0.9;
@@ -39,6 +40,11 @@ class GamePlayScreenState extends State<GamePlayScreen> {
   bool isStarted = false;
   bool isPaused = false;
   StreamSubscription<dynamic> _rotateSubscription;
+
+  AnimationController invalidAC;
+  Animation<Offset> invalidAnimation;
+  AnimationController validAC;
+  Animation<Offset> validAnimation;
 
   @override
   void initState() {
@@ -64,7 +70,33 @@ class GamePlayScreenState extends State<GamePlayScreen> {
       enableRotationControl();
     }
 
+    initAnimations();
+
     AnalyticsService.logEvent('play_game', {'category': category.name});
+  }
+
+  AnimationController createAnswerAnimationController() {
+    const duration = Duration(milliseconds: 1000);
+    var controller = AnimationController(vsync: this, duration: duration);
+    controller
+      ..addStatusListener((listener) {
+        if (listener == AnimationStatus.completed) {
+          controller.reset();
+          nextQuestion();
+        }
+      });
+
+    return controller;
+  }
+
+  initAnimations() {
+    invalidAC = createAnswerAnimationController();
+    invalidAnimation =
+        Tween<Offset>(begin: Offset(0, -1), end: Offset(0, 1)).animate(invalidAC);
+
+    validAC = createAnswerAnimationController();
+    validAnimation = Tween<Offset>(begin: Offset(0, 1), end: Offset(0, -1))
+        .animate(validAC);
   }
 
   @protected
@@ -82,6 +114,9 @@ class GamePlayScreenState extends State<GamePlayScreen> {
     if (_rotateSubscription != null) {
       _rotateSubscription.cancel();
     }
+
+    validAC?.dispose();
+    invalidAC?.dispose();
 
     super.dispose();
     stopTimer();
@@ -120,9 +155,8 @@ class GamePlayScreenState extends State<GamePlayScreen> {
   }
 
   gameLoop(Timer timer) {
-    if (secondsLeft == 0) {
-      handleTimeout();
-      return;
+    if (secondsLeft <= 0 && !isPaused) {
+      return handleTimeout();
     }
 
     setState(() {
@@ -200,31 +234,37 @@ class GamePlayScreenState extends State<GamePlayScreen> {
   }
 
   handleValid() {
+    if (isPaused) {
+      return;
+    }
+
     AudioService.valid(context);
     VibrationService.vibrate(context);
     QuestionModel.of(context).markQuestionAsValid();
+    validAC.forward();
 
     setState(() {
       isPaused = true;
-      secondsLeft = 1;
     });
   }
 
   handleInvalid() {
+    if (isPaused) {
+      return;
+    }
+
     AudioService.invalid(context);
     VibrationService.vibrate(context);
     QuestionModel.of(context).markQuestionAsInvalid();
+    invalidAC.forward();
 
     setState(() {
       isPaused = true;
-      secondsLeft = 1;
     });
   }
 
   handleTimeout() {
-    if (isPaused) {
-      nextQuestion();
-    } else if (isStarted) {
+    if (isStarted) {
       handleInvalid();
     } else {
       setState(() {
@@ -261,7 +301,8 @@ class GamePlayScreenState extends State<GamePlayScreen> {
 
   Widget buildSplashContent(Widget child, Color background, [IconData icon]) {
     return Container(
-      decoration: BoxDecoration(color: background.withOpacity(backgroundOpacity)),
+      decoration:
+          BoxDecoration(color: background.withOpacity(backgroundOpacity)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -285,7 +326,10 @@ class GamePlayScreenState extends State<GamePlayScreen> {
           onDoubleTap: handleInvalid,
           behavior: HitTestBehavior.opaque,
           child: Container(
-            decoration: BoxDecoration(color: Theme.of(context).backgroundColor.withOpacity(backgroundOpacity)),
+            decoration: BoxDecoration(
+                color: Theme.of(context)
+                    .backgroundColor
+                    .withOpacity(backgroundOpacity)),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -314,18 +358,26 @@ class GamePlayScreenState extends State<GamePlayScreen> {
   }
 
   Widget buildContent() {
-    if (isPaused) {
-      IconData iconData = Icons.sentiment_very_dissatisfied;
-      Color background = Theme.of(context).errorColor;
-
-      if (QuestionModel.of(context).currentQuestion.isPassed) {
-        iconData = Icons.sentiment_very_satisfied;
-        background = Theme.of(context).accentColor;
-      }
-
-      return buildSplashContent(buildHeaderIcon(iconData), background);
-    } else if (isStarted) {
-      return buildGameContent();
+    if (isPaused || isStarted) {
+      return Stack(
+        children: <Widget>[
+          buildGameContent(),
+          SlideTransition(
+            position: invalidAnimation,
+            child: buildSplashContent(
+              buildHeaderIcon(Icons.sentiment_very_dissatisfied),
+              Theme.of(context).errorColor,
+            ),
+          ),
+          SlideTransition(
+            position: validAnimation,
+            child: buildSplashContent(
+              buildHeaderIcon(Icons.sentiment_very_satisfied),
+              Theme.of(context).accentColor,
+            ),
+          ),
+        ],
+      );
     }
 
     return buildSplashContent(
@@ -346,7 +398,7 @@ class GamePlayScreenState extends State<GamePlayScreen> {
           buildHeader(FormatterService.secondsToTime(secondsLeft)),
         ],
       ),
-      Theme.of(context).backgroundColor.withOpacity(backgroundOpacity),
+      Theme.of(context).backgroundColor,
     );
   }
 
@@ -373,7 +425,9 @@ class GamePlayScreenState extends State<GamePlayScreen> {
               ),
         body: Stack(
           children: [
-            SettingsModel.of(context).isCameraEnabled ? CameraPreviewScreen() : null,
+            SettingsModel.of(context).isCameraEnabled
+                ? CameraPreviewScreen()
+                : null,
             buildContent(),
           ].where((o) => o != null).toList(),
         ),

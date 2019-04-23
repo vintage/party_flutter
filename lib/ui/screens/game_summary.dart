@@ -100,13 +100,6 @@ class GameSummaryScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(
-                  child: Column(
-                    children:
-                        buildQuestionsList(context, model.currentQuestions),
-                    mainAxisAlignment: MainAxisAlignment.center,
-                  ),
-                ),
                 ScopedModelDescendant<GalleryModel>(
                     builder: (context, child, model) {
                   if (model.images.length == 0) {
@@ -120,6 +113,12 @@ class GameSummaryScreen extends StatelessWidget {
                         onTap: (item) => openGallery(context, item)),
                   );
                 }),
+                Expanded(
+                  child: ListView(
+                    children:
+                        buildQuestionsList(context, model.currentQuestions),
+                  ),
+                ),
                 BottomButton(
                   child: Text(AppLocalizations.of(context).summaryBack),
                   onPressed: () =>

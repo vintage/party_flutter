@@ -28,7 +28,7 @@ class _BottomButtonState extends State<BottomButton> with TickerProviderStateMix
 
   initAnimations() {
     animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 800));
+        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
     animation =
         Tween<Offset>(begin: Offset(0, 1.5), end: Offset.zero)
             .animate(animationController);
