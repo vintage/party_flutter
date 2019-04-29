@@ -6,7 +6,9 @@ import 'package:zgadula/localizations.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:zgadula/store/gallery.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import '../theme.dart';
 import '../shared/widgets.dart';
 
 class GameGalleryScreen extends StatelessWidget {
@@ -23,34 +25,43 @@ class GameGalleryScreen extends StatelessWidget {
         viewportFraction: 1.0,
         initialPage: images.indexOf(model.activeImage),
         items: images.map((item) {
-          return Builder(
-            builder: (BuildContext context) {
-              return Center(
-                child: Stack(
-                  children: [
-                    Image.file(item, fit: BoxFit.contain),
-                    Positioned(
-                      top: 20,
-                      right: 20,
-                      child: FloatingActionButton(
-                        elevation: 0.0,
-                        child: Icon(Icons.share),
-                        backgroundColor: Theme.of(context).primaryColor,
-                        onPressed: () async {
-                          await Share.file(
-                            'Zgadula',
-                            'zgadula.png',
-                            File(item.path).readAsBytesSync(),
-                            'image/png',
-                          );
-                        },
+          return Stack(children: [
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: SpinKitRing(color: secondaryColor, size: 70.0),
+            ),
+            Builder(
+              builder: (BuildContext context) {
+                return Center(
+                  child: Stack(
+                    children: [
+                      Image.file(item, fit: BoxFit.contain),
+                      Positioned(
+                        top: 20,
+                        right: 20,
+                        child: FloatingActionButton(
+                          elevation: 0.0,
+                          child: Icon(Icons.share),
+                          backgroundColor: Theme.of(context).primaryColor,
+                          onPressed: () async {
+                            await Share.file(
+                              'Zgadula',
+                              'zgadula.png',
+                              File(item.path).readAsBytesSync(),
+                              'image/png',
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
+                    ],
+                  ),
+                );
+              },
+            ),
+          ]);
         }).toList(),
         onPageChanged: (index) {
           model.setActive(images[index]);
