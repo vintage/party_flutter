@@ -217,14 +217,6 @@ class AppLocalizations {
     );
   }
 
-  String get settingsVibrations {
-    return Intl.message(
-      'Vibrations',
-      name: 'settingsVibrations',
-      desc: 'Label for toggling vibrations support',
-    );
-  }
-
   String get settingsLanguage {
     return Intl.message(
       'Language',

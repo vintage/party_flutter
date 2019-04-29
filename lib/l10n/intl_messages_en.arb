@@ -144,12 +144,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "settingsVibrations": "Vibrations",
-  "@settingsVibrations": {
-    "description": "Label for toggling vibrations support",
-    "type": "text",
-    "placeholders": {}
-  },
   "settingsLanguage": "Language",
   "@settingsLanguage": {
     "description": "Label for changing game language",

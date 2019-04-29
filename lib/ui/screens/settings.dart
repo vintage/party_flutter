@@ -79,12 +79,6 @@ class SettingsScreen extends StatelessWidget {
                 onChanged: (bool value) => model.toggleAudio(),
                 secondary: Icon(Icons.music_note),
               ),
-              SwitchListTile(
-                title: Text(AppLocalizations.of(context).settingsVibrations),
-                value: model.isVibrationEnabled,
-                onChanged: (bool value) => model.toggleVibration(),
-                secondary: Icon(Icons.vibration),
-              ),
               ScopedModelDescendant<LanguageModel>(
                 builder: (context, child, model) {
                   return ListTile(

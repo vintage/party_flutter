@@ -235,7 +235,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
     }
 
     AudioService.valid(context);
-    VibrationService.vibrate(context);
+    VibrationService.vibrate();
     QuestionModel.of(context).markQuestionAsValid();
     validAC.forward();
 
@@ -250,7 +250,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
     }
 
     AudioService.invalid(context);
-    VibrationService.vibrate(context);
+    VibrationService.vibrate();
     QuestionModel.of(context).markQuestionAsInvalid();
     invalidAC.forward();
 

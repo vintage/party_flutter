@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-04-16T21:49:20.610656",
+  "@@last_modified": "2019-04-29T09:54:56.249804",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -141,12 +141,6 @@
   "settingsAudio": "Audio",
   "@settingsAudio": {
     "description": "Label for toggling audio support",
-    "type": "text",
-    "placeholders": {}
-  },
-  "settingsVibrations": "Vibrations",
-  "@settingsVibrations": {
-    "description": "Label for toggling vibrations support",
     "type": "text",
     "placeholders": {}
   },

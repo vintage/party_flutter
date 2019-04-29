@@ -21,9 +21,6 @@ class SettingsModel extends StoreModel {
   bool _isRotationControlEnabled;
   bool get isRotationControlEnabled => _isRotationControlEnabled;
 
-  bool _isVibrationEnabled;
-  bool get isVibrationEnabled => _isVibrationEnabled;
-
   bool _isCameraEnabled;
   bool get isCameraEnabled => _isCameraEnabled;
 
@@ -45,7 +42,6 @@ class SettingsModel extends StoreModel {
 
     _isAudioEnabled = repository.isAudioEnabled();
     _isRotationControlEnabled = repository.isRotationControlEnabled();
-    _isVibrationEnabled = repository.isVibrationEnabled();
     _isCameraEnabled = repository.isCameraEnabled();
     _roundTime = repository.getRoundTime();
     _version = await repository.getAppVersion();
@@ -61,11 +57,6 @@ class SettingsModel extends StoreModel {
 
   toggleRotationControl() async {
     _isRotationControlEnabled = repository.toggleRotationControl();
-    notifyListeners();
-  }
-
-  toggleVibration() async {
-    _isVibrationEnabled = repository.toggleVibration();
     notifyListeners();
   }
 
