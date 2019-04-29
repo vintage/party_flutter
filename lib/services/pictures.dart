@@ -11,7 +11,8 @@ class PicturesService {
     var baseDir = await getTemporaryDirectory();
     var folder = SettingsModel.of(context).gamesPlayed.toString();
 
-    return await Directory('${baseDir.path}/game_$folder').create(recursive: true);
+    return await Directory('${baseDir.path}/game_$folder')
+        .create(recursive: true);
   }
 
   static Future<List<FileSystemEntity>> getFiles(BuildContext context) async {
@@ -22,7 +23,8 @@ class PicturesService {
 
   static Future<CameraDescription> getCamera() async {
     var cameras = await availableCameras();
-    var frontCamera = cameras.firstWhere((cameraDescription) => cameraDescription.lensDirection == CameraLensDirection.front);
+    var frontCamera = cameras.firstWhere((cameraDescription) =>
+        cameraDescription.lensDirection == CameraLensDirection.front);
 
     return frontCamera;
   }

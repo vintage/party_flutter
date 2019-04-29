@@ -31,11 +31,16 @@ class SettingsScreen extends StatelessWidget {
   }
 
   Future<bool> requestCameraPermissions() async {
-    Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions(
-      [PermissionGroup.camera, PermissionGroup.microphone]
-    );
+    Map<PermissionGroup, PermissionStatus> permissions =
+        await PermissionHandler().requestPermissions([
+      PermissionGroup.camera,
+      PermissionGroup.microphone,
+    ]);
 
-    return permissions.values.where((status) => status != PermissionStatus.granted).length == 0;
+    return permissions.values
+            .where((status) => status != PermissionStatus.granted)
+            .length ==
+        0;
   }
 
   Widget buildContent(context) {
@@ -62,7 +67,8 @@ class SettingsScreen extends StatelessWidget {
               ),
               SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsAccelerometer),
-                subtitle: Text(AppLocalizations.of(context).settingsAccelerometerHint),
+                subtitle: Text(
+                    AppLocalizations.of(context).settingsAccelerometerHint),
                 value: model.isRotationControlEnabled,
                 onChanged: (bool value) => model.toggleRotationControl(),
                 secondary: Icon(Icons.screen_rotation),

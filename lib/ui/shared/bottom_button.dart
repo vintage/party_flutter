@@ -16,7 +16,8 @@ class BottomButton extends StatefulWidget {
   _BottomButtonState createState() => _BottomButtonState();
 }
 
-class _BottomButtonState extends State<BottomButton> with TickerProviderStateMixin {
+class _BottomButtonState extends State<BottomButton>
+    with TickerProviderStateMixin {
   AnimationController animationController;
   Animation<Offset> animation;
 
@@ -26,12 +27,17 @@ class _BottomButtonState extends State<BottomButton> with TickerProviderStateMix
     initAnimations();
   }
 
+  @override
+  void dispose() {
+    animationController?.dispose();
+    super.dispose();
+  }
+
   initAnimations() {
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    animation =
-        Tween<Offset>(begin: Offset(0, 1.5), end: Offset.zero)
-            .animate(animationController);
+    animation = Tween<Offset>(begin: Offset(0, 1.5), end: Offset.zero)
+        .animate(animationController);
 
     animationController.forward();
   }

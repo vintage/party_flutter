@@ -37,22 +37,26 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     }
   }
 
+  @override
+  void dispose() {
+    settingsAnimationController?.dispose();
+    super.dispose();
+  }
+
   initAnimations() {
     settingsAnimationController =
         AnimationController(vsync: this, duration: settingsAnimationDuration);
     settingsAnimation =
-    Tween<double>(begin: 0, end: 1).animate(settingsAnimationController)
-      ..addStatusListener((status) {
-
-        Future.delayed(settingsAnimationDuration).then((_) {
-          if (status == AnimationStatus.completed) {
-            settingsAnimationController.reverse();
-          }
-          else if (status == AnimationStatus.dismissed) {
-            settingsAnimationController.forward();
-          }
-        });
-      });
+        Tween<double>(begin: 0, end: 1).animate(settingsAnimationController)
+          ..addStatusListener((status) {
+            Future.delayed(settingsAnimationDuration).then((_) {
+              if (status == AnimationStatus.completed) {
+                settingsAnimationController.reverse();
+              } else if (status == AnimationStatus.dismissed) {
+                settingsAnimationController.forward();
+              }
+            });
+          });
     settingsAnimationController.forward();
   }
 

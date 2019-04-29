@@ -29,6 +29,12 @@ class _CategorySampleQuestionState extends State<CategorySampleQuestion>
     initAnimations();
   }
 
+  @override
+  void dispose() {
+    animationController?.dispose();
+    super.dispose();
+  }
+
   initAnimations() {
     int index = widget.index;
     double offsetX = (index % 2 == 0 ? -1 : 1) * 0.8;
@@ -36,9 +42,8 @@ class _CategorySampleQuestionState extends State<CategorySampleQuestion>
 
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 600));
-    animation =
-        Tween<Offset>(begin: Offset(offsetX, offsetY), end: Offset.zero)
-            .animate(animationController);
+    animation = Tween<Offset>(begin: Offset(offsetX, offsetY), end: Offset.zero)
+        .animate(animationController);
 
     Future.delayed(Duration(milliseconds: 200 * index)).then((_) {
       animationController.forward();
@@ -65,8 +70,10 @@ class _CategorySampleQuestionState extends State<CategorySampleQuestion>
               padding: const EdgeInsets.only(left: 8.0),
               child: Text(
                 widget.question.name,
-                style: Theme.of(context).textTheme.body1.merge(
-                    TextStyle(fontStyle: FontStyle.italic)),
+                style: Theme.of(context)
+                    .textTheme
+                    .body1
+                    .merge(TextStyle(fontStyle: FontStyle.italic)),
               ),
             ),
           ],

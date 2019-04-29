@@ -10,5 +10,6 @@ class _StartFloatFabLocation extends FloatingActionButtonLocation {
 }
 
 class CustomFloatingActionButtonLocation {
-  static const FloatingActionButtonLocation startFloat = _StartFloatFabLocation();
+  static const FloatingActionButtonLocation startFloat =
+      _StartFloatFabLocation();
 }

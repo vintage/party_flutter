@@ -4,7 +4,8 @@ import 'package:zgadula/store/settings.dart';
 
 class VibrationService {
   static vibrate(BuildContext context) async {
-    bool canVibrate = await Vibration.hasVibrator() && SettingsModel.of(context).isVibrationEnabled;
+    bool canVibrate = await Vibration.hasVibrator() &&
+        SettingsModel.of(context).isVibrationEnabled;
 
     if (canVibrate) {
       Vibration.vibrate();

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 
@@ -27,14 +28,10 @@ class CategoryListItem extends StatefulWidget {
 
 class _CategoryListItemState extends State<CategoryListItem>
     with TickerProviderStateMixin {
-  static const imageAnimationDuration = Duration(milliseconds: 600);
   static const textAnimationDuration = Duration(milliseconds: 750);
 
-  AnimationController imageAnimationController;
-  Animation<double> imageAnimation;
-  AnimationController textAnimationController;
-  Animation<Offset> textAnimation;
-  bool isTextVisible = false;
+  AnimationController animationController;
+  Animation<Offset> animation;
 
   @override
   void initState() {
@@ -42,33 +39,24 @@ class _CategoryListItemState extends State<CategoryListItem>
     initAnimations();
   }
 
+  @override
+  void dispose() {
+    animationController?.dispose();
+    super.dispose();
+  }
+
   initAnimations() {
     int index = widget.index;
     double offsetX = (index % 2 == 0 ? -1 : 1) * 1.5;
     double offsetY = 0;
 
-    textAnimationController =
+    animationController =
         AnimationController(vsync: this, duration: textAnimationDuration);
-    textAnimation =
-        Tween<Offset>(begin: Offset(offsetX, offsetY), end: Offset.zero)
-            .animate(textAnimationController);
+    animation = Tween<Offset>(begin: Offset(offsetX, offsetY), end: Offset.zero)
+        .animate(animationController);
 
-    imageAnimationController =
-        AnimationController(vsync: this, duration: imageAnimationDuration);
-    imageAnimation =
-    Tween<double>(begin: 0, end: 1).animate(imageAnimationController)
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          setState(() {
-            isTextVisible = true;
-          });
-
-          textAnimationController.forward();
-        }
-      });
-
-    Future.delayed(Duration(milliseconds: 200 * index)).then((_) {
-      imageAnimationController.forward();
+    Future.delayed(Duration(milliseconds: 150 * min(index, 8))).then((_) {
+      animationController.forward();
     });
   }
 
@@ -76,48 +64,42 @@ class _CategoryListItemState extends State<CategoryListItem>
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: widget.onTap,
-      child: Stack(
-        children: [
-          Hero(
-            tag: 'categoryImage-${widget.category.name}',
-            child: ScaleTransition(
-              scale: imageAnimation,
+      child: SlideTransition(
+        position: animation,
+        child: Stack(
+          children: [
+            Hero(
+              tag: 'categoryImage-${widget.category.name}',
               child: CategoryImage(photo: widget.category.getImagePath()),
             ),
-          ),
-          Visibility(
-            visible: isTextVisible,
-            child: Positioned(
+            Positioned(
               right: 0.0,
               left: 0.0,
               bottom: 0.0,
-              child: SlideTransition(
-                position: textAnimation,
-                child: Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.only(left: 10.0),
-                  height: ThemeConfig.categoriesTextHeight,
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.7),
-                    border: Border(
-                      top: BorderSide(
-                        color: Colors.black.withOpacity(0.35),
-                        width: 1.0,
-                      ),
+              child: Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.only(left: 10.0),
+                height: ThemeConfig.categoriesTextHeight,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.7),
+                  border: Border(
+                    top: BorderSide(
+                      color: Colors.black.withOpacity(0.35),
+                      width: 1.0,
                     ),
                   ),
-                  child: Text(
-                    widget.category.name,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: ThemeConfig.categoriesTextSize,
-                    ),
+                ),
+                child: Text(
+                  widget.category.name,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: ThemeConfig.categoriesTextSize,
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

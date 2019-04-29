@@ -114,7 +114,7 @@ class AppLocalizations {
       'Place the phone on forehead',
       name: 'preparationOrientationDescription',
       desc:
-      'Message which reminds player to put the phone in landscape orientation before game starts',
+          'Message which reminds player to put the phone in landscape orientation before game starts',
     );
   }
 
@@ -245,8 +245,7 @@ class AppLocalizations {
     return Intl.message(
       'Round time',
       name: 'roundTime',
-      desc:
-      'Label for round time slider',
+      desc: 'Label for round time slider',
     );
   }
 }

@@ -12,7 +12,7 @@ class FlagImage extends StatelessWidget {
     return new Material(
       color: Colors.transparent,
       child: Image.asset(
-       'assets/images/flags/$country.png',
+        'assets/images/flags/$country.png',
         fit: BoxFit.cover,
         width: 36.0,
         height: 24.0,

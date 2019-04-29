@@ -84,7 +84,7 @@ class App extends StatelessWidget {
               child: ScopedModel<GalleryModel>(
                 model: stores[GalleryModel],
                 child: buildApp(context),
-              )
+              ),
             ),
           ),
         ),
@@ -142,6 +142,7 @@ class App extends StatelessWidget {
 }
 
 void main() {
+//  Crashlytics.instance.enableInDevMode = true;
   FlutterError.onError = (FlutterErrorDetails details) {
     Crashlytics.instance.onError(details);
   };

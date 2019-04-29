@@ -47,7 +47,8 @@ class GameGalleryScreen extends StatelessWidget {
           backgroundColor: Theme.of(context).primaryColor,
           onPressed: () async {
             FileSystemEntity activeImage = GalleryModel.of(context).activeImage;
-            await Share.file('Zgadula', 'zgadula.png', File(activeImage.path).readAsBytesSync(), 'image/png');
+            await Share.file('Zgadula', 'zgadula.png',
+                File(activeImage.path).readAsBytesSync(), 'image/png');
           },
         ),
         body: Column(

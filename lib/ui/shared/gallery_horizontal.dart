@@ -25,9 +25,11 @@ class GalleryHorizontal extends StatelessWidget {
           builder: (BuildContext context) {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: GestureDetector(onTap: () {
-                onTap(item);
-              }, child: Image.file(item, fit: BoxFit.contain)),
+              child: GestureDetector(
+                  onTap: () {
+                    onTap(item);
+                  },
+                  child: Image.file(item, fit: BoxFit.contain)),
             );
           },
         );

@@ -42,9 +42,9 @@ class GamePlayScreenState extends State<GamePlayScreen>
   StreamSubscription<dynamic> _rotateSubscription;
 
   AnimationController invalidAC;
-  Animation<Offset> invalidAnimation;
+  Animation<double> invalidAnimation;
   AnimationController validAC;
-  Animation<Offset> validAnimation;
+  Animation<double> validAnimation;
 
   @override
   void initState() {
@@ -92,11 +92,10 @@ class GamePlayScreenState extends State<GamePlayScreen>
   initAnimations() {
     invalidAC = createAnswerAnimationController();
     invalidAnimation =
-        Tween<Offset>(begin: Offset(0, -1), end: Offset(0, 1)).animate(invalidAC);
+        CurvedAnimation(parent: invalidAC, curve: Curves.elasticOut);
 
     validAC = createAnswerAnimationController();
-    validAnimation = Tween<Offset>(begin: Offset(0, 1), end: Offset(0, -1))
-        .animate(validAC);
+    validAnimation = CurvedAnimation(parent: validAC, curve: Curves.elasticOut);
   }
 
   @protected
@@ -169,10 +168,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
   }
 
   showScore() {
-    Navigator.pushReplacementNamed(
-      context,
-      '/game-summary',
-    );
+    Navigator.pushReplacementNamed(context, '/game-summary');
   }
 
   Future<bool> confirmBack() async {
@@ -301,8 +297,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
 
   Widget buildSplashContent(Widget child, Color background, [IconData icon]) {
     return Container(
-      decoration:
-          BoxDecoration(color: background.withOpacity(backgroundOpacity)),
+      decoration: BoxDecoration(color: background),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -332,12 +327,14 @@ class GamePlayScreenState extends State<GamePlayScreen>
                     .withOpacity(backgroundOpacity)),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Expanded(
-                  child: Center(
-                    child: buildHeader(model.currentQuestion.name),
-                  ),
-                ),
+              children: [
+                model.currentQuestion == null
+                    ? null
+                    : Expanded(
+                        child: Center(
+                          child: buildHeader(model.currentQuestion.name),
+                        ),
+                      ),
                 Padding(
                   padding: EdgeInsets.only(bottom: 20.0),
                   child: Text(
@@ -349,7 +346,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
                     ),
                   ),
                 ),
-              ],
+              ].where((o) => o != null).toList(),
             ),
           ),
         );
@@ -362,15 +359,15 @@ class GamePlayScreenState extends State<GamePlayScreen>
       return Stack(
         children: <Widget>[
           buildGameContent(),
-          SlideTransition(
-            position: invalidAnimation,
+          ScaleTransition(
+            scale: invalidAnimation,
             child: buildSplashContent(
               buildHeaderIcon(Icons.sentiment_very_dissatisfied),
               Theme.of(context).errorColor,
             ),
           ),
-          SlideTransition(
-            position: validAnimation,
+          ScaleTransition(
+            scale: validAnimation,
             child: buildSplashContent(
               buildHeaderIcon(Icons.sentiment_very_satisfied),
               Theme.of(context).accentColor,
@@ -398,7 +395,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
           buildHeader(FormatterService.secondsToTime(secondsLeft)),
         ],
       ),
-      Theme.of(context).backgroundColor,
+      Theme.of(context).backgroundColor.withOpacity(backgroundOpacity),
     );
   }
 
