@@ -25,7 +25,30 @@ class GameGalleryScreen extends StatelessWidget {
         items: images.map((item) {
           return Builder(
             builder: (BuildContext context) {
-              return Image.file(item, fit: BoxFit.contain);
+              return Center(
+                child: Stack(
+                  children: [
+                    Image.file(item, fit: BoxFit.contain),
+                    Positioned(
+                      top: 20,
+                      right: 20,
+                      child: FloatingActionButton(
+                        elevation: 0.0,
+                        child: Icon(Icons.share),
+                        backgroundColor: Theme.of(context).primaryColor,
+                        onPressed: () async {
+                          await Share.file(
+                            'Zgadula',
+                            'zgadula.png',
+                            File(item.path).readAsBytesSync(),
+                            'image/png',
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              );
             },
           );
         }).toList(),
@@ -40,17 +63,6 @@ class GameGalleryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-        floatingActionButton: FloatingActionButton(
-          elevation: 0.0,
-          child: Icon(Icons.share),
-          backgroundColor: Theme.of(context).primaryColor,
-          onPressed: () async {
-            FileSystemEntity activeImage = GalleryModel.of(context).activeImage;
-            await Share.file('Zgadula', 'zgadula.png',
-                File(activeImage.path).readAsBytesSync(), 'image/png');
-          },
-        ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[

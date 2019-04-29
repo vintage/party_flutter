@@ -5,7 +5,7 @@ class _StartFloatFabLocation extends FloatingActionButtonLocation {
 
   @override
   Offset getOffset(ScaffoldPrelayoutGeometry scaffoldGeometry) {
-    return Offset(20, 20);
+    return Offset(20, 40);
   }
 }
 
