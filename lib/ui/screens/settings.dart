@@ -30,17 +30,28 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Future<bool> requestCameraPermissions() async {
+  Future<bool> _requestPermissions(List<PermissionGroup> permissionGroups) async {
     Map<PermissionGroup, PermissionStatus> permissions =
-        await PermissionHandler().requestPermissions([
+    await PermissionHandler().requestPermissions(permissionGroups);
+
+    return permissions.values
+        .where((status) => status != PermissionStatus.granted)
+        .length ==
+        0;
+  }
+
+  Future<bool> requestCameraPermissions() async {
+    return _requestPermissions([
       PermissionGroup.camera,
       PermissionGroup.microphone,
     ]);
+  }
 
-    return permissions.values
-            .where((status) => status != PermissionStatus.granted)
-            .length ==
-        0;
+  Future<bool> requestSpeechPermissions() async {
+    return _requestPermissions([
+      PermissionGroup.speech,
+      PermissionGroup.microphone,
+    ]);
   }
 
   Widget buildContent(context) {
@@ -64,6 +75,19 @@ class SettingsScreen extends StatelessWidget {
                   model.toggleCamera();
                 },
                 secondary: Icon(Icons.camera_alt),
+              ),
+              SwitchListTile(
+                title: Text(AppLocalizations.of(context).settingsSpeech),
+                subtitle: Text(AppLocalizations.of(context).settingsSpeechHint),
+                value: model.isSpeechEnabled,
+                onChanged: (bool value) async {
+                  if (value && !await requestSpeechPermissions()) {
+                    return;
+                  }
+
+                  model.toggleSpeech();
+                },
+                secondary: Icon(Icons.mic),
               ),
               SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsAccelerometer),

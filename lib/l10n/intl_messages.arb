@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-04-30T08:34:13.034328",
+  "@@last_modified": "2019-04-30T13:04:01.925838",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -123,6 +123,18 @@
   "settingsCameraHint": "Take temporary photos during game",
   "@settingsCameraHint": {
     "description": "Hint for toggling camera support",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsSpeech": "Microphone",
+  "@settingsSpeech": {
+    "description": "Label for toggling speech recognition support",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsSpeechHint": "Recognize answers automatically during game",
+  "@settingsSpeechHint": {
+    "description": "Hint for toggling speech recognition support",
     "type": "text",
     "placeholders": {}
   },

@@ -24,6 +24,9 @@ class SettingsModel extends StoreModel {
   bool _isCameraEnabled;
   bool get isCameraEnabled => _isCameraEnabled;
 
+  bool _isSpeechEnabled;
+  bool get isSpeechEnabled => _isSpeechEnabled;
+
   int _roundTime;
   int get roundTime => _roundTime;
 
@@ -43,6 +46,7 @@ class SettingsModel extends StoreModel {
     _isAudioEnabled = repository.isAudioEnabled();
     _isRotationControlEnabled = repository.isRotationControlEnabled();
     _isCameraEnabled = repository.isCameraEnabled();
+    _isSpeechEnabled = repository.isSpeechEnabled();
     _roundTime = repository.getRoundTime();
     _version = await repository.getAppVersion();
     _gamesPlayed = repository.getGamesPlayed();
@@ -62,6 +66,11 @@ class SettingsModel extends StoreModel {
 
   toggleCamera() async {
     _isCameraEnabled = repository.toggleCamera();
+    notifyListeners();
+  }
+
+  toggleSpeech() async {
+    _isSpeechEnabled = repository.toggleSpeech();
     notifyListeners();
   }
 

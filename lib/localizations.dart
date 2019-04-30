@@ -193,6 +193,22 @@ class AppLocalizations {
     );
   }
 
+  String get settingsSpeech {
+    return Intl.message(
+      'Microphone',
+      name: 'settingsSpeech',
+      desc: 'Label for toggling speech recognition support',
+    );
+  }
+
+  String get settingsSpeechHint {
+    return Intl.message(
+      'Recognize answers automatically during game',
+      name: 'settingsSpeechHint',
+      desc: 'Hint for toggling speech recognition support',
+    );
+  }
+
   String get settingsAccelerometer {
     return Intl.message(
       'Accelerometer',

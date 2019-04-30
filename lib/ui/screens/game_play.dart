@@ -5,10 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:sensors/sensors.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:speech_recognition/speech_recognition.dart';
 
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/services/audio.dart';
-import 'package:zgadula/services/formatters.dart';
 import 'package:zgadula/services/vibration.dart';
 import 'package:zgadula/services/analytics.dart';
 import 'package:zgadula/store/category.dart';
@@ -39,7 +39,9 @@ class GamePlayScreenState extends State<GamePlayScreen>
   int secondsLeft = 5;
   bool isStarted = false;
   bool isPaused = false;
+  bool isSpeechEnabled = false;
   StreamSubscription<dynamic> _rotateSubscription;
+  SpeechRecognition _speech;
 
   AnimationController invalidAC;
   Animation<double> invalidAnimation;
@@ -69,6 +71,9 @@ class GamePlayScreenState extends State<GamePlayScreen>
     if (SettingsModel.of(context).isRotationControlEnabled) {
       enableRotationControl();
     }
+
+    isSpeechEnabled = SettingsModel.of(context).isSpeechEnabled;
+    _speech = SpeechRecognition();
 
     initAnimations();
 
@@ -114,6 +119,10 @@ class GamePlayScreenState extends State<GamePlayScreen>
       _rotateSubscription.cancel();
     }
 
+    if (_speech != null) {
+      _speech.cancel();
+    }
+
     validAC?.dispose();
     invalidAC?.dispose();
 
@@ -143,6 +152,32 @@ class GamePlayScreenState extends State<GamePlayScreen>
         safePosition = true;
       }
     });
+  }
+
+  cancelSpeechRecognition() {
+    _speech.cancel();
+  }
+
+  checkSpeechText(String speech, String valid) {
+    return speech.toLowerCase().contains(valid.toLowerCase());
+  }
+
+  enableSpeechRecognition() {
+    if (!isSpeechEnabled) {
+      return false;
+    }
+
+    _speech.setRecognitionResultHandler((String text) {
+      if (checkSpeechText(text, QuestionModel.of(context).currentQuestion.name)) {
+        handleValid();
+      }
+    });
+    _speech.setRecognitionCompleteHandler(() {
+      Future.delayed(Duration(seconds: 1)).then((_) {
+        _speech.listen(locale: 'pl_PL');
+      });
+    });
+    _speech.listen(locale: 'pl_PL');
   }
 
   startTimer() {
@@ -229,6 +264,15 @@ class GamePlayScreenState extends State<GamePlayScreen>
     startTimer();
   }
 
+  postAnswer() {
+    cancelSpeechRecognition();
+    enableSpeechRecognition();
+
+    setState(() {
+      isPaused = true;
+    });
+  }
+
   handleValid() {
     if (isPaused) {
       return;
@@ -238,10 +282,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
     VibrationService.vibrate();
     QuestionModel.of(context).markQuestionAsValid();
     validAC.forward();
-
-    setState(() {
-      isPaused = true;
-    });
+    postAnswer();
   }
 
   handleInvalid() {
@@ -253,16 +294,15 @@ class GamePlayScreenState extends State<GamePlayScreen>
     VibrationService.vibrate();
     QuestionModel.of(context).markQuestionAsInvalid();
     invalidAC.forward();
-
-    setState(() {
-      isPaused = true;
-    });
+    postAnswer();
   }
 
   handleTimeout() {
     if (isStarted) {
       handleInvalid();
     } else {
+      enableSpeechRecognition();
+
       setState(() {
         isStarted = true;
         secondsLeft = secondsMax;

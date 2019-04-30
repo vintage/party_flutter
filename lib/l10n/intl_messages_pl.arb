@@ -127,6 +127,18 @@
         "type": "text",
         "placeholders": {}
       },
+  "settingsSpeech": "Mikrofon",
+    "@settingsSpeech": {
+      "description": "Label for toggling speech recognition support",
+      "type": "text",
+      "placeholders": {}
+    },
+    "settingsSpeechHint": "Rozpoznawanie odpowiedzi podczas rozgrywki",
+    "@settingsSpeechHint": {
+      "description": "Hint for toggling speech recognition support",
+      "type": "text",
+      "placeholders": {}
+    },
   "settingsAccelerometer": "Akcelerometr",
   "@settingsAccelerometer": {
     "description": "Label for toggling accelerometer support",
