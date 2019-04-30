@@ -9,6 +9,8 @@ const Color secondaryColor = Color(0xFF984E99);
 const Color secondaryDarkColor = Color(0xFF874588);
 const Color secondaryLightColor = Color(0xFFa857a9);
 
+const Color successColor = Colors.green;
+
 const Color textColor = Color(0xFFEEEEEE);
 
 final isTablet = Device.get().isTablet;

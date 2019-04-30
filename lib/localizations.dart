@@ -85,7 +85,7 @@ class AppLocalizations {
 
   String get tutorialFourthSectionDescription {
     return Intl.message(
-      'Tap the screen once when correctly guessed or twice if you want to pass. Good luck!',
+      'Tap the screen for next question. Good luck!',
       name: 'tutorialFourthSectionDescription',
       desc: 'Description for the fourth tutorial section',
     );

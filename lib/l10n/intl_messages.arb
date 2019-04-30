@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-04-29T09:54:56.249804",
+  "@@last_modified": "2019-04-30T08:34:13.034328",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -48,7 +48,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "tutorialFourthSectionDescription": "Tap the screen once when correctly guessed or twice if you want to pass. Good luck!",
+  "tutorialFourthSectionDescription": "Tap the screen for next question. Good luck!",
   "@tutorialFourthSectionDescription": {
     "description": "Description for the fourth tutorial section",
     "type": "text",

@@ -270,7 +270,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
     }
   }
 
-  Widget buildHeader(text) {
+  Widget buildHeader(String text) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Text(
@@ -312,43 +312,56 @@ class GamePlayScreenState extends State<GamePlayScreen>
   }
 
   Widget buildGameContent() {
-    String timeLeft = FormatterService.secondsToTime(secondsLeft);
-
     return ScopedModelDescendant<QuestionModel>(
       builder: (context, child, model) {
-        return GestureDetector(
-          onTap: handleValid,
-          onDoubleTap: handleInvalid,
-          behavior: HitTestBehavior.opaque,
-          child: Container(
-            decoration: BoxDecoration(
-                color: Theme.of(context)
-                    .backgroundColor
-                    .withOpacity(backgroundOpacity)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+        return Stack(
+          children: [
+            Row(
               children: [
-                model.currentQuestion == null
-                    ? null
-                    : Expanded(
-                        child: Center(
-                          child: buildHeader(model.currentQuestion.name),
+                GameController(
+                  child: buildHeaderIcon(Icons.sentiment_very_dissatisfied),
+                  alignment: Alignment.bottomCenter,
+                  color: Theme.of(context).errorColor,
+                  onTap: handleInvalid,
+                ),
+                GameController(
+                  child: buildHeaderIcon(Icons.sentiment_very_satisfied),
+                  alignment: Alignment.bottomCenter,
+                  color: successColor,
+                  onTap: handleValid,
+                ),
+              ],
+            ),
+            IgnorePointer(
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Theme.of(context).backgroundColor.withOpacity(0.2)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    model.currentQuestion == null
+                        ? null
+                        : Expanded(
+                            child: Center(
+                              child: buildHeader(model.currentQuestion.name),
+                            ),
+                          ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 20.0),
+                      child: Text(
+                        secondsLeft.toString(),
+                        style: TextStyle(
+                          fontSize: 24.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 20.0),
-                  child: Text(
-                    timeLeft,
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
                     ),
-                  ),
+                  ].where((o) => o != null).toList(),
                 ),
-              ].where((o) => o != null).toList(),
+              ),
             ),
-          ),
+          ],
         );
       },
     );
@@ -370,7 +383,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
             scale: validAnimation,
             child: buildSplashContent(
               buildHeaderIcon(Icons.sentiment_very_satisfied),
-              Theme.of(context).accentColor,
+              successColor,
             ),
           ),
         ],
@@ -392,7 +405,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
               ),
             ),
           ),
-          buildHeader(FormatterService.secondsToTime(secondsLeft)),
+          buildHeader(secondsLeft.toString()),
         ],
       ),
       Theme.of(context).backgroundColor.withOpacity(backgroundOpacity),

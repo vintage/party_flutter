@@ -48,7 +48,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "tutorialFourthSectionDescription": "Tap the screen once when correctly guessed or twice if you want to pass. Good luck!",
+  "tutorialFourthSectionDescription": "Tap the screen for next question. Good luck!",
   "@tutorialFourthSectionDescription": {
     "description": "Description for the fourth tutorial section",
     "type": "text",

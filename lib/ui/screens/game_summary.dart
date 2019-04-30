@@ -7,6 +7,7 @@ import 'package:zgadula/localizations.dart';
 import 'package:zgadula/models/question.dart';
 import 'package:zgadula/store/gallery.dart';
 import 'package:zgadula/store/question.dart';
+import 'package:zgadula/ui/theme.dart';
 import '../shared/widgets.dart';
 
 class GameSummaryScreen extends StatelessWidget {
@@ -20,7 +21,7 @@ class GameSummaryScreen extends StatelessWidget {
             question.isPassed ? Icons.check : Icons.close,
             size: 20.0,
             color: question.isPassed
-                ? Theme.of(context).accentColor
+                ? successColor
                 : Theme.of(context).errorColor,
           ),
           Padding(

@@ -7,3 +7,4 @@ export 'flag_image.dart';
 export 'screen_loader.dart';
 export 'gallery_horizontal.dart';
 export 'header.dart';
+export 'game_controller.dart';
