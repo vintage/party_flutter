@@ -28,10 +28,10 @@ class CategoryListItem extends StatefulWidget {
 
 class _CategoryListItemState extends State<CategoryListItem>
     with TickerProviderStateMixin {
-  static const textAnimationDuration = Duration(milliseconds: 750);
+  static const textAnimationDuration = Duration(milliseconds: 1000);
 
   AnimationController animationController;
-  Animation<Offset> animation;
+  Animation<double> animation;
 
   @override
   void initState() {
@@ -47,16 +47,12 @@ class _CategoryListItemState extends State<CategoryListItem>
 
   initAnimations() {
     int index = widget.index;
-    double offsetX = (index % 2 == 0 ? -1 : 1) * 1.5;
-    double offsetY = 0;
-
     animationController =
         AnimationController(vsync: this, duration: textAnimationDuration);
-    animation = Tween<Offset>(begin: Offset(offsetX, offsetY), end: Offset.zero)
-        .animate(animationController);
+    animation = CurvedAnimation(parent: animationController, curve: Curves.decelerate);
 
-    Future.delayed(Duration(milliseconds: 150 * min(index, 8))).then((_) {
-      animationController.forward();
+    Future.delayed(Duration(milliseconds: 75 * min(index, 8))).then((_) {
+    animationController.forward();
     });
   }
 
@@ -64,8 +60,8 @@ class _CategoryListItemState extends State<CategoryListItem>
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: widget.onTap,
-      child: SlideTransition(
-        position: animation,
+      child: ScaleTransition(
+        scale: animation,
         child: Stack(
           children: [
             Hero(

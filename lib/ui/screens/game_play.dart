@@ -401,6 +401,8 @@ class GamePlayScreenState extends State<GamePlayScreen>
 
   @override
   Widget build(BuildContext context) {
+    bool showCamera = SettingsModel.of(context).isCameraEnabled;
+
     return WillPopScope(
       onWillPop: () async {
         return await confirmBack();
@@ -422,9 +424,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
               ),
         body: Stack(
           children: [
-            SettingsModel.of(context).isCameraEnabled
-                ? CameraPreviewScreen()
-                : null,
+            showCamera ? CameraPreviewScreen() : null,
             buildContent(),
           ].where((o) => o != null).toList(),
         ),
