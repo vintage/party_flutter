@@ -359,16 +359,16 @@ class GamePlayScreenState extends State<GamePlayScreen>
             Row(
               children: [
                 GameController(
-                  child: buildHeaderIcon(Icons.sentiment_very_dissatisfied),
-                  alignment: Alignment.bottomCenter,
-                  color: Theme.of(context).errorColor.withOpacity(backgroundOpacity),
-                  onTap: handleInvalid,
-                ),
-                GameController(
                   child: buildHeaderIcon(Icons.sentiment_very_satisfied),
                   alignment: Alignment.bottomCenter,
                   color: successColor.withOpacity(backgroundOpacity),
                   onTap: handleValid,
+                ),
+                GameController(
+                  child: buildHeaderIcon(Icons.sentiment_very_dissatisfied),
+                  alignment: Alignment.bottomCenter,
+                  color: Theme.of(context).errorColor.withOpacity(backgroundOpacity),
+                  onTap: handleInvalid,
                 ),
               ],
             ),
@@ -452,7 +452,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
 
   @override
   Widget build(BuildContext context) {
-    bool showCamera = SettingsModel.of(context).isCameraEnabled;
+    bool showCamera = SettingsModel.of(context).isCameraEnabled && isStarted;
 
     return WillPopScope(
       onWillPop: () async {
