@@ -361,21 +361,19 @@ class GamePlayScreenState extends State<GamePlayScreen>
                 GameController(
                   child: buildHeaderIcon(Icons.sentiment_very_dissatisfied),
                   alignment: Alignment.bottomCenter,
-                  color: Theme.of(context).errorColor,
+                  color: Theme.of(context).errorColor.withOpacity(backgroundOpacity),
                   onTap: handleInvalid,
                 ),
                 GameController(
                   child: buildHeaderIcon(Icons.sentiment_very_satisfied),
                   alignment: Alignment.bottomCenter,
-                  color: successColor,
+                  color: successColor.withOpacity(backgroundOpacity),
                   onTap: handleValid,
                 ),
               ],
             ),
             IgnorePointer(
               child: Container(
-                decoration: BoxDecoration(
-                    color: Theme.of(context).backgroundColor.withOpacity(0.2)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
