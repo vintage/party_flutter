@@ -155,6 +155,10 @@ class GamePlayScreenState extends State<GamePlayScreen>
   }
 
   cancelSpeechRecognition() {
+    if (!isSpeechEnabled) {
+      return false;
+    }
+
     _speech.cancel();
   }
 

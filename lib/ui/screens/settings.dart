@@ -76,19 +76,19 @@ class SettingsScreen extends StatelessWidget {
                 },
                 secondary: Icon(Icons.camera_alt),
               ),
-              SwitchListTile(
-                title: Text(AppLocalizations.of(context).settingsSpeech),
-                subtitle: Text(AppLocalizations.of(context).settingsSpeechHint),
-                value: model.isSpeechEnabled,
-                onChanged: (bool value) async {
-                  if (value && !await requestSpeechPermissions()) {
-                    return;
-                  }
-
-                  model.toggleSpeech();
-                },
-                secondary: Icon(Icons.mic),
-              ),
+//              SwitchListTile(
+//                title: Text(AppLocalizations.of(context).settingsSpeech),
+//                subtitle: Text(AppLocalizations.of(context).settingsSpeechHint),
+//                value: model.isSpeechEnabled,
+//                onChanged: (bool value) async {
+//                  if (value && !await requestSpeechPermissions()) {
+//                    return;
+//                  }
+//
+//                  model.toggleSpeech();
+//                },
+//                secondary: Icon(Icons.mic),
+//              ),
               SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsAccelerometer),
                 subtitle: Text(
