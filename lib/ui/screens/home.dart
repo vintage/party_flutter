@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:zgadula/services/analytics.dart';
 
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
@@ -116,6 +117,11 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 onTap: () {
                   model.setCurrent(category);
                   qModel.generateSampleQuestions(category.id);
+
+                  AnalyticsService.logEvent(
+                    'category_select',
+                    {'category': category.name},
+                  );
 
                   Navigator.pushNamed(
                     context,

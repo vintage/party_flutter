@@ -20,9 +20,8 @@ class GameSummaryScreen extends StatelessWidget {
           Icon(
             question.isPassed ? Icons.check : Icons.close,
             size: 20.0,
-            color: question.isPassed
-                ? successColor
-                : Theme.of(context).errorColor,
+            color:
+                question.isPassed ? successColor : Theme.of(context).errorColor,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),

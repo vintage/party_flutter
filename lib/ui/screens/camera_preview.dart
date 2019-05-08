@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:zgadula/services/analytics.dart';
 import 'package:zgadula/services/pictures.dart';
 
 class CameraPreviewScreen extends StatefulWidget {
@@ -78,6 +79,8 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen>
   }
 
   savePicture(Timer timer) {
+    AnalyticsService.logEvent('picture_taken', {'index': pictureTaken + 1});
+
     controller.takePicture('${pictureDir.path}/$pictureTaken.png');
 
     Future.delayed(Duration(seconds: 1)).then((_) async {

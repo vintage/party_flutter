@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:zgadula/localizations.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:zgadula/services/analytics.dart';
 import 'package:zgadula/store/gallery.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -47,6 +48,8 @@ class GameGalleryScreen extends StatelessWidget {
                           child: Icon(Icons.share),
                           backgroundColor: Theme.of(context).primaryColor,
                           onPressed: () async {
+                            AnalyticsService.logEvent('picture_share', {});
+
                             await Share.file(
                               'Zgadula',
                               'zgadula.png',

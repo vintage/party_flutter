@@ -49,10 +49,11 @@ class _CategoryListItemState extends State<CategoryListItem>
     int index = widget.index;
     animationController =
         AnimationController(vsync: this, duration: textAnimationDuration);
-    animation = CurvedAnimation(parent: animationController, curve: Curves.decelerate);
+    animation =
+        CurvedAnimation(parent: animationController, curve: Curves.decelerate);
 
     Future.delayed(Duration(milliseconds: 75 * min(index, 8))).then((_) {
-    animationController.forward();
+      animationController.forward();
     });
   }
 

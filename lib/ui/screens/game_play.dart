@@ -42,6 +42,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
   bool isSpeechEnabled = false;
   StreamSubscription<dynamic> _rotateSubscription;
   SpeechRecognition _speech;
+  Category category;
 
   AnimationController invalidAC;
   Animation<double> invalidAnimation;
@@ -53,7 +54,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
     super.initState();
     startTimer();
 
-    Category category = CategoryModel.of(context).currentCategory;
+    category = CategoryModel.of(context).currentCategory;
 
     QuestionModel.of(context).generateCurrentQuestions(category.id);
 
@@ -172,7 +173,8 @@ class GamePlayScreenState extends State<GamePlayScreen>
     }
 
     _speech.setRecognitionResultHandler((String text) {
-      if (checkSpeechText(text, QuestionModel.of(context).currentQuestion.name)) {
+      if (checkSpeechText(
+          text, QuestionModel.of(context).currentQuestion.name)) {
         handleValid();
       }
     });
@@ -207,6 +209,10 @@ class GamePlayScreenState extends State<GamePlayScreen>
   }
 
   showScore() {
+    AnalyticsService.logEvent('game_score', {
+      'valid': QuestionModel.of(context).questionsPassed.length,
+      'invalid': QuestionModel.of(context).questionsFailed.length,
+    });
     Navigator.pushReplacementNamed(context, '/game-summary');
   }
 
@@ -282,6 +288,11 @@ class GamePlayScreenState extends State<GamePlayScreen>
       return;
     }
 
+    AnalyticsService.logEvent('answer_question', {
+      'valid': true,
+      'category': category.name,
+    });
+
     AudioService.valid(context);
     VibrationService.vibrate();
     QuestionModel.of(context).markQuestionAsValid();
@@ -293,6 +304,11 @@ class GamePlayScreenState extends State<GamePlayScreen>
     if (isPaused) {
       return;
     }
+
+    AnalyticsService.logEvent('answer_question', {
+      'valid': false,
+      'category': category.name,
+    });
 
     AudioService.invalid(context);
     VibrationService.vibrate();
@@ -371,7 +387,9 @@ class GamePlayScreenState extends State<GamePlayScreen>
                 GameController(
                   child: buildHeaderIcon(Icons.sentiment_very_dissatisfied),
                   alignment: Alignment.bottomCenter,
-                  color: Theme.of(context).errorColor.withOpacity(backgroundOpacity),
+                  color: Theme.of(context)
+                      .errorColor
+                      .withOpacity(backgroundOpacity),
                   onTap: handleInvalid,
                 ),
               ],

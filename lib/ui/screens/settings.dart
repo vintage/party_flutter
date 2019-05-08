@@ -30,13 +30,14 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Future<bool> _requestPermissions(List<PermissionGroup> permissionGroups) async {
+  Future<bool> _requestPermissions(
+      List<PermissionGroup> permissionGroups) async {
     Map<PermissionGroup, PermissionStatus> permissions =
-    await PermissionHandler().requestPermissions(permissionGroups);
+        await PermissionHandler().requestPermissions(permissionGroups);
 
     return permissions.values
-        .where((status) => status != PermissionStatus.granted)
-        .length ==
+            .where((status) => status != PermissionStatus.granted)
+            .length ==
         0;
   }
 
