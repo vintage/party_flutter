@@ -13,7 +13,7 @@ class CameraPreviewScreen extends StatefulWidget {
 }
 
 class CameraPreviewScreenState extends State<CameraPreviewScreen>
-    with TickerProviderStateMixin {
+    with TickerProviderStateMixin, WidgetsBindingObserver {
   static const pictureInterval = 15;
 
   CameraController controller;
@@ -30,11 +30,37 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen>
   @override
   void initState() {
     super.initState();
+    startTimer();
     initCamera();
     initAnimations();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    controller?.dispose();
+    imageAnimationController?.dispose();
+    stopTimer();
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.inactive) {
+      controller?.dispose();
+    } else if (state == AppLifecycleState.resumed) {
+      if (controller != null) {
+        initCamera();
+      }
+    }
   }
 
   initCamera() async {
+    if (controller != null) {
+      await controller.dispose();
+    }
+
     pictureDir = await PicturesService.getDirectory(context);
     var frontCamera = await PicturesService.getCamera();
     if (frontCamera == null) {
@@ -42,14 +68,19 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen>
     }
 
     controller = CameraController(frontCamera, ResolutionPreset.high);
-    controller.initialize().then((_) {
-      if (!mounted) {
-        return;
+    controller.addListener(() {
+      if (mounted) {
+        setState(() {});
       }
-
-      startTimer();
-      setState(() {});
     });
+
+    try {
+      await controller.initialize();
+    } on CameraException {}
+
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   initAnimations() {
@@ -79,6 +110,10 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen>
   }
 
   savePicture(Timer timer) {
+    if (controller == null) {
+      return false;
+    }
+
     AnalyticsService.logEvent('picture_taken', {'index': pictureTaken + 1});
 
     controller.takePicture('${pictureDir.path}/$pictureTaken.png');
@@ -93,14 +128,6 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen>
     });
 
     pictureTaken += 1;
-  }
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    imageAnimationController?.dispose();
-    stopTimer();
-    super.dispose();
   }
 
   Widget buildImageTaken() {
