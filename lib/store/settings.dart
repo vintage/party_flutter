@@ -36,6 +36,9 @@ class SettingsModel extends StoreModel {
   int _gamesPlayed;
   int get gamesPlayed => _gamesPlayed;
 
+  int _gamesFinished;
+  int get gamesFinished => _gamesFinished;
+
   SettingsModel(this.repository);
 
   @override
@@ -50,6 +53,7 @@ class SettingsModel extends StoreModel {
     _roundTime = repository.getRoundTime();
     _version = await repository.getAppVersion();
     _gamesPlayed = repository.getGamesPlayed();
+    _gamesFinished = repository.getGamesFinished();
     _isLoading = false;
     notifyListeners();
   }
@@ -81,6 +85,11 @@ class SettingsModel extends StoreModel {
 
   increaseGamesPlayed() async {
     _gamesPlayed = repository.increaseGamesPlayed();
+    notifyListeners();
+  }
+
+  increaseGamesFinished() async {
+    _gamesFinished = repository.increaseGamesFinished();
     notifyListeners();
   }
 
