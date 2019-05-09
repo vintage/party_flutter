@@ -51,5 +51,7 @@
     <string>Can I use the camera please?</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>Can I use the mic please?</string>
+    <key>GADApplicationIdentifier</key>
+    <string>ca-app-pub-4764697513834958~9794133262</string>
 </dict>
 </plist>

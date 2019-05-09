@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:screen/screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 import 'localizations.dart';
 import 'ui/theme.dart';
@@ -19,6 +18,8 @@ import 'ui/screens/tutorial.dart';
 import 'ui/screens/home.dart';
 import 'services/analytics.dart';
 import 'services/language.dart';
+import 'services/ads.dart';
+import 'services/crashlytics.dart';
 import 'repository/category.dart';
 import 'repository/question.dart';
 import 'repository/language.dart';
@@ -142,10 +143,8 @@ class App extends StatelessWidget {
 }
 
 void main() {
-//  Crashlytics.instance.enableInDevMode = true;
-  FlutterError.onError = (FlutterErrorDetails details) {
-    Crashlytics.instance.onError(details);
-  };
+  AdsService.initialize();
+  CrashlyticsService.initialize();
 
   runApp(App());
 }
