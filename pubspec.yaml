@@ -77,8 +77,8 @@ flutter:
           style: italic
 
 flutter_icons:
-  image_path: 'assets/icon/icon.png'
-  adaptive_icon_foreground: 'assets/icon/icon-foreground.png'
+  image_path: 'icon/icon.png'
+  adaptive_icon_foreground: 'icon/icon-foreground.png'
   adaptive_icon_background: '#033C60'
   android: true
   ios: true
