@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'package:zgadula/localizations.dart';
+import 'package:zgadula/services/analytics.dart';
 import 'package:zgadula/services/language.dart';
 import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/store/language.dart';
@@ -20,6 +21,7 @@ class SettingsScreen extends StatelessWidget {
           icon: Icon(Icons.help),
           iconSize: ThemeConfig.appBarIconSize,
           onPressed: () {
+            AnalyticsService.logEvent('settings_tutorial', {});
             Navigator.pushNamed(
               context,
               '/tutorial',
@@ -55,6 +57,10 @@ class SettingsScreen extends StatelessWidget {
     ]);
   }
 
+  void logChange(String field, dynamic value) {
+    AnalyticsService.logEvent(field, {"value": value});
+  }
+
   Widget buildContent(context) {
     return Container(
       decoration: BoxDecoration(
@@ -73,6 +79,7 @@ class SettingsScreen extends StatelessWidget {
                     return;
                   }
 
+                  logChange('settings_camera', value);
                   model.toggleCamera();
                 },
                 secondary: Icon(Icons.camera_alt),
@@ -95,13 +102,19 @@ class SettingsScreen extends StatelessWidget {
                 subtitle: Text(
                     AppLocalizations.of(context).settingsAccelerometerHint),
                 value: model.isRotationControlEnabled,
-                onChanged: (bool value) => model.toggleRotationControl(),
+                onChanged: (bool value) {
+                  logChange('settings_accelerometer', value);
+                  model.toggleRotationControl();
+                },
                 secondary: Icon(Icons.screen_rotation),
               ),
               SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsAudio),
                 value: model.isAudioEnabled,
-                onChanged: (bool value) => model.toggleAudio(),
+                onChanged: (bool value) {
+                  logChange('settings_audio', value);
+                  model.toggleAudio();
+                },
                 secondary: Icon(Icons.music_note),
               ),
               ScopedModelDescendant<LanguageModel>(
@@ -127,8 +140,10 @@ class SettingsScreen extends StatelessWidget {
                                 ),
                           )
                           .toList(),
-                      onChanged: (dynamic language) =>
-                          model.changeLanguage(language),
+                      onChanged: (String language) {
+                        logChange('settings_language', language);
+                        model.changeLanguage(language);
+                      },
                     ),
                   );
                 },
@@ -180,6 +195,8 @@ class SettingsScreen extends StatelessWidget {
   }
 
   rateApp() {
+    AnalyticsService.logEvent('settings_rate_app', {});
+
     LaunchReview.launch(
       androidAppId: SettingsModel.androidId,
       iOSAppId: SettingsModel.appleId,
@@ -187,6 +204,8 @@ class SettingsScreen extends StatelessWidget {
   }
 
   openPrivacyPolicy() async {
+    AnalyticsService.logEvent('settings_privacy', {});
+
     const url = SettingsModel.privacyPolicyUrl;
     if (await canLaunch(url)) {
       await launch(url);
