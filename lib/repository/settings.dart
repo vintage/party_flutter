@@ -12,6 +12,7 @@ class SettingsRepository {
   static const String storageSpeechEnabledKey = 'is_speech_enabled';
   static const String storageRoundTimeKey = 'round_time';
   static const String storageGamesPlayedKey = 'games_played';
+  static const String storageGamesFinishedKey = 'games_finished';
 
   final SharedPreferences storage;
 
@@ -80,6 +81,17 @@ class SettingsRepository {
     storage.setInt(storageGamesPlayedKey, gamesPlayed);
 
     return gamesPlayed;
+  }
+
+  int getGamesFinished() {
+    return storage.getInt(storageGamesFinishedKey) ?? 0;
+  }
+
+  int increaseGamesFinished() {
+    var gamesFinished = getGamesFinished() + 1;
+    storage.setInt(storageGamesFinishedKey, gamesFinished);
+
+    return gamesFinished;
   }
 
   Future<String> getAppVersion() async {

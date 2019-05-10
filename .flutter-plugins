@@ -1,6 +1,7 @@
 audioplayers=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers-0.11.0/
 camera=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/camera-0.5.0/
 esys_flutter_share=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/esys_flutter_share-1.0.1/
+firebase_admob=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_admob-0.9.0/
 firebase_analytics=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_analytics-3.0.1/
 firebase_crashlytics=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_crashlytics-0.0.4+3/
 launch_review=/usr/local/opt/flutter/.pub-cache/hosted/pub.dartlang.org/launch_review-2.0.0/

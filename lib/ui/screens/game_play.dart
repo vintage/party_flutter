@@ -19,6 +19,7 @@ import 'package:zgadula/store/gallery.dart';
 import 'package:zgadula/ui/screens/camera_preview.dart';
 import 'package:zgadula/ui/theme.dart';
 import 'package:zgadula/services/pictures.dart';
+import 'package:zgadula/services/ads.dart';
 import '../shared/widgets.dart';
 
 class GamePlayScreen extends StatefulWidget {
@@ -31,7 +32,6 @@ class GamePlayScreen extends StatefulWidget {
 class GamePlayScreenState extends State<GamePlayScreen>
     with TickerProviderStateMixin {
   static const _rotationChannel = const MethodChannel('zgadula/orientation');
-  static const rotationBorder = 9.5;
   static const backgroundOpacity = 0.9;
 
   Timer gameTimer;
@@ -39,7 +39,9 @@ class GamePlayScreenState extends State<GamePlayScreen>
   int secondsLeft = 5;
   bool isStarted = false;
   bool isPaused = false;
+  bool isCameraEnabled = false;
   bool isSpeechEnabled = false;
+  bool showAd = false;
   StreamSubscription<dynamic> _rotateSubscription;
   SpeechRecognition _speech;
   Category category;
@@ -53,12 +55,22 @@ class GamePlayScreenState extends State<GamePlayScreen>
   void initState() {
     super.initState();
     startTimer();
-
     category = CategoryModel.of(context).currentCategory;
-
     QuestionModel.of(context).generateCurrentQuestions(category.id);
 
-    secondsMax = SettingsModel.of(context).roundTime;
+    SettingsModel settings = SettingsModel.of(context);
+    secondsMax = settings.roundTime;
+    isCameraEnabled = settings.isCameraEnabled;
+    isSpeechEnabled = settings.isSpeechEnabled;
+    _speech = SpeechRecognition();
+    if (settings.isRotationControlEnabled) {
+      enableRotationControl();
+    }
+    var gamesCount = settings.gamesFinished + 1;
+    showAd = gamesCount % 3 == 0;
+    if (showAd) {
+      AdsService.loadInterstitialAd();
+    }
 
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
@@ -68,13 +80,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
     try {
       _rotationChannel.invokeMethod('setLandscape');
     } catch (error) {}
-
-    if (SettingsModel.of(context).isRotationControlEnabled) {
-      enableRotationControl();
-    }
-
-    isSpeechEnabled = SettingsModel.of(context).isSpeechEnabled;
-    _speech = SpeechRecognition();
 
     initAnimations();
 
@@ -133,6 +138,8 @@ class GamePlayScreenState extends State<GamePlayScreen>
 
   enableRotationControl() {
     bool safePosition = true;
+    double rotationBorder = 9.5;
+
     _rotateSubscription =
         accelerometerEvents.listen((AccelerometerEvent event) {
       if (!isStarted || isPaused) {
@@ -209,11 +216,13 @@ class GamePlayScreenState extends State<GamePlayScreen>
   }
 
   showScore() {
+    SettingsModel.of(context).increaseGamesFinished();
     AnalyticsService.logEvent('game_score', {
       'valid': QuestionModel.of(context).questionsPassed.length,
       'invalid': QuestionModel.of(context).questionsFailed.length,
     });
     Navigator.pushReplacementNamed(context, '/game-summary');
+    AdsService.showInterstitialAd();
   }
 
   Future<bool> confirmBack() async {
@@ -474,7 +483,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
 
   @override
   Widget build(BuildContext context) {
-    bool showCamera = SettingsModel.of(context).isCameraEnabled && isStarted;
+    bool showCamera = isCameraEnabled && isStarted;
 
     return WillPopScope(
       onWillPop: () async {
