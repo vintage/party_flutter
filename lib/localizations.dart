@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:zgadula/services/language.dart';
 
-import 'l10n/messages_all.dart';
+import 'l10n/messages_all.dart' show initializeMessages;
 
 class AppLocalizations {
   static Future<AppLocalizations> load(Locale locale) {
