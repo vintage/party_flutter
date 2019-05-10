@@ -93,8 +93,6 @@ PODS:
     - Flutter
   - shared_preferences (0.0.1):
     - Flutter
-  - speech_recognition (0.3.0):
-    - Flutter
   - url_launcher (0.0.1):
     - Flutter
   - vibration (1.0.2):
@@ -115,7 +113,6 @@ DEPENDENCIES:
   - screen (from `.symlinks/plugins/screen/ios`)
   - sensors (from `.symlinks/plugins/sensors/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
-  - speech_recognition (from `.symlinks/plugins/speech_recognition/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
   - vibration (from `.symlinks/plugins/vibration/ios`)
 
@@ -161,8 +158,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sensors/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
-  speech_recognition:
-    :path: ".symlinks/plugins/speech_recognition/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
   vibration:
@@ -193,7 +188,6 @@ SPEC CHECKSUMS:
   screen: 22ab9c4a784112d4b21ad7d80e81729e0afdaa65
   sensors: 5e1d451d2b563766999e768342efed82d6141fcc
   shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
-  speech_recognition: acf2b916cd7aff5d4b76a238740afe2aff85e6bc
   url_launcher: 92b89c1029a0373879933c21642958c874539095
   vibration: 1f64b38673d28697553ce3b2ed1e867b82145e8b
 

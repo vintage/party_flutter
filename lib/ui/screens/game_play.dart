@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:sensors/sensors.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:speech_recognition/speech_recognition.dart';
 
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/services/audio.dart';
@@ -40,10 +39,8 @@ class GamePlayScreenState extends State<GamePlayScreen>
   bool isStarted = false;
   bool isPaused = false;
   bool isCameraEnabled = false;
-  bool isSpeechEnabled = false;
   bool showAd = false;
   StreamSubscription<dynamic> _rotateSubscription;
-  SpeechRecognition _speech;
   Category category;
 
   AnimationController invalidAC;
@@ -61,8 +58,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
     SettingsModel settings = SettingsModel.of(context);
     secondsMax = settings.roundTime;
     isCameraEnabled = settings.isCameraEnabled;
-    isSpeechEnabled = settings.isSpeechEnabled;
-    _speech = SpeechRecognition();
     if (settings.isRotationControlEnabled) {
       enableRotationControl();
     }
@@ -125,10 +120,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
       _rotateSubscription.cancel();
     }
 
-    if (_speech != null) {
-      _speech.cancel();
-    }
-
     validAC?.dispose();
     invalidAC?.dispose();
 
@@ -160,37 +151,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
         safePosition = true;
       }
     });
-  }
-
-  cancelSpeechRecognition() {
-    if (!isSpeechEnabled) {
-      return false;
-    }
-
-    _speech.cancel();
-  }
-
-  checkSpeechText(String speech, String valid) {
-    return speech.toLowerCase().contains(valid.toLowerCase());
-  }
-
-  enableSpeechRecognition() {
-    if (!isSpeechEnabled) {
-      return false;
-    }
-
-    _speech.setRecognitionResultHandler((String text) {
-      if (checkSpeechText(
-          text, QuestionModel.of(context).currentQuestion.name)) {
-        handleValid();
-      }
-    });
-    _speech.setRecognitionCompleteHandler(() {
-      Future.delayed(Duration(seconds: 1)).then((_) {
-        _speech.listen(locale: 'pl_PL');
-      });
-    });
-    _speech.listen(locale: 'pl_PL');
   }
 
   startTimer() {
@@ -284,9 +244,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
   }
 
   postAnswer() {
-    cancelSpeechRecognition();
-    enableSpeechRecognition();
-
     setState(() {
       isPaused = true;
     });
@@ -330,8 +287,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
     if (isStarted) {
       handleInvalid();
     } else {
-      enableSpeechRecognition();
-
       setState(() {
         isStarted = true;
         secondsLeft = secondsMax;

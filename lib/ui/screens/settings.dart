@@ -50,12 +50,12 @@ class SettingsScreen extends StatelessWidget {
     ]);
   }
 
-  Future<bool> requestSpeechPermissions() async {
-    return _requestPermissions([
-      PermissionGroup.speech,
-      PermissionGroup.microphone,
-    ]);
-  }
+//  Future<bool> requestSpeechPermissions() async {
+//    return _requestPermissions([
+//      PermissionGroup.speech,
+//      PermissionGroup.microphone,
+//    ]);
+//  }
 
   void logChange(String field, dynamic value) {
     AnalyticsService.logEvent(field, {"value": value});
