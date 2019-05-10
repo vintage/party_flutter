@@ -8,6 +8,9 @@ PODS:
   - esys_flutter_share (0.0.1):
     - Flutter
   - Fabric (1.9.0)
+  - Firebase/AdMob (6.0.0):
+    - Firebase/CoreOnly
+    - Google-Mobile-Ads-SDK (~> 7.43)
   - Firebase/Analytics (6.0.0):
     - Firebase/Core
   - Firebase/Core (6.0.0):
@@ -15,6 +18,10 @@ PODS:
     - FirebaseAnalytics (= 6.0.0)
   - Firebase/CoreOnly (6.0.0):
     - FirebaseCore (= 6.0.0)
+  - firebase_admob (0.0.1):
+    - Firebase/AdMob
+    - Firebase/Core
+    - Flutter
   - firebase_analytics (0.0.1):
     - Firebase/Analytics (~> 6.0)
     - Firebase/Core
@@ -41,6 +48,8 @@ PODS:
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
   - Flutter (1.0.0)
+  - Google-Mobile-Ads-SDK (7.43.1):
+    - GoogleAppMeasurement (~> 6.0)
   - GoogleAppMeasurement (6.0.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -95,6 +104,7 @@ DEPENDENCIES:
   - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
   - camera (from `.symlinks/plugins/camera/ios`)
   - esys_flutter_share (from `.symlinks/plugins/esys_flutter_share/ios`)
+  - firebase_admob (from `.symlinks/plugins/firebase_admob/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
   - Flutter (from `.symlinks/flutter/ios`)
@@ -117,6 +127,7 @@ SPEC REPOS:
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseInstanceID
+    - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleUtilities
     - nanopb
@@ -128,6 +139,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/camera/ios"
   esys_flutter_share:
     :path: ".symlinks/plugins/esys_flutter_share/ios"
+  firebase_admob:
+    :path: ".symlinks/plugins/firebase_admob/ios"
   firebase_analytics:
     :path: ".symlinks/plugins/firebase_analytics/ios"
   firebase_crashlytics:
@@ -162,12 +175,14 @@ SPEC CHECKSUMS:
   esys_flutter_share: 14e6653d540bfe343c331276be9eb26000e718c3
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Firebase: fa80b9d987ca014a1ba9357496ef2a0178b28b12
+  firebase_admob: b8cc46113ddf88a62fec340e9446607a5061a872
   firebase_analytics: fe329224830629f9a38090b92e23045201c397ed
   firebase_crashlytics: 5e46e1d4c4a7ce372583979fa9a59377e2b5c729
   FirebaseAnalytics: 1743c5f4de3687d0745709dfdc4b1dea1484f44c
   FirebaseCore: e38f025287b413255a53acc1945d048a112047f7
   FirebaseInstanceID: 0e0348a3c00a734fa376a070f5ad4533ad975cb5
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
+  Google-Mobile-Ads-SDK: 9d3474acb70a6c12bfa69c9fe1ac28d7de8b9be9
   GoogleAppMeasurement: 7f028ea162b72c8f326daec74afc95d94f7a47d6
   GoogleUtilities: f1faafc033ea203adf1783ce00af455bb99d0e5b
   launch_review: 98c85a4cb86d1376b14958ebe69ddbcc753ff192
