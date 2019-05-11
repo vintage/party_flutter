@@ -20,6 +20,9 @@ class CategoryModel extends StoreModel {
   Category _currentCategory;
   Category get currentCategory => _currentCategory;
 
+  Map<String, int> _playedCount = {};
+  Map<String, int> get playedCount => _playedCount;
+
   CategoryModel(this.repository);
 
   load(String languageCode) async {
@@ -38,6 +41,19 @@ class CategoryModel extends StoreModel {
 
   toggleFavorite(Category category) {
     _favourites = repository.toggleFavorite(_favourites, category);
+    notifyListeners();
+  }
+
+  getPlayedCount(Category category) {
+    if (!_playedCount.containsKey(category.id)) {
+      _playedCount[category.id] = repository.getPlayedCount(category);
+    }
+
+    return _playedCount[category.id];
+  }
+
+  increasePlayedCount(Category category) async {
+    _playedCount[category.id] = repository.increasePlayedCount(category);
     notifyListeners();
   }
 

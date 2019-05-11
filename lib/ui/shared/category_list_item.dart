@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:zgadula/store/category.dart';
 
 import 'package:zgadula/ui/theme.dart';
 import 'package:zgadula/models/category.dart';
@@ -57,8 +59,31 @@ class _CategoryListItemState extends State<CategoryListItem>
     });
   }
 
+  Widget buildMetaItem(IconData icon, String text) {
+    return Opacity(
+      opacity: 0.7,
+      child: Row(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: Icon(icon, size: 14),
+          ),
+          Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: ThemeConfig.categoriesMetaSize,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    int questionCount = widget.category.questions.length;
+
     return GestureDetector(
       onTap: widget.onTap,
       child: ScaleTransition(
@@ -73,25 +98,42 @@ class _CategoryListItemState extends State<CategoryListItem>
               right: 0.0,
               left: 0.0,
               bottom: 0.0,
+              top: 0.0,
               child: Container(
-                alignment: Alignment.center,
-                padding: EdgeInsets.only(left: 10.0),
-                height: ThemeConfig.categoriesTextHeight,
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.7),
-                  border: Border(
-                    top: BorderSide(
-                      color: Colors.black.withOpacity(0.35),
-                      width: 1.0,
-                    ),
-                  ),
+                  color: Colors.black.withOpacity(0.6),
                 ),
-                child: Text(
-                  widget.category.name,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: ThemeConfig.categoriesTextSize,
-                  ),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    Text(
+                      widget.category.name,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: ThemeConfig.categoriesTextSize,
+                      ),
+                    ),
+                    ScopedModelDescendant<CategoryModel>(
+                      builder: (context, child, model) {
+                        return Positioned(
+                          bottom: 10,
+                          left: 10,
+                          child: buildMetaItem(
+                            Icons.replay,
+                            model.getPlayedCount(widget.category).toString(),
+                          ),
+                        );
+                      },
+                    ),
+                    questionCount > 0
+                        ? Positioned(
+                            bottom: 10,
+                            right: 10,
+                            child: buildMetaItem(
+                                Icons.apps, questionCount.toString()),
+                          )
+                        : null,
+                  ].where((o) => o != null).toList(),
                 ),
               ),
             ),

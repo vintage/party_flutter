@@ -62,7 +62,7 @@ class App extends StatelessWidget {
   Widget buildStore(BuildContext context, SharedPreferences storage) {
     if (stores.length == 0) {
       stores.addAll({
-        CategoryModel: CategoryModel(CategoryRepository()),
+        CategoryModel: CategoryModel(CategoryRepository(storage: storage)),
         QuestionModel: QuestionModel(QuestionRepository()),
         TutorialModel: TutorialModel(TutorialRepository(storage: storage)),
         SettingsModel: SettingsModel(SettingsRepository(storage: storage)),

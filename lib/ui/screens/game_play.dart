@@ -177,6 +177,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
 
   showScore() {
     SettingsModel.of(context).increaseGamesFinished();
+    CategoryModel.of(context).increasePlayedCount(category);
     AnalyticsService.logEvent('game_score', {
       'valid': QuestionModel.of(context).questionsPassed.length,
       'invalid': QuestionModel.of(context).questionsFailed.length,
