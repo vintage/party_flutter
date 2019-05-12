@@ -244,9 +244,18 @@ class GamePlayScreenState extends State<GamePlayScreen>
     startTimer();
   }
 
-  postAnswer() {
+  postAnswer({@required bool isValid}) {
+    VibrationService.vibrate();
+    QuestionModel.of(context).answerQuestion(isValid);
+
     setState(() {
       isPaused = true;
+    });
+
+    AnalyticsService.logEvent('answer_question', {
+      'valid': isValid,
+      'question': QuestionModel.of(context).currentQuestion.name,
+      'category': category.name,
     });
   }
 
@@ -255,16 +264,9 @@ class GamePlayScreenState extends State<GamePlayScreen>
       return;
     }
 
-    AnalyticsService.logEvent('answer_question', {
-      'valid': true,
-      'category': category.name,
-    });
-
     AudioService.valid(context);
-    VibrationService.vibrate();
-    QuestionModel.of(context).markQuestionAsValid();
     validAC.forward();
-    postAnswer();
+    postAnswer(isValid: true);
   }
 
   handleInvalid() {
@@ -272,16 +274,9 @@ class GamePlayScreenState extends State<GamePlayScreen>
       return;
     }
 
-    AnalyticsService.logEvent('answer_question', {
-      'valid': false,
-      'category': category.name,
-    });
-
     AudioService.invalid(context);
-    VibrationService.vibrate();
-    QuestionModel.of(context).markQuestionAsInvalid();
     invalidAC.forward();
-    postAnswer();
+    postAnswer(isValid: false);
   }
 
   handleTimeout() {

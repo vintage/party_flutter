@@ -75,13 +75,8 @@ class QuestionModel extends StoreModel {
     notifyListeners();
   }
 
-  markQuestionAsValid() {
-    _currentQuestion.isPassed = true;
-    notifyListeners();
-  }
-
-  markQuestionAsInvalid() {
-    _currentQuestion.isPassed = false;
+  answerQuestion(bool isValid) {
+    _currentQuestion.isPassed = isValid;
     notifyListeners();
   }
 
