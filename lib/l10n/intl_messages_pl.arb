@@ -169,6 +169,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "settingsStartTutorial": "Jak grać?",
+    "@settingsStartTutorial": {
+      "description": "Label for opening tutorial",
+      "type": "text",
+      "placeholders": {}
+    },
   "roundTime": "Czas rundy",
   "@roundTime": {
     "description": "Label for round time slider",

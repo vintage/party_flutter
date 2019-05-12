@@ -249,6 +249,14 @@ class AppLocalizations {
     );
   }
 
+  String get settingsStartTutorial {
+    return Intl.message(
+      'How to play?',
+      name: 'settingsStartTutorial',
+      desc: 'Label for opening tutorial',
+    );
+  }
+
   String get roundTime {
     return Intl.message(
       'Round time',

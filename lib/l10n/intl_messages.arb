@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-04-30T13:04:01.925838",
+  "@@last_modified": "2019-05-12T20:26:04.351269",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -165,6 +165,12 @@
   "settingsPrivacyPolicy": "Privacy policy",
   "@settingsPrivacyPolicy": {
     "description": "Label for opening privacy policy",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsStartTutorial": "How to play?",
+  "@settingsStartTutorial": {
+    "description": "Label for opening tutorial",
     "type": "text",
     "placeholders": {}
   },

@@ -16,6 +16,7 @@ import 'ui/screens/game_gallery.dart';
 import 'ui/screens/settings.dart';
 import 'ui/screens/tutorial.dart';
 import 'ui/screens/home.dart';
+import 'ui/screens/contributors.dart';
 import 'services/analytics.dart';
 import 'services/language.dart';
 import 'services/ads.dart';
@@ -25,6 +26,7 @@ import 'repository/question.dart';
 import 'repository/language.dart';
 import 'repository/settings.dart';
 import 'repository/tutorial.dart';
+import 'repository/contributor.dart';
 import 'store/store.dart';
 import 'store/category.dart';
 import 'store/question.dart';
@@ -32,6 +34,7 @@ import 'store/tutorial.dart';
 import 'store/settings.dart';
 import 'store/language.dart';
 import 'store/gallery.dart';
+import 'store/contributor.dart';
 
 class App extends StatelessWidget {
   final Map<Type, StoreModel> stores = {};
@@ -68,6 +71,7 @@ class App extends StatelessWidget {
         SettingsModel: SettingsModel(SettingsRepository(storage: storage)),
         LanguageModel: LanguageModel(LanguageRepository(storage: storage)),
         GalleryModel: GalleryModel(),
+        ContributorModel: ContributorModel(ContributorRepository()),
       });
       stores.values.forEach((store) => store.initialize());
     }
@@ -84,7 +88,10 @@ class App extends StatelessWidget {
               model: stores[LanguageModel],
               child: ScopedModel<GalleryModel>(
                 model: stores[GalleryModel],
-                child: buildApp(context),
+                child: ScopedModel<ContributorModel>(
+                  model: stores[ContributorModel],
+                  child: buildApp(context),
+                ),
               ),
             ),
           ),
@@ -132,6 +139,7 @@ class App extends StatelessWidget {
             '/game-gallery': (context) => GameGalleryScreen(),
             '/settings': (context) => SettingsScreen(),
             '/tutorial': (context) => TutorialScreen(),
+            '/contributors': (context) => ContributorsScreen(),
           },
           navigatorObservers: [
             FirebaseAnalyticsObserver(analytics: AnalyticsService.analytics),

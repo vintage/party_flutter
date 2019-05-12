@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:launch_review/launch_review.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -18,15 +17,9 @@ class SettingsScreen extends StatelessWidget {
       headerText: AppLocalizations.of(context).settingsHeader,
       actions: [
         IconButton(
-          icon: Icon(Icons.help),
+          icon: Icon(Icons.people),
           iconSize: ThemeConfig.appBarIconSize,
-          onPressed: () {
-            AnalyticsService.logEvent('settings_tutorial', {});
-            Navigator.pushNamed(
-              context,
-              '/tutorial',
-            );
-          },
+          onPressed: () => openCredits(context),
         ),
       ],
     );
@@ -154,9 +147,9 @@ class SettingsScreen extends StatelessWidget {
                 onTap: openPrivacyPolicy,
               ),
               ListTile(
-                leading: Icon(Icons.rate_review),
-                title: Text('v ${model.version}'),
-                onTap: rateApp,
+                leading: Icon(Icons.help),
+                title: Text(AppLocalizations.of(context).settingsStartTutorial),
+                onTap: () => openTutorial(context),
               ),
             ],
           );
@@ -194,12 +187,18 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  rateApp() {
-    AnalyticsService.logEvent('settings_rate_app', {});
+  openTutorial(BuildContext context) {
+    AnalyticsService.logEvent('settings_tutorial', {});
+    Navigator.pushNamed(
+      context,
+      '/tutorial',
+    );
+  }
 
-    LaunchReview.launch(
-      androidAppId: SettingsModel.androidId,
-      iOSAppId: SettingsModel.appleId,
+  openCredits(BuildContext context) {
+    Navigator.pushNamed(
+      context,
+      '/contributors',
     );
   }
 

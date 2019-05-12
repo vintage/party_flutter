@@ -168,6 +168,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "settingsStartTutorial": "How to play?",
+    "@settingsStartTutorial": {
+      "description": "Label for opening tutorial",
+      "type": "text",
+      "placeholders": {}
+    },
   "roundTime": "Round time",
   "@roundTime": {
     "description": "Label for round time slider",
