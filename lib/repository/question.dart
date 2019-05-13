@@ -14,7 +14,7 @@ class QuestionRepository {
     Map<String, List<Question>> questions = {};
     for (Map<String, dynamic> categoryMap in categoryList) {
       questions[categoryMap['id']] =
-          List.from(categoryMap['questions'].map((name) => Question(name)));
+          List.from(categoryMap['questions'].map((name) => Question(name, categoryMap['name'])));
     }
 
     return questions;

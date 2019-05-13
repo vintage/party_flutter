@@ -334,6 +334,8 @@ class GamePlayScreenState extends State<GamePlayScreen>
   Widget buildGameContent() {
     return ScopedModelDescendant<QuestionModel>(
       builder: (context, child, model) {
+        var currentQuestion = model.currentQuestion;
+
         return Stack(
           children: [
             Row(
@@ -359,11 +361,24 @@ class GamePlayScreenState extends State<GamePlayScreen>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    model.currentQuestion == null
+                    currentQuestion == null
+                        ? null
+                        : Padding(
+                            padding: EdgeInsets.only(top: 20.0),
+                            child: Text(
+                              currentQuestion.categoryName,
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                    currentQuestion == null
                         ? null
                         : Expanded(
                             child: Center(
-                              child: buildHeader(model.currentQuestion.name),
+                              child: buildHeader(currentQuestion.name),
                             ),
                           ),
                     Padding(
@@ -371,7 +386,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
                       child: Text(
                         secondsLeft.toString(),
                         style: TextStyle(
-                          fontSize: 24.0,
+                          fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),

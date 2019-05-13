@@ -20,7 +20,7 @@ class Category {
         name = json['name'],
         image = json['image'],
         description = json['description'],
-        questions = List.from(json['questions'].map((name) => Question(name)));
+        questions = List.from(json['questions'].map((name) => Question(name, json['name'])));
 
   String getImagePath() {
     return 'assets/images/categories/$image';
