@@ -264,6 +264,13 @@ class AppLocalizations {
       desc: 'Label for round time slider',
     );
   }
+
+  String categoryItemQuestionsCount(int count) => Intl.message(
+      "$count items",
+      name: "categoryItemQuestionsCount",
+      args: [count],
+      desc: "Metadata showing total count of questions in category",
+  );
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

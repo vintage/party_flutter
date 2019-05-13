@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-05-12T20:26:04.351269",
+  "@@last_modified": "2019-05-13T18:10:34.410018",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -179,5 +179,13 @@
     "description": "Label for round time slider",
     "type": "text",
     "placeholders": {}
+  },
+  "categoryItemQuestionsCount": "{count} items",
+  "@categoryItemQuestionsCount": {
+    "description": "Metadata showing total count of questions in category",
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
   }
 }

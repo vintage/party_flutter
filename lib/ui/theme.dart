@@ -68,7 +68,7 @@ class ThemeConfig {
 
   static final categoriesGridCount = isTablet ? 3 : 2;
   static final categoriesTextHeight = isTablet ? 55.0 : 35.0;
-  static final categoriesTextSize = isTablet ? 20.0 : 14.0;
+  static final categoriesTextSize = isTablet ? 26.0 : 18.0;
   static final categoriesMetaSize = isTablet ? 14.0 : 10.0;
   static final categoryImageSize = isTablet ? 280.0 : 170.0;
   static final categorySampleQuestionPadding = isTablet ? 8.0 : 4.0;

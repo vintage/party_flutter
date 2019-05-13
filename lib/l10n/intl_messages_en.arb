@@ -179,5 +179,13 @@
     "description": "Label for round time slider",
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "categoryItemQuestionsCount": "{count} items",
+    "@categoryItemQuestionsCount": {
+      "description": "Metadata showing total count of questions in category",
+      "type": "text",
+      "placeholders": {
+        "count": {}
+      }
+    }
 }

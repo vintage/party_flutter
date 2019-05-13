@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:zgadula/localizations.dart';
 import 'package:zgadula/store/category.dart';
 
 import 'package:zgadula/ui/theme.dart';
@@ -59,15 +60,17 @@ class _CategoryListItemState extends State<CategoryListItem>
     });
   }
 
-  Widget buildMetaItem(IconData icon, String text) {
+  Widget buildMetaItem(String text, [IconData icon]) {
     return Opacity(
       opacity: 0.7,
       child: Row(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0),
-            child: Icon(icon, size: 14),
-          ),
+          icon != null
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: Icon(icon, size: 14),
+                )
+              : null,
           Text(
             text,
             style: TextStyle(
@@ -75,7 +78,7 @@ class _CategoryListItemState extends State<CategoryListItem>
               fontSize: ThemeConfig.categoriesMetaSize,
             ),
           ),
-        ],
+        ].where((o) => o != null).toList(),
       ),
     );
   }
@@ -101,7 +104,7 @@ class _CategoryListItemState extends State<CategoryListItem>
               top: 0.0,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.6),
+                  color: Colors.black.withOpacity(0.7),
                 ),
                 child: Stack(
                   alignment: Alignment.center,
@@ -119,8 +122,8 @@ class _CategoryListItemState extends State<CategoryListItem>
                           bottom: 10,
                           left: 10,
                           child: buildMetaItem(
-                            Icons.replay,
                             model.getPlayedCount(widget.category).toString(),
+                            Icons.play_arrow,
                           ),
                         );
                       },
@@ -130,7 +133,8 @@ class _CategoryListItemState extends State<CategoryListItem>
                             bottom: 10,
                             right: 10,
                             child: buildMetaItem(
-                                Icons.apps, questionCount.toString()),
+                              AppLocalizations.of(context).categoryItemQuestionsCount(questionCount),
+                            ),
                           )
                         : null,
                   ].where((o) => o != null).toList(),
