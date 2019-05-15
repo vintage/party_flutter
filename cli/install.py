@@ -33,7 +33,7 @@ def clean_category(language):
 
     for category in categories:
         unique_questions = sorted(set(category['questions']))
-        unique_questions = [q[0].upper() + q[1:] for q in unique_questions]
+        unique_questions = [(q[0].upper() + q[1:]).strip() for q in unique_questions]
 
         prevent_semi_duplicates = []
         for question in unique_questions:
