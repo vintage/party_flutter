@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:zgadula/services/analytics.dart';
 
 import 'package:zgadula/services/formatters.dart';
 import 'package:zgadula/localizations.dart';
@@ -72,9 +73,11 @@ class CategoryDetailScreen extends StatelessWidget {
                                 value: settingsModel.roundTime.toDouble(),
                                 min: 30.0,
                                 max: 120.0,
-                                divisions: 6,
-                                onChanged: (value) => settingsModel
-                                    .changeRoundTime(value.toInt()),
+                                divisions: 3,
+                                onChanged: (value) {
+                                  AnalyticsService.logEvent("settings_round_time", {"value": value});
+                                  settingsModel.changeRoundTime(value.toInt());
+                                },
                               ),
                               RichText(
                                 text: TextSpan(
