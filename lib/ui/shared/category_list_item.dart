@@ -104,7 +104,7 @@ class _CategoryListItemState extends State<CategoryListItem>
               top: 0.0,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.7),
+                  color: Theme.of(context).primaryColor.withOpacity(0.3),
                 ),
                 child: Stack(
                   alignment: Alignment.center,
@@ -114,6 +114,16 @@ class _CategoryListItemState extends State<CategoryListItem>
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: ThemeConfig.categoriesTextSize,
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: 30,
+                      child: Container(
+                        height: double.infinity,
+                        color: Theme.of(context).primaryColor.withOpacity(0.5),
                       ),
                     ),
                     ScopedModelDescendant<CategoryModel>(
