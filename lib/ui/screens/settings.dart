@@ -31,9 +31,8 @@ class SettingsScreen extends StatelessWidget {
         await PermissionHandler().requestPermissions(permissionGroups);
 
     return permissions.values
-            .where((status) => status != PermissionStatus.granted)
-            .length ==
-        0;
+        .where((status) => status != PermissionStatus.granted)
+        .isEmpty;
   }
 
   Future<bool> requestCameraPermissions() async {

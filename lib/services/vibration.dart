@@ -5,7 +5,7 @@ class VibrationService {
     bool canVibrate = await Vibration.hasVibrator();
 
     if (canVibrate) {
-      Vibration.vibrate();
+      await Vibration.vibrate();
     }
   }
 }

@@ -75,7 +75,8 @@ class CategoryDetailScreen extends StatelessWidget {
                                 max: 120.0,
                                 divisions: 3,
                                 onChanged: (value) {
-                                  AnalyticsService.logEvent("settings_round_time", {"value": value});
+                                  AnalyticsService.logEvent(
+                                      "settings_round_time", {"value": value});
                                   settingsModel.changeRoundTime(value.toInt());
                                 },
                               ),

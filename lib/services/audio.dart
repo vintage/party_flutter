@@ -8,7 +8,7 @@ class AudioService {
   static _playSfx(BuildContext context, String name) async {
     bool canAudio = SettingsModel.of(context).isAudioEnabled;
     if (canAudio) {
-      sfxPlayer.play(name);
+      await sfxPlayer.play(name);
     }
   }
 

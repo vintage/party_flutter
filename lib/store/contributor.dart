@@ -17,7 +17,7 @@ class ContributorModel extends StoreModel {
   ContributorModel(this.repository);
 
   load() async {
-    if (_contributors.length != 0) {
+    if (_contributors.isNotEmpty) {
       return;
     }
 

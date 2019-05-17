@@ -27,7 +27,8 @@ class AdsService {
 
     interstitialAd = InterstitialAd(
       adUnitId: interstitialId,
-    )..load();
+    );
+    await interstitialAd.load();
   }
 
   static showInterstitialAd() {
