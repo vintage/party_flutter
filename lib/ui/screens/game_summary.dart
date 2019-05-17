@@ -102,7 +102,7 @@ class GameSummaryScreen extends StatelessWidget {
                 ),
                 ScopedModelDescendant<GalleryModel>(
                     builder: (context, child, model) {
-                  if (model.images.length == 0) {
+                  if (model.images.isEmpty) {
                     return Container();
                   }
 

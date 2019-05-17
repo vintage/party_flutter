@@ -266,11 +266,11 @@ class AppLocalizations {
   }
 
   String categoryItemQuestionsCount(int count) => Intl.message(
-      "$count items",
-      name: "categoryItemQuestionsCount",
-      args: [count],
-      desc: "Metadata showing total count of questions in category",
-  );
+        "$count items",
+        name: "categoryItemQuestionsCount",
+        args: [count],
+        desc: "Metadata showing total count of questions in category",
+      );
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

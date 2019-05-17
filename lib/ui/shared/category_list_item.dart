@@ -143,7 +143,8 @@ class _CategoryListItemState extends State<CategoryListItem>
                             bottom: 10,
                             right: 10,
                             child: buildMetaItem(
-                              AppLocalizations.of(context).categoryItemQuestionsCount(questionCount),
+                              AppLocalizations.of(context)
+                                  .categoryItemQuestionsCount(questionCount),
                             ),
                           )
                         : null,

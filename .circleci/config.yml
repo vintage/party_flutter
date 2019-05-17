@@ -7,4 +7,5 @@ jobs:
       - checkout
       - run: flutter doctor
       - run: flutter packages get
+      - run: flutter analyze
       - run: flutter test
