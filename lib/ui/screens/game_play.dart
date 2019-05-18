@@ -62,7 +62,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
       enableRotationControl();
     }
     var gamesCount = settings.gamesFinished + 1;
-    showAd = gamesCount % 3 == 0;
+    showAd = gamesCount % 2 == 0;
     if (showAd) {
       AdsService.loadInterstitialAd();
     }
