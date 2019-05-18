@@ -26,11 +26,11 @@ class CategoryRepository {
     return categories;
   }
 
-  List<Category> toggleFavorite(List<Category> favourites, Category selected) {
-    if (favourites.contains(selected)) {
-      favourites.remove(selected);
+  List<String> toggleFavorite(List<String> favourites, Category selected) {
+    if (favourites.contains(selected.id)) {
+      favourites.remove(selected.id);
     } else {
-      favourites.add(selected);
+      favourites.add(selected.id);
     }
 
     return favourites;

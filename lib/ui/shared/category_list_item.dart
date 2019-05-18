@@ -15,15 +15,11 @@ class CategoryListItem extends StatefulWidget {
     this.index,
     this.category,
     this.onTap,
-    this.onFavoriteToggle,
-    this.isFavorite = false,
   });
 
   final int index;
   final Category category;
-  final bool isFavorite;
   final VoidCallback onTap;
-  final VoidCallback onFavoriteToggle;
 
   @override
   _CategoryListItemState createState() => _CategoryListItemState();
