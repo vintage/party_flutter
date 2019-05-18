@@ -111,6 +111,7 @@ class _CategoryListItemState extends State<CategoryListItem>
                   children: <Widget>[
                     Text(
                       widget.category.name,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: ThemeConfig.categoriesTextSize,
