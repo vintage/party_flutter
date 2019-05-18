@@ -12,12 +12,10 @@ import 'category_image.dart';
 
 class CategoryListItem extends StatefulWidget {
   CategoryListItem({
-    this.index,
     this.category,
     this.onTap,
   });
 
-  final int index;
   final Category category;
   final VoidCallback onTap;
 
@@ -27,7 +25,7 @@ class CategoryListItem extends StatefulWidget {
 
 class _CategoryListItemState extends State<CategoryListItem>
     with TickerProviderStateMixin {
-  static const textAnimationDuration = Duration(milliseconds: 1000);
+  static const textAnimationDuration = Duration(milliseconds: 600);
 
   AnimationController animationController;
   Animation<double> animation;
@@ -45,15 +43,11 @@ class _CategoryListItemState extends State<CategoryListItem>
   }
 
   initAnimations() {
-    int index = widget.index;
     animationController =
         AnimationController(vsync: this, duration: textAnimationDuration);
     animation =
         CurvedAnimation(parent: animationController, curve: Curves.decelerate);
-
-    Future.delayed(Duration(milliseconds: 75 * min(index, 8))).then((_) {
-      animationController.forward();
-    });
+    animationController.forward();
   }
 
   Widget buildMetaItem(String text, [IconData icon]) {
