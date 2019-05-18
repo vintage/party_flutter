@@ -8,23 +8,9 @@ import 'package:zgadula/services/analytics.dart';
 import 'package:zgadula/services/language.dart';
 import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/store/language.dart';
-import 'package:zgadula/ui/theme.dart';
 import '../shared/widgets.dart';
 
 class SettingsScreen extends StatelessWidget {
-  Widget buildAppBar(context) {
-    return Header(
-      headerText: AppLocalizations.of(context).settingsHeader,
-      actions: [
-        IconButton(
-          icon: Icon(Icons.people),
-          iconSize: ThemeConfig.appBarIconSize,
-          onPressed: () => openCredits(context),
-        ),
-      ],
-    );
-  }
-
   Future<bool> _requestPermissions(
       List<PermissionGroup> permissionGroups) async {
     Map<PermissionGroup, PermissionStatus> permissions =
@@ -166,7 +152,6 @@ class SettingsScreen extends StatelessWidget {
           Expanded(
             child: CustomScrollView(
               slivers: <Widget>[
-                buildAppBar(context),
                 SliverList(
                   delegate: SliverChildListDelegate(
                     <Widget>[
@@ -176,10 +161,6 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          BottomButton(
-            child: Text(AppLocalizations.of(context).preparationBack),
-            onPressed: () => Navigator.pop(context),
           ),
         ],
       ),
