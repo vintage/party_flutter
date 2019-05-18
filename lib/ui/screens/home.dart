@@ -113,7 +113,6 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               return CategoryListItem(
                 index: index,
                 category: category,
-                isFavorite: model.favourites.contains(category.id),
                 onTap: () {
                   model.setCurrent(category);
                   qModel.generateSampleQuestions(category.id);
@@ -128,7 +127,6 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     '/category',
                   );
                 },
-                onFavoriteToggle: () => model.toggleFavorite(category),
               );
             }).toList(),
           ),

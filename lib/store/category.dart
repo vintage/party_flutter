@@ -14,8 +14,8 @@ class CategoryModel extends StoreModel {
   List<Category> _categories = [];
   List<Category> get categories => _categories;
 
-  List<Category> _favourites = [];
-  List<Category> get favourites => _favourites;
+  List<String> _favourites = [];
+  List<String> get favourites => _favourites;
 
   Category _currentCategory;
   Category get currentCategory => _currentCategory;
@@ -37,6 +37,10 @@ class CategoryModel extends StoreModel {
   setCurrent(Category category) {
     _currentCategory = category;
     notifyListeners();
+  }
+
+  isFavorite(Category category) {
+    return _favourites.contains(category.id);
   }
 
   toggleFavorite(Category category) {
