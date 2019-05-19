@@ -26,44 +26,44 @@ class CategoryListState extends State<CategoryList> {
 
     return ScopedModelDescendant<CategoryModel>(
       builder: (context, child, model) => ScopedModelDescendant<QuestionModel>(
-        builder: (context, child, qModel) {
-          return SliverList(
-            delegate: SliverChildListDelegate(
-              <Widget>[
-                GridView.count(
-                  shrinkWrap: true,
-                  primary: false,
-                  padding: EdgeInsets.all(0.0),
-                  crossAxisSpacing: 0.0,
-                  mainAxisSpacing: 0.0,
-                  crossAxisCount: ThemeConfig.categoriesGridCount,
-                  children: categories.asMap().keys.map((index) {
-                    var category = categories[index];
+            builder: (context, child, qModel) {
+              return SliverList(
+                delegate: SliverChildListDelegate(
+                  <Widget>[
+                    GridView.count(
+                      shrinkWrap: true,
+                      primary: false,
+                      padding: EdgeInsets.all(0.0),
+                      crossAxisSpacing: 0.0,
+                      mainAxisSpacing: 0.0,
+                      crossAxisCount: ThemeConfig.categoriesGridCount,
+                      children: categories.asMap().keys.map((index) {
+                        var category = categories[index];
 
-                    return CategoryListItem(
-                      category: category,
-                      onTap: () {
-                        model.setCurrent(category);
-                        qModel.generateSampleQuestions(category.id);
+                        return CategoryListItem(
+                          category: category,
+                          onTap: () {
+                            model.setCurrent(category);
+                            qModel.generateSampleQuestions(category.id);
 
-                        AnalyticsService.logEvent(
-                          'category_select',
-                          {'category': category.name},
+                            AnalyticsService.logEvent(
+                              'category_select',
+                              {'category': category.name},
+                            );
+
+                            Navigator.pushNamed(
+                              context,
+                              '/category',
+                            );
+                          },
                         );
-
-                        Navigator.pushNamed(
-                          context,
-                          '/category',
-                        );
-                      },
-                    );
-                  }).toList(),
+                      }).toList(),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          );
-        },
-      ),
+              );
+            },
+          ),
     );
   }
 }
