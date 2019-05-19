@@ -5,6 +5,7 @@ import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/store/tutorial.dart';
 import 'package:zgadula/ui/screens/category_list.dart';
+import 'package:zgadula/ui/screens/category_favorites.dart';
 import 'package:zgadula/ui/screens/settings.dart';
 import '../shared/widgets.dart';
 
@@ -19,7 +20,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   int tabIndex = 0;
   List<Widget> tabsContent = [
     CategoryListScreen(),
-    CategoryListScreen(),
+    CategoryFavoritesScreen(),
     SettingsScreen(),
   ];
 
