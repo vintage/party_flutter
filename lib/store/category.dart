@@ -15,8 +15,10 @@ class CategoryModel extends StoreModel {
   List<Category> get categories => _categories.values.toList();
 
   List<String> _favourites = [];
-  List<Category> get favourites =>
-      _favourites.map((id) => _categories[id]).toList();
+  List<Category> get favourites => _favourites
+      .map((id) => _categories[id])
+      .where((c) => c != null)
+      .toList();
 
   Category _currentCategory;
   Category get currentCategory => _currentCategory;
@@ -35,6 +37,7 @@ class CategoryModel extends StoreModel {
       key: (c) => c.id,
       value: (c) => c,
     );
+    _favourites = repository.getFavorites();
     _isLoading = false;
     notifyListeners();
   }

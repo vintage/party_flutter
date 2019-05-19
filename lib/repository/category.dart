@@ -8,6 +8,7 @@ import 'package:zgadula/models/category.dart';
 
 class CategoryRepository {
   static const String storageCategoryPlayedCountKey = 'category_played_count';
+  static const String storageFavoriteListKey = 'category_favorite_list';
 
   final SharedPreferences storage;
 
@@ -33,7 +34,13 @@ class CategoryRepository {
       favourites.add(selected.id);
     }
 
+    storage.setStringList(storageFavoriteListKey, favourites);
+
     return favourites;
+  }
+
+  List<String> getFavorites() {
+    return storage.getStringList(storageFavoriteListKey) ?? [];
   }
 
   String _playedCountStorageKey(Category category) {
