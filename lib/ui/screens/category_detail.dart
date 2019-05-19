@@ -9,6 +9,7 @@ import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/question.dart';
 import 'package:zgadula/models/question.dart';
 import 'package:zgadula/store/settings.dart';
+import 'package:zgadula/ui/templates/back_template.dart';
 import 'package:zgadula/ui/theme.dart';
 import '../shared/widgets.dart';
 
@@ -109,10 +110,6 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
               ],
             ),
           ),
-          BottomButton(
-            child: Text(AppLocalizations.of(context).preparationBack),
-            onPressed: () => Navigator.pop(context),
-          ),
         ],
       ),
     );
@@ -139,12 +136,12 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<CategoryModel>(
-      builder: (context, child, model) {
-        var category = model.currentCategory;
+    return BackTemplate(
+      child: ScopedModelDescendant<CategoryModel>(
+        builder: (context, child, model) {
+          var category = model.currentCategory;
 
-        return Scaffold(
-          body: Stack(
+          return Stack(
             children: [
               buildContent(category),
               Positioned(
@@ -156,9 +153,9 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                 ),
               )
             ],
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

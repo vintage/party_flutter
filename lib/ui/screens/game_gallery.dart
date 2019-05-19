@@ -2,15 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:zgadula/localizations.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:zgadula/services/analytics.dart';
 import 'package:zgadula/store/gallery.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:zgadula/ui/templates/back_template.dart';
 
 import '../theme.dart';
-import '../shared/widgets.dart';
 
 class GameGalleryScreen extends StatelessWidget {
   Widget buildGallery() {
@@ -20,7 +19,7 @@ class GameGalleryScreen extends StatelessWidget {
 
       return CarouselSlider(
         enableInfiniteScroll: true,
-        height: double.infinity,
+        height: MediaQuery.of(context).size.height * 0.8,
         enlargeCenterPage: false,
         autoPlay: false,
         viewportFraction: 1.0,
@@ -41,8 +40,8 @@ class GameGalleryScreen extends StatelessWidget {
                     children: [
                       Image.file(item, fit: BoxFit.contain),
                       Positioned(
-                        top: 20,
-                        right: 20,
+                        top: 10,
+                        right: 10,
                         child: FloatingActionButton(
                           elevation: 0.0,
                           child: Icon(Icons.share),
@@ -75,17 +74,14 @@ class GameGalleryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
+    return BackTemplate(
+      child: SafeArea(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Expanded(
               child: buildGallery(),
             ),
-            BottomButton(
-                child: Text(AppLocalizations.of(context).summaryBack),
-                onPressed: () => Navigator.pop(context)),
           ],
         ),
       ),

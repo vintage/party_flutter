@@ -61,12 +61,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "preparationBack": "Wróć",
-  "@preparationBack": {
-    "description": "Button which discards current category and takes the player back to the category listing",
-    "type": "text",
-    "placeholders": {}
-  },
   "preparationOrientationDescription": "Umieść telefon na czole",
     "@preparationOrientationDescription": {
       "description": "Message which reminds player to put the phone in landscape orientation before game starts",
@@ -103,7 +97,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "summaryBack": "Powrót",
+  "summaryBack": "Graj ponownie",
   "@summaryBack": {
     "description": "Button which takes the player from summary screen to category listing",
     "type": "text",
