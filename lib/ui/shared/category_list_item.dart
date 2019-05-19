@@ -1,11 +1,8 @@
-import 'dart:async';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/store/category.dart';
-
 import 'package:zgadula/ui/theme.dart';
 import 'package:zgadula/models/category.dart';
 import 'category_image.dart';
