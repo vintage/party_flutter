@@ -162,7 +162,11 @@ class GamePlayScreenState extends State<GamePlayScreen>
     gameTimer?.cancel();
   }
 
-  gameLoop(Timer timer) {
+  void gameLoop(Timer timer) {
+    if (isPaused) {
+      return;
+    }
+
     if (secondsLeft <= 0 && !isPaused) {
       return handleTimeout();
     }
@@ -226,20 +230,24 @@ class GamePlayScreenState extends State<GamePlayScreen>
     return completer.future;
   }
 
+  void gameOver() {
+    savePictures();
+    showScore();
+  }
+
   nextQuestion() {
     stopTimer();
+    if (secondsLeft == 0) {
+      return gameOver();
+    }
 
     QuestionModel.of(context).setNextQuestion();
     if (QuestionModel.of(context).currentQuestion == null) {
-      savePictures();
-      showScore();
-
-      return;
+      return gameOver();
     }
 
     setState(() {
       isPaused = false;
-      secondsLeft = secondsMax;
     });
 
     startTimer();
@@ -280,7 +288,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
     postAnswer(isValid: false);
   }
 
-  handleTimeout() {
+  void handleTimeout() {
     if (isStarted) {
       handleInvalid();
     } else {

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:zgadula/models/category.dart';
 import 'package:zgadula/services/analytics.dart';
 
-import 'package:zgadula/services/formatters.dart';
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/store/category.dart';
-import 'package:zgadula/store/question.dart';
-import 'package:zgadula/models/question.dart';
 import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/ui/templates/back_template.dart';
 import 'package:zgadula/ui/theme.dart';
@@ -26,6 +24,16 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
         isFavorite ? Icons.favorite : Icons.favorite_border,
       ),
       onPressed: onPressed,
+    );
+  }
+
+  Widget buildRoundTimeSelectItem(String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Text(
+        text,
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 
@@ -53,7 +61,44 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                     ),
                   ),
                 ),
-                RaisedButton(
+                ScopedModelDescendant<SettingsModel>(
+                  builder: (context, child, settingsModel) {
+                    return Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: RichText(
+                            text: TextSpan(
+                              text: AppLocalizations.of(context).roundTime,
+                              style: Theme.of(context).textTheme.body1,
+                            ),
+                          ),
+                        ),
+                        CupertinoSegmentedControl(
+                          borderColor: Colors.white,
+                          selectedColor: secondaryColor,
+                          pressedColor: secondaryDarkColor,
+                          unselectedColor: Theme.of(context).primaryColor,
+                          children: {
+                            30: buildRoundTimeSelectItem("30s"),
+                            60: buildRoundTimeSelectItem("60s"),
+                            90: buildRoundTimeSelectItem("90s"),
+                            120: buildRoundTimeSelectItem("120s"),
+                          },
+                          groupValue: settingsModel.roundTime.toDouble(),
+                          onValueChanged: (value) {
+                            AnalyticsService.logEvent(
+                                "settings_round_time", {"value": value});
+                            settingsModel.changeRoundTime(value.toInt());
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: RaisedButton(
                     child: Text(AppLocalizations.of(context).preparationPlay),
                     onPressed: () {
                       SettingsModel.of(context).increaseGamesPlayed();
@@ -62,72 +107,11 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                         context,
                         '/game-play',
                       );
-                    }),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 32.0),
-                  child: ScopedModelDescendant<QuestionModel>(
-                    builder: (context, child, model) {
-                      return buildQuestionCards(
-                        model.sampleQuestions,
-                      );
                     },
                   ),
                 ),
-                ScopedModelDescendant<SettingsModel>(
-                  builder: (context, child, settingsModel) {
-                    String timeDisplay =
-                        FormatterService.secondsToTime(settingsModel.roundTime);
-
-                    return Column(
-                      children: <Widget>[
-                        Slider(
-                          value: settingsModel.roundTime.toDouble(),
-                          min: 30.0,
-                          max: 120.0,
-                          divisions: 3,
-                          onChanged: (value) {
-                            AnalyticsService.logEvent(
-                                "settings_round_time", {"value": value});
-                            settingsModel.changeRoundTime(value.toInt());
-                          },
-                        ),
-                        RichText(
-                          text: TextSpan(
-                            text: AppLocalizations.of(context).roundTime,
-                            style: Theme.of(context).textTheme.body1,
-                            children: [
-                              TextSpan(
-                                text: ' $timeDisplay',
-                                style: Theme.of(context).textTheme.body1,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildQuestionCards(List<Question> questions) {
-    return Center(
-      child: Column(
-        children: [
-          Column(
-            children: questions.asMap().keys.map((index) {
-              var question = questions[index];
-
-              return CategorySampleQuestion(
-                index: index,
-                question: question,
-              );
-            }).toList(),
           ),
         ],
       ),

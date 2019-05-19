@@ -71,7 +71,6 @@ class ThemeConfig {
   static final categoriesTextSize = isTablet ? 26.0 : 18.0;
   static final categoriesMetaSize = isTablet ? 14.0 : 10.0;
   static final categoryImageSize = isTablet ? 280.0 : 170.0;
-  static final categorySampleQuestionPadding = isTablet ? 8.0 : 4.0;
 
   static final fullScreenIconSize = isTablet ? 164.0 : 96.0;
 }

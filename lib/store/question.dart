@@ -14,19 +14,13 @@ class QuestionModel extends StoreModel {
   Map<String, List<Question>> _questions = {};
   Map<String, List<Question>> get questions => _questions;
 
-  List<Question> _sampleQuestions = [];
-  List<Question> get sampleQuestions => _sampleQuestions;
-
-  Map<String, List<Question>> _sampleQuestionsByCategory = {};
-  Map<String, List<Question>> get sampleQuestionsByCategory =>
-      _sampleQuestionsByCategory;
-
   List<Question> _currentQuestions = [];
   List<Question> get currentQuestions => _currentQuestions;
+  List<Question> get questionsAnswered => _currentQuestions.where((q) => q.isPassed != null).toList();
   List<Question> get questionsPassed =>
-      _currentQuestions.where((q) => q.isPassed).toList();
+      questionsAnswered.where((q) => q.isPassed).toList();
   List<Question> get questionsFailed =>
-      _currentQuestions.where((q) => !q.isPassed).toList();
+      questionsAnswered.where((q) => !q.isPassed).toList();
   List<Question> _latestQuestions = [];
   List<Question> get latestQuestions => _latestQuestions;
 
@@ -40,21 +34,7 @@ class QuestionModel extends StoreModel {
     notifyListeners();
 
     _questions = await repository.getAll(languageCode);
-    _sampleQuestionsByCategory = {};
     _isLoading = false;
-    notifyListeners();
-  }
-
-  generateSampleQuestions(String categoryId) {
-    if (!_sampleQuestionsByCategory.containsKey(categoryId)) {
-      _sampleQuestionsByCategory[categoryId] = repository.getRandom(
-        _questions,
-        categoryId,
-        4,
-      );
-    }
-
-    _sampleQuestions = _sampleQuestionsByCategory[categoryId];
     notifyListeners();
   }
 
@@ -65,6 +45,9 @@ class QuestionModel extends StoreModel {
       10,
       excluded: _latestQuestions,
     );
+    _currentQuestions.forEach((q) {
+      q.isPassed = null;
+    });
     _latestQuestions.addAll(_currentQuestions);
     _currentQuestion = _currentQuestions[0];
     notifyListeners();
