@@ -4,19 +4,19 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:zgadula/store/category.dart';
 import '../shared/widgets.dart';
 
-class CategoryListScreen extends StatefulWidget {
+class CategoryFavoritesScreen extends StatefulWidget {
   @override
-  CategoryListScreenState createState() {
-    return new CategoryListScreenState();
+  CategoryFavoritesScreenState createState() {
+    return new CategoryFavoritesScreenState();
   }
 }
 
-class CategoryListScreenState extends State<CategoryListScreen>
+class CategoryFavoritesScreenState extends State<CategoryFavoritesScreen>
     with TickerProviderStateMixin {
   Widget buildContent(BuildContext context) {
     return ScopedModelDescendant<CategoryModel>(
       builder: (context, child, model) =>
-          CategoryList(categories: model.categories),
+          CategoryList(categories: model.favourites),
     );
   }
 

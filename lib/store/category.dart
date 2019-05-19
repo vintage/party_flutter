@@ -11,11 +11,12 @@ class CategoryModel extends StoreModel {
   bool _isLoading = true;
   bool get isLoading => _isLoading;
 
-  List<Category> _categories = [];
-  List<Category> get categories => _categories;
+  Map<String, Category> _categories = {};
+  List<Category> get categories => _categories.values.toList();
 
   List<String> _favourites = [];
-  List<String> get favourites => _favourites;
+  List<Category> get favourites =>
+      _favourites.map((id) => _categories[id]).toList();
 
   Category _currentCategory;
   Category get currentCategory => _currentCategory;
@@ -29,7 +30,11 @@ class CategoryModel extends StoreModel {
     _isLoading = true;
     notifyListeners();
 
-    _categories = await repository.getAll(languageCode);
+    _categories = Map.fromIterable(
+      await repository.getAll(languageCode),
+      key: (c) => c.id,
+      value: (c) => c,
+    );
     _isLoading = false;
     notifyListeners();
   }
