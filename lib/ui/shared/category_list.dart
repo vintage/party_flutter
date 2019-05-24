@@ -25,9 +25,8 @@ class CategoryListState extends State<CategoryList> {
 
     return ScopedModelDescendant<CategoryModel>(
       builder: (context, child, model) {
-        return SliverList(
-          delegate: SliverChildListDelegate(
-            <Widget>[
+        return ListView(
+            children: <Widget>[
               GridView.count(
                 shrinkWrap: true,
                 primary: false,
@@ -57,8 +56,7 @@ class CategoryListState extends State<CategoryList> {
                 }).toList(),
               ),
             ],
-          ),
-        );
+          );
       }
     );
   }

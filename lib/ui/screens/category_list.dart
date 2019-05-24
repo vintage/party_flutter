@@ -13,20 +13,12 @@ class CategoryListScreen extends StatefulWidget {
 
 class CategoryListScreenState extends State<CategoryListScreen>
     with TickerProviderStateMixin {
-  Widget buildContent(BuildContext context) {
-    return ScopedModelDescendant<CategoryModel>(
-      builder: (context, child, model) =>
-          CategoryList(categories: model.categories),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          buildContent(context),
-        ],
+      body: ScopedModelDescendant<CategoryModel>(
+        builder: (context, child, model) =>
+            CategoryList(categories: model.categories),
       ),
     );
   }
