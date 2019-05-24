@@ -100,15 +100,6 @@ class AppLocalizations {
     );
   }
 
-  String get preparationBack {
-    return Intl.message(
-      'Back',
-      name: 'preparationBack',
-      desc:
-          'Button which discards current category and takes the player back to the category listing',
-    );
-  }
-
   String get preparationOrientationDescription {
     return Intl.message(
       'Place the phone on forehead',
@@ -162,7 +153,7 @@ class AppLocalizations {
 
   String get summaryBack {
     return Intl.message(
-      'Back',
+      'Play again',
       name: 'summaryBack',
       desc:
           'Button which takes the player from summary screen to category listing',

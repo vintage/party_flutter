@@ -116,7 +116,7 @@ class GameSummaryScreen extends StatelessWidget {
                 Expanded(
                   child: ListView(
                     children:
-                        buildQuestionsList(context, model.currentQuestions),
+                        buildQuestionsList(context, model.questionsAnswered),
                   ),
                 ),
                 BottomButton(

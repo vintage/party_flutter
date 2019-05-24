@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import 'package:zgadula/localizations.dart';
 import 'package:zgadula/store/contributor.dart';
-import '../shared/widgets.dart';
+import 'package:zgadula/ui/templates/back_template.dart';
 
 class ContributorsScreen extends StatefulWidget {
   @override
@@ -16,12 +15,6 @@ class _ContributorsScreenState extends State<ContributorsScreen> {
     super.initState();
 
     ContributorModel.of(context).load();
-  }
-
-  Widget buildAppBar(context) {
-    return Header(
-      headerText: 'Zgadula',
-    );
   }
 
   Widget buildContent(context) {
@@ -47,30 +40,8 @@ class _ContributorsScreenState extends State<ContributorsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Expanded(
-            child: CustomScrollView(
-              slivers: <Widget>[
-                buildAppBar(context),
-                SliverList(
-                  delegate: SliverChildListDelegate(
-                    <Widget>[
-                      buildContent(context),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          BottomButton(
-            child: Text(AppLocalizations.of(context).preparationBack),
-            onPressed: () => Navigator.pop(context),
-          ),
-        ],
-      ),
+    return BackTemplate(
+      child: buildContent(context),
     );
   }
 }

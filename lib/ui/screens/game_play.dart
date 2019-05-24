@@ -16,6 +16,7 @@ import 'package:zgadula/store/question.dart';
 import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/store/gallery.dart';
 import 'package:zgadula/ui/screens/camera_preview.dart';
+import 'package:zgadula/ui/templates/back_template.dart';
 import 'package:zgadula/ui/theme.dart';
 import 'package:zgadula/services/pictures.dart';
 import 'package:zgadula/services/ads.dart';
@@ -161,7 +162,11 @@ class GamePlayScreenState extends State<GamePlayScreen>
     gameTimer?.cancel();
   }
 
-  gameLoop(Timer timer) {
+  void gameLoop(Timer timer) {
+    if (isPaused) {
+      return;
+    }
+
     if (secondsLeft <= 0 && !isPaused) {
       return handleTimeout();
     }
@@ -225,20 +230,24 @@ class GamePlayScreenState extends State<GamePlayScreen>
     return completer.future;
   }
 
+  void gameOver() {
+    savePictures();
+    showScore();
+  }
+
   nextQuestion() {
     stopTimer();
+    if (secondsLeft == 0) {
+      return gameOver();
+    }
 
     QuestionModel.of(context).setNextQuestion();
     if (QuestionModel.of(context).currentQuestion == null) {
-      savePictures();
-      showScore();
-
-      return;
+      return gameOver();
     }
 
     setState(() {
       isPaused = false;
-      secondsLeft = secondsMax;
     });
 
     startTimer();
@@ -279,7 +288,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
     postAnswer(isValid: false);
   }
 
-  handleTimeout() {
+  void handleTimeout() {
     if (isStarted) {
       handleInvalid();
     } else {
@@ -451,26 +460,17 @@ class GamePlayScreenState extends State<GamePlayScreen>
   Widget build(BuildContext context) {
     bool showCamera = isCameraEnabled && isStarted;
 
-    return WillPopScope(
-      onWillPop: () async {
-        return await confirmBack();
+    return BackTemplate(
+      onBack: () async {
+        if (await confirmBack()) {
+          Navigator.pop(context);
+        }
       },
-      child: Scaffold(
-        floatingActionButtonLocation:
-            CustomFloatingActionButtonLocation.startFloat,
-        floatingActionButton: isPaused
-            ? null
-            : FloatingActionButton(
-                elevation: 0.0,
-                child: Icon(Icons.arrow_back),
-                backgroundColor: Theme.of(context).primaryColor,
-                onPressed: () async {
-                  if (await confirmBack()) {
-                    Navigator.pop(context);
-                  }
-                },
-              ),
-        body: Stack(
+      child: WillPopScope(
+        onWillPop: () async {
+          return await confirmBack();
+        },
+        child: Stack(
           children: [
             showCamera ? CameraPreviewScreen() : null,
             buildContent(),
