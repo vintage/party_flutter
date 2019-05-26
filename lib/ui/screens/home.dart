@@ -7,6 +7,7 @@ import 'package:zgadula/store/tutorial.dart';
 import 'package:zgadula/ui/screens/category_list.dart';
 import 'package:zgadula/ui/screens/category_favorites.dart';
 import 'package:zgadula/ui/screens/settings.dart';
+import 'package:zgadula/localizations.dart';
 import '../shared/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -66,15 +67,15 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   items: [
                     BottomNavigationBarItem(
                       icon: new Icon(Icons.play_arrow),
-                      title: new Text('Play'),
+                      title: new Text(AppLocalizations.of(context).tabCategories),
                     ),
                     BottomNavigationBarItem(
                       icon: new Icon(Icons.favorite),
-                      title: new Text('Favorite'),
+                      title: new Text(AppLocalizations.of(context).tabFavorites),
                     ),
                     BottomNavigationBarItem(
                       icon: Icon(Icons.settings),
-                      title: Text('Settings'),
+                      title: Text(AppLocalizations.of(context).tabSettings),
                     ),
                   ],
                 ),

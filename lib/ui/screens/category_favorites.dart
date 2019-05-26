@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:zgadula/store/category.dart';
+import 'package:zgadula/localizations.dart';
 import '../shared/widgets.dart';
 
 class CategoryFavoritesScreen extends StatefulWidget {
@@ -20,18 +21,18 @@ class CategoryFavoritesScreenState extends State<CategoryFavoritesScreen>
           builder: (context, child, model) {
         if (model.favourites.isEmpty) {
           return Opacity(
-            opacity: 0.5,
+            opacity: 0.3,
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Icon(Icons.grid_on, size: 96),
+                  Icon(Icons.favorite_border, size: 96),
                   Container(
                     width: 160,
 
                     child: Text(
-                      "Dodaj ulubione kategorie aby móc je szybko uruchamiać",
+                      AppLocalizations.of(context).emptyFavorites,
                       textAlign: TextAlign.center,
                     ),
                   ),

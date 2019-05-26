@@ -182,5 +182,29 @@
       "placeholders": {
         "count": {}
       }
-    }
+    },
+  "emptyFavorites": "Dodaj ulubione kategorie aby móc je szybko odnaleźć",
+    "@emptyFavorites": {
+      "description": "Hint shown when there are no favorites defined",
+      "type": "text",
+      "placeholders": {}
+    },
+    "tabCategories": "Graj",
+      "@tabCategories": {
+        "description": "Label for tab with list of categories",
+        "type": "text",
+        "placeholders": {}
+      },
+      "tabFavorites": "Ulubione",
+      "@tabFavorites": {
+        "description": "Label for tab with favorite categories",
+        "type": "text",
+        "placeholders": {}
+      },
+      "tabSettings": "Ustawienia",
+      "@tabSettings": {
+        "description": "Label for tab with game settings",
+        "type": "text",
+        "placeholders": {}
+      }
 }

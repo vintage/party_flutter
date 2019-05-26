@@ -256,12 +256,46 @@ class AppLocalizations {
     );
   }
 
-  String categoryItemQuestionsCount(int count) => Intl.message(
-        "$count items",
-        name: "categoryItemQuestionsCount",
-        args: [count],
-        desc: "Metadata showing total count of questions in category",
-      );
+  String categoryItemQuestionsCount(int count) {
+    return Intl.message(
+      "$count items",
+      name: "categoryItemQuestionsCount",
+      args: [count],
+      desc: "Metadata showing total count of questions in category",
+    );
+  }
+
+  String get emptyFavorites {
+    return Intl.message(
+      'Add favorite categories to find them quicker',
+      name: 'emptyFavorites',
+      desc: 'Hint shown when there are no favorites defined',
+    );
+  }
+
+  String get tabCategories {
+    return Intl.message(
+      'Play',
+      name: 'tabCategories',
+      desc: 'Label for tab with list of categories',
+    );
+  }
+
+  String get tabFavorites {
+    return Intl.message(
+      'Favorites',
+      name: 'tabFavorites',
+      desc: 'Label for tab with favorite categories',
+    );
+  }
+
+  String get tabSettings {
+    return Intl.message(
+      'Settings',
+      name: 'tabSettings',
+      desc: 'Label for tab with game settings',
+    );
+  }
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
