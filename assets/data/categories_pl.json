@@ -1,12 +1,13 @@
 [
   {
-    "description": "Kategoria specjalna zawierająca losowe pytania ze wszystkich kategorii.",
+    "description": "Kategoria specjalna, której hasła pochodzą z losowych dziedzin. Dla wtajemniczonych Zgadulowiczów!",
     "id": "mixup",
     "image": "mix.png",
     "name": "Hasła mieszane",
     "questions": []
   },
   {
+    "description": "Od komedii po dramaty. Opowiedz fabułę, lub odegraj kultową scenkę.",
     "id": "movies",
     "image": "movies.png",
     "name": "Filmy",
@@ -168,6 +169,7 @@
     ]
   },
   {
+    "description": "Opisuj osobniki z królestwa zwięrząt, bądź pokaż je w naturalnym środowisku.",
     "id": "animals",
     "image": "animals.png",
     "name": "Zwierzęta",
@@ -309,6 +311,7 @@
     ]
   },
   {
+    "description": "Każdy jeść musi, a większość nawet to lubi. Opisz jedzenie, picie i powiązane.",
     "id": "food",
     "image": "food.png",
     "name": "Jedzenie i napoje",
@@ -461,6 +464,7 @@
     ]
   },
   {
+    "description": "Udzielaj podpowiedzi nucąc największe światowe hity, bądź wystukuj rytm palcami.",
     "id": "humming",
     "image": "sing.png",
     "name": "Zanuć",
@@ -644,6 +648,7 @@
     ]
   },
   {
+    "description": "Telewizyjne i nie tylko hity do ogadnięcia. Wszystkie chwyty dozwolone.",
     "id": "tv",
     "image": "tv.png",
     "name": "Seriale",
@@ -780,6 +785,7 @@
     ]
   },
   {
+    "description": "Muminki, Reksio, czy Johny Bravo? Czy wszyscy oglądaliście te same bajki?",
     "id": "cartoons",
     "image": "cartoons.png",
     "name": "Filmy animowane",
@@ -916,6 +922,7 @@
     ]
   },
   {
+    "description": "Udzielaj podpowiedzi nucąc największe POLSKIE hity, bądź wystukuj rytm palcami.",
     "id": "humming_pl",
     "image": "sing_pl.png",
     "name": "Zanuć Polska",
@@ -1143,6 +1150,7 @@
     ]
   },
   {
+    "description": "Kategoria z hasłami z którymi poradzą sobie również dzieci. Zabawa dla całej rodziny.",
     "id": "kids",
     "image": "kids.png",
     "name": "Dla dzieci",
@@ -1263,6 +1271,7 @@
     ]
   },
   {
+    "description": "Tylko dla graczy pełnoletnich (18+)! Na własną odpowiedzialność.",
     "id": "adults",
     "image": "adults.png",
     "name": "Dla dorosłych (18+)",
@@ -1421,6 +1430,7 @@
     ]
   },
   {
+    "description": "\"Oczko mu się odlepiło. Temu misiu.\" Opowiedz fabułę, lub odegraj kultową scenkę.",
     "id": "movies_pl",
     "image": "movies_pl.png",
     "name": "Polskie filmy",
@@ -1534,6 +1544,7 @@
     ]
   },
   {
+    "description": "Zaimprowizuj postać wydając przy tym stosowne dźwięki oraz pozy.",
     "id": "fictional_character",
     "image": "fictional_characters.png",
     "name": "Postacie fikcyjne",
@@ -1719,6 +1730,7 @@
     ]
   },
   {
+    "description": "Zabaw się w aktora i zaprezentuj osobę tak jak ją pamiętasz, bądź opisz.",
     "id": "famous_characters",
     "image": "famous_characters.png",
     "name": "Znane osoby",
@@ -1838,6 +1850,7 @@
     ]
   },
   {
+    "description": "Telewizyjne i nie tylko POLSKIE hity do ogadnięcia.",
     "id": "tv_pl",
     "image": "tv_pl.png",
     "name": "Polskie seriale",
@@ -1921,6 +1934,7 @@
     ]
   },
   {
+    "description": "Konsolowe i komputerowe. Pokazuj, opowiadaj, graj.",
     "id": "games",
     "image": "games.png",
     "name": "Gry",
@@ -2117,6 +2131,7 @@
     ]
   },
   {
+    "description": "Lubimy czytać, lubimy opowiadać. Nie tylko dla moli książkowych.",
     "id": "books",
     "image": "books.png",
     "name": "Książki",
@@ -2236,6 +2251,7 @@
     ]
   },
   {
+    "description": "\"Kiedyś to kurła było!\" Przypomnij sobie jak to kiedyś było, kiedy nic nie było.",
     "id": "prl",
     "image": "prl.png",
     "name": "Czasy PRL",
@@ -2355,6 +2371,7 @@
     ]
   },
   {
+    "description": "Codziennego użytku, ale i takie których używasz od święta. Rysuj, pokazuj, opowiadaj!",
     "id": "item",
     "image": "items.png",
     "name": "Przedmioty",
@@ -2486,6 +2503,7 @@
     ]
   },
   {
+    "description": "xxx",
     "id": "place",
     "image": "places.png",
     "name": "Miejsca",
@@ -2609,6 +2627,7 @@
     ]
   },
   {
+    "description": "Święta, święta i po świętach. Idealna kategoria na świąteczne spotkanie z rodziną.",
     "id": "holidays",
     "image": "holidays.png",
     "name": "Święta",
@@ -2705,6 +2724,7 @@
     ]
   },
   {
+    "description": "Czy już wszystkie masz? Opisz, lub pokaż animowane stwory.",
     "id": "pokemon",
     "image": "pokemon.png",
     "name": "Pokemony",
@@ -2880,6 +2900,7 @@
     ]
   },
   {
+    "description": "Adidas, Biedronka, Coca-Cola ... Najbardziej rozpoznawalne brandy na świecie.",
     "id": "companies",
     "image": "companies.png",
     "name": "Firmy i marki",
@@ -3045,6 +3066,7 @@
     ]
   },
   {
+    "description": "Internet wraz z jego głębokimi odmętami i nie tylko.",
     "id": "internet",
     "image": "internet.png",
     "name": "Internety",
@@ -3197,6 +3219,7 @@
     ]
   },
   {
+    "description": "\"Kiedyś to kurła było!\" Przypomnij sobie jak to kiedyś było, kiedy nic nie było.",
     "id": "90s",
     "image": "y90s.png",
     "name": "Lata 90'",
@@ -3298,6 +3321,7 @@
     ]
   },
   {
+    "description": "Idealna kategoria do zademonstrowania czynności bez użycia słów. Zostań aktorem!",
     "id": "actions",
     "image": "actions.png",
     "name": "Czynności",
@@ -3411,6 +3435,7 @@
     ]
   },
   {
+    "description": "Dyscypliny sportowe, sportowcy i inne hasła od których można wyczuć pot.",
     "id": "sport",
     "image": "sport.png",
     "name": "Sport",
@@ -3535,6 +3560,7 @@
     ]
   },
   {
+    "description": "Serial wczechczasów z grupą przyjaciół. Wyłącznie dla prawdziwych fanów.",
     "id": "friends",
     "image": "friends.png",
     "name": "Przyjaciele",
@@ -3623,6 +3649,7 @@
     ]
   },
   {
+    "description": "Wciel się w dowolny zawód i udowodnij jaki z Ciebie wszechstronny pracownik.",
     "id": "jobs",
     "image": "jobs.png",
     "name": "Zawody",
@@ -3741,6 +3768,7 @@
     ]
   },
   {
+    "description": "Saga gwiezdnych rycerzy Jedi i mrocznych Sithów.",
     "id": "star_wars",
     "image": "star_wars.png",
     "name": "Gwiezdne Wojny",
@@ -3753,6 +3781,8 @@
       "Chewbacca",
       "Ciemna strona mocy",
       "Coruscant",
+      "Rey",
+      "Finn",
       "Dagobah",
       "Dantooine",
       "Darth Maul",
@@ -3767,14 +3797,17 @@
       "Han Solo",
       "Hrabia Dooku",
       "Imperator",
-      "Imperium",
       "Imperium kontratakuje",
       "J. J. Abrams",
       "Jabba",
       "Jango Fett",
       "Jar Jar Binks",
       "Jasna strona mocy",
+      "Republika Galaktyczna",
+      "Imperium Galaktyczne",
+      "Kit Fisto",
       "Jawa",
+      "Gial Ackbar",
       "Jedi",
       "Księżniczka Leia",
       "Kylo Ren",
@@ -3798,11 +3831,15 @@
       "Qui-Gon Jinn",
       "R2-D2",
       "Rada Jedi",
-      "Republika",
       "Senat Galaktyczny",
       "Sith",
       "Sokół Millenium",
       "Szturmowiec",
+      "Sojusz Rebeliantów",
+      "Nowa Republika",
+      "Konfederacja Niezależnych Systemów",
+      "Federacja Handlowa",
+      "Najwyższy Porządek",
       "Tatooine",
       "Walt Disney",
       "Wampa (śniegowy stwór)",
@@ -3813,6 +3850,7 @@
     ]
   },
   {
+    "description": "Zademonstruj bez użycia słów jak się czujesz, lub w jakim nastroju jesteś.",
     "id": "emotions",
     "image": "emotions.png",
     "name": "Jaki jestem?",
@@ -3920,7 +3958,7 @@
     ]
   },
   {
-    "description": "Kategoria zawiera dwuwyrazowe hasła, które rozpoczynają się na tę samą literę.",
+    "description": "Hasła składają się z dwóch słów zaczynających się na tę samą literę.",
     "id": "perfect_pair",
     "image": "perfect_pair.png",
     "name": "Perfekcyjna Para",
@@ -4006,6 +4044,7 @@
     ]
   },
   {
+    "description": "Najpopularniejsza gra MOBA na świecie. Udzielaj podpowiedzi opowiadając, lub pokazując.",
     "id": "lol",
     "image": "lol.png",
     "name": "League of Legends",
@@ -4173,6 +4212,7 @@
     ]
   },
   {
+    "description": "Elita internetu w pigułce. Bardziej #mikroblog niż strona główna :)",
     "id": "wykop",
     "image": "wykop.png",
     "name": "Wykop.pl",
@@ -4239,6 +4279,7 @@
     ]
   },
   {
+    "description": "Powiedzonka i przysłowia z rodzimego kraju.",
     "id": "proverbs",
     "image": "proverbs.png",
     "name": "Powiedzenia",
@@ -4393,6 +4434,7 @@
     ]
   },
   {
+    "description": "Najpopularniejszy serial fantasy ze smokami, rycerzami i gwałtami.",
     "id": "got",
     "image": "got.png",
     "name": "Gra o Tron",
@@ -4509,6 +4551,7 @@
     ]
   },
   {
+    "description": "Świat Marvela i jego bohaterowie czekają na Twoje podpowiedzi.",
     "id": "mcu",
     "image": "mcu.png",
     "name": "Marvel Cinematic Universe",

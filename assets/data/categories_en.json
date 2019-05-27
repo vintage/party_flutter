@@ -1,12 +1,13 @@
 [
   {
-    "description": "Special category which contains questions from all other categories",
+    "description": "Various questions to describe, show and even draw. Have fun!",
     "id": "mixup",
     "image": "mix.png",
     "name": "Mix-Up!",
     "questions": []
   },
   {
+    "description": "Various questions to describe, show and even draw. Have fun!",
     "id": "movies",
     "image": "movies.png",
     "name": "Movies",
@@ -262,6 +263,7 @@
     ]
   },
   {
+    "description": "Various questions to describe, show and even draw. Have fun!",
     "id": "animals",
     "image": "animals.png",
     "name": "Animals",
@@ -364,6 +366,7 @@
     ]
   },
   {
+    "description": "Various questions to describe, show and even draw. Have fun!",
     "id": "tv",
     "image": "tv.png",
     "name": "TV series",
@@ -539,6 +542,7 @@
     ]
   },
   {
+    "description": "Various questions to describe, show and even draw. Have fun!",
     "id": "games",
     "image": "games.png",
     "name": "Games",
@@ -721,6 +725,7 @@
     ]
   },
   {
+    "description": "Various questions to describe, show and even draw. Have fun!",
     "id": "pokemon",
     "image": "pokemon.png",
     "name": "Pokemons",
@@ -896,6 +901,7 @@
     ]
   },
   {
+    "description": "Various questions to describe, show and even draw. Have fun!",
     "id": "companies",
     "image": "companies.png",
     "name": "Companies & brands",
@@ -1008,6 +1014,7 @@
     ]
   },
   {
+    "description": "Various questions to describe, show and even draw. Have fun!",
     "id": "star_wars",
     "image": "star_wars.png",
     "name": "Star Wars",
@@ -1078,6 +1085,7 @@
     ]
   },
   {
+    "description": "Various questions to describe, show and even draw. Have fun!",
     "id": "lol",
     "image": "lol.png",
     "name": "League of Legends",
@@ -1245,6 +1253,7 @@
     ]
   },
   {
+    "description": "Various questions to describe, show and even draw. Have fun!",
     "id": "jobs",
     "image": "jobs.png",
     "name": "Professions",
@@ -1364,6 +1373,7 @@
     ]
   },
   {
+    "description": "Various questions to describe, show and even draw. Have fun!",
     "id": "fictional_character",
     "image": "fictional_characters.png",
     "name": "Fictional characters",
@@ -1528,6 +1538,7 @@
     ]
   },
   {
+    "description": "Various questions to describe, show and even draw. Have fun!",
     "id": "item",
     "image": "items.png",
     "name": "Things",
@@ -1658,6 +1669,7 @@
     ]
   },
   {
+    "description": "Various questions to describe, show and even draw. Have fun!",
     "id": "place",
     "image": "places.png",
     "name": "Places",
@@ -1783,6 +1795,7 @@
     ]
   },
   {
+    "description": "Various questions to describe, show and even draw. Have fun!",
     "id": "food",
     "image": "food.png",
     "name": "Food & drinks",
@@ -1913,6 +1926,7 @@
     ]
   },
   {
+    "description": "Various questions to describe, show and even draw. Have fun!",
     "id": "got",
     "image": "got.png",
     "name": "Game of Thrones",
@@ -2030,6 +2044,7 @@
     ]
   },
   {
+    "description": "Various questions to describe, show and even draw. Have fun!",
     "id": "mcu",
     "image": "mcu.png",
     "name": "Marvel Cinematic Universe",

@@ -73,8 +73,6 @@ flutter:
         - asset: assets/fonts/Lato-Medium.ttf
         - asset: assets/fonts/Lato-Heavy.ttf
           weight: 700
-        - asset: assets/fonts/Lato-MediumItalic.ttf
-          style: italic
 
 flutter_icons:
   image_path: 'icon/icon.png'

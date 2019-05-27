@@ -47,7 +47,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 32.0),
+                  padding: const EdgeInsets.only(top: 32.0),
                   child: Container(
                     width: ThemeConfig.categoryImageSize,
                     height: ThemeConfig.categoryImageSize,
@@ -58,6 +58,17 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                           photo: category.getImagePath(),
                         ),
                       ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 320,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    child: Text(
+                      category.description,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(height: 1.2),
                     ),
                   ),
                 ),
@@ -97,7 +108,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                   },
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 16),
+                  padding: const EdgeInsets.only(top: 32),
                   child: RaisedButton(
                     child: Text(AppLocalizations.of(context).preparationPlay),
                     onPressed: () {
