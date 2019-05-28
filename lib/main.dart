@@ -21,6 +21,7 @@ import 'services/analytics.dart';
 import 'services/language.dart';
 import 'services/ads.dart';
 import 'services/crashlytics.dart';
+import 'services/notifications.dart';
 import 'repository/category.dart';
 import 'repository/question.dart';
 import 'repository/language.dart';
@@ -153,6 +154,7 @@ class App extends StatelessWidget {
 void main() {
   AdsService.initialize();
   CrashlyticsService.initialize();
+  NotificationsService.initialize();
 
   runApp(App());
 }

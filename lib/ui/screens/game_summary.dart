@@ -7,6 +7,7 @@ import 'package:zgadula/localizations.dart';
 import 'package:zgadula/models/question.dart';
 import 'package:zgadula/store/gallery.dart';
 import 'package:zgadula/store/question.dart';
+import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/ui/theme.dart';
 import '../shared/widgets.dart';
 
@@ -121,8 +122,12 @@ class GameSummaryScreen extends StatelessWidget {
                 ),
                 BottomButton(
                   child: Text(AppLocalizations.of(context).summaryBack),
-                  onPressed: () =>
-                      Navigator.popUntil(context, ModalRoute.withName('/')),
+                  onPressed: () {
+                    if (!SettingsModel.of(context).isNotificationsEnabled) {
+                      SettingsModel.of(context).enableNotifications();
+                    }
+                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                  }
                 ),
               ],
             ),

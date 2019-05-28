@@ -18,6 +18,9 @@ PODS:
     - FirebaseAnalytics (= 6.0.0)
   - Firebase/CoreOnly (6.0.0):
     - FirebaseCore (= 6.0.0)
+  - Firebase/Messaging (6.0.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 4.0.0)
   - firebase_admob (0.0.1):
     - Firebase/AdMob
     - Firebase/Core
@@ -31,6 +34,10 @@ PODS:
     - Fabric
     - Firebase/Core
     - Flutter
+  - firebase_messaging (0.0.1):
+    - Firebase/Core
+    - Firebase/Messaging
+    - Flutter
   - FirebaseAnalytics (6.0.0):
     - FirebaseCore (~> 6.0)
     - FirebaseInstanceID (~> 4.0)
@@ -40,6 +47,7 @@ PODS:
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
+  - FirebaseAnalyticsInterop (1.2.0)
   - FirebaseCore (6.0.0):
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/Logger (~> 6.0)
@@ -47,6 +55,15 @@ PODS:
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
+  - FirebaseMessaging (4.0.0):
+    - FirebaseAnalyticsInterop (~> 1.1)
+    - FirebaseCore (~> 6.0)
+    - FirebaseInstanceID (~> 4.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/Reachability (~> 6.0)
+    - GoogleUtilities/UserDefaults (~> 6.0)
+    - Protobuf (~> 3.1)
   - Flutter (1.0.0)
   - Google-Mobile-Ads-SDK (7.43.1):
     - GoogleAppMeasurement (~> 6.0)
@@ -87,6 +104,7 @@ PODS:
     - Flutter
   - permission_handler (3.0.1):
     - Flutter
+  - Protobuf (3.7.0)
   - screen (0.0.1):
     - Flutter
   - sensors (0.0.1):
@@ -105,7 +123,8 @@ DEPENDENCIES:
   - firebase_admob (from `.symlinks/plugins/firebase_admob/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
-  - Flutter (from `.symlinks/flutter/ios`)
+  - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
+  - Flutter (from `.symlinks/flutter/ios-release`)
   - launch_review (from `.symlinks/plugins/launch_review/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -122,12 +141,15 @@ SPEC REPOS:
     - Fabric
     - Firebase
     - FirebaseAnalytics
+    - FirebaseAnalyticsInterop
     - FirebaseCore
     - FirebaseInstanceID
+    - FirebaseMessaging
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleUtilities
     - nanopb
+    - Protobuf
 
 EXTERNAL SOURCES:
   audioplayers:
@@ -142,8 +164,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_analytics/ios"
   firebase_crashlytics:
     :path: ".symlinks/plugins/firebase_crashlytics/ios"
+  firebase_messaging:
+    :path: ".symlinks/plugins/firebase_messaging/ios"
   Flutter:
-    :path: ".symlinks/flutter/ios"
+    :path: ".symlinks/flutter/ios-release"
   launch_review:
     :path: ".symlinks/plugins/launch_review/ios"
   package_info:
@@ -173,9 +197,12 @@ SPEC CHECKSUMS:
   firebase_admob: b8cc46113ddf88a62fec340e9446607a5061a872
   firebase_analytics: fe329224830629f9a38090b92e23045201c397ed
   firebase_crashlytics: 5e46e1d4c4a7ce372583979fa9a59377e2b5c729
+  firebase_messaging: a5f5d4a9491b660f33a1f94bd0596558f820bad1
   FirebaseAnalytics: 1743c5f4de3687d0745709dfdc4b1dea1484f44c
+  FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
   FirebaseCore: e38f025287b413255a53acc1945d048a112047f7
   FirebaseInstanceID: 0e0348a3c00a734fa376a070f5ad4533ad975cb5
+  FirebaseMessaging: c796d50864dc822a3c06c9c1c1444b37732b795b
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
   Google-Mobile-Ads-SDK: 9d3474acb70a6c12bfa69c9fe1ac28d7de8b9be9
   GoogleAppMeasurement: 7f028ea162b72c8f326daec74afc95d94f7a47d6
@@ -185,6 +212,7 @@ SPEC CHECKSUMS:
   package_info: d7c98b64f60add4c2908b9d94d82a45d3c8827ad
   path_provider: 09407919825bfe3c2deae39453b7a5b44f467873
   permission_handler: b4cdd38c1c4385e9f4f394c9881c42b48476ccb6
+  Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
   screen: 22ab9c4a784112d4b21ad7d80e81729e0afdaa65
   sensors: 5e1d451d2b563766999e768342efed82d6141fcc
   shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53

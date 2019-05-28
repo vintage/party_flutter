@@ -22,8 +22,37 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-4764697513834958~9794133262</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>itms</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Can I use the apple music please?</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Can I use the calendar please?</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Can I use the camera please?</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Can I use the contacts please?</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Can I use the location please?</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Can I use the location please?</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Can I use the mic please?</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Can I use the motion please?</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Can I use the speech recognition please?</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -43,29 +72,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>itms</string>
-    </array>
-    <key>NSCameraUsageDescription</key>
-    <string>Can I use the camera please?</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Can I use the mic please?</string>
-    <key>NSContactsUsageDescription</key>
-    <string>Can I use the contacts please?</string>
-    <key>NSCalendarsUsageDescription</key>
-    <string>Can I use the calendar please?</string>
-    <key>NSAppleMusicUsageDescription</key>
-    <string>Can I use the apple music please?</string>
-    <key>NSMotionUsageDescription</key>
-    <string>Can I use the motion please?</string>
-    <key>NSSpeechRecognitionUsageDescription</key>
-    <string>Can I use the speech recognition please?</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>Can I use the location please?</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Can I use the location please?</string>
-    <key>GADApplicationIdentifier</key>
-    <string>ca-app-pub-4764697513834958~9794133262</string>
 </dict>
 </plist>

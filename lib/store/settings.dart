@@ -2,6 +2,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/widgets.dart';
 import 'package:zgadula/repository/settings.dart';
 
+import 'package:zgadula/services/notifications.dart';
 import 'package:zgadula/store/store.dart';
 
 class SettingsModel extends StoreModel {
@@ -39,6 +40,9 @@ class SettingsModel extends StoreModel {
   int _gamesFinished;
   int get gamesFinished => _gamesFinished;
 
+  bool _isNotificationsEnabled;
+  bool get isNotificationsEnabled => _isNotificationsEnabled;
+
   SettingsModel(this.repository);
 
   @override
@@ -54,6 +58,7 @@ class SettingsModel extends StoreModel {
     _version = await repository.getAppVersion();
     _gamesPlayed = repository.getGamesPlayed();
     _gamesFinished = repository.getGamesFinished();
+    _isNotificationsEnabled = repository.isNotificationsEnabled();
     _isLoading = false;
     notifyListeners();
   }
@@ -90,6 +95,13 @@ class SettingsModel extends StoreModel {
 
   increaseGamesFinished() async {
     _gamesFinished = repository.increaseGamesFinished();
+    notifyListeners();
+  }
+
+  enableNotifications() {
+    NotificationsService.register();
+    _isNotificationsEnabled = true;
+    repository.enableNotifications();
     notifyListeners();
   }
 

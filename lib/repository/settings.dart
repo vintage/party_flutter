@@ -13,6 +13,7 @@ class SettingsRepository {
   static const String storageRoundTimeKey = 'round_time';
   static const String storageGamesPlayedKey = 'games_played';
   static const String storageGamesFinishedKey = 'games_finished';
+  static const String storageNotificationsEnabledKey = 'is_notifications_enabled';
 
   final SharedPreferences storage;
 
@@ -92,6 +93,14 @@ class SettingsRepository {
     storage.setInt(storageGamesFinishedKey, gamesFinished);
 
     return gamesFinished;
+  }
+
+  bool isNotificationsEnabled() {
+    return storage.getBool(storageNotificationsEnabledKey) ?? false;
+  }
+
+  void enableNotifications() {
+    storage.setBool(storageNotificationsEnabledKey, true);
   }
 
   Future<String> getAppVersion() async {
