@@ -105,17 +105,17 @@ class SettingsScreen extends StatelessWidget {
                       items: LanguageService.getCodes()
                           .map(
                             (code) => DropdownMenuItem(
-                                  child: Row(
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: EdgeInsets.only(right: 8.0),
-                                        child: FlagImage(country: code),
-                                      ),
-                                      Text(code.toUpperCase()),
-                                    ],
+                              child: Row(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 8.0),
+                                    child: FlagImage(country: code),
                                   ),
-                                  value: code,
-                                ),
+                                  Text(code.toUpperCase()),
+                                ],
+                              ),
+                              value: code,
+                            ),
                           )
                           .toList(),
                       onChanged: (String language) {

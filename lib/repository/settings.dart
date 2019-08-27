@@ -13,7 +13,8 @@ class SettingsRepository {
   static const String storageRoundTimeKey = 'round_time';
   static const String storageGamesPlayedKey = 'games_played';
   static const String storageGamesFinishedKey = 'games_finished';
-  static const String storageNotificationsEnabledKey = 'is_notifications_enabled';
+  static const String storageNotificationsEnabledKey =
+      'is_notifications_enabled';
 
   final SharedPreferences storage;
 

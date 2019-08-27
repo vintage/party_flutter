@@ -121,14 +121,13 @@ class GameSummaryScreen extends StatelessWidget {
                   ),
                 ),
                 BottomButton(
-                  child: Text(AppLocalizations.of(context).summaryBack),
-                  onPressed: () {
-                    if (!SettingsModel.of(context).isNotificationsEnabled) {
-                      SettingsModel.of(context).enableNotifications();
-                    }
-                    Navigator.popUntil(context, ModalRoute.withName('/'));
-                  }
-                ),
+                    child: Text(AppLocalizations.of(context).summaryBack),
+                    onPressed: () {
+                      if (!SettingsModel.of(context).isNotificationsEnabled) {
+                        SettingsModel.of(context).enableNotifications();
+                      }
+                      Navigator.popUntil(context, ModalRoute.withName('/'));
+                    }),
               ],
             ),
           ),

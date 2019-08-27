@@ -76,7 +76,9 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen>
 
     try {
       await controller.initialize();
-    } on CameraException {}
+    } on CameraException {
+      print("Camera initialization exception");
+    }
 
     if (mounted) {
       setState(() {});

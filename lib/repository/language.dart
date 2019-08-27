@@ -11,7 +11,7 @@ class LanguageRepository {
   LanguageRepository({@required this.storage});
 
   String getLanguage() {
-    return storage.getString(storageLanguageKey) ?? null;
+    return storage.getString(storageLanguageKey);
   }
 
   String setLanguage(String language) {

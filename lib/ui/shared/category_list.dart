@@ -24,40 +24,39 @@ class CategoryListState extends State<CategoryList> {
     var categories = widget.categories;
 
     return ScopedModelDescendant<CategoryModel>(
-      builder: (context, child, model) {
-        return ListView(
-            children: <Widget>[
-              GridView.count(
-                shrinkWrap: true,
-                primary: false,
-                padding: EdgeInsets.all(0.0),
-                crossAxisSpacing: 0.0,
-                mainAxisSpacing: 0.0,
-                crossAxisCount: ThemeConfig.categoriesGridCount,
-                children: categories.asMap().keys.map((index) {
-                  var category = categories[index];
+        builder: (context, child, model) {
+      return ListView(
+        children: <Widget>[
+          GridView.count(
+            shrinkWrap: true,
+            primary: false,
+            padding: EdgeInsets.all(0.0),
+            crossAxisSpacing: 0.0,
+            mainAxisSpacing: 0.0,
+            crossAxisCount: ThemeConfig.categoriesGridCount,
+            children: categories.asMap().keys.map((index) {
+              var category = categories[index];
 
-                  return CategoryListItem(
-                    category: category,
-                    onTap: () {
-                      model.setCurrent(category);
+              return CategoryListItem(
+                category: category,
+                onTap: () {
+                  model.setCurrent(category);
 
-                      AnalyticsService.logEvent(
-                        'category_select',
-                        {'category': category.name},
-                      );
-
-                      Navigator.pushNamed(
-                        context,
-                        '/category',
-                      );
-                    },
+                  AnalyticsService.logEvent(
+                    'category_select',
+                    {'category': category.name},
                   );
-                }).toList(),
-              ),
-            ],
-          );
-      }
-    );
+
+                  Navigator.pushNamed(
+                    context,
+                    '/category',
+                  );
+                },
+              );
+            }).toList(),
+          ),
+        ],
+      );
+    });
   }
 }

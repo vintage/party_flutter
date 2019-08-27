@@ -55,34 +55,34 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<CategoryModel>(
       builder: (context, child, model) => ScopedModelDescendant<QuestionModel>(
-            builder: (context, child, qModel) {
-              if (model.isLoading || qModel.isLoading || !isTutorialWatched()) {
-                return ScreenLoader();
-              }
+        builder: (context, child, qModel) {
+          if (model.isLoading || qModel.isLoading || !isTutorialWatched()) {
+            return ScreenLoader();
+          }
 
-              return Scaffold(
-                bottomNavigationBar: BottomNavigationBar(
-                  onTap: onTabChange,
-                  currentIndex: tabIndex,
-                  items: [
-                    BottomNavigationBarItem(
-                      icon: new Icon(Icons.play_arrow),
-                      title: new Text(AppLocalizations.of(context).tabCategories),
-                    ),
-                    BottomNavigationBarItem(
-                      icon: new Icon(Icons.favorite),
-                      title: new Text(AppLocalizations.of(context).tabFavorites),
-                    ),
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.settings),
-                      title: Text(AppLocalizations.of(context).tabSettings),
-                    ),
-                  ],
+          return Scaffold(
+            bottomNavigationBar: BottomNavigationBar(
+              onTap: onTabChange,
+              currentIndex: tabIndex,
+              items: [
+                BottomNavigationBarItem(
+                  icon: new Icon(Icons.play_arrow),
+                  title: new Text(AppLocalizations.of(context).tabCategories),
                 ),
-                body: tabsContent[tabIndex],
-              );
-            },
-          ),
+                BottomNavigationBarItem(
+                  icon: new Icon(Icons.favorite),
+                  title: new Text(AppLocalizations.of(context).tabFavorites),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.settings),
+                  title: Text(AppLocalizations.of(context).tabSettings),
+                ),
+              ],
+            ),
+            body: tabsContent[tabIndex],
+          );
+        },
+      ),
     );
   }
 }

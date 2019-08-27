@@ -120,6 +120,8 @@ class App extends StatelessWidget {
             if (!languageSet) {
               model.changeLanguage(locale.languageCode);
             }
+
+            return locale;
           },
           localizationsDelegates: [
             SettingsLocalizationsDelegate(

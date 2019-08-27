@@ -15,10 +15,8 @@ class CategoryModel extends StoreModel {
   List<Category> get categories => _categories.values.toList();
 
   List<String> _favourites = [];
-  List<Category> get favourites => _favourites
-      .map((id) => _categories[id])
-      .where((c) => c != null)
-      .toList();
+  List<Category> get favourites =>
+      _favourites.map((id) => _categories[id]).where((c) => c != null).toList();
 
   Category _currentCategory;
   Category get currentCategory => _currentCategory;

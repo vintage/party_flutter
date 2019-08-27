@@ -43,7 +43,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_launcher_icons: ^0.7.0
+  flutter_launcher_icons: ^0.7.2
 
 
 # For information on the generic Dart part of this file, see the

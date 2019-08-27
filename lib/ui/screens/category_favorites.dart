@@ -30,7 +30,6 @@ class CategoryFavoritesScreenState extends State<CategoryFavoritesScreen>
                   Icon(Icons.favorite_border, size: 96),
                   Container(
                     width: 160,
-
                     child: Text(
                       AppLocalizations.of(context).emptyFavorites,
                       textAlign: TextAlign.center,

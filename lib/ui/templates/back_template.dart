@@ -24,7 +24,9 @@ class BackTemplateState extends State<BackTemplate> {
             top: 15,
             left: 5,
             child: IconButton(
-              onPressed: () => widget.onBack != null ? widget.onBack() : Navigator.pop(context),
+              onPressed: () => widget.onBack != null
+                  ? widget.onBack()
+                  : Navigator.pop(context),
               icon: Icon(Icons.arrow_back_ios),
             ),
           ),

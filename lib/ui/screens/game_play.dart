@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:sensors/sensors.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:pedantic/pedantic.dart';
 
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/services/audio.dart';
@@ -75,7 +76,9 @@ class GamePlayScreenState extends State<GamePlayScreen>
     // https://github.com/flutter/flutter/issues/13238
     try {
       _rotationChannel.invokeMethod('setLandscape');
-    } catch (error) {}
+    } catch (error) {
+      print("Error on landscape");
+    }
 
     initAnimations();
 
@@ -115,7 +118,9 @@ class GamePlayScreenState extends State<GamePlayScreen>
     // https://github.com/flutter/flutter/issues/13238
     try {
       _rotationChannel.invokeMethod('setPortrait');
-    } catch (error) {}
+    } catch (error) {
+      print("Error on portrait");
+    }
 
     if (_rotateSubscription != null) {
       _rotateSubscription.cancel();
@@ -194,38 +199,40 @@ class GamePlayScreenState extends State<GamePlayScreen>
   Future<bool> confirmBack() async {
     Completer completer = new Completer<bool>();
 
-    Alert(
-      context: context,
-      type: AlertType.warning,
-      title: 'Zgadula',
-      style: AlertStyle(
-        isCloseButton: false,
-        isOverlayTapDismiss: false,
-        alertBorder: Border(),
-        titleStyle: TextStyle(color: Colors.white),
-        descStyle: TextStyle(color: Colors.white, height: 1.05),
-        buttonAreaPadding: EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 8.0),
-      ),
-      desc: AppLocalizations.of(context).gameCancelConfirmation,
-      buttons: [
-        DialogButton(
-          child: Text(AppLocalizations.of(context).gameCancelDeny),
-          onPressed: () {
-            Navigator.pop(context);
-            completer.complete(false);
-          },
-          color: Colors.transparent,
+    unawaited(
+      Alert(
+        context: context,
+        type: AlertType.warning,
+        title: 'Zgadula',
+        style: AlertStyle(
+          isCloseButton: false,
+          isOverlayTapDismiss: false,
+          alertBorder: Border(),
+          titleStyle: TextStyle(color: Colors.white),
+          descStyle: TextStyle(color: Colors.white, height: 1.05),
+          buttonAreaPadding: EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 8.0),
         ),
-        DialogButton(
-          child: Text(AppLocalizations.of(context).gameCancelApprove),
-          onPressed: () {
-            Navigator.pop(context);
-            completer.complete(true);
-          },
-          color: Theme.of(context).accentColor,
-        ),
-      ],
-    ).show();
+        desc: AppLocalizations.of(context).gameCancelConfirmation,
+        buttons: [
+          DialogButton(
+            child: Text(AppLocalizations.of(context).gameCancelDeny),
+            onPressed: () {
+              Navigator.pop(context);
+              completer.complete(false);
+            },
+            color: Colors.transparent,
+          ),
+          DialogButton(
+            child: Text(AppLocalizations.of(context).gameCancelApprove),
+            onPressed: () {
+              Navigator.pop(context);
+              completer.complete(true);
+            },
+            color: Theme.of(context).accentColor,
+          ),
+        ],
+      ).show(),
+    );
 
     return completer.future;
   }
