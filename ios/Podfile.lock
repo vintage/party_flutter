@@ -102,7 +102,7 @@ PODS:
     - Flutter
   - path_provider (0.0.1):
     - Flutter
-  - permission_handler (3.0.1):
+  - permission_handler (3.2.2):
     - Flutter
   - Protobuf (3.7.0)
   - screen (0.0.1):
@@ -113,7 +113,7 @@ PODS:
     - Flutter
   - url_launcher (0.0.1):
     - Flutter
-  - vibration (1.0.2):
+  - vibration (1.2.1):
     - Flutter
 
 DEPENDENCIES:
@@ -124,7 +124,7 @@ DEPENDENCIES:
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
-  - Flutter (from `.symlinks/flutter/ios-release`)
+  - Flutter (from `.symlinks/flutter/ios`)
   - launch_review (from `.symlinks/plugins/launch_review/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -167,7 +167,7 @@ EXTERNAL SOURCES:
   firebase_messaging:
     :path: ".symlinks/plugins/firebase_messaging/ios"
   Flutter:
-    :path: ".symlinks/flutter/ios-release"
+    :path: ".symlinks/flutter/ios"
   launch_review:
     :path: ".symlinks/plugins/launch_review/ios"
   package_info:
@@ -188,37 +188,37 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/vibration/ios"
 
 SPEC CHECKSUMS:
-  audioplayers: def111f6a23e00d9d103563b07de5e44a727bd3c
-  camera: be01db3b2193839f9af56a9db99b7fea444d35f3
+  audioplayers: 84f968cea3f2deab00ec4f8ff53358b3c0b3992c
+  camera: d56ad165545ae5a0ffb892376033760a969c68c8
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
-  esys_flutter_share: 14e6653d540bfe343c331276be9eb26000e718c3
+  esys_flutter_share: 403498dab005b36ce1f8d7aff377e81f0621b0b4
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Firebase: fa80b9d987ca014a1ba9357496ef2a0178b28b12
-  firebase_admob: b8cc46113ddf88a62fec340e9446607a5061a872
-  firebase_analytics: fe329224830629f9a38090b92e23045201c397ed
-  firebase_crashlytics: 5e46e1d4c4a7ce372583979fa9a59377e2b5c729
-  firebase_messaging: a5f5d4a9491b660f33a1f94bd0596558f820bad1
+  firebase_admob: d8c2bc95b5e0069406280ce6adb816cdee6aa595
+  firebase_analytics: 32e04b548ece5c04c9798cbf393a7884f0b21951
+  firebase_crashlytics: 6b8e7358dbac1359c1e29e0796adf48eddef99c9
+  firebase_messaging: 74e9d76acfbdff96a3f9f570f463a2b2bc784bf5
   FirebaseAnalytics: 1743c5f4de3687d0745709dfdc4b1dea1484f44c
   FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
   FirebaseCore: e38f025287b413255a53acc1945d048a112047f7
   FirebaseInstanceID: 0e0348a3c00a734fa376a070f5ad4533ad975cb5
   FirebaseMessaging: c796d50864dc822a3c06c9c1c1444b37732b795b
-  Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
+  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
   Google-Mobile-Ads-SDK: 9d3474acb70a6c12bfa69c9fe1ac28d7de8b9be9
   GoogleAppMeasurement: 7f028ea162b72c8f326daec74afc95d94f7a47d6
   GoogleUtilities: f1faafc033ea203adf1783ce00af455bb99d0e5b
-  launch_review: 98c85a4cb86d1376b14958ebe69ddbcc753ff192
+  launch_review: 75d5a956ba8eaa493e9c9d4bf4c05e505e8d5ed0
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  package_info: d7c98b64f60add4c2908b9d94d82a45d3c8827ad
-  path_provider: 09407919825bfe3c2deae39453b7a5b44f467873
-  permission_handler: b4cdd38c1c4385e9f4f394c9881c42b48476ccb6
+  package_info: 78cabb3c322943c55d39676f4a5bfc748c01d055
+  path_provider: f96fff6166a8867510d2c25fdcc346327cc4b259
+  permission_handler: d59f41439f5bc6c4d1005f3355e98f05ddc68ece
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
-  screen: 22ab9c4a784112d4b21ad7d80e81729e0afdaa65
-  sensors: 5e1d451d2b563766999e768342efed82d6141fcc
-  shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
-  url_launcher: 92b89c1029a0373879933c21642958c874539095
-  vibration: 1f64b38673d28697553ce3b2ed1e867b82145e8b
+  screen: abd91ca7bf3426e1cc3646d27e9b2358d6bf07b0
+  sensors: b5c565b45237fd2df1c347c14bf5ceeffdb7a2be
+  shared_preferences: 1feebfa37bb57264736e16865e7ffae7fc99b523
+  url_launcher: 0067ddb8f10d36786672aa0722a21717dba3a298
+  vibration: a8387e17a6363f1a8808744abd0e7f1f51e448a8
 
-PODFILE CHECKSUM: 390fac49bdff35661449f5b9b1d05ca6da8a4abb
+PODFILE CHECKSUM: 484685406c3515ab4964389a7eb3b89322a351c6
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.5

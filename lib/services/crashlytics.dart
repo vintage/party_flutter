@@ -5,7 +5,7 @@ class CrashlyticsService {
   static initialize() {
 //    Crashlytics.instance.enableInDevMode = true;
     FlutterError.onError = (FlutterErrorDetails details) {
-      Crashlytics.instance.onError(details);
+      Crashlytics.instance.recordFlutterError(details);
     };
   }
 }
