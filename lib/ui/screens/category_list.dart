@@ -6,13 +6,10 @@ import '../shared/widgets.dart';
 
 class CategoryListScreen extends StatefulWidget {
   @override
-  CategoryListScreenState createState() {
-    return new CategoryListScreenState();
-  }
+  CategoryListScreenState createState() => CategoryListScreenState();
 }
 
-class CategoryListScreenState extends State<CategoryListScreen>
-    with TickerProviderStateMixin {
+class CategoryListScreenState extends State<CategoryListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

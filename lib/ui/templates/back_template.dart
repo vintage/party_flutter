@@ -21,13 +21,15 @@ class BackTemplateState extends State<BackTemplate> {
         children: [
           widget.child,
           Positioned(
-            top: 15,
-            left: 5,
-            child: IconButton(
-              onPressed: () => widget.onBack != null
-                  ? widget.onBack()
-                  : Navigator.pop(context),
-              icon: Icon(Icons.arrow_back_ios),
+            top: 0,
+            left: 0,
+            child: SafeArea(
+              child: IconButton(
+                onPressed: () => widget.onBack != null
+                    ? widget.onBack()
+                    : Navigator.pop(context),
+                icon: Icon(Icons.arrow_back_ios),
+              ),
             ),
           ),
         ],

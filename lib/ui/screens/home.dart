@@ -9,6 +9,7 @@ import 'package:zgadula/ui/screens/category_favorites.dart';
 import 'package:zgadula/ui/screens/settings.dart';
 import 'package:zgadula/localizations.dart';
 import '../shared/widgets.dart';
+import '../theme.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -18,13 +19,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  int tabIndex = 0;
-  List<Widget> tabsContent = [
-    CategoryListScreen(),
-    CategoryFavoritesScreen(),
-    SettingsScreen(),
-  ];
-
   @override
   void initState() {
     super.initState();
@@ -45,12 +39,6 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     return TutorialModel.of(context).isWatched;
   }
 
-  void onTabChange(int index) {
-    setState(() {
-      tabIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<CategoryModel>(
@@ -61,25 +49,34 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           }
 
           return Scaffold(
-            bottomNavigationBar: BottomNavigationBar(
-              onTap: onTabChange,
-              currentIndex: tabIndex,
-              items: [
-                BottomNavigationBarItem(
-                  icon: new Icon(Icons.play_arrow),
-                  title: new Text(AppLocalizations.of(context).tabCategories),
+            body: DefaultTabController(
+              length: 3,
+              child: Scaffold(
+                bottomNavigationBar: Container(
+                  color: primaryDarkColor,
+                  height: 60,
+                  child: TabBar(
+                    labelColor: Theme.of(context).buttonColor,
+                    unselectedLabelColor: primaryLightColor,
+                    indicatorColor: Colors.transparent,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    tabs: [
+                      Tab(icon: Icon(Icons.play_arrow)),
+                      Tab(icon: Icon(Icons.favorite)),
+                      Tab(icon: Icon(Icons.settings)),
+                    ],
+                  ),
                 ),
-                BottomNavigationBarItem(
-                  icon: new Icon(Icons.favorite),
-                  title: new Text(AppLocalizations.of(context).tabFavorites),
+                body: TabBarView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    CategoryListScreen(),
+                    CategoryFavoritesScreen(),
+                    SettingsScreen(),
+                  ],
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
-                  title: Text(AppLocalizations.of(context).tabSettings),
-                ),
-              ],
+              ),
             ),
-            body: tabsContent[tabIndex],
           );
         },
       ),
