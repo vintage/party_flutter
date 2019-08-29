@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-05-26T17:36:06.966761",
+  "@@last_modified": "2019-08-29T21:05:51.916663",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -185,24 +185,6 @@
   "emptyFavorites": "Add favorite categories to find them quicker",
   "@emptyFavorites": {
     "description": "Hint shown when there are no favorites defined",
-    "type": "text",
-    "placeholders": {}
-  },
-  "tabCategories": "Play",
-  "@tabCategories": {
-    "description": "Label for tab with list of categories",
-    "type": "text",
-    "placeholders": {}
-  },
-  "tabFavorites": "Favorites",
-  "@tabFavorites": {
-    "description": "Label for tab with favorite categories",
-    "type": "text",
-    "placeholders": {}
-  },
-  "tabSettings": "Settings",
-  "@tabSettings": {
-    "description": "Label for tab with game settings",
     "type": "text",
     "placeholders": {}
   }

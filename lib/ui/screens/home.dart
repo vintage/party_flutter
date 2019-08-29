@@ -7,7 +7,6 @@ import 'package:zgadula/store/tutorial.dart';
 import 'package:zgadula/ui/screens/category_list.dart';
 import 'package:zgadula/ui/screens/category_favorites.dart';
 import 'package:zgadula/ui/screens/settings.dart';
-import 'package:zgadula/localizations.dart';
 import '../shared/widgets.dart';
 import '../theme.dart';
 

@@ -272,30 +272,6 @@ class AppLocalizations {
       desc: 'Hint shown when there are no favorites defined',
     );
   }
-
-  String get tabCategories {
-    return Intl.message(
-      'Play',
-      name: 'tabCategories',
-      desc: 'Label for tab with list of categories',
-    );
-  }
-
-  String get tabFavorites {
-    return Intl.message(
-      'Favorites',
-      name: 'tabFavorites',
-      desc: 'Label for tab with favorite categories',
-    );
-  }
-
-  String get tabSettings {
-    return Intl.message(
-      'Settings',
-      name: 'tabSettings',
-      desc: 'Label for tab with game settings',
-    );
-  }
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
