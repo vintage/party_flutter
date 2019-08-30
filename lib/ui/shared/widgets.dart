@@ -1,4 +1,3 @@
-export 'bottom_button.dart';
 export 'category_image.dart';
 export 'category_list_item.dart';
 export 'category_list.dart';

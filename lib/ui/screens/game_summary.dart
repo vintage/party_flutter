@@ -62,7 +62,6 @@ class GameSummaryScreen extends StatelessWidget {
         return Scaffold(
           body: SafeArea(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Center(
                   child: Padding(
@@ -114,14 +113,22 @@ class GameSummaryScreen extends StatelessWidget {
                         onTap: (item) => openGallery(context, item)),
                   );
                 }),
-                Expanded(
-                  child: ListView(
-                    children:
-                        buildQuestionsList(context, model.questionsAnswered),
+                ListView(
+                  padding: EdgeInsets.only(top: 16),
+                  shrinkWrap: true,
+                  children:
+                      buildQuestionsList(context, model.questionsAnswered),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: Divider(
+                    indent: 64,
+                    endIndent: 64,
                   ),
                 ),
-                BottomButton(
-                    child: Text(AppLocalizations.of(context).summaryBack),
+                RaisedButton.icon(
+                    label: Text(AppLocalizations.of(context).summaryBack),
+                    icon: Icon(Icons.play_circle_outline),
                     onPressed: () {
                       if (!SettingsModel.of(context).isNotificationsEnabled) {
                         SettingsModel.of(context).enableNotifications();

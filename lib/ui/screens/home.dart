@@ -19,7 +19,7 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   final List<Tab> tabs = <Tab>[
-    Tab(icon: Icon(Icons.play_arrow)),
+    Tab(icon: Icon(Icons.play_circle_filled)),
     Tab(icon: Icon(Icons.favorite)),
     Tab(icon: Icon(Icons.settings)),
   ];

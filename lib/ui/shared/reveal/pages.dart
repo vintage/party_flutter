@@ -80,8 +80,9 @@ class Page extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 35.0, bottom: 75.0),
-                  child: RaisedButton(
-                    child: Text(viewModel.skip),
+                  child: RaisedButton.icon(
+                    label: Text(viewModel.skip),
+                    icon: Icon(Icons.play_circle_outline),
                     onPressed: onSkip,
                   ),
                 ),

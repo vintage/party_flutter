@@ -31,19 +31,18 @@ ThemeData createTheme(BuildContext context) {
     iconTheme: IconThemeData(
       color: Color(0xFFFFFFFF),
     ),
-    dividerColor: secondaryColor,
+    dividerColor: Colors.white30,
     textTheme: Theme.of(context).textTheme.apply(
           bodyColor: textColor,
           displayColor: Color(0xFF757575),
           fontSizeFactor: isTablet ? 1.75 : 1.0,
         ),
     buttonTheme: ButtonThemeData(
-      height: isTablet ? 74.0 : 52.0,
-      minWidth: isTablet ? 180.0 : 120.0,
+      height: isTablet ? 56.0 : 42.0,
+      minWidth: 180,
       buttonColor: secondaryColor,
-      highlightColor: secondaryLightColor,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(isTablet ? 12.0 : 8.0),
+        borderRadius: BorderRadius.circular(1000),
       ),
     ),
     sliderTheme: SliderTheme.of(context).copyWith(

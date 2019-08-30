@@ -29,7 +29,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
 
   Widget buildRoundTimeSelectItem(String text) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 12.0),
       child: Text(
         text,
         style: TextStyle(color: Colors.white),
@@ -71,7 +71,6 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: Divider(
-              color: Colors.white30,
               indent: 64,
               endIndent: 64,
             ),
@@ -90,6 +89,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                     ),
                   ),
                   CupertinoSegmentedControl(
+                    padding: EdgeInsets.only(top: 8),
                     borderColor: Colors.white,
                     selectedColor: secondaryColor,
                     pressedColor: secondaryDarkColor,
@@ -113,8 +113,9 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 32),
-            child: RaisedButton(
-              child: Text(AppLocalizations.of(context).preparationPlay),
+            child: RaisedButton.icon(
+              label: Text(AppLocalizations.of(context).preparationPlay),
+              icon: Icon(Icons.play_circle_outline),
               onPressed: () {
                 SettingsModel.of(context).increaseGamesPlayed();
 
