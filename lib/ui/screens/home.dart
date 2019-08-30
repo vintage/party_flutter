@@ -53,17 +53,27 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               child: Scaffold(
                 bottomNavigationBar: Container(
                   color: primaryDarkColor,
-                  height: 60,
-                  child: TabBar(
-                    labelColor: Theme.of(context).buttonColor,
-                    unselectedLabelColor: primaryLightColor,
-                    indicatorColor: primaryLightColor,
-                    indicatorSize: TabBarIndicatorSize.label,
-                    tabs: [
-                      Tab(icon: Icon(Icons.play_arrow)),
-                      Tab(icon: Icon(Icons.favorite)),
-                      Tab(icon: Icon(Icons.settings)),
-                    ],
+                  height: 45,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: primaryColor,
+                          width: 1,
+                        ),
+                      ),
+                    ),
+                    child: TabBar(
+                      labelColor: Theme.of(context).buttonColor,
+                      unselectedLabelColor: primaryLightColor,
+                      indicatorColor: primaryDarkColor,
+                      indicatorSize: TabBarIndicatorSize.label,
+                      tabs: [
+                        Tab(icon: Icon(Icons.play_arrow)),
+                        Tab(icon: Icon(Icons.favorite)),
+                        Tab(icon: Icon(Icons.settings)),
+                      ],
+                    ),
                   ),
                 ),
                 body: TabBarView(
