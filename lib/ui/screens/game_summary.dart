@@ -17,7 +17,7 @@ class GameSummaryScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+        children: [
           Icon(
             question.isPassed ? Icons.check : Icons.close,
             size: 20.0,
@@ -63,12 +63,12 @@ class GameSummaryScreen extends StatelessWidget {
           body: SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
+              children: [
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 16.0),
                     child: Column(
-                      children: <Widget>[
+                      children: [
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
                           child: Text(

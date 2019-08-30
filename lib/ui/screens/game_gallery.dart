@@ -78,7 +78,7 @@ class GameGalleryScreen extends StatelessWidget {
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
+          children: [
             Expanded(
               child: buildGallery(),
             ),

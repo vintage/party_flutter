@@ -26,13 +26,13 @@ class CategoryListState extends State<CategoryList> {
     return ScopedModelDescendant<CategoryModel>(
         builder: (context, child, model) {
       return ListView(
-        children: <Widget>[
+        children: [
           GridView.count(
             shrinkWrap: true,
             primary: false,
-            padding: EdgeInsets.all(0.0),
-            crossAxisSpacing: 0.0,
-            mainAxisSpacing: 0.0,
+            padding: EdgeInsets.all(8),
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
             crossAxisCount: ThemeConfig.categoriesGridCount,
             children: categories.asMap().keys.map((index) {
               var category = categories[index];

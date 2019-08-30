@@ -336,7 +336,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
       decoration: BoxDecoration(color: background),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+        children: [
           Expanded(
             child: Center(
               child: child,
@@ -421,7 +421,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
   Widget buildContent() {
     if (isPaused || isStarted) {
       return Stack(
-        children: <Widget>[
+        children: [
           buildGameContent(),
           ScaleTransition(
             scale: invalidAnimation,

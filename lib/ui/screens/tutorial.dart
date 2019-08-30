@@ -111,7 +111,7 @@ class TutorialScreenState extends State<TutorialScreen>
         AppLocalizations.of(context).tutorialSkip,
       ),
       PageViewModel(
-        Theme.of(context).primaryColor,
+        Theme.of(context).primaryColorDark,
         'assets/images/tutorial_4.png',
         AppLocalizations.of(context).tutorialFourthSectionHeader,
         AppLocalizations.of(context).tutorialFourthSectionDescription,

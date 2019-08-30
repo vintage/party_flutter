@@ -57,7 +57,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   child: TabBar(
                     labelColor: Theme.of(context).buttonColor,
                     unselectedLabelColor: primaryLightColor,
-                    indicatorColor: Colors.transparent,
+                    indicatorColor: primaryLightColor,
                     indicatorSize: TabBarIndicatorSize.label,
                     tabs: [
                       Tab(icon: Icon(Icons.play_arrow)),

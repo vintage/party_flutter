@@ -135,6 +135,22 @@ class App extends StatelessWidget {
               LanguageService.getCodes().map((code) => Locale(code, '')),
           theme: createTheme(context),
           home: HomeScreen(),
+          builder: (context, widget) {
+            return Container(
+              child: widget,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  stops: [0.4, 0.9],
+                  colors: [
+                    new Color(0xFF141E30),
+                    new Color(0xFF243B55),
+                  ],
+                ),
+              ),
+            );
+          },
           routes: {
             '/category': (context) => CategoryDetailScreen(),
             '/game-play': (context) => GamePlayScreen(),

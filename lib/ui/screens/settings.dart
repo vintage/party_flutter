@@ -47,7 +47,7 @@ class SettingsScreen extends StatelessWidget {
       child: ScopedModelDescendant<SettingsModel>(
         builder: (context, child, model) {
           return Column(
-            children: <Widget>[
+            children: [
               SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsCamera),
                 subtitle: Text(AppLocalizations.of(context).settingsCameraHint),
@@ -106,7 +106,7 @@ class SettingsScreen extends StatelessWidget {
                           .map(
                             (code) => DropdownMenuItem(
                               child: Row(
-                                children: <Widget>[
+                                children: [
                                   Padding(
                                     padding: EdgeInsets.only(right: 8.0),
                                     child: FlagImage(country: code),
@@ -148,10 +148,10 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
-          slivers: <Widget>[
+          slivers: [
             SliverList(
               delegate: SliverChildListDelegate(
-                <Widget>[
+                [
                   buildContent(context),
                 ],
               ),

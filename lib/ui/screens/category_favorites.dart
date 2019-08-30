@@ -21,18 +21,21 @@ class CategoryFavoritesScreenState extends State<CategoryFavoritesScreen>
           builder: (context, child, model) {
         if (model.favourites.isEmpty) {
           return Opacity(
-            opacity: 0.3,
+            opacity: 0.5,
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
+                children: [
                   Icon(Icons.favorite_border, size: 96),
                   Container(
                     width: 160,
                     child: Text(
                       AppLocalizations.of(context).emptyFavorites,
                       textAlign: TextAlign.center,
+                      style: TextStyle(
+                        height: 1.3,
+                      ),
                     ),
                   ),
                 ],
