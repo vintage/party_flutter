@@ -41,9 +41,6 @@ class SettingsScreen extends StatelessWidget {
 
   Widget buildContent(context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Theme.of(context).backgroundColor,
-      ),
       child: ScopedModelDescendant<SettingsModel>(
         builder: (context, child, model) {
           return Column(

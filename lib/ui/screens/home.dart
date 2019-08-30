@@ -18,9 +18,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+  final List<Tab> tabs = <Tab>[
+    Tab(icon: Icon(Icons.play_arrow)),
+    Tab(icon: Icon(Icons.favorite)),
+    Tab(icon: Icon(Icons.settings)),
+  ];
+  TabController _tabController;
+
   @override
   void initState() {
     super.initState();
+    _tabController = TabController(vsync: this, length: tabs.length);
 
     if (!isTutorialWatched()) {
       // Cannot navigate instantly
@@ -32,6 +40,12 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         );
       });
     }
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   bool isTutorialWatched() {
@@ -48,42 +62,37 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           }
 
           return Scaffold(
-            body: DefaultTabController(
-              length: 3,
-              child: Scaffold(
-                bottomNavigationBar: Container(
-                  color: primaryDarkColor,
-                  height: 45,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          color: primaryColor,
-                          width: 1,
-                        ),
+            body: Scaffold(
+              bottomNavigationBar: Container(
+                color: primaryDarkColor,
+                height: 45,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                        color: primaryColor,
+                        width: 1,
                       ),
                     ),
-                    child: TabBar(
-                      labelColor: Theme.of(context).buttonColor,
-                      unselectedLabelColor: primaryLightColor,
-                      indicatorColor: primaryDarkColor,
-                      indicatorSize: TabBarIndicatorSize.label,
-                      tabs: [
-                        Tab(icon: Icon(Icons.play_arrow)),
-                        Tab(icon: Icon(Icons.favorite)),
-                        Tab(icon: Icon(Icons.settings)),
-                      ],
-                    ),
+                  ),
+                  child: TabBar(
+                    controller: _tabController,
+                    labelColor: Theme.of(context).buttonColor,
+                    unselectedLabelColor: primaryLightColor,
+                    indicatorColor: primaryDarkColor,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    tabs: tabs,
                   ),
                 ),
-                body: TabBarView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: [
-                    CategoryListScreen(),
-                    CategoryFavoritesScreen(),
-                    SettingsScreen(),
-                  ],
-                ),
+              ),
+              body: TabBarView(
+                controller: _tabController,
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  CategoryListScreen(),
+                  CategoryFavoritesScreen(),
+                  SettingsScreen(),
+                ],
               ),
             ),
           );
