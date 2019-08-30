@@ -58,73 +58,59 @@ class _CategoryListItemState extends State<CategoryListItem> {
                 borderRadius: BorderRadius.all(Radius.circular(8)),
                 child: CategoryImage(photo: widget.category.getImagePath())),
           ),
-          Positioned(
-            right: 0.0,
-            left: 0.0,
-            bottom: 0.0,
-            top: 0.0,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor.withOpacity(0.3),
+          Align(
+            alignment: Alignment.topRight,
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(8),
               ),
-              child: Stack(
-                alignment: Alignment.topRight,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(8),
-                    ),
-                    child: Container(
-                      color: Theme.of(context).primaryColor.withOpacity(0.5),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                      child: Text(
-                        widget.category.name,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: ThemeConfig.categoriesTextSize,
-                        ),
-                      ),
-                    ),
+              child: Container(
+                color: Theme.of(context).primaryColor.withOpacity(0.5),
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                child: Text(
+                  widget.category.name,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: ThemeConfig.categoriesTextSize,
                   ),
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: 30,
-                    child: Container(
-                      height: double.infinity,
-                      color: Theme.of(context).primaryColor.withOpacity(0.5),
-                    ),
-                  ),
-                  ScopedModelDescendant<CategoryModel>(
-                    builder: (context, child, model) {
-                      return Positioned(
-                        bottom: 10,
-                        left: 10,
-                        child: buildMetaItem(
-                          model.getPlayedCount(widget.category).toString(),
-                          Icons.play_arrow,
-                        ),
-                      );
-                    },
-                  ),
-                  questionCount > 0
-                      ? Positioned(
-                          bottom: 10,
-                          right: 10,
-                          child: buildMetaItem(
-                            AppLocalizations.of(context)
-                                .categoryItemQuestionsCount(questionCount),
-                          ),
-                        )
-                      : null,
-                ].where((o) => o != null).toList(),
+                ),
               ),
             ),
           ),
-        ],
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: 30,
+            child: Container(
+              height: double.infinity,
+              color: Theme.of(context).primaryColor.withOpacity(0.5),
+            ),
+          ),
+          ScopedModelDescendant<CategoryModel>(
+            builder: (context, child, model) {
+              return Positioned(
+                bottom: 10,
+                left: 10,
+                child: buildMetaItem(
+                  model.getPlayedCount(widget.category).toString(),
+                  Icons.play_arrow,
+                ),
+              );
+            },
+          ),
+          questionCount > 0
+              ? Positioned(
+                  bottom: 10,
+                  right: 10,
+                  child: buildMetaItem(
+                    AppLocalizations.of(context)
+                        .categoryItemQuestionsCount(questionCount),
+                  ),
+                )
+              : null,
+        ].where((o) => o != null).toList(),
       ),
     );
   }

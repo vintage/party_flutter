@@ -380,13 +380,15 @@ class GamePlayScreenState extends State<GamePlayScreen>
                     currentQuestion == null
                         ? null
                         : Padding(
-                            padding: EdgeInsets.only(top: 20.0),
-                            child: Text(
-                              currentQuestion.categoryName,
-                              style: TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                            padding: EdgeInsets.only(top: 8.0),
+                            child: SafeArea(
+                              child: Text(
+                                currentQuestion.categoryName,
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
@@ -459,7 +461,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
           buildHeader(secondsLeft.toString()),
         ],
       ),
-      Theme.of(context).backgroundColor.withOpacity(backgroundOpacity),
+      Colors.transparent,
     );
   }
 

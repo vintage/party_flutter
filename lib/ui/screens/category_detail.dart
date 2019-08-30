@@ -43,7 +43,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 32.0),
+            padding: const EdgeInsets.only(top: 8),
             child: Container(
               width: ThemeConfig.categoryImageSize,
               height: ThemeConfig.categoryImageSize,
@@ -71,8 +71,8 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: Divider(
-              indent: 64,
-              endIndent: 64,
+              indent: 32,
+              endIndent: 32,
             ),
           ),
           ScopedModelDescendant<SettingsModel>(

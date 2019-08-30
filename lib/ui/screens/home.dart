@@ -65,7 +65,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             body: Scaffold(
               bottomNavigationBar: Container(
                 color: primaryDarkColor,
-                height: 45,
+                height: 55,
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border(

@@ -14,7 +14,7 @@ class CameraPreviewScreen extends StatefulWidget {
 
 class CameraPreviewScreenState extends State<CameraPreviewScreen>
     with TickerProviderStateMixin, WidgetsBindingObserver {
-  static const pictureInterval = 15;
+  static const pictureInterval = 8;
 
   CameraController controller;
   Directory pictureDir;

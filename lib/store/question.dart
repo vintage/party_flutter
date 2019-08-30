@@ -5,6 +5,8 @@ import 'package:zgadula/models/question.dart';
 import 'package:zgadula/repository/question.dart';
 import 'package:zgadula/store/store.dart';
 
+const QUESTIONS_PER_GAME = 10;
+
 class QuestionModel extends StoreModel {
   QuestionRepository repository;
 
@@ -43,7 +45,7 @@ class QuestionModel extends StoreModel {
     _currentQuestions = repository.getRandom(
       _questions,
       categoryId,
-      10,
+      QUESTIONS_PER_GAME,
       excluded: _latestQuestions,
     );
     _currentQuestions.forEach((q) {

@@ -11,9 +11,24 @@ class CategoryImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Material(
       color: Colors.transparent,
-      child: Image.asset(
-        photo,
-        fit: BoxFit.contain,
+      child: Stack(
+        children: [
+          Image.asset(
+            photo,
+            fit: BoxFit.contain,
+          ),
+          Positioned(
+            right: 0.0,
+            left: 0.0,
+            bottom: 0.0,
+            top: 0.0,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor.withOpacity(0.3),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
