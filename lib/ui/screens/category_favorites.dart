@@ -5,15 +5,7 @@ import 'package:zgadula/store/category.dart';
 import 'package:zgadula/localizations.dart';
 import '../shared/widgets.dart';
 
-class CategoryFavoritesScreen extends StatefulWidget {
-  @override
-  CategoryFavoritesScreenState createState() {
-    return new CategoryFavoritesScreenState();
-  }
-}
-
-class CategoryFavoritesScreenState extends State<CategoryFavoritesScreen>
-    with TickerProviderStateMixin {
+class CategoryFavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

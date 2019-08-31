@@ -6,10 +6,14 @@ import '../shared/widgets.dart';
 
 class CategoryListScreen extends StatefulWidget {
   @override
-  CategoryListScreenState createState() => CategoryListScreenState();
+  _CategoryListScreenState createState() => _CategoryListScreenState();
 }
 
-class CategoryListScreenState extends State<CategoryListScreen> {
+class _CategoryListScreenState extends State<CategoryListScreen>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

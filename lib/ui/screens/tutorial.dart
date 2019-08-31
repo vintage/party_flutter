@@ -23,7 +23,6 @@ class TutorialScreenState extends State<TutorialScreen>
 
   TutorialScreenState() {
     slideUpdateStream = new StreamController<SlideUpdate>();
-
     slideUpdateStream.stream.listen((SlideUpdate event) {
       setState(() {
         if (event.updateType == UpdateType.dragging) {

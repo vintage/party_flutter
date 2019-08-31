@@ -7,22 +7,16 @@ import 'package:zgadula/ui/theme.dart';
 import 'package:zgadula/models/category.dart';
 import 'category_list_item.dart';
 
-class CategoryList extends StatefulWidget {
+class CategoryList extends StatelessWidget {
   CategoryList({
+    Key key,
     this.categories,
-  });
+  }) : super(key: key);
 
   final List<Category> categories;
 
   @override
-  CategoryListState createState() => CategoryListState();
-}
-
-class CategoryListState extends State<CategoryList> {
-  @override
   Widget build(BuildContext context) {
-    var categories = widget.categories;
-
     return ScopedModelDescendant<CategoryModel>(
         builder: (context, child, model) {
       return ListView(

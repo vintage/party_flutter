@@ -101,15 +101,13 @@ class GameSummaryScreen extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 16.0,),
+                          vertical: 8.0,
+                          horizontal: 16.0,
+                        ),
                         child: Text(
                           model.questionsPassed.length.toString(),
-                          style: Theme.of(context)
-                              .textTheme
-                              .display2
-                              .copyWith(
-                                color:
-                                    Theme.of(context).textTheme.body1.color,
+                          style: Theme.of(context).textTheme.display2.copyWith(
+                                color: Theme.of(context).textTheme.body1.color,
                               ),
                         ),
                       ),
