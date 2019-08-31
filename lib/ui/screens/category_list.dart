@@ -3,6 +3,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:zgadula/store/category.dart';
 import '../shared/widgets.dart';
+import 'package:zgadula/ui/templates/screen.dart';
 
 class CategoryListScreen extends StatefulWidget {
   @override
@@ -16,8 +17,8 @@ class _CategoryListScreenState extends State<CategoryListScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ScopedModelDescendant<CategoryModel>(
+    return ScreenTemplate(
+      child: ScopedModelDescendant<CategoryModel>(
         builder: (context, child, model) =>
             CategoryList(categories: model.categories),
       ),

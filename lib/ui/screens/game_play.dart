@@ -17,7 +17,7 @@ import 'package:zgadula/store/question.dart';
 import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/store/gallery.dart';
 import 'package:zgadula/ui/screens/camera_preview.dart';
-import 'package:zgadula/ui/templates/back_template.dart';
+import 'package:zgadula/ui/templates/screen.dart';
 import 'package:zgadula/ui/theme.dart';
 import 'package:zgadula/services/pictures.dart';
 import 'package:zgadula/services/ads.dart';
@@ -469,7 +469,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
   Widget build(BuildContext context) {
     bool showCamera = isCameraEnabled && isStarted;
 
-    return BackTemplate(
+    return ScreenTemplate(
       onBack: () async {
         if (await confirmBack()) {
           Navigator.pop(context);

@@ -4,12 +4,13 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/localizations.dart';
 import '../shared/widgets.dart';
+import 'package:zgadula/ui/templates/screen.dart';
 
 class CategoryFavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ScopedModelDescendant<CategoryModel>(
+    return ScreenTemplate(
+      child: ScopedModelDescendant<CategoryModel>(
           builder: (context, child, model) {
         if (model.favourites.isEmpty) {
           return Opacity(

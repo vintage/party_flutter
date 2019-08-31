@@ -11,6 +11,7 @@ import 'package:zgadula/store/question.dart';
 import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/ui/theme.dart';
 import '../shared/widgets.dart';
+import 'package:zgadula/ui/templates/screen.dart';
 
 class GameSummaryScreen extends StatelessWidget {
   Widget buildQuestionItem(BuildContext context, Question question) {
@@ -80,8 +81,8 @@ class GameSummaryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<QuestionModel>(
       builder: (context, child, model) {
-        return Scaffold(
-          body: SafeArea(
+        return ScreenTemplate(
+          child: SafeArea(
             child: Column(
               children: [
                 Column(

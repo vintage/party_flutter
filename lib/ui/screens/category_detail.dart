@@ -6,7 +6,7 @@ import 'package:zgadula/services/analytics.dart';
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/store/category.dart';
 import 'package:zgadula/store/settings.dart';
-import 'package:zgadula/ui/templates/back_template.dart';
+import 'package:zgadula/ui/templates/screen.dart';
 import 'package:zgadula/ui/theme.dart';
 import '../shared/widgets.dart';
 
@@ -33,7 +33,8 @@ class CategoryDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BackTemplate(
+    return ScreenTemplate(
+      showBack: true,
       child: ScopedModelDescendant<CategoryModel>(
         builder: (context, child, model) {
           var category = model.currentCategory;

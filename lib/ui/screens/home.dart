@@ -9,6 +9,7 @@ import 'package:zgadula/ui/screens/category_favorites.dart';
 import 'package:zgadula/ui/screens/settings.dart';
 import '../shared/widgets.dart';
 import '../theme.dart';
+import 'package:zgadula/ui/templates/screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -61,8 +62,8 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             return ScreenLoader();
           }
 
-          return Scaffold(
-            body: Scaffold(
+          return ScreenTemplate(
+            child: Scaffold(
               bottomNavigationBar: Container(
                 color: primaryDarkColor,
                 height: 55,

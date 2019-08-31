@@ -7,7 +7,7 @@ import 'package:zgadula/services/analytics.dart';
 import 'package:zgadula/store/gallery.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:zgadula/ui/templates/back_template.dart';
+import 'package:zgadula/ui/templates/screen.dart';
 
 import '../theme.dart';
 
@@ -74,7 +74,8 @@ class GameGalleryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BackTemplate(
+    return ScreenTemplate(
+      showBack: true,
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

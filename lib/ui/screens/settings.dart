@@ -9,6 +9,7 @@ import 'package:zgadula/services/language.dart';
 import 'package:zgadula/store/settings.dart';
 import 'package:zgadula/store/language.dart';
 import '../shared/widgets.dart';
+import 'package:zgadula/ui/templates/screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   Future<bool> _requestPermissions(
@@ -142,8 +143,8 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
+    return ScreenTemplate(
+      child: SafeArea(
         child: CustomScrollView(
           slivers: [
             SliverList(
