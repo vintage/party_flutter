@@ -10,11 +10,7 @@ class CategoryListScreen extends StatefulWidget {
   _CategoryListScreenState createState() => _CategoryListScreenState();
 }
 
-class _CategoryListScreenState extends State<CategoryListScreen>
-    with AutomaticKeepAliveClientMixin {
-  @override
-  bool get wantKeepAlive => true;
-
+class _CategoryListScreenState extends State<CategoryListScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenTemplate(

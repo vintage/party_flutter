@@ -35,9 +35,8 @@ class ScreenTemplate extends StatelessWidget {
                     left: 0,
                     child: SafeArea(
                       child: IconButton(
-                        onPressed: () => onBack != null
-                            ? onBack()
-                            : Navigator.pop(context),
+                        onPressed: () =>
+                            onBack != null ? onBack() : Navigator.pop(context),
                         icon: Icon(Icons.arrow_back_ios),
                       ),
                     ),
