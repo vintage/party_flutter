@@ -96,32 +96,34 @@ class SettingsScreen extends StatelessWidget {
               ScopedModelDescendant<LanguageModel>(
                 builder: (context, child, model) {
                   return ListTile(
-                    title: Text(AppLocalizations.of(context).settingsLanguage),
-                    leading: Icon(Icons.flag),
-                    trailing: DropdownButton(
-                      value: model.language,
-                      items: LanguageService.getCodes()
-                          .map(
-                            (code) => DropdownMenuItem(
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(right: 8.0),
-                                    child: FlagImage(country: code),
+                      title:
+                          Text(AppLocalizations.of(context).settingsLanguage),
+                      leading: Icon(Icons.flag),
+                      trailing: DropdownButtonHideUnderline(
+                        child: DropdownButton(
+                          value: model.language,
+                          items: LanguageService.getCodes()
+                              .map(
+                                (code) => DropdownMenuItem(
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 8.0),
+                                        child: FlagImage(country: code),
+                                      ),
+                                      Text(code.toUpperCase()),
+                                    ],
                                   ),
-                                  Text(code.toUpperCase()),
-                                ],
-                              ),
-                              value: code,
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (String language) {
-                        logChange('settings_language', language);
-                        model.changeLanguage(language);
-                      },
-                    ),
-                  );
+                                  value: code,
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (String language) {
+                            logChange('settings_language', language);
+                            model.changeLanguage(language);
+                          },
+                        ),
+                      ));
                 },
               ),
               ListTile(

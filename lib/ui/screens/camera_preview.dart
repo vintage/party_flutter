@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
@@ -159,16 +158,13 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen>
     }
 
     return Center(
-      child: AspectRatio(
-        aspectRatio: controller.value.aspectRatio,
-        child: Transform.rotate(
-          angle: pi / 2,
-          child: Stack(
-            children: [
-              CameraPreview(controller),
-              lastImage != null ? buildImageTaken() : null,
-            ].where((w) => w != null).toList(),
-          ),
+      child: RotatedBox(
+        quarterTurns: 1,
+        child: Stack(
+          children: [
+            CameraPreview(controller),
+            lastImage != null ? buildImageTaken() : null,
+          ].where((w) => w != null).toList(),
         ),
       ),
     );
