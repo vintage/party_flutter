@@ -66,7 +66,7 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen>
       return;
     }
 
-    controller = CameraController(frontCamera, ResolutionPreset.high);
+    controller = CameraController(frontCamera, ResolutionPreset.high, enableAudio: false);
     controller.addListener(() {
       if (mounted) {
         setState(() {});
