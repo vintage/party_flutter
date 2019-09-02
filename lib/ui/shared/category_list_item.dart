@@ -63,6 +63,7 @@ class _CategoryListItemState extends State<CategoryListItem> {
             child: ClipRRect(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(8),
+                topRight: Radius.circular(8),
               ),
               child: Container(
                 color: Theme.of(context).primaryColor.withOpacity(0.5),
@@ -83,9 +84,15 @@ class _CategoryListItemState extends State<CategoryListItem> {
             left: 0,
             right: 0,
             height: 30,
-            child: Container(
-              height: double.infinity,
-              color: Theme.of(context).primaryColor.withOpacity(0.5),
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(8),
+                bottomRight: Radius.circular(8),
+              ),
+              child: Container(
+                height: double.infinity,
+                color: Theme.of(context).primaryColor.withOpacity(0.5),
+              ),
             ),
           ),
           ScopedModelDescendant<CategoryModel>(

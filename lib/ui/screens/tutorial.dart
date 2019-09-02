@@ -74,6 +74,12 @@ class TutorialScreenState extends State<TutorialScreen>
   }
 
   @override
+  void initState() {
+    TutorialModel.of(context).watch();
+    super.initState();
+  }
+
+  @override
   dispose() {
     super.dispose();
 
@@ -81,8 +87,6 @@ class TutorialScreenState extends State<TutorialScreen>
   }
 
   skipTutorial() {
-    TutorialModel.of(context).watch();
-
     Navigator.pop(context);
   }
 

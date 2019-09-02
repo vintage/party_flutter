@@ -7,9 +7,9 @@ import 'package:zgadula/store/tutorial.dart';
 import 'package:zgadula/ui/screens/category_list.dart';
 import 'package:zgadula/ui/screens/category_favorites.dart';
 import 'package:zgadula/ui/screens/settings.dart';
+import 'package:zgadula/ui/templates/screen.dart';
 import '../shared/widgets.dart';
 import '../theme.dart';
-import 'package:zgadula/ui/templates/screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -32,14 +32,11 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     _tabController = TabController(vsync: this, length: tabs.length);
 
     if (!isTutorialWatched()) {
-      // Cannot navigate instantly
-      // https://github.com/flutter/flutter/issues/19330
-      Future.delayed(Duration(milliseconds: 10)).then((_) {
-        Navigator.pushNamed(
-          context,
-          '/tutorial',
-        );
-      });
+      WidgetsBinding.instance
+          .addPostFrameCallback((_) => Navigator.pushNamed(
+        context,
+        '/tutorial',
+      ));
     }
   }
 
@@ -88,7 +85,6 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
               body: TabBarView(
                 controller: _tabController,
-                physics: const NeverScrollableScrollPhysics(),
                 children: [
                   CategoryListScreen(),
                   CategoryFavoritesScreen(),
