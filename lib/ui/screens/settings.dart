@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:package_info/package_info.dart';
 
 import 'package:zgadula/localizations.dart';
 import 'package:zgadula/services/analytics.dart';
@@ -29,13 +30,6 @@ class SettingsScreen extends StatelessWidget {
     ]);
   }
 
-//  Future<bool> requestSpeechPermissions() async {
-//    return _requestPermissions([
-//      PermissionGroup.speech,
-//      PermissionGroup.microphone,
-//    ]);
-//  }
-
   void logChange(String field, dynamic value) {
     AnalyticsService.logEvent(field, {"value": value});
   }
@@ -44,7 +38,7 @@ class SettingsScreen extends StatelessWidget {
     return Container(
       child: ScopedModelDescendant<SettingsModel>(
         builder: (context, child, model) {
-          return Column(
+          return ListView(
             children: [
               SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsCamera),
@@ -60,19 +54,6 @@ class SettingsScreen extends StatelessWidget {
                 },
                 secondary: Icon(Icons.camera_alt),
               ),
-//              SwitchListTile(
-//                title: Text(AppLocalizations.of(context).settingsSpeech),
-//                subtitle: Text(AppLocalizations.of(context).settingsSpeechHint),
-//                value: model.isSpeechEnabled,
-//                onChanged: (bool value) async {
-//                  if (value && !await requestSpeechPermissions()) {
-//                    return;
-//                  }
-//
-//                  model.toggleSpeech();
-//                },
-//                secondary: Icon(Icons.mic),
-//              ),
               SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsAccelerometer),
                 subtitle: Text(
@@ -147,14 +128,26 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTemplate(
       child: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  buildContent(context),
-                ],
-              ),
+        child: Column(
+          children: [
+            Expanded(
+              child: buildContent(context),
+            ),
+            FutureBuilder<PackageInfo>(
+              future: PackageInfo.fromPlatform(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return GestureDetector(
+                    onTap: () => openCredits(context),
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: 8),
+                      child: Text('v ${snapshot.data.version}'),
+                    ),
+                  );
+                }
+
+                return Container();
+              },
             ),
           ],
         ),

@@ -32,11 +32,10 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     _tabController = TabController(vsync: this, length: tabs.length);
 
     if (!isTutorialWatched()) {
-      WidgetsBinding.instance
-          .addPostFrameCallback((_) => Navigator.pushNamed(
-        context,
-        '/tutorial',
-      ));
+      WidgetsBinding.instance.addPostFrameCallback((_) => Navigator.pushNamed(
+            context,
+            '/tutorial',
+          ));
     }
   }
 

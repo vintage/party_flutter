@@ -20,23 +20,31 @@ class _ContributorsScreenState extends State<ContributorsScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenTemplate(
-      showBack: true,
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor,
-        ),
-        child: ScopedModelDescendant<ContributorModel>(
-          builder: (context, child, model) {
-            return Column(
-              children: model.contributors.map((contributor) {
-                return ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text(contributor.name),
-                  subtitle: Text(contributor.username),
+      child: SafeArea(
+        child: Stack(
+          children: [
+            ScopedModelDescendant<ContributorModel>(
+              builder: (context, child, model) {
+                return ListView(
+                  children: model.contributors.map((contributor) {
+                    return ListTile(
+                      leading: Icon(Icons.person),
+                      title: Text(contributor.name),
+                      subtitle: Text(contributor.username),
+                    );
+                  }).toList(),
                 );
-              }).toList(),
-            );
-          },
+              },
+            ),
+            Positioned(
+              top: 0,
+              right: 0,
+              child: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(Icons.close),
+              ),
+            ),
+          ],
         ),
       ),
     );
