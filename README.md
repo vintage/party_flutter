@@ -16,14 +16,16 @@ Mobile party game implemented in Flutter framework. Its been heavily inspired by
 - Place the phone at your forehead, so that other players can see the screen
 - Guess the word displayed at the screen - your friends are here to help you!
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/tAOXFdFt6SQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 ## Download
 
 <div>
 <a href='https://play.google.com/store/apps/details?id=com.puppybox.zgadula' target='_blank'><img alt='Get it on Google Play' src='screenshots/google_play.png' height='48px'/></a>
 <a href='https://itunes.apple.com/us/app/zgadula-party-charades/id1181083547' target='_blank'><img alt='Get it on the App Store' src='screenshots/app_store.png' height='48px'/></a>
 </div>
+
+## Preview Video
+
+[![Preview Video](https://img.youtube.com/vi/tAOXFdFt6SQ/0.jpg)](https://www.youtube.com/watch?v=tAOXFdFt6SQ)
 
 ## Screenshots
 
