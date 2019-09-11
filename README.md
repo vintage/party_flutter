@@ -16,6 +16,8 @@ Mobile party game implemented in Flutter framework. Its been heavily inspired by
 - Place the phone at your forehead, so that other players can see the screen
 - Guess the word displayed at the screen - your friends are here to help you!
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tAOXFdFt6SQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Download
 
 <div>
