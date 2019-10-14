@@ -169,9 +169,9 @@
       "type": "text",
       "placeholders": {}
     },
-  "roundTime": "Czas rundy",
-  "@roundTime": {
-    "description": "Label for round time slider",
+  "gameTime": "Czas gry",
+  "@gameTime": {
+    "description": "Label for game time slider",
     "type": "text",
     "placeholders": {}
   },

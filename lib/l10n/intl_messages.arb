@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-08-29T21:05:51.916663",
+  "@@last_modified": "2019-10-11T16:27:44.744540",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -168,9 +168,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "roundTime": "Round time",
-  "@roundTime": {
-    "description": "Label for round time slider",
+  "gameTime": "Game time",
+  "@gameTime": {
+    "description": "Label for game time slider",
     "type": "text",
     "placeholders": {}
   },

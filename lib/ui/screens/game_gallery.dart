@@ -8,6 +8,7 @@ import 'package:zgadula/store/gallery.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:zgadula/ui/templates/screen.dart';
+import 'package:path/path.dart';
 
 import '../theme.dart';
 
@@ -51,7 +52,7 @@ class GameGalleryScreen extends StatelessWidget {
 
                             await Share.file(
                               'Zgadula',
-                              'zgadula.png',
+                              basename(item.path),
                               File(item.path).readAsBytesSync(),
                               'image/png',
                             );

@@ -168,9 +168,9 @@
       "type": "text",
       "placeholders": {}
     },
-  "roundTime": "Round time",
-  "@roundTime": {
-    "description": "Label for round time slider",
+  "gameTime": "Game time",
+  "@gameTime": {
+    "description": "Label for game time slider",
     "type": "text",
     "placeholders": {}
   },

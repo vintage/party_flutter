@@ -88,7 +88,7 @@ class CategoryDetailScreen extends StatelessWidget {
                                 child: RichText(
                                   text: TextSpan(
                                     text:
-                                        AppLocalizations.of(context).roundTime,
+                                        AppLocalizations.of(context).gameTime,
                                     style: Theme.of(context).textTheme.body1,
                                   ),
                                 ),

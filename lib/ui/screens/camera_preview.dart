@@ -18,7 +18,6 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen>
   CameraController controller;
   Directory pictureDir;
   Timer pictureTimer;
-  int pictureTaken = 0;
   FileSystemEntity lastImage;
 
   AnimationController imageAnimationController;
@@ -119,9 +118,9 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen>
       return false;
     }
 
-    AnalyticsService.logEvent('picture_taken', {'index': pictureTaken + 1});
+    AnalyticsService.logEvent('picture_taken', {});
 
-    controller.takePicture('${pictureDir.path}/$pictureTaken.png');
+    controller.takePicture('${pictureDir.path}/${DateTime.now().millisecondsSinceEpoch}.png');
 
     Future.delayed(Duration(seconds: 1)).then((_) async {
       List<FileSystemEntity> files = await PicturesService.getFiles(context);
@@ -131,8 +130,6 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen>
         imageAnimationController.forward();
       });
     });
-
-    pictureTaken += 1;
   }
 
   Widget buildImageTaken() {

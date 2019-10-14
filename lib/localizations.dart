@@ -248,11 +248,11 @@ class AppLocalizations {
     );
   }
 
-  String get roundTime {
+  String get gameTime {
     return Intl.message(
-      'Round time',
-      name: 'roundTime',
-      desc: 'Label for round time slider',
+      'Game time',
+      name: 'gameTime',
+      desc: 'Label for game time slider',
     );
   }
 

@@ -15,3 +15,4 @@ doc/api/
 # Auto generated l10n files
 lib/l10n/messages_*.dart
 android/key.properties
+ios/Flutter/flutter_export_environment.sh
