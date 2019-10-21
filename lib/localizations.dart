@@ -134,11 +134,11 @@ class AppLocalizations {
     );
   }
 
-  String get nextQuestion {
+  String get lastQuestion {
     return Intl.message(
-      'Next',
-      name: 'nextQuestion',
-      desc: 'Text shown before presenting next question during the game',
+      'Last Question',
+      name: 'lastQuestion',
+      desc: 'Text shown before presenting last question during the game',
     );
   }
 

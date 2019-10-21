@@ -84,9 +84,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "nextQuestion": "Next",
-  "@nextQuestion": {
-    "description": "Text shown before presenting next question during the game",
+  "lastQuestion": "Last question",
+  "@lastQuestion": {
+    "description": "Text shown before presenting last question during the game",
     "type": "text",
     "placeholders": {}
   },

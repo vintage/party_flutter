@@ -86,7 +86,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
   }
 
   AnimationController createAnswerAnimationController() {
-    const duration = Duration(milliseconds: 1000);
+    const duration = Duration(milliseconds: 1500);
     var controller = AnimationController(vsync: this, duration: duration);
     controller
       ..addStatusListener((listener) {
@@ -342,7 +342,20 @@ class GamePlayScreenState extends State<GamePlayScreen>
               child: child,
             ),
           ),
-        ],
+          QuestionModel.of(context).isPreLastQuestion()
+              ? Padding(
+                  padding: EdgeInsets.only(bottom: 16),
+                  child: Text(
+                    AppLocalizations.of(context).lastQuestion,
+                    style: TextStyle(
+                      fontSize: 36.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              : null,
+        ].where((o) => o != null).toList(),
       ),
     );
   }

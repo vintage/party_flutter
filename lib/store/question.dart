@@ -56,6 +56,15 @@ class QuestionModel extends StoreModel {
     notifyListeners();
   }
 
+  isPreLastQuestion() {
+    var nextQuestion = repository.getNext(_currentQuestions, _currentQuestion);
+    if (nextQuestion == null) {
+      return false;
+    }
+
+    return repository.getNext(_currentQuestions, nextQuestion) == null;
+  }
+
   setNextQuestion() {
     _currentQuestion = repository.getNext(_currentQuestions, _currentQuestion);
     notifyListeners();

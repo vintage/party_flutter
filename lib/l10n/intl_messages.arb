@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-10-11T16:27:44.744540",
+  "@@last_modified": "2019-10-14T11:38:30.951910",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -84,9 +84,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "nextQuestion": "Next",
-  "@nextQuestion": {
-    "description": "Text shown before presenting next question during the game",
+  "lastQuestion": "Last Question",
+  "@lastQuestion": {
+    "description": "Text shown before presenting last question during the game",
     "type": "text",
     "placeholders": {}
   },
