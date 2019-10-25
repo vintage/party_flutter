@@ -32,7 +32,7 @@ class GamePlayScreen extends StatefulWidget {
 
 class GamePlayScreenState extends State<GamePlayScreen>
     with TickerProviderStateMixin {
-  static const _rotationChannel = const MethodChannel('zgadula/orientation');
+  static const _rotationChannel = MethodChannel('zgadula/orientation');
   static const backgroundOpacity = 0.9;
 
   Timer gameTimer;
@@ -197,7 +197,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
   }
 
   Future<bool> confirmBack() async {
-    Completer completer = new Completer<bool>();
+    Completer completer = Completer<bool>();
 
     unawaited(
       Alert(

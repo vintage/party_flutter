@@ -8,7 +8,7 @@ import '../shared/reveal/widgets.dart';
 
 class TutorialScreen extends StatefulWidget {
   @override
-  TutorialScreenState createState() => new TutorialScreenState();
+  TutorialScreenState createState() => TutorialScreenState();
 }
 
 class TutorialScreenState extends State<TutorialScreen>
@@ -22,7 +22,7 @@ class TutorialScreenState extends State<TutorialScreen>
   double slidePercent = 0.0;
 
   TutorialScreenState() {
-    slideUpdateStream = new StreamController<SlideUpdate>();
+    slideUpdateStream = StreamController<SlideUpdate>();
     slideUpdateStream.stream.listen((SlideUpdate event) {
       setState(() {
         if (event.updateType == UpdateType.dragging) {
@@ -38,7 +38,7 @@ class TutorialScreenState extends State<TutorialScreen>
           }
         } else if (event.updateType == UpdateType.doneDragging) {
           if (slidePercent > 0.2) {
-            animatedPageDragger = new AnimatedPageDragger(
+            animatedPageDragger = AnimatedPageDragger(
               slideDirection: slideDirection,
               transitionGoal: TransitionGoal.open,
               slidePercent: slidePercent,
@@ -46,7 +46,7 @@ class TutorialScreenState extends State<TutorialScreen>
               vsync: this,
             );
           } else {
-            animatedPageDragger = new AnimatedPageDragger(
+            animatedPageDragger = AnimatedPageDragger(
               slideDirection: slideDirection,
               transitionGoal: TransitionGoal.close,
               slidePercent: slidePercent,
@@ -129,31 +129,31 @@ class TutorialScreenState extends State<TutorialScreen>
   Widget build(BuildContext context) {
     List<PageViewModel> pages = getPages(context);
 
-    return new Scaffold(
-      body: new Stack(
+    return Scaffold(
+      body: Stack(
         children: [
-          new Page(
+          Page(
             viewModel: pages[activeIndex],
             percentVisible: 1.0,
             onSkip: skipTutorial,
           ),
-          new PageReveal(
+          PageReveal(
             revealPercent: slidePercent,
-            child: new Page(
+            child: Page(
               viewModel: pages[nextPageIndex],
               percentVisible: slidePercent,
               onSkip: skipTutorial,
             ),
           ),
-          new PagerIndicator(
-            viewModel: new PagerIndicatorViewModel(
+          PagerIndicator(
+            viewModel: PagerIndicatorViewModel(
               pages,
               activeIndex,
               slideDirection,
               slidePercent,
             ),
           ),
-          new PageDragger(
+          PageDragger(
             canDragLeftToRight: activeIndex > 0,
             canDragRightToLeft: activeIndex < pages.length - 1,
             slideUpdateStream: this.slideUpdateStream,

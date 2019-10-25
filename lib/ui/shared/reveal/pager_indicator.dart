@@ -34,8 +34,8 @@ class PagerIndicator extends StatelessWidget {
       bool isHollow = i != viewModel.activeIndex;
 
       bubbles.add(
-        new PageBubble(
-          viewModel: new PageBubbleViewModel(
+        PageBubble(
+          viewModel: PageBubbleViewModel(
             page.color,
             isHollow,
             percentActive,
@@ -44,11 +44,11 @@ class PagerIndicator extends StatelessWidget {
       );
     }
 
-    return new Column(
+    return Column(
       children: [
-        new Expanded(child: new Container()),
-        new Center(
-          child: new Row(
+        Expanded(child: Container()),
+        Center(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: bubbles,
           ),
@@ -89,20 +89,20 @@ class PageBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     Color color = secondaryDarkColor;
 
-    return new Container(
+    return Container(
       width: 25.0,
       height: 55.0,
-      child: new Center(
-        child: new Container(
+      child: Center(
+        child: Container(
           width: lerpDouble(12.0, 16.0, viewModel.activePercent),
           height: lerpDouble(12.0, 16.0, viewModel.activePercent),
-          decoration: new BoxDecoration(
+          decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(2.0),
             color: viewModel.isHollow
                 ? color.withOpacity(viewModel.activePercent)
                 : secondaryColor,
-            border: new Border.all(
+            border: Border.all(
               color: viewModel.isHollow
                   ? color.withOpacity(1 - viewModel.activePercent)
                   : Colors.transparent,

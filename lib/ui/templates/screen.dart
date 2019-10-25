@@ -21,8 +21,8 @@ class ScreenTemplate extends StatelessWidget {
             end: Alignment.bottomRight,
             stops: [0.4, 0.9],
             colors: [
-              new Color(0xFF141E30),
-              new Color(0xFF243B55),
+              Color(0xFF141E30),
+              Color(0xFF243B55),
             ],
           ),
         ),

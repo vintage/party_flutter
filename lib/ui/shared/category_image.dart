@@ -9,7 +9,7 @@ class CategoryImage extends StatelessWidget {
   final String photo;
 
   Widget build(BuildContext context) {
-    return new Material(
+    return Material(
       color: Colors.transparent,
       child: Stack(
         children: [

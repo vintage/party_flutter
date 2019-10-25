@@ -9,7 +9,7 @@ class FlagImage extends StatelessWidget {
   final String country;
 
   Widget build(BuildContext context) {
-    return new Material(
+    return Material(
       color: Colors.transparent,
       child: Image.asset(
         'assets/images/flags/$country.png',

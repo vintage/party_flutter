@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:zgadula/store/settings.dart';
 
 class AudioService {
-  static AudioCache sfxPlayer = new AudioCache(prefix: 'sfx/');
+  static AudioCache sfxPlayer = AudioCache(prefix: 'sfx/');
 
   static _playSfx(BuildContext context, String name) async {
     bool canAudio = SettingsModel.of(context).isAudioEnabled;

@@ -16,7 +16,7 @@ class PageDragger extends StatefulWidget {
   });
 
   @override
-  _PageDraggerState createState() => new _PageDraggerState();
+  _PageDraggerState createState() => _PageDraggerState();
 }
 
 class _PageDraggerState extends State<PageDragger> {
@@ -49,12 +49,12 @@ class _PageDraggerState extends State<PageDragger> {
       }
 
       widget.slideUpdateStream.add(
-          new SlideUpdate(UpdateType.dragging, slideDirection, slidePercent));
+          SlideUpdate(UpdateType.dragging, slideDirection, slidePercent));
     }
   }
 
   onDragEnd(DragEndDetails details) {
-    widget.slideUpdateStream.add(new SlideUpdate(
+    widget.slideUpdateStream.add(SlideUpdate(
       UpdateType.doneDragging,
       SlideDirection.none,
       0.0,
@@ -65,7 +65,7 @@ class _PageDraggerState extends State<PageDragger> {
 
   @override
   Widget build(BuildContext context) {
-    return new GestureDetector(
+    return GestureDetector(
       onHorizontalDragStart: onDragStart,
       onHorizontalDragUpdate: onDragUpdate,
       onHorizontalDragEnd: onDragEnd,
@@ -95,16 +95,16 @@ class AnimatedPageDragger {
     if (transitionGoal == TransitionGoal.open) {
       endSlidePercent = 1.0;
       final slideRemaining = 1.0 - slidePercent;
-      duration = new Duration(
+      duration = Duration(
           milliseconds: (slideRemaining / PERCENT_PER_MILLISECOND).round());
     } else {
       endSlidePercent = 0.0;
-      duration = new Duration(
+      duration = Duration(
           milliseconds: (slidePercent / PERCENT_PER_MILLISECOND).round());
     }
 
     completionAnimationController =
-        new AnimationController(duration: duration, vsync: vsync)
+        AnimationController(duration: duration, vsync: vsync)
           ..addListener(() {
             slidePercent = lerpDouble(
               startSlidePercent,
@@ -112,7 +112,7 @@ class AnimatedPageDragger {
               completionAnimationController.value,
             );
 
-            slideUpdateStream.add(new SlideUpdate(
+            slideUpdateStream.add(SlideUpdate(
               UpdateType.animating,
               slideDirection,
               slidePercent,
@@ -120,7 +120,7 @@ class AnimatedPageDragger {
           })
           ..addStatusListener((AnimationStatus status) {
             if (status == AnimationStatus.completed) {
-              slideUpdateStream.add(new SlideUpdate(
+              slideUpdateStream.add(SlideUpdate(
                 UpdateType.doneAnimating,
                 slideDirection,
                 endSlidePercent,
